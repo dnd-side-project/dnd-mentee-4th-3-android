@@ -4,7 +4,7 @@
 
 ## github, directory add
 1) git clone 경로
-- 경로에 있는 내용을 복사해온다. (github에 있는 내용을 가져온다.)
+-- 경로에 있는 내용을 복사해온다. (github에 있는 내용을 가져온다.)
 2) cd 경로
 - cd 명령어로 해당 디렉터리에 들어간다.
 3) git status
