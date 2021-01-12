@@ -19,7 +19,7 @@
 ∙ git push origin master
   - github 자체에 *master update 내용을 올리겠다.
 
-## github directory remove
+## github, directory remove
 ∙ git rm --cached -r 폴더이름 : 원격 저장소에 있는 파일을 삭제, 로컬 저장소에 있는 파일은 삭제하지 않는다.
 ∙ git rm 폴더이름 : 원격 저장소와 로컬 저장소에 있는 파일을 삭제한다.
   - git commit -m "github에서 업데이트 확인문“ : 어떤 순간 작업공간의 상태를 저장
