@@ -5,6 +5,7 @@
 ## github, directory add
 ∙ git clone 경로
 - 경로에 있는 내용을 복사해온다. (github에 있는 내용을 가져온다.)
+
 ∙ cd 경로
 - cd 명령어로 해당 디렉터리에 들어간다.
 ∙ git status
@@ -19,5 +20,4 @@
 - branch 확인
 ∙ git push origin master
 - github 자체에 *master update 내용을 올리겠다.
-
 
