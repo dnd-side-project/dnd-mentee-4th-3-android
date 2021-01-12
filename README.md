@@ -9,14 +9,14 @@
 - cd 명령어로 해당 디렉터리에 들어간다.
 3) git status
 - git 상태확인한다.
-∙ git add .
+4) git add .
 - 현재 update 된 모든 파일을(stage에 저장) 넣는다.
-∙ git commit -m "메세지“
+5) git commit -m "메세지“
 - 변경사항 업로드 했을 때, 나 또는 다른 팀원에게 알려주는 commit
-∙ git remote -v
+* git remote -v
 - 현재 프로젝트에 등록된 리모트 저장소를 확인
-∙ git branch
+* git branch
 - branch 확인
-∙ git push origin master
+6) git push origin master
 - github 자체에 *master update 내용을 올리겠다.
 
