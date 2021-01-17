@@ -15,9 +15,9 @@
 
 
 
-* Notion : <a href = "[DND 3조 (notion.so)](https://www.notion.so/DND-3-12b98040c0c242919b56b286b45fb36d)">Notion click</a>
-* Android : <a href = "[dnd-mentee-4th/dnd-mentee-4th-3-android (github.com)](https://github.com/dnd-mentee-4th/dnd-mentee-4th-3-android)">Android click</a>
-* BackEnd : <a href = "[dnd-mentee-4th/dnd-mentee-4th-3-backend: DnD 4기 3조 backend (github.com)](https://github.com/dnd-mentee-4th/dnd-mentee-4th-3-backend)"> BackEnd click</a>
+* Notion : [Notion Click](https://www.notion.so/DND-3-12b98040c0c242919b56b286b45fb36d)
+* Android : [Android Click](https://github.com/dnd-mentee-4th/dnd-mentee-4th-3-android)
+* BackEnd : [BackEnd Click](https://github.com/dnd-mentee-4th/dnd-mentee-4th-3-backend.git)
 
 
 
