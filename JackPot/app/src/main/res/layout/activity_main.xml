@@ -12,7 +12,7 @@
         android:id="@+id/framelayout_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/naviView"
+        android:layout_above="@+id/navi_bottom"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:background="#3F51B5"
@@ -25,7 +25,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="#ffffff"
-        android:id="@+id/naviView"
+        android:id="@+id/navi_bottom"
         app:labelVisibilityMode="unlabeled"
         app:itemIconSize="40dp"
         >

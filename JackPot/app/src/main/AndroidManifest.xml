@@ -12,30 +12,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.thisteampl.jackpot.main.LoginActivity">
+        <activity android:name=".main.myproject.EditProfile"></activity>
+        <activity android:name=".main.myproject.MyProfile" />
+        <activity android:name=".main.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.thisteampl.jackpot.main.SignUpActivity"/>
-
-        <activity android:name="com.thisteampl.jackpot.main.Project"></activity>
-        <activity android:name="com.thisteampl.jackpot.main.MainMenu" />
-        <activity android:name="com.thisteampl.jackpot.main.MyPage" />
-        <activity android:name="com.thisteampl.jackpot.main.MainActivity"/>
-
+        <activity android:name=".main.SignUpActivity" />
+        <activity android:name=".main.Project" />
+        <activity android:name=".main.MainMenu" />
+        <activity android:name=".main.MyPage" />
+        <activity android:name=".main.MainActivity" />
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:host="oauth"
+
+                <data
+                    android:host="oauth"
                     android:scheme="kakaoad84bb483482dd2c398ebc6794b65db9" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
