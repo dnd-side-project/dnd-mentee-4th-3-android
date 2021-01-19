@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DBDDDD"
+    tools:context="com.thisteampl.jackpot.main.MainActivity">
+
+
+    <FrameLayout
+        android:id="@+id/framelayout_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/naviView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#3F51B5"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        app:menu="@menu/bottommenu"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffff"
+        android:id="@+id/naviView"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconSize="40dp"
+        >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</RelativeLayout>

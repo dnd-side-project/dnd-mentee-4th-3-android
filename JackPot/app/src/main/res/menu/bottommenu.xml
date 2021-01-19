@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/mypage"
+            android:icon="@drawable/android_mypage"
+            android:title="마이페이지"/>
+
+        <item  android:id="@+id/mainview"
+            android:icon="@drawable/android_homepage"
+            android:title="메인화면"/>
+
+        <item android:id="@+id/project"
+            android:icon="@drawable/android_project"
+            android:title="프로젝트"/>
+
+
+    </group>
+</menu>
