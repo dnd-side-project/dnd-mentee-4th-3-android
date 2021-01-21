@@ -1,4 +1,4 @@
-package com.thisteampl.jackpot.main.myproject
+package com.thisteampl.jackpot.main.mypage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

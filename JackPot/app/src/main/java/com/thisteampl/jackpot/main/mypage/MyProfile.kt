@@ -1,10 +1,9 @@
-package com.thisteampl.jackpot.main.myproject
+package com.thisteampl.jackpot.main.mypage
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.thisteampl.jackpot.R
-import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.activity_my_profile.*
 
 class MyProfile : AppCompatActivity() {
