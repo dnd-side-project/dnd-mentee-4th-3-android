@@ -22,9 +22,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".main.SignUpActivity" />
-        <activity android:name=".main.Project" />
-        <activity android:name=".main.MainMenu" />
-        <activity android:name=".main.MyPage" />
         <activity android:name=".main.MainActivity" />
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
