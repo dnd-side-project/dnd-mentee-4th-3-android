@@ -7,6 +7,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.nhn.android.naverlogin.OAuthLogin
@@ -21,12 +27,16 @@ import org.json.JSONObject
 * 카카오 로그인 기능 구현 : https://studyforcoding.tistory.com/6?category=800442 참조.
 * kakaosdk v2 사용
 *
+* 구글 로그인 기능 구현 : https://galid1.tistory.com/109
+* https://philosopher-chan.tistory.com/341 두 곳을 참조.
+*
 * 맨 처음 앱이 시작될 때 나오는 화면. 로그인이 돼 있다면 바로 다음 메인화면으로 간다.
 * */
 
 class LoginActivity : AppCompatActivity() {
 
     lateinit var mOAuthLoginInstance : OAuthLogin // 네이버 로그인 모듈
+    lateinit var googleSignInClient: GoogleSignInClient // 구글 로그인 모듈
 
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,12 +93,19 @@ class LoginActivity : AppCompatActivity() {
     private fun setupView(){
 
         mOAuthLoginInstance = OAuthLogin.getInstance()
-        mOAuthLoginInstance.init( // 로그인 모듈 초기화
+        mOAuthLoginInstance.init( // 네이버 로그인 모듈 초기화
             this,
             "RQcA9ncoO8aUd2YwNz1o",
             "v0NYcGwVmY" ,
             "잭팟"
         )
+
+        var gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.google_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        // 구글 로그인을 위한 GSO 객체
 
         //카카오로 로그인 버튼의 기능. callback 함수를 호출해서 회원가입 페이지로 이동하게 한다.
         login_kakao_login_button.setOnClickListener {
@@ -106,7 +123,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         login_naver_login_button.setOnClickListener{
-
             mOAuthLoginInstance.startOauthLoginActivity(this, naverOAuthLoginHandler)
         }
 
@@ -116,8 +132,42 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
             finish()
         }
+
+        login_google_login_button.setOnClickListener{
+            val intent = googleSignInClient.signInIntent
+            startActivityForResult(intent, 9001)
+        }
+
     }
 
+    // 구글 로그인을 위한 오버라이딩. requestcode == 9001은 구글 로그인을 의미한다.
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == 9001) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+    }
+
+    //구글 로그인 됐을 때 회원가입으로 이동.
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        var id = ""
+        var name = ""
+        try {
+            val account =
+                completedTask.getResult(ApiException::class.java)
+            id = account?.id!!
+            name = account.displayName!!
+            val intent = Intent(baseContext, SignUpActivity::class.java)
+                .putExtra("signuptype", 3).putExtra("id", id).putExtra("name", name)
+            startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+            finish()
+        } catch (e: ApiException) {
+            Toast.makeText(baseContext, "구글 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
 }
 
 
