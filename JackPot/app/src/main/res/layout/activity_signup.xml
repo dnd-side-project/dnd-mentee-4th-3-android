@@ -250,21 +250,21 @@
                     android:gravity="center">
 
                     <CheckBox
-                        android:id="@+id/signup_stack_cpp"
+                        android:id="@+id/signup_stack_developer_cpp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="C++" />
 
                     <CheckBox
-                        android:id="@+id/signup_stack_java"
+                        android:id="@+id/signup_stack_developer_java"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="JAVA" />
 
                     <CheckBox
-                        android:id="@+id/signup_stack_python"
+                        android:id="@+id/signup_stack_developer_python"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -279,21 +279,21 @@
                     android:gravity="center">
 
                     <CheckBox
-                        android:id="@+id/signup_stack_jsc"
+                        android:id="@+id/signup_stack_developer_jsc"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Javascript" />
 
                     <CheckBox
-                        android:id="@+id/signup_stack_htmlcss"
+                        android:id="@+id/signup_stack_developer_htmlcss"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="HTML / CSS" />
 
                     <CheckBox
-                        android:id="@+id/signup_stack_swift"
+                        android:id="@+id/signup_stack_developer_swift"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -308,21 +308,21 @@
                     android:gravity="center">
 
                     <CheckBox
-                        android:id="@+id/signup_stack_kotlin"
+                        android:id="@+id/signup_stack_developer_kotlin"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Kotlin" />
 
                     <CheckBox
-                        android:id="@+id/signup_stack_spring"
+                        android:id="@+id/signup_stack_developer_spring"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Spring" />
 
                     <CheckBox
-                        android:id="@+id/signup_stack_django"
+                        android:id="@+id/signup_stack_developer_django"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -336,21 +336,21 @@
                     android:gravity="center">
 
                     <CheckBox
-                        android:id="@+id/signup_stack_reactjs"
+                        android:id="@+id/signup_stack_developer_reactjs"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="React.JS" />
 
                     <CheckBox
-                        android:id="@+id/signup_stack_flask"
+                        android:id="@+id/signup_stack_developer_flask"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Flask" />
 
                     <CheckBox
-                        android:id="@+id/signup_stack_etc"
+                        android:id="@+id/signup_stack_developer_etc"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -360,6 +360,101 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/signup_designer_stack_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_designer_photoshop"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="PhotoShop" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_designer_illustrator"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Illustrator" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_designer_xd"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="XD" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_designer_figma"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Figma" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_designer_sketch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Sketch" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_designer_aftereffects"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="After Effects" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_designer_premiere"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Premiere" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_designer_c4d"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="C4D" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_designer_etc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="기타" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -85,6 +85,16 @@ class SignUpActivity : AppCompatActivity() {
             finish()
         }
 
+        signup_designer_radio_button.setOnClickListener{
+            signup_developer_stack_layout.visibility = View.GONE
+            signup_designer_stack_layout.visibility = View.VISIBLE
+        }
+
+        signup_developer_radio_button.setOnClickListener {
+            signup_developer_stack_layout.visibility = View.VISIBLE
+            signup_designer_stack_layout.visibility = View.GONE
+        }
+
         var regions = arrayOf("서울","부산","대구","인천","광주",
             "대전","울산","세종","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도")
         val regionAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, regions)
