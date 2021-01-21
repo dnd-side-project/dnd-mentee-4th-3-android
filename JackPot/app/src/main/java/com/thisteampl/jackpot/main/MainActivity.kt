@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity(){
         navi_bottom.setOnNavigationItemSelectedListener(onBottomNaviItemSelectedListener)
 
         // 첫 번째 fragment 추가 (add 사용)
-        mypage = MyPage.newInstance()
-        supportFragmentManager.beginTransaction().add(R.id.framelayout_frame, mypage).commit()
+        mainmenu = MainMenu.newInstance()
+        supportFragmentManager.beginTransaction().add(R.id.framelayout_frame, mainmenu).commit()
 
     }
 

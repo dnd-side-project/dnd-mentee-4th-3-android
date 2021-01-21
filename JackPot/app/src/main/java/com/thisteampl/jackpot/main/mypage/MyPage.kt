@@ -33,32 +33,7 @@ class MyPage : Fragment() {
 
 
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
 
-        btn_myprofile.setOnClickListener{
-            activity?.let{
-                val intent_myprofile = Intent(context, MyProfile::class.java)
-                startActivity(intent_myprofile)
-            }
-        }
-//
-//        btn_project.setOnClickListener{
-//            activity?.let{
-//                val intent_myproject = Intent(context, SaveProject::class.java)
-//                startActivity(intent_myproject)
-//            }
-//
-//        }
-//
-//        btn_setting.setOnClickListener{
-//            activity?.let{
-//                val intent_myprofile = Intent(context, MyProfile::class.java)
-//                startActivity(intent_myprofile)
-//            }
-//        }
-
-    }
 
     // 뷰가 생성되었을 때
     // 프래그먼트와 레이아웃을 연결시켜주는 부분이다.

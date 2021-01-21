@@ -24,27 +24,5 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        >
-        <Button
-            android:id="@+id/btn_myprofile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="나의 프로필"
-            />
-        <Button
-            android:id="@+id/btn_project"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="나의 프로젝트"/>
-        <Button
-            android:id="@+id/btn_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="설정버튼"/>
-    </LinearLayout>
+
 </LinearLayout>
