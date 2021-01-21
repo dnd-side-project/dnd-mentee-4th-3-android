@@ -1,5 +1,7 @@
 package com.thisteampl.jackpot.main
 
+import android.app.Application
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +12,8 @@ import com.thisteampl.jackpot.main.mypage.MyPage
 import com.thisteampl.jackpot.main.projectsearch.Project
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity(){
-    // 네비게이션 2번 사용시 선언 : , BottomNavigationView.OnNavigationItemSelectedListener
 
     // lateinit : 나중에 값을 넣기 위해 사용
     private lateinit var pj : Project

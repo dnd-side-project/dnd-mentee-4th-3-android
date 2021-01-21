@@ -7,13 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.MainActivity
 import com.thisteampl.jackpot.main.mypage.MyProfile
 import kotlinx.android.synthetic.main.activity_main_menu.*
 
 
 /* Menu */
 class MainMenu : Fragment() {
+
 
     companion object {
 
@@ -27,6 +31,18 @@ class MainMenu : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val popular = arrayListOf(
+            Popularity("팀플"),
+            Popularity("팀플2"),
+            Popularity("팀플3")
+        )
+//
+        //popular_rv.layoutManager = LinearLayoutManager(MainActivity.this,LinearLayoutManager.VERTICAL,false)
+
+
+//        popular_rv.setHasFixedSize(true)
+//
+//        popular_rv.adapter = PopularityAdapter(popular)
     }
 
     override fun onAttach(context: Context) {
