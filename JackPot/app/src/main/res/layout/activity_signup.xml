@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -19,7 +22,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="3dp"
@@ -52,7 +55,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="3dp"
@@ -85,7 +88,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="3dp"
@@ -102,7 +105,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="3dp"
-                android:hint="이름"
+                android:hint="잭팟에서 사용하실 닉네임"
                 android:inputType="text"
                 android:singleLine="true"
                 android:textSize="20dp" />
@@ -118,7 +121,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="3dp"
@@ -151,7 +154,37 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="3dp"
+                android:gravity="center"
+                android:text="지역"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
+            <Spinner
+                android:id="@+id/signup_region_spinner"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="3dp"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="3dp"
@@ -192,30 +225,172 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="기술스택"
                 android:textColor="#000000"
                 android:textSize="20dp" />
 
+            <LinearLayout
+                android:id="@+id/signup_developer_stack_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_cpp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="C++" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_java"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="JAVA" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_python"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Python" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_jsc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Javascript" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_htmlcss"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="HTML / CSS" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_swift"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Swift" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_kotlin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Kotlin" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_spring"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Spring" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_django"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Django" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_reactjs"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="React.JS" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_flask"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Flask" />
+
+                    <CheckBox
+                        android:id="@+id/signup_stack_etc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="기타" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="3dp"
+                android:gravity="center"
+                android:text="경력(년)"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
             <EditText
-                android:id="@+id/signup_stack_text"
+                android:id="@+id/signup_career_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="3dp"
-                android:hint="선호하는 기술들을 입력해주세요."
-                android:inputType="text"
+                android:hint="경력을 '년' 단위로 입력해주세요."
+                android:inputType="number"
                 android:singleLine="true"
                 android:textSize="20dp" />
 
@@ -230,7 +405,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="3dp"
@@ -248,7 +423,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="3dp"
                 android:hint="자기 소개를 입력해 주세요."
-                android:lines="5"
+                android:lines="3"
                 android:inputType="textMultiLine"
                 android:textSize="20dp" />
 
@@ -281,3 +456,5 @@
     </LinearLayout>
 
 </LinearLayout>
+
+</ScrollView>
