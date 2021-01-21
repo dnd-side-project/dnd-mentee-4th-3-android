@@ -3,5 +3,5 @@
     <string name="kakao_app_key">ad84bb483482dd2c398ebc6794b65db9</string>
     <string name="naver_client_id">RQcA9ncoO8aUd2YwNz1o</string>
     <string name="naver_client_secret">v0NYcGwVmY</string>
-    <string name="naver_client_name">잭팟</string>
+    <string name="google_client_id">569361822110-feok4i8qmi1sded0jv96pf8tndli334t.apps.googleusercontent.com</string>
 </resources>

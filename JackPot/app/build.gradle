@@ -38,4 +38,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "com.kakao.sdk:v2-user:2.2.0" // KaKaoSDK v2 카카오 로그인 기능 구현.
     implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.6' // Naver 네이버 로그인 기능 구현.
+    implementation 'com.google.android.gms:play-services-auth:19.0.0' // 구글 로그인 기능
 }

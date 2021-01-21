@@ -60,7 +60,13 @@ class SignUpActivity : AppCompatActivity() {
             signup_id_text.setText(userIdx.toString())
             signup_name_text.setText(name)
         } else if(signUpType == 3) {
+            Toast.makeText(this, "구글 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
             //구글 로그인을 했을 시 구글idx와 이름을 불러온다.
+            var id: String? = intent.getStringExtra("id")
+            var name: String? = intent.getStringExtra("name")
+            //userIdx = id?.toLong()
+            signup_id_text.setText(id)
+            signup_name_text.setText(name)
         }
 
         signup_cancel_button.setOnClickListener {
@@ -88,9 +94,8 @@ class SignUpActivity : AppCompatActivity() {
 
        signup_region_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                Toast.makeText(baseContext, regions[position], Toast.LENGTH_SHORT).show()
-
                 //아이템이 클릭 되면 맨 위부터 position 0번부터 순서대로 동작하게 됩니다.
+
                 when(position) {
                     0   ->  {
 
@@ -109,7 +114,6 @@ class SignUpActivity : AppCompatActivity() {
 
             }
         }
-
 
     }
 }
