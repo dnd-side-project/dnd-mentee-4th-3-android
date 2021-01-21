@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.main.menu.MainMenu
-import com.thisteampl.jackpot.main.mypage.MyPage
-import com.thisteampl.jackpot.main.project.Project
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(){
