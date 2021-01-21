@@ -2,15 +2,21 @@ package com.thisteampl.jackpot.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.user.UserApiClient
 import com.thisteampl.jackpot.R
 import kotlinx.android.synthetic.main.activity_signup.*
 
-/* 회원가입을 위한 화면.*/
+/* 회원가입을 위한 화면.
+* 지역 스피너 : https://black-jin0427.tistory.com/222 참고했음.
+* */
 
 class SignUpActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
@@ -29,6 +35,8 @@ class SignUpActivity : AppCompatActivity() {
 
     // 화면이 구성되고 View를 만들어 준다.
     private fun setupView(){
+
+        signup_developer_radio_button.isChecked = true // 개발자로 체크를 해 둔다.
 
         /* 유저 정보에 저장해 둘 3개 SNS의 idx들*/
         var signUpType: Int = intent.getIntExtra("signuptype", 0)
@@ -70,5 +78,38 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             finish()
         }
+
+        var regions = arrayOf("서울","부산","대구","인천","광주",
+            "대전","울산","세종","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도")
+        val regionAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, regions)
+        // 지역 선택을 해 줄 배열과 액티비티의 스피너와 연결해줄 어댑터.
+
+        signup_region_spinner.adapter = regionAdapter // 스피너와 어댑터를 연결
+
+       signup_region_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                Toast.makeText(baseContext, regions[position], Toast.LENGTH_SHORT).show()
+
+                //아이템이 클릭 되면 맨 위부터 position 0번부터 순서대로 동작하게 됩니다.
+                when(position) {
+                    0   ->  {
+
+                    }
+                    1   ->  {
+
+                    }
+                    //...
+                    else -> {
+
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
+        }
+
+
     }
 }
