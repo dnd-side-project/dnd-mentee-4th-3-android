@@ -1,6 +1,5 @@
 package com.thisteampl.jackpot.main.mainview
 
-import android.widget.CheckBox
 
-class Popularity (val project_name:String)
-// checkbox 부분
+// 인기순위 관련 어댑터
+class Popularity(var project_name:String)

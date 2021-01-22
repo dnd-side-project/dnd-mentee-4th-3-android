@@ -37,7 +37,7 @@ class Project : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.activity_project,container,false)
+        val view = inflater.inflate(R.layout.fragment_project,container,false)
         return view
     }
 }

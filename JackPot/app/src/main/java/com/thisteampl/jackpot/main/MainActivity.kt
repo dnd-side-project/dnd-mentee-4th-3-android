@@ -1,7 +1,5 @@
 package com.thisteampl.jackpot.main
 
-import android.app.Application
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -48,30 +46,34 @@ class MainActivity : AppCompatActivity(){
 
     // 바텀네비게이션 아이템 클릭 리스너 설정
     private val onBottomNaviItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
-        when(it.itemId){
+        when (it.itemId) {
             R.id.mypage -> {
                 mypage = MyPage.newInstance()
                 // supportFragmentMananger : Fragment 관리
                 // replace : 다른 fragment로 교체
                 // R.id.frameLayout_frame 자리(page)에 mypage로 대체
-                supportFragmentManager.beginTransaction().replace(R.id.framelayout_frame, mypage).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.framelayout_frame, mypage)
+                    .commit()
             }
             R.id.mainview -> {
                 mainmenu = MainMenu.newInstance()
                 // supportFragmentMananger : Fragment 관리
                 // replace : 다른 fragment로 교체
                 // R.id.frameLayout_frame 자리(page)에 mainmenu로 대체
-                supportFragmentManager.beginTransaction().replace(R.id.framelayout_frame, mainmenu).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.framelayout_frame, mainmenu)
+                    .commit()
             }
             R.id.project -> {
                 pj = Project.newInstance()
                 // supportFragmentMananger : Fragment 관리
                 // replace : 다른 fragment로 교체
                 // R.id.frameLayout_frame 자리(page)에 project로 대체
-                supportFragmentManager.beginTransaction().replace(R.id.framelayout_frame, pj).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.framelayout_frame, pj)
+                    .commit()
             }
         }
 
         true
     }
+
 }

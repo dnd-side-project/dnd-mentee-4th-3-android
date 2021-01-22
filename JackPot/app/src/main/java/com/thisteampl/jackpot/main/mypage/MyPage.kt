@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.thisteampl.jackpot.R
-import kotlinx.android.synthetic.main.activity_my_page.*
 import android.content.Intent as Intent
 
 
@@ -43,10 +42,11 @@ class MyPage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.activity_my_page,container,false)
+        val view = inflater.inflate(R.layout.fragment_my_page,container,false)
         return view
     }
 
 
 
 }
+
