@@ -41,14 +41,14 @@ class SignUpActivity : AppCompatActivity() {
         /* 유저 정보에 저장해 둘 3개 SNS의 idx들*/
         var signUpType: Int = intent.getIntExtra("signuptype", 0)
         // 회원가입 타입, 0 : 일반회원가입, 1 : 카카오 로그인, 2 : 네이버 로그인, 3 : 구글 로그인
-        var userIdx: Long? = 0
+        var thirdPartyID: String
 
         if(signUpType == 1) {
             Toast.makeText(this, "카카오 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
             //카카오 로그인을 했을 시 카카오idx와 이름을 불러온다.
             UserApiClient.instance.me { user, error ->
-                userIdx = user?.id
-                signup_id_text.setText(userIdx.toString())
+                thirdPartyID = user?.id.toString()
+                signup_id_text.setText(thirdPartyID)
                 signup_name_text.setText("${user?.kakaoAccount?.profile?.nickname}")
             }
         } else if(signUpType == 2) {
@@ -56,16 +56,16 @@ class SignUpActivity : AppCompatActivity() {
             //네이버 로그인을 했을 시 네이버idx와 이름을 불러온다.
             var id: String? = intent.getStringExtra("id")
             var name: String? = intent.getStringExtra("name")
-            userIdx = id?.toLong()
-            signup_id_text.setText(userIdx.toString())
+            thirdPartyID = id.toString()
+            signup_id_text.setText(thirdPartyID)
             signup_name_text.setText(name)
         } else if(signUpType == 3) {
             Toast.makeText(this, "구글 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
             //구글 로그인을 했을 시 구글idx와 이름을 불러온다.
             var id: String? = intent.getStringExtra("id")
             var name: String? = intent.getStringExtra("name")
-            //userIdx = id?.toLong()
-            signup_id_text.setText(id)
+            thirdPartyID = id.toString()
+            signup_id_text.setText(thirdPartyID)
             signup_name_text.setText(name)
         }
 
