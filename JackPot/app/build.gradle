@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -32,6 +33,14 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     // 메테리얼 디자인
     implementation 'com.google.android.material:material:1.0.0'
+
+    // 룸 하단 사이트 참조
+    // https://developer.android.com/training/data-storage/room?hl=ko
+    def room_version = "2.2.6"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

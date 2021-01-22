@@ -9,7 +9,13 @@ import com.kakao.sdk.common.KakaoSdk
 class GlobalApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        instance = this
 
         KakaoSdk.init(this, "ad84bb483482dd2c398ebc6794b65db9")
+    }
+
+    companion object {
+        lateinit var instance : GlobalApplication
+            private set
     }
 }
