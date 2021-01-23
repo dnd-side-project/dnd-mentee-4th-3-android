@@ -1,11 +1,13 @@
 package com.thisteampl.jackpot.main.mainview
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
 
@@ -36,6 +38,12 @@ class PopularityAdapter(val popularityList: ArrayList<Popularity>? = null): Recy
 
         holder.project_name.text = popularityList!!.get(index = position).project_name
 
+        // 다음 page
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context,ProjectViewDetail::class.java)
+            ContextCompat.startActivity(holder.itemView.context,intent,null)
+
+        }
     }
 
     class ProjectView(itemView: View):RecyclerView.ViewHolder(itemView) {

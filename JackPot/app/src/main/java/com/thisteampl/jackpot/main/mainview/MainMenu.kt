@@ -2,9 +2,7 @@ package com.thisteampl.jackpot.main.mainview
 
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +10,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
-import com.thisteampl.jackpot.main.mypage.MyProfile
 import kotlinx.android.synthetic.main.fragment_main_menu.*
 
 /* Menu */
@@ -38,31 +35,32 @@ class MainMenu : Fragment() {
             Popularity("text3")
         )
 
-        val cu = arrayListOf(
-            Lately("a")
+        val latelylist = arrayListOf(
+            Lately("text"),
+            Lately("text2"),
+            Lately("text3"),
+            Lately("next"),
+            Lately("next2"),
+            Lately("next3")
+
         )
 
-//        val popular = arrayListOf<Popularity>()[6]
-
-//
         for(num in 1..2)
             popular.add(Popularity(popularlist[num]))
-
-
+        
+        
+        // 인기순
         popular_rv.layoutManager = LinearLayoutManager((activity as MainActivity),
             LinearLayoutManager.HORIZONTAL,false)
-
-
         popular_rv.setHasFixedSize(true)
         popular_rv.adapter = PopularityAdapter(popular)
 
 
-        var view:View
-
+        // 최신순
         lately_rv.layoutManager = LinearLayoutManager((activity as MainActivity),
             LinearLayoutManager.HORIZONTAL,false)
         lately_rv.setHasFixedSize(true)
-//        lately_rv.adapter = ExampleProject(cu)
+        lately_rv.adapter = LatelyAdapter(latelylist)
 
     }
 
@@ -74,13 +72,13 @@ class MainMenu : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        // 프로젝트 찾기
-        mainmenu_findproject_tv.setOnClickListener{
+        // 버튼 클릭시 다음 page 이동
+//        mainmenu_findproject_tv.setOnClickListener{
 //            activity?.let{
 //                val intent_myprofile = Intent(context, FindProject::class.java)
 //                startActivity(intent_myprofile)
 //            }
-        }
+//        }
 
     }
 
