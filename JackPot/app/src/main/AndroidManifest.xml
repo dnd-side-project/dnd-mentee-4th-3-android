@@ -12,8 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".main.mainview.ExampleProject"></activity>
-        <activity android:name=".main.mainview.FindProject" />
         <activity android:name=".main.mypage.Setting" />
         <activity android:name=".main.mypage.MyProject" />
         <activity android:name=".main.mypage.MyProfile" />

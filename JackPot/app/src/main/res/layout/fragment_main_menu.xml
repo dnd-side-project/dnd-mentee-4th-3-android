@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    >
-
-    <!-- 해야할 것 list_item.xml을 activity_main_menu에 recyclerview에 적용-->
-    <!-- 임의의 이미지만 보여준 내용이다.-->
-    <!-- recyclerview에서 잘못되었다. -->
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,120 +40,45 @@
             android:id="@+id/mainmenu_popularity_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/mainmenu_findproject_tv"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
-            android:layout_below="@id/mainmenu_findproject_tv"
-            android:text="인기순(어댑터 해결하기)" />
+            android:text="인기순" />
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/popular_rv"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@+id/mainmenu_popularity_tv"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!-- 지울 부분 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popular_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/mainmenu_popularity_tv"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#89D2F3"
-            android:id="@+id/cl"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <EditText
-                android:id="@+id/projectname_tv"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:background="#FFFFFF"
-                android:hint="프로젝트 이름을 적어주세요"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <CheckBox
-                android:id="@+id/heart_mainhome_checkbox"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:scrollbarSize="3dp"
-                android:textSize="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <!-- 여기까지 지우기-->
-
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            />
 
         <TextView
             android:id="@+id/mainmenu_lately_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cl"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/popular_rv"
             android:text="최신순" />
 
-        <!-- 지울 부분 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lately_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
             android:layout_below="@+id/mainmenu_lately_tv"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#89D2F3"
-            android:id="@+id/cl2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <EditText
-                android:id="@+id/projectname_tv2"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:background="#FFFFFF"
-                android:hint="프로젝트 이름을 적어주세요"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <CheckBox
-                android:id="@+id/heart_mainhome_checkbox2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:scrollbarSize="3dp"
-                android:textSize="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <!-- 여기까지 지우기 -->
-
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/lately_rv"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_below="@+id/mainmenu_lately_tv"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+            />
 
         <TextView
             android:id="@+id/mainmenu_field_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cl2"
+            android:layout_below="@id/lately_rv"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:text="분야" />
 
     </RelativeLayout>
