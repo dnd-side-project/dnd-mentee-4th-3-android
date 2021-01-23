@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Build
 import android.os.Bundle
+import android.text.InputFilter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -19,8 +20,10 @@ import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.thisteampl.jackpot.R
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_signup.*
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.regex.Pattern
 
 
 /*
@@ -137,6 +140,18 @@ class LoginActivity : AppCompatActivity() {
             val intent = googleSignInClient.signInIntent
             startActivityForResult(intent, 9001)
         }
+
+        // 아이디 정규식 영문, 숫자 최대 10글자
+        // https://jo-coder.tistory.com/19 참고.
+        login_id_text.filters = arrayOf(InputFilter { source, _, _, _, _, _ ->
+            val ps: Pattern =
+                Pattern.compile("^[a-zA-Z0-9\\u318D\\u119E\\u11A2\\u2022\\u2025a\\u00B7\\uFE55]+$")
+            if (source == "" || ps.matcher(source).matches()) {
+                return@InputFilter source
+            }
+            Toast.makeText( this, "영문, 숫자만 입력 가능합니다.", Toast.LENGTH_SHORT).show()
+            ""
+        }, InputFilter.LengthFilter(10))
 
     }
 

@@ -8,10 +8,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:textSize="35dp" />
+
     <LinearLayout
+        android:id="@+id/signup_must_information_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="필수 입력사항"
+            android:textSize="25dp"
+            android:textColor="#000000"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +53,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="3dp"
-                android:hint="아이디(영어와 숫자 6~12글자)"
+                android:hint="아이디(영문, 숫자 6~10글자)"
                 android:inputType="text"
                 android:singleLine="true"
                 android:textSize="20dp" />
@@ -72,7 +86,41 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="3dp"
-                android:hint="비밀번호"
+                android:hint="비밀번호(6글자 ~ 15글자)"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="3dp"
+                android:paddingBottom="10dp"
+                android:gravity="center"
+                android:text="비밀번호 확인"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/signup_password_check_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="3dp"
+                android:hint="비밀번호 확인(6글자 ~ 15글자)"
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:textSize="20dp" />
@@ -107,39 +155,6 @@
                 android:layout_marginRight="3dp"
                 android:hint="잭팟에서 사용하실 닉네임"
                 android:inputType="text"
-                android:singleLine="true"
-                android:textSize="20dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:gravity="center"
-                android:text="연락처"
-                android:textColor="#000000"
-                android:textSize="20dp" />
-
-            <EditText
-                android:id="@+id/signup_contact_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="3dp"
-                android:hint="연락처"
-                android:inputType="phone"
                 android:singleLine="true"
                 android:textSize="20dp" />
 
@@ -220,6 +235,22 @@
             </RadioGroup>
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/signup_add_information_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="선택 입력사항 입니다."
+            android:textSize="25dp"
+            android:textColor="#000000"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -472,22 +503,43 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="3dp"
                 android:gravity="center"
-                android:text="경력(년)"
+                android:text="경력"
                 android:textColor="#000000"
                 android:textSize="20dp" />
 
-            <EditText
-                android:id="@+id/signup_career_text"
+            <RadioGroup
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="3dp"
-                android:hint="경력을 '년' 단위로 입력해주세요."
-                android:inputType="number"
-                android:singleLine="true"
-                android:textSize="20dp" />
+                android:layout_weight="7"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/signup_university_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="대학생" />
+
+                <RadioButton
+                    android:id="@+id/signup_jobseeker_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="취준생" />
+
+                <RadioButton
+                    android:id="@+id/signup_junior_radio_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="주니어" />
+
+            </RadioGroup>
+
 
         </LinearLayout>
 
@@ -517,7 +569,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="3dp"
-                android:hint="자기 소개를 입력해 주세요."
+                android:hint="자기 소개를 입력해 주세요.\n(예시 : Github 주소, 기타 경력)"
                 android:lines="3"
                 android:inputType="textMultiLine"
                 android:textSize="20dp" />
@@ -533,6 +585,15 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/signup_prev_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:text="이전"
+            android:textSize="45dp"
+            android:visibility="gone"/>
+
+        <Button
             android:id="@+id/signup_cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -541,12 +602,21 @@
             android:textSize="45dp" />
 
         <Button
+            android:id="@+id/signup_next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="다음"
+            android:textSize="45dp" />
+
+        <Button
             android:id="@+id/signup_finish_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:text="완료"
-            android:textSize="45dp" />
+            android:textSize="45dp"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

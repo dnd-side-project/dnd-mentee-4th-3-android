@@ -2,6 +2,7 @@ package com.thisteampl.jackpot.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.user.UserApiClient
 import com.thisteampl.jackpot.R
 import kotlinx.android.synthetic.main.activity_signup.*
+import java.util.regex.Pattern
 
 /* 회원가입을 위한 화면.
 * 지역 스피너 : https://black-jin0427.tistory.com/222 참고했음.
@@ -69,10 +71,42 @@ class SignUpActivity : AppCompatActivity() {
             signup_name_text.setText(name)
         }
 
+        signup_prev_button.setOnClickListener {
+            signup_must_information_layout.visibility = View.VISIBLE
+            signup_next_button.visibility = View.VISIBLE
+            signup_cancel_button.visibility = View.VISIBLE
+
+            signup_add_information_layout.visibility = View.GONE
+            signup_finish_button.visibility = View.GONE
+            signup_prev_button.visibility = View.GONE
+        }
+
         signup_cancel_button.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             finish()
+        }
+
+        signup_next_button.setOnClickListener {
+            if(signup_id_text.text.trim().length < 6 || signup_id_text.text.trim().length > 12) {
+                Toast.makeText(this, "아이디는 최소 6글자 최대 12글자 입니다.", Toast.LENGTH_SHORT).show()
+            } else if(signup_password_text.text.length < 6 || signup_password_text.text.length > 15) {
+                Toast.makeText(this, "비밀번호는 최소 6글자 최대 15글자 입니다.", Toast.LENGTH_SHORT).show()
+            } else if(signup_password_check_text.text.toString() != signup_password_text.text.toString()) {
+                Toast.makeText(this, "비밀번호와 비밀번호 확인이 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+            }
+            else if(signup_name_text.text.trim().length < 3 || signup_name_text.text.trim().length > 6) {
+                Toast.makeText(this, "이름은 최소 3글자 최대 6글자 입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                // 조건이 다 맞다면, 추가입력 화면으로 넘어가게 하기.
+                signup_add_information_layout.visibility = View.VISIBLE
+                signup_finish_button.visibility = View.VISIBLE
+                signup_prev_button.visibility = View.VISIBLE
+
+                signup_must_information_layout.visibility = View.GONE
+                signup_next_button.visibility = View.GONE
+                signup_cancel_button.visibility = View.GONE
+            }
         }
 
         signup_finish_button.setOnClickListener{
@@ -94,6 +128,19 @@ class SignUpActivity : AppCompatActivity() {
             signup_developer_stack_layout.visibility = View.VISIBLE
             signup_designer_stack_layout.visibility = View.GONE
         }
+
+
+        // 아이디 정규식 영문, 숫자 최대 10글자
+        // https://jo-coder.tistory.com/19 참고.
+        signup_id_text.filters = arrayOf(InputFilter { source, _, _, _, _, _ ->
+            val ps: Pattern =
+                Pattern.compile("^[a-zA-Z0-9\\u318D\\u119E\\u11A2\\u2022\\u2025a\\u00B7\\uFE55]+$")
+            if (source == "" || ps.matcher(source).matches()) {
+                return@InputFilter source
+            }
+            Toast.makeText( this, "영문, 숫자만 입력 가능합니다.", Toast.LENGTH_SHORT).show()
+            ""
+        }, InputFilter.LengthFilter(10))
 
         var regions = arrayOf("서울","부산","대구","인천","광주",
             "대전","울산","세종","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도")
