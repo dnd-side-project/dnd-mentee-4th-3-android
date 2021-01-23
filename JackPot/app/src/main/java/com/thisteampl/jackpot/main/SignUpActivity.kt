@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.user.UserApiClient
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.common.AppDatabase
+import com.thisteampl.jackpot.main.user.User
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.util.regex.Pattern
 
@@ -44,6 +46,7 @@ class SignUpActivity : AppCompatActivity() {
         var signUpType: Int = intent.getIntExtra("signuptype", 0)
         // 회원가입 타입, 0 : 일반회원가입, 1 : 카카오 로그인, 2 : 네이버 로그인, 3 : 구글 로그인
         var thirdPartyID: String
+        var regionIdx = 0
 
         if(signUpType == 1) {
             Toast.makeText(this, "카카오 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
@@ -69,6 +72,36 @@ class SignUpActivity : AppCompatActivity() {
             thirdPartyID = id.toString()
             signup_id_text.setText(thirdPartyID)
             signup_name_text.setText(name)
+        }
+
+        var regions = arrayOf("서울","부산","대구","인천","광주",
+            "대전","울산","세종","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도")
+        val regionAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, regions)
+        // 지역 선택을 해 줄 배열과 액티비티의 스피너와 연결해줄 어댑터.
+
+        signup_region_spinner.adapter = regionAdapter // 스피너와 어댑터를 연결
+
+        signup_region_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                //아이템이 클릭 되면 맨 위부터 position 0번부터 순서대로 동작하게 됩니다.
+                regionIdx = position
+                when(position) {
+                    0   ->  {
+
+                    }
+                    1   ->  {
+
+                    }
+                    //...
+                    else -> {
+
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+
+            }
         }
 
         signup_prev_button.setOnClickListener {
@@ -113,6 +146,17 @@ class SignUpActivity : AppCompatActivity() {
             /*
             * 서버에 유저정보를 insert하는 코드
             * */
+            var job = 0
+            if(signup_developer_radio_button.isChecked) { job = 0}
+            else { job = 1 }
+
+            AppDatabase.instance.userDao()
+                .insert(
+                    User(0, signup_id_text.text.toString(), "0", signup_name_text.text.toString(),
+                        regions[regionIdx],
+                     job, 0, signup_introduce_text.text.toString())
+                )
+
             Toast.makeText(this, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -142,35 +186,7 @@ class SignUpActivity : AppCompatActivity() {
             ""
         }, InputFilter.LengthFilter(10))
 
-        var regions = arrayOf("서울","부산","대구","인천","광주",
-            "대전","울산","세종","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도")
-        val regionAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, regions)
-        // 지역 선택을 해 줄 배열과 액티비티의 스피너와 연결해줄 어댑터.
 
-        signup_region_spinner.adapter = regionAdapter // 스피너와 어댑터를 연결
-
-       signup_region_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                //아이템이 클릭 되면 맨 위부터 position 0번부터 순서대로 동작하게 됩니다.
-
-                when(position) {
-                    0   ->  {
-
-                    }
-                    1   ->  {
-
-                    }
-                    //...
-                    else -> {
-
-                    }
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-
-            }
-        }
 
     }
 }

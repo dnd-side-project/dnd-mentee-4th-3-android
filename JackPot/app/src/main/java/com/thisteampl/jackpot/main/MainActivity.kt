@@ -1,5 +1,6 @@
 package com.thisteampl.jackpot.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import com.thisteampl.jackpot.main.mainview.MainMenu
 import com.thisteampl.jackpot.main.mypage.MyPage
 import com.thisteampl.jackpot.main.projectsearch.Project
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_my_page.*
 
 
 class MainActivity : AppCompatActivity(){
@@ -75,5 +77,4 @@ class MainActivity : AppCompatActivity(){
 
         true
     }
-
 }

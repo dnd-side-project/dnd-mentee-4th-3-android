@@ -19,6 +19,8 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.common.AppDatabase
+import com.thisteampl.jackpot.main.user.User
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.json.JSONException
@@ -131,27 +133,30 @@ class LoginActivity : AppCompatActivity() {
 
         login_login_button.setOnClickListener {
             //서버와 연동해서 아이디와 비밀번호가 일치하는게 있는지 확인하는 코드
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
-            finish()
+
+            if(login_id_text.text.toString() != "admin" && login_password_text.text.toString() != "admin") {
+                Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
+                //추후에 서버에 저장돼있는 아이디가 저장돼 있는지 확인하는 코드로 바꾸기.
+            } else {
+                AppDatabase.instance.userDao()
+                    .insert(
+                        User(0, "admin", "0", "관리자",
+                            "지역",
+                            0, 0, "관리자 소개")
+                    )
+                //추후에 서버에 저장돼있는 정보를 내부 DB에 저장하는 역할을 한다.
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+                finish()
+            }
+
         }
 
         login_google_login_button.setOnClickListener{
             val intent = googleSignInClient.signInIntent
             startActivityForResult(intent, 9001)
         }
-
-        // 아이디 정규식 영문, 숫자 최대 10글자
-        // https://jo-coder.tistory.com/19 참고.
-        login_id_text.filters = arrayOf(InputFilter { source, _, _, _, _, _ ->
-            val ps: Pattern =
-                Pattern.compile("^[a-zA-Z0-9\\u318D\\u119E\\u11A2\\u2022\\u2025a\\u00B7\\uFE55]+$")
-            if (source == "" || ps.matcher(source).matches()) {
-                return@InputFilter source
-            }
-            Toast.makeText( this, "영문, 숫자만 입력 가능합니다.", Toast.LENGTH_SHORT).show()
-            ""
-        }, InputFilter.LengthFilter(10))
 
     }
 

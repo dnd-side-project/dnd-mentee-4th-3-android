@@ -13,7 +13,7 @@ import com.thisteampl.jackpot.main.user.UserDao
     Room.databaseBuilder : db 관련 설정 추가
  */
 
-@Database(entities = arrayOf(User::class), version = 0)
+@Database(entities = arrayOf(User::class), version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao // 사용하는 DAO를 미리 선언한다.
     //abstract fun projectDao(): ProjectDao 추후에 Project도 추가

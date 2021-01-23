@@ -16,15 +16,15 @@
         <activity android:name=".main.mypage.Setting" />
         <activity android:name=".main.mypage.MyProject" />
         <activity android:name=".main.mypage.MyProfile" />
-        <activity android:name=".main.LoginActivity">
+        <activity android:name=".main.LoginActivity"/>
+        <activity android:name=".main.SignUpActivity" />
+        <activity android:name=".main.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.SignUpActivity" />
-        <activity android:name=".main.MainActivity" />
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
