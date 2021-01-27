@@ -10,8 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.user.UserApiClient
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.common.AppDatabase
-import com.thisteampl.jackpot.main.user.User
 import kotlinx.android.synthetic.main.activity_signup.*
 import java.util.regex.Pattern
 
@@ -56,6 +54,7 @@ class SignUpActivity : AppCompatActivity() {
                 signup_id_text.setText(thirdPartyID)
                 signup_name_text.setText("${user?.kakaoAccount?.profile?.nickname}")
             }
+
         } else if(signUpType == 2) {
             Toast.makeText(this, "네이버 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
             //네이버 로그인을 했을 시 네이버idx와 이름을 불러온다.
@@ -64,6 +63,7 @@ class SignUpActivity : AppCompatActivity() {
             thirdPartyID = id.toString()
             signup_id_text.setText(thirdPartyID)
             signup_name_text.setText(name)
+
         } else if(signUpType == 3) {
             Toast.makeText(this, "구글 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
             //구글 로그인을 했을 시 구글idx와 이름을 불러온다.
@@ -72,6 +72,7 @@ class SignUpActivity : AppCompatActivity() {
             thirdPartyID = id.toString()
             signup_id_text.setText(thirdPartyID)
             signup_name_text.setText(name)
+
         }
 
         var regions = arrayOf("서울","부산","대구","인천","광주",
@@ -143,19 +144,13 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         signup_finish_button.setOnClickListener{
-            /*
-            * 서버에 유저정보를 insert하는 코드
-            * */
             var job = 0
             if(signup_developer_radio_button.isChecked) { job = 0}
             else { job = 1 }
 
-            AppDatabase.instance.userDao()
-                .insert(
-                    User(0, signup_id_text.text.toString(), "0", signup_name_text.text.toString(),
-                        regions[regionIdx],
-                     job, 0, signup_introduce_text.text.toString())
-                )
+            /*
+            * 서버에 유저정보를 insert하는 코드
+            * */
 
             Toast.makeText(this, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
@@ -185,8 +180,6 @@ class SignUpActivity : AppCompatActivity() {
             Toast.makeText( this, "영문, 숫자만 입력 가능합니다.", Toast.LENGTH_SHORT).show()
             ""
         }, InputFilter.LengthFilter(10))
-
-
 
     }
 }

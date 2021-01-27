@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Build
 import android.os.Bundle
-import android.text.InputFilter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -19,13 +18,8 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.common.AppDatabase
-import com.thisteampl.jackpot.main.user.User
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import org.json.JSONException
-import org.json.JSONObject
-import java.util.regex.Pattern
 
 
 /*
@@ -60,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
         /*token이 null이 아니라면 카카오 API로 값을 불러와서 회원의 정보를 가져온다.
         * 그리고 회원가입 페이지로 이동한다.*/
         else if (token != null) {
-            val intent = Intent(this, SignUpActivity::class.java).putExtra("signuptype", 1)
+            val intent = Intent(this, SignUpActivity::class.java).putExtra("signuptype", 1).putExtra("token", token)
             startActivity(intent)
             finish()
         }
@@ -71,23 +65,15 @@ class LoginActivity : AppCompatActivity() {
     private val naverOAuthLoginHandler: OAuthLoginHandler = object : OAuthLoginHandler() {
         override fun run(success: Boolean) {
             if (success) {
-
-                Thread {
-                    val accessToken: String = mOAuthLoginInstance.getAccessToken(baseContext)
-                    val data: String = mOAuthLoginInstance.requestApi(baseContext, accessToken, "https://openapi.naver.com/v1/nid/me")
-                    var id: String = ""
-                    var name: String = ""
-
+                    val accessToken: String = mOAuthLoginInstance.getAccessToken(baseContext) // <- 서버에 넘겨줄 토큰값
                     try {
-                        id = JSONObject(data).getJSONObject("response").getString("id")
-                        name = JSONObject(data).getJSONObject("response").getString("name")
+
                     }
                     catch (e: JSONException) { }
                     val intent = Intent(baseContext, SignUpActivity::class.java)
-                        .putExtra("signuptype", 2).putExtra("id", id).putExtra("name", name)
+                        .putExtra("signuptype", 2).putExtra("token", accessToken)
                     startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
                     finish()
-                }.start()
             } else {
                 Toast.makeText(baseContext, "네이버 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
             }
@@ -138,19 +124,12 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
                 //추후에 서버에 저장돼있는 아이디가 저장돼 있는지 확인하는 코드로 바꾸기.
             } else {
-                AppDatabase.instance.userDao()
-                    .insert(
-                        User(0, "admin", "0", "관리자",
-                            "지역",
-                            0, 0, "관리자 소개")
-                    )
-                //추후에 서버에 저장돼있는 정보를 내부 DB에 저장하는 역할을 한다.
-
+                //추후에 서버에 저장돼있는 토큰을 내부 DB에 저장하는 역할을 한다.
+                // GlobalApplication.tokenPrefs.token = 서버에서 받아온 토큰
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
             }
-
         }
 
         login_google_login_button.setOnClickListener{
@@ -173,15 +152,12 @@ class LoginActivity : AppCompatActivity() {
 
     //구글 로그인 됐을 때 회원가입으로 이동.
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        var id = ""
-        var name = ""
         try {
             val account =
                 completedTask.getResult(ApiException::class.java)
-            id = account?.id!!
-            name = account.displayName!!
+            val token = account?.idToken //<- 서버에 넘겨줄 구글 토큰 값.
             val intent = Intent(baseContext, SignUpActivity::class.java)
-                .putExtra("signuptype", 3).putExtra("id", id).putExtra("name", name)
+                .putExtra("signuptype", 3).putExtra("token", token)
             startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
             finish()
         } catch (e: ApiException) {
@@ -189,6 +165,3 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 }
-
-
-
