@@ -17,18 +17,6 @@
             android:layout_marginBottom="25dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:gravity="center"
-                android:text="아이디"
-                android:textColor="#000000"
-                android:textSize="20dp" />
-
             <EditText
                 android:id="@+id/login_id_text"
                 android:layout_width="0dp"
@@ -37,7 +25,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="3dp"
-                android:hint="아이디(영어와 숫자 6~12글자)"
+                android:hint="이메일"
                 android:inputType="text"
                 android:singleLine="true"
                 android:textSize="20dp" />
@@ -49,18 +37,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:gravity="center"
-                android:text="비밀번호"
-                android:textColor="#000000"
-                android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/login_password_text"

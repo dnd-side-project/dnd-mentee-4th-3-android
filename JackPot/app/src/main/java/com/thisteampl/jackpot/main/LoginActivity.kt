@@ -54,7 +54,8 @@ class LoginActivity : AppCompatActivity() {
         /*token이 null이 아니라면 카카오 API로 값을 불러와서 회원의 정보를 가져온다.
         * 그리고 회원가입 페이지로 이동한다.*/
         else if (token != null) {
-            val intent = Intent(this, SignUpActivity::class.java).putExtra("signuptype", 1).putExtra("token", token)
+            val intent = Intent(this, SignUpActivity::class.java).putExtra("signuptype", 1)
+                .putExtra("token", token.accessToken)
             startActivity(intent)
             finish()
         }

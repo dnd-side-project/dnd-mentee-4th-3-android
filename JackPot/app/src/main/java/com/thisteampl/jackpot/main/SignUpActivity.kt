@@ -2,12 +2,15 @@ package com.thisteampl.jackpot.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputFilter
+import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.kakao.sdk.user.UserApiClient
 import com.thisteampl.jackpot.R
 import kotlinx.android.synthetic.main.activity_signup.*
@@ -18,6 +21,21 @@ import java.util.regex.Pattern
 * */
 
 class SignUpActivity : AppCompatActivity() {
+
+    //이메일 정규식 확인, https://blog.codejun.space/49
+    val EMAIL_ADDRESS_PATTERN : Pattern = Pattern.compile(
+        "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+            "\\@" +
+            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+            "(" +
+            "\\." +
+            "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+            ")+"
+    )
+
+    private fun checkEmail(email: String): Boolean {
+        return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,39 +57,31 @@ class SignUpActivity : AppCompatActivity() {
     private fun setupView(){
 
         signup_developer_radio_button.isChecked = true // 개발자로 체크를 해 둔다.
+        var emailCheck: Boolean = false
 
         /* 유저 정보에 저장해 둘 3개 SNS의 idx들*/
         var signUpType: Int = intent.getIntExtra("signuptype", 0)
         // 회원가입 타입, 0 : 일반회원가입, 1 : 카카오 로그인, 2 : 네이버 로그인, 3 : 구글 로그인
-        var thirdPartyID: String
+        var token: String = intent.getStringExtra("token").toString()
         var regionIdx = 0
 
         if(signUpType == 1) {
             Toast.makeText(this, "카카오 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
             //카카오 로그인을 했을 시 카카오idx와 이름을 불러온다.
             UserApiClient.instance.me { user, error ->
-                thirdPartyID = user?.id.toString()
-                signup_id_text.setText(thirdPartyID)
-                signup_name_text.setText("${user?.kakaoAccount?.profile?.nickname}")
+                signup_name_text.setText(token)
+                //signup_name_text.setText("${user?.kakaoAccount?.profile?.nickname}")
             }
 
         } else if(signUpType == 2) {
             Toast.makeText(this, "네이버 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
             //네이버 로그인을 했을 시 네이버idx와 이름을 불러온다.
-            var id: String? = intent.getStringExtra("id")
-            var name: String? = intent.getStringExtra("name")
-            thirdPartyID = id.toString()
-            signup_id_text.setText(thirdPartyID)
-            signup_name_text.setText(name)
+            signup_name_text.setText(token)
 
         } else if(signUpType == 3) {
             Toast.makeText(this, "구글 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
             //구글 로그인을 했을 시 구글idx와 이름을 불러온다.
-            var id: String? = intent.getStringExtra("id")
-            var name: String? = intent.getStringExtra("name")
-            thirdPartyID = id.toString()
-            signup_id_text.setText(thirdPartyID)
-            signup_name_text.setText(name)
+            signup_name_text.setText(token)
 
         }
 
@@ -122,9 +132,9 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         signup_next_button.setOnClickListener {
-            if(signup_id_text.text.trim().length < 6 || signup_id_text.text.trim().length > 12) {
-                Toast.makeText(this, "아이디는 최소 6글자 최대 12글자 입니다.", Toast.LENGTH_SHORT).show()
-            } else if(signup_password_text.text.length < 6 || signup_password_text.text.length > 15) {
+            if(!emailCheck){
+                Toast.makeText(this, "이메일 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show()
+            }else if(signup_password_text.text.length < 6 || signup_password_text.text.length > 15) {
                 Toast.makeText(this, "비밀번호는 최소 6글자 최대 15글자 입니다.", Toast.LENGTH_SHORT).show()
             } else if(signup_password_check_text.text.toString() != signup_password_text.text.toString()) {
                 Toast.makeText(this, "비밀번호와 비밀번호 확인이 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
@@ -144,9 +154,10 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         signup_finish_button.setOnClickListener{
-            var job = 0
-            if(signup_developer_radio_button.isChecked) { job = 0}
-            else { job = 1 }
+            var job = ""
+            if(signup_developer_radio_button.isChecked) { job = "개발자"}
+            else if(signup_designer_radio_button.isChecked) { job = "디자이너" }
+            else { job = "기획자" }
 
             /*
             * 서버에 유저정보를 insert하는 코드
@@ -168,18 +179,34 @@ class SignUpActivity : AppCompatActivity() {
             signup_designer_stack_layout.visibility = View.GONE
         }
 
+        signup_director_radio_button.setOnClickListener {
+            signup_stack_layout.visibility = View.GONE
+        }
 
-        // 아이디 정규식 영문, 숫자 최대 10글자
-        // https://jo-coder.tistory.com/19 참고.
-        signup_id_text.filters = arrayOf(InputFilter { source, _, _, _, _, _ ->
-            val ps: Pattern =
-                Pattern.compile("^[a-zA-Z0-9\\u318D\\u119E\\u11A2\\u2022\\u2025a\\u00B7\\uFE55]+$")
-            if (source == "" || ps.matcher(source).matches()) {
-                return@InputFilter source
+        // 이메일 체크를 위한 메서드, 중복확인하고 이메일을 바꿀 수 있으므로 변경 감지.
+        // https://minwook-shin.github.io/android-kotlin-text-watcher/
+        signup_id_text.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+                //입력이 끝날때 작동
+                emailCheck = false
             }
-            Toast.makeText( this, "영문, 숫자만 입력 가능합니다.", Toast.LENGTH_SHORT).show()
-            ""
-        }, InputFilter.LengthFilter(10))
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //입력 전에 작동
+                emailCheck = false
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //타이핑 되는 텍스트에 변화가 있을 경우.
+                emailCheck = false
+            }
+        })
 
+        signup_id_check_button.setOnClickListener {
+            //아이디 중복확인, 추후에
+            if (!checkEmail(signup_id_text.text.toString())) {
+                Toast.makeText(this, "올바른 이메일 패턴을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+            }else {
+                emailCheck = true
+            }
+        }
     }
 }
