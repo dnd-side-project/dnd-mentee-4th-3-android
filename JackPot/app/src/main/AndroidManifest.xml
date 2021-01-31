@@ -12,10 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".main.mainhome.ProjectViewDetail"></activity>
-        <activity android:name=".main.mypage.Setting" />
-        <activity android:name=".main.mypage.MyProject" />
-        <activity android:name=".main.mypage.MyProfile" />
+        <activity android:name=".main.mypage.MyPage"></activity>
+        <activity android:name=".main.mainhome.ProjectViewDetail" />
         <activity android:name=".main.LoginActivity" />
         <activity android:name=".main.SignUpActivity" />
         <activity android:name=".main.MainActivity">

@@ -1,6 +1,8 @@
 package com.thisteampl.jackpot.main
 
 
+import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +10,7 @@ import android.view.animation.AnimationUtils
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.mainhome.AttentionProject
 import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
+import com.thisteampl.jackpot.main.mypage.MyPage
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -20,12 +23,30 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val intent = Intent(this, MyPage::class.java)
+
+        main_mypage_imagebutton.setOnClickListener{
+            startActivity(intent)
+        }
 
         attention = AttentionProject.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.main_projectview_framelayout,attention).commit()
 
         recentlyregister = RecentlyRegisterProject.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister).commit()
+
+
+
+        main_projectattention_textview.setOnClickListener {
+            attention = AttentionProject.newInstance()
+            supportFragmentManager.beginTransaction().add(R.id.main_projectview_framelayout,attention).commit()
+        }
+
+
+//        main_memberattention_textview.setOnClickListener {
+//            main_memberattention_textview.setTextColor(Color.BLACK)
+//            main_memberattention_textview.TextStyle()
+//        }
 
 
 
