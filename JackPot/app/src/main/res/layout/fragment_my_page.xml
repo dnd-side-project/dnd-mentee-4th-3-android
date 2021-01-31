@@ -27,34 +27,34 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/mypage_id_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="아이디 : "
-            android:textSize="30dp" />
+            <TextView
+                android:id="@+id/mypage_id_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="아이디 : "
+                android:textSize="30dp" />
 
-        <TextView
-            android:id="@+id/mypage_name_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이름 : "
-            android:textSize="30dp" />
+            <TextView
+                android:id="@+id/mypage_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이름 : "
+                android:textSize="30dp" />
 
-        <TextView
-            android:id="@+id/mypage_region_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="지역 : "
-            android:textSize="30dp" />
+            <TextView
+                android:id="@+id/mypage_region_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="지역 : "
+                android:textSize="30dp" />
 
-        <TextView
-            android:id="@+id/mypage_job_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="직업 : "
-            android:textSize="30dp" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/mypage_job_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="직업 : "
+                android:textSize="30dp" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/mypage_login_button"

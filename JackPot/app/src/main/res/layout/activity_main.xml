@@ -4,31 +4,195 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DBDDDD"
+    android:background="#ffffff"
     tools:context="com.thisteampl.jackpot.main.MainActivity">
 
-
-    <FrameLayout
-        android:id="@+id/framelayout_frame"
+    <RelativeLayout
+        android:id="@+id/main_relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/navi_bottom"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jackpot"
+            android:textSize="24dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            />
+
+        <ImageButton
+            android:id="@+id/main_mypage_imagebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_baseline_person_pin_24"/>
+
+        <ImageButton
+            android:id="@+id/main_bell_imagebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_baseline_add_alert_24"
+            android:layout_toLeftOf="@id/main_mypage_imagebutton"/>
+
+        <ImageButton
+            android:id="@+id/main_search_imagebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_baseline_search_24"
+            android:layout_toLeftOf="@id/main_bell_imagebutton"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_relativelayout2"
+        android:layout_below="@id/main_relativelayout"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        
+        <TextView
+            android:id="@+id/main_projectattention_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주목받는 프로젝트"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/main_memberattention_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주목받는 멤버"
+            android:textSize="14dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/main_projectattention_textview"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_relativelayout3"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/main_relativelayout2">
+
+        <FrameLayout
+            android:id="@+id/main_projectview_framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/main_relativelayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/main_relativelayout3">
+
+        <TextView
+            android:id="@+id/main_recentlyproject_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="최근에 등록된 프로젝트"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/main_viewmore_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="더보기 > "
+            android:textSize="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_relativelayout4">
+
+        <FrameLayout
+            android:id="@+id/main_recentlyregisterproject_framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+
+
+
+    <!-- 참고 웹 주소 : https://re-build.tistory.com/31 -->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/appeal_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#ffffff"
+        android:src="@drawable/android_appeal"
+        android:visibility="invisible"
+        app:borderWidth="0dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_above="@+id/drawproject_fab"
+        app:fabSize="normal" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/drawproject_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/android_project_create"
+        app:fabSize="normal"
+        app:borderWidth="0dp"
+        android:visibility="invisible"
+        android:backgroundTint="#ffffff"
+        android:layout_above="@+id/main_optionmenu_floatingactionbutton"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="20dp"
         />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        app:menu="@menu/bottommenu"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/main_optionmenu_floatingactionbutton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#2196F3"
-        android:id="@+id/navi_bottom"
-        app:labelVisibilityMode="unlabeled"
-        app:itemIconSize="40dp"
-        >
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/cardview_dark_background"
+        android:src="@drawable/android_plus_sign"
+        app:borderWidth="0dp"
+        app:fabSize="normal" />
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </RelativeLayout>

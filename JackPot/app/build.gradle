@@ -34,6 +34,7 @@ dependencies {
     // 메테리얼 디자인
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     // 룸 하단 사이트 참조
     // https://developer.android.com/training/data-storage/room?hl=ko
