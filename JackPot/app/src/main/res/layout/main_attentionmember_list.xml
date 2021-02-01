@@ -72,8 +72,8 @@
             android:layout_marginTop="7dp"
             android:text="갱신일"
             android:textSize="10dp"
-            app:layout_constraintStart_toStartOf="@+id/main_projecttitle_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_position_textview" />
+            app:layout_constraintStart_toStartOf="@+id/main_membertitle_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_memberposition_textview" />
 
         <TextView
             android:id="@+id/main_inputmemberupdatedate_textview"
@@ -84,8 +84,8 @@
             android:text="2020.01.19"
             android:textSize="10dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/main_updatedate_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_inputposition_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_memberupdatedate_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_inputmemberposition_textview" />
 
         <TextView
             android:id="@+id/main_projectmemberstack_textview"
@@ -98,7 +98,7 @@
             android:textSize="10dp"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_updatedate_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/main_memberupdatedate_textview" />
 
         <TextView
             android:id="@+id/main_projectmemberstack2_textview"
@@ -110,8 +110,8 @@
             android:text="stack"
 
             android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/main_projectstack_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_updatedate_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_projectmemberstack_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_memberupdatedate_textview" />
 
         <TextView
             android:id="@+id/main_projectmemberstack3_textview"
@@ -123,8 +123,8 @@
             android:text="stack"
 
             android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/main_projectstack2_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_updatedate_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_projectmemberstack2_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_memberupdatedate_textview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

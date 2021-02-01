@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.animation.AnimationUtils
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.mainhome.AttentionMember
 import com.thisteampl.jackpot.main.mainhome.AttentionProject
 import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
 import com.thisteampl.jackpot.main.mypage.MyPage
@@ -16,7 +17,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(){
 
-    private lateinit var attention : AttentionProject
+    private lateinit var attentionproject : AttentionProject
+    private lateinit var attentionmember : AttentionMember
     private lateinit var recentlyregister : RecentlyRegisterProject
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,31 +26,33 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
 
         val intent = Intent(this, MyPage::class.java)
+        val mainintent = Intent(this,MainActivity::class.java)
 
         main_mypage_imagebutton.setOnClickListener{
             startActivity(intent)
         }
 
-        attention = AttentionProject.newInstance()
-        supportFragmentManager.beginTransaction().add(R.id.main_projectview_framelayout,attention).commit()
+        main_appname_textview.setOnClickListener{
+            startActivity(mainintent)
+            // main 계속 호출한다면? 성능 하락하지 않을지
+        }
+
+        setFrag(0)
+
+        main_projectattention_textview.setOnClickListener {
+            main_projectattention_textview.setTextColor(Color.BLACK)
+            main_memberattention_textview.setTextColor(Color.GRAY)
+            setFrag(0)
+        }
+
+        main_memberattention_textview.setOnClickListener {
+            main_memberattention_textview.setTextColor(Color.BLACK)
+            main_projectattention_textview.setTextColor(Color.GRAY)
+            setFrag(1)
+        }
 
         recentlyregister = RecentlyRegisterProject.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister).commit()
-
-
-
-        main_projectattention_textview.setOnClickListener {
-            attention = AttentionProject.newInstance()
-            supportFragmentManager.beginTransaction().add(R.id.main_projectview_framelayout,attention).commit()
-        }
-
-
-//        main_memberattention_textview.setOnClickListener {
-//            main_memberattention_textview.setTextColor(Color.BLACK)
-//            main_memberattention_textview.TextStyle()
-//        }
-
-
 
 
         // 참고자료 : https://jinsangjin.tistory.com/12
@@ -88,6 +92,25 @@ class MainActivity : AppCompatActivity(){
 
 
     }
+
+    private fun setFrag(fragNum : Int){
+        val ft = supportFragmentManager.beginTransaction()
+
+        when(fragNum){
+            0 -> {
+
+                ft.replace(R.id.main_projectview_framelayout,AttentionProject()).commit()
+//                attentionproject = AttentionProject.newInstance()
+//
+            }
+
+            1-> {
+                ft.replace(R.id.main_projectview_framelayout,AttentionMember()).commit()
+            }
+        }
+
+    }
+
 
 
 

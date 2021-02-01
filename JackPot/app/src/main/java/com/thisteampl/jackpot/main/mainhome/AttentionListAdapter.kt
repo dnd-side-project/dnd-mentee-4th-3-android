@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
 import org.w3c.dom.Text
+import java.util.*
 
 class AttentionListAdapter (val attentionlist: ArrayList<AttentionList>? = null): RecyclerView.Adapter<AttentionListAdapter.ProjectView>(){
 

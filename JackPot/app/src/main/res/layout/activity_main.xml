@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/main_appname_textview"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
@@ -69,8 +70,7 @@
             android:layout_height="wrap_content"
             android:text="주목받는 프로젝트"
             android:textSize="14dp"
-            android:textColor="#000000"
-            android:textStyle="bold"
+            android:textColor="#111111"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp" />
 
