@@ -44,6 +44,9 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    implementation "com.github.skydoves:powerspinner:1.1.7" //파워 스피너
+    implementation "androidx.preference:preference-ktx:1.1.1"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

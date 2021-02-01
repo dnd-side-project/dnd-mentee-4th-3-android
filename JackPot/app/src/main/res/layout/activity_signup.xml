@@ -1,520 +1,785 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/signup_exit_button"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginRight="330dp"
+        android:layout_marginBottom="600dp"
+        android:background="@drawable/close_24px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="회원가입"
-        android:textSize="35dp" />
+        android:layout_marginBottom="600dp"
+        android:layout_marginLeft="240dp"
+        android:text="1 / n"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <LinearLayout
-        android:id="@+id/signup_must_information_layout"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signup_email_signup_layout"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginBottom="250dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="3dp"
-            android:text="필수 입력사항입니다."
-            android:textSize="25dp"
-            android:textColor="#000000"/>
+            android:layout_marginBottom="220dp"
+            android:text="이메일과\n비밀번호를 설정해주세요."
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <EditText
                 android:id="@+id/signup_id_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="3dp"
                 android:hint="이메일"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
-                android:textSize="20dp" />
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/signup_id_check_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="중복확인"
-                android:textSize="20dp"/>
+                android:text="이메일 확인"
+                android:background="@drawable/radius_background_transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </LinearLayout>
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/signup_password_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="72dp"
+            android:hint="비밀번호(6글자 ~ 15글자)"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <EditText
-                android:id="@+id/signup_password_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="3dp"
-                android:hint="비밀번호(6글자 ~ 15글자)"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:textSize="20dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/signup_password_check_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="200dp"
+            android:layout_marginRight="72dp"
+            android:hint="비밀번호 확인"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <EditText
-                android:id="@+id/signup_password_check_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="3dp"
-                android:hint="비밀번호 확인"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:textSize="20dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/signup_name_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="3dp"
-                android:hint="닉네임"
-                android:inputType="text"
-                android:singleLine="true"
-                android:textSize="20dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:gravity="center"
-                android:text="지역"
-                android:textColor="#000000"
-                android:textSize="20dp" />
-
-            <Spinner
-                android:id="@+id/signup_region_spinner"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:layout_width="0dp"
-                android:layout_weight="7"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:gravity="center"
-                android:text="직군"
-                android:textColor="#000000"
-                android:textSize="20dp" />
-
-            <RadioGroup
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:layout_weight="7"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/signup_developer_radio_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="개발자" />
-
-                <RadioButton
-                    android:id="@+id/signup_designer_radio_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="디자이너" />
-
-                <RadioButton
-                    android:id="@+id/signup_director_radio_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="기획자" />
-
-            </RadioGroup>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/signup_add_information_layout"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signup_nickname_layout"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_marginBottom="250dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:text="JackPot에\n오신 것을 환영합니다!"
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="110dp"
+            android:text="JACKPOT에서 사용하실 닉네임을 알려주세요."
+            android:textColor="#979797"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/signup_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="72dp"
+            android:hint="닉네임"
+            android:singleLine="true"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signup_region_layout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:text="살고계신\n지역을 골라주세요."
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="110dp"
+            android:text="프로젝트를 찾을 때 참고할 수 있어요."
+            android:textColor="#979797"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.skydoves.powerspinner.PowerSpinnerView
+            android:id="@+id/signup_region_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="72dp"
+            android:hint="지역"
+            android:padding="10dp"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:spinner_arrow_gravity="end"
+            app:spinner_arrow_padding="8dp"
+            app:spinner_arrow_show="true"
+            app:spinner_arrow_tint="#00000"
+            app:spinner_divider_size="0.5dp"
+            app:spinner_divider_show="true"
+            app:spinner_popup_animation="normal"
+            app:spinner_popup_background="#"
+            app:spinner_divider_color="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signup_position_layout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:text="OOO님, 어떤\n포지션에 해당하시나요?"
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="110dp"
+            android:text="자신에게 해당하는 직군을 골라주세요."
+            android:textColor="#979797"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/signup_director_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="10dp"
+                android:contentDescription="0"
+                android:background="@drawable/radius_button_effect"
+                android:text="기획자"/>
+
+            <Button
+                android:id="@+id/signup_developer_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="1"
+                android:background="@drawable/radius_button_effect"
+                android:text="개발자"/>
+
+            <Button
+                android:id="@+id/signup_designer_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:contentDescription="2"
+                android:background="@drawable/radius_button_effect"
+                android:text="디자이너"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signup_state_layout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:text="현재\n어떤 상태인가요?"
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="110dp"
+            android:text="자신에게 해당하는 사항을 골라주세요."
+            android:textColor="#979797"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/signup_state_student"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="10dp"
+                android:contentDescription="0"
+                android:background="@drawable/radius_button_effect"
+                android:text="학생"/>
+
+            <Button
+                android:id="@+id/signup_state_jobfinder"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="1"
+                android:background="@drawable/radius_button_effect"
+                android:text="취업 준비생"/>
+
+            <Button
+                android:id="@+id/signup_state_junior"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:contentDescription="2"
+                android:background="@drawable/radius_button_effect"
+                android:text="주니어"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signup_state_grade_layout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:text="몇학년이신가요?"
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="signup_student_grade_one"
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="1학년"/>
+
+            <Button
+                android:id="signup_student_grade_two"
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="2학년"/>
+
+            <Button
+                android:id="signup_student_grade_three"
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="3학년"/>
+
+            <Button
+                android:id="signup_student_grade_four"
+                android:layout_width="75dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="4학년"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signup_developer_stack_layout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:text="사용하시는\n언어를 골라주세요."
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="110dp"
+            android:text="해당하는 사항이 없다면\n다음페이지의 자기소개에 입력해주세요."
+            android:textColor="#979797"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/signup_stack_developer_cpp"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="C++"/>
+
+            <Button
+                android:id="@+id/signup_stack_developer_java"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Java"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/signup_stack_developer_python"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Python"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="175dp"
+            android:gravity="left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/signup_stack_developer_jsc"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Java Script"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/signup_stack_developer_htmlcss"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="HTML/CSS"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/signup_stack_developer_swift"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Swift"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:gravity="left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/signup_stack_developer_spring"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Spring"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/signup_stack_developer_kotlin"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Kotlin"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/signup_stack_developer_django"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Django"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="425dp"
+            android:gravity="left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/signup_stack_developer_reactjs"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="React.JS"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/signup_stack_developer_flask"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Flask"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="3dp"
-            android:text="선택 입력사항입니다."
-            android:textSize="25dp"
-            android:textColor="#000000"/>
+            android:layout_marginRight="210dp"
+            android:layout_marginTop="550dp"
+            android:text="다음에 작성할래요."
+            android:background="@android:color/transparent"
+            android:textColor="#979797"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        <LinearLayout
-            android:id="@+id/signup_stack_layout"
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signup_designer_tool_layout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginBottom="220dp"
+            android:text="사용하시는\n툴을 골라주세요."
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:gravity="center"
-                android:text="기술스택"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="110dp"
+            android:text="해당하는 사항이 없다면\n다음페이지의 자기소개에 입력해주세요."
+            android:textColor="#979797"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <LinearLayout
-                android:id="@+id/signup_developer_stack_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
+            <Button
+                android:id="@+id/signup_tool_designer_photoshop"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Adobe PhotoShop"
+                android:textAllCaps="false"/>
 
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_cpp"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="C++" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_java"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="JAVA" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_python"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Python" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_jsc"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Javascript" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_htmlcss"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="HTML / CSS" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_swift"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Swift" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_kotlin"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Kotlin" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_spring"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Spring" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_django"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Django" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_reactjs"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="React.JS" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_flask"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Flask" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_developer_etc"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="기타" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/signup_designer_stack_layout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_designer_photoshop"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="PhotoShop" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_designer_illustrator"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Illustrator" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_designer_xd"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="XD" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_designer_figma"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Figma" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_designer_sketch"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Sketch" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_designer_aftereffects"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="After Effects" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_designer_premiere"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Premiere" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_designer_c4d"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="C4D" />
-
-                    <CheckBox
-                        android:id="@+id/signup_stack_designer_etc"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="기타" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+            <Button
+                android:id="@+id/signup_tool_designer_illustrator"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Adobe Illustrator"
+                android:textAllCaps="false"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="175dp"
+            android:gravity="left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
+            <Button
+                android:id="@+id/signup_tool_designer_xd"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Adobe XD"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/signup_tool_designer_figma"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Figma"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/signup_tool_designer_sketch"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:gravity="center"
-                android:text="직업"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+                android:background="@drawable/radius_button_effect"
+                android:text="Sketch"
+                android:textAllCaps="false"/>
 
-            <RadioGroup
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:layout_weight="7"
-                android:gravity="center"
-                android:orientation="horizontal">
+        </LinearLayout>
 
-                <RadioButton
-                    android:id="@+id/signup_university_radio_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="대학생" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:gravity="left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                <RadioButton
-                    android:id="@+id/signup_jobseeker_radio_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="취준생" />
+            <Button
+                android:id="@+id/signup_tool_designer_principle"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Principle"
+                android:textAllCaps="false"/>
 
-                <RadioButton
-                    android:id="@+id/signup_junior_radio_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="주니어" />
-
-            </RadioGroup>
+            <Button
+                android:id="@+id/signup_stack_developer_Indesign"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Adobe Indesign"
+                android:textAllCaps="false"/>
 
 
         </LinearLayout>
@@ -522,80 +787,219 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="425dp"
+            android:gravity="left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="3dp"
-                android:gravity="center"
-                android:text="자기소개"
-                android:textColor="#000000"
-                android:textSize="20dp" />
+            <Button
+                android:id="@+id/signup_tool_designer_aftereffects"
+                android:layout_width="175dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Adobe After Effects"
+                android:textAllCaps="false"/>
 
-            <EditText
-                android:id="@+id/signup_introduce_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="3dp"
-                android:hint="자기 소개를 입력해 주세요.\n(예시 : Github 주소, 기타 경력)"
-                android:lines="3"
-                android:inputType="textMultiLine"
-                android:textSize="20dp" />
+            <Button
+                android:id="@+id/signup_tool_designer_premiere"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Adobe Premiere"
+                android:textAllCaps="false"/>
 
         </LinearLayout>
 
-    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="550dp"
+            android:gravity="left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/signup_tool_designer_c4d"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="C4D"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/signup_tool_designer_protopie"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Protopie"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/signup_tool_designer_zeplin"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Zeplin"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="210dp"
+            android:layout_marginTop="675dp"
+            android:text="다음에 작성할래요."
+            android:background="@android:color/transparent"
+            android:textColor="#979797"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signup_introduce_layout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:text="자유롭게\n자신을 소개해주세요."
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="110dp"
+            android:text="앞으로 만나게 될 멤버들에게 자신을 어필해봐요!"
+            android:textColor="#979797"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/signup_introduce_text"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:textSize="14dp"
+            android:hint="프로젝트에 임하는 각오,\n본인의 경력 등을 자유롭게 입력해 주세요."
+            android:lines="10"
+            android:inputType="textMultiLine"
+            android:background="@drawable/radius_background_transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="210dp"
+            android:layout_marginTop="450dp"
+            android:text="다음에 작성할래요."
+            android:background="@android:color/transparent"
+            android:textColor="#979797"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/signup_open_layout"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="250dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:text="작성한 프로필을 다른\n사용자들에게 공개할까요?"
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="110dp"
+            android:text="프로필을 공개하면 다른 사용자들에게 컨택이 올 수 있어요."
+            android:textColor="#979797"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_marginTop="510dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/signup_prev_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
-            android:text="이전"
-            android:textSize="45dp"
-            android:visibility="gone"/>
+            android:id="@+id/signup_previous_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:visibility="gone"
+            android:background="@drawable/radius_background"
+            android:text="이전"/>
 
         <Button
-            android:id="@+id/signup_cancel_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
-            android:text="취소"
-            android:textSize="45dp" />
+            android:id="@+id/signup_confirm_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:background="@drawable/radius_background"
+            android:text="확인"/>
 
-        <Button
-            android:id="@+id/signup_next_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:text="다음"
-            android:textSize="45dp" />
-
-        <Button
-            android:id="@+id/signup_finish_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:text="완료"
-            android:textSize="45dp"
-            android:visibility="gone"/>
 
     </LinearLayout>
 
-</LinearLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,6 +45,10 @@ class LoginActivity : AppCompatActivity() {
         setupView()
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
     // 카카오 로그인을 위한 callback 메서드.
     val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         /* error 가 null이 아니라면 로그인 불가.*/
@@ -99,6 +103,10 @@ class LoginActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         // 구글 로그인을 위한 GSO 객체
 
+        login_email_login_button.setOnClickListener {
+            Toast.makeText(this, "준비중인 기능입니다.", Toast.LENGTH_SHORT).show()
+        }
+
         //카카오로 로그인 버튼의 기능. callback 함수를 호출해서 회원가입 페이지로 이동하게 한다.
         login_kakao_login_button.setOnClickListener {
             if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
@@ -108,29 +116,8 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        login_signup_button.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java).putExtra("signuptype", 0)
-            startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
-            finish()
-        }
-
         login_naver_login_button.setOnClickListener{
             mOAuthLoginInstance.startOauthLoginActivity(this, naverOAuthLoginHandler)
-        }
-
-        login_login_button.setOnClickListener {
-            //서버와 연동해서 아이디와 비밀번호가 일치하는게 있는지 확인하는 코드
-
-            if(login_id_text.text.toString() != "admin" && login_password_text.text.toString() != "admin") {
-                Toast.makeText(this, "로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                //추후에 서버에 저장돼있는 아이디가 저장돼 있는지 확인하는 코드로 바꾸기.
-            } else {
-                //추후에 서버에 저장돼있는 토큰을 내부 DB에 저장하는 역할을 한다.
-                // GlobalApplication.tokenPrefs.token = 서버에서 받아온 토큰
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
-                finish()
-            }
         }
 
         login_google_login_button.setOnClickListener{
@@ -138,6 +125,9 @@ class LoginActivity : AppCompatActivity() {
             startActivityForResult(intent, 9001)
         }
 
+        login_exit_button.setOnClickListener {
+            finish()
+        }
     }
 
     // 구글 로그인을 위한 오버라이딩. requestcode == 9001은 구글 로그인을 의미한다.
