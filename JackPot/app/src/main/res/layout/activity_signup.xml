@@ -17,11 +17,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/signup_page_viewer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="600dp"
         android:layout_marginLeft="240dp"
-        android:text="1 / n"
+        android:text="1 / 6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -500,6 +501,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <LinearLayout
+            android:id="@+id/signup_developer_stack_layout_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -537,6 +539,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/signup_developer_stack_layout_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="175dp"
@@ -575,6 +578,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/signup_developer_stack_layout_third"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="300dp"
@@ -613,6 +617,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/signup_developer_stack_layout_fourth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="425dp"
@@ -641,20 +646,22 @@
 
         </LinearLayout>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="210dp"
-            android:layout_marginTop="550dp"
-            android:text="다음에 작성할래요."
-            android:background="@android:color/transparent"
-            android:textColor="#979797"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/signup_write_later_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="230dp"
+        android:layout_marginTop="420dp"
+        android:text="다음에 작성할래요."
+        android:visibility="gone"
+        android:background="@android:color/transparent"
+        android:textColor="#979797"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_designer_tool_layout"
@@ -694,6 +701,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <LinearLayout
+            android:id="@+id/signup_designer_tool_layout_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -723,6 +731,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/signup_designer_tool_layout_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="175dp"
@@ -761,6 +770,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/signup_designer_tool_layout_third"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="300dp"
@@ -791,6 +801,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/signup_designer_tool_layout_fourth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="425dp"
@@ -821,6 +832,7 @@
 
 
         <LinearLayout
+            android:id="@+id/signup_designer_tool_layout_fifth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="550dp"
@@ -857,19 +869,6 @@
                 android:textAllCaps="false"/>
 
         </LinearLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="210dp"
-            android:layout_marginTop="675dp"
-            android:text="다음에 작성할래요."
-            android:background="@android:color/transparent"
-            android:textColor="#979797"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -920,19 +919,6 @@
             android:lines="10"
             android:inputType="textMultiLine"
             android:background="@drawable/radius_background_transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="210dp"
-            android:layout_marginTop="450dp"
-            android:text="다음에 작성할래요."
-            android:background="@android:color/transparent"
-            android:textColor="#979797"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
