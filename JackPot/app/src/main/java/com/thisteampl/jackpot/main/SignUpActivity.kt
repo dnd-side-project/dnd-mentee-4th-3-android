@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,13 +22,18 @@ import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
 
-    var positionBtn = arrayOfNulls<Button>(3)
-    var stateBtn = arrayOfNulls<Button>(3)
-    var sGradeBtn = arrayOfNulls<Button>(4)
-    val stackTool = mutableListOf<String>()
+    private var positionBtn = arrayOfNulls<Button>(3)
+    private var stateBtn = arrayOfNulls<Button>(3)
+    private var sGradeBtn = arrayOfNulls<Button>(4)
+    private val stackTool = mutableListOf<String>()
 
-    var emailCheck: Boolean = false
-    var page: Int = 0
+    // 화면전환 애니메이션, fillAfter : 옮긴 후 원상복구, duration : 지속시간
+    private val anim: Animation = AlphaAnimation(0f, 1f).apply {
+        fillAfter = true
+        duration = 350
+    }
+    private var emailCheck: Boolean = false
+    private var page: Int = 0
     /*
     * page 변수에 따라 보여지는 layout을 visible 해준다.
     * SNS로 시작할 경우 -> 1페이지부터 시작
@@ -35,12 +42,12 @@ class SignUpActivity : AppCompatActivity() {
     * */
 
     /* 유저 정보에 저장해 둘 3개 SNS의 idx들*/
-    var region = "지역" // 지역 저장용
-    var position = "직군" // 직군 : 기획자, 개발자, 디자이너
-    var state = "상태" // 상태 : 학생, 취업 준비생, 주니어
+    private var region = "지역" // 지역 저장용
+    private var position = "직군" // 직군 : 기획자, 개발자, 디자이너
+    private var state = "상태" // 상태 : 학생, 취업 준비생, 주니어
 
     //이메일 정규식 확인, https://blog.codejun.space/49
-    val EMAIL_ADDRESS_PATTERN : Pattern = Pattern.compile(
+    private val EMAIL_ADDRESS_PATTERN : Pattern = Pattern.compile(
         "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
             "\\@" +
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
@@ -74,18 +81,17 @@ class SignUpActivity : AppCompatActivity() {
         var signUpType: Int = intent.getIntExtra("signuptype", 0)
         // 회원가입 타입, 0 : 일반회원가입, 1 : 카카오 로그인, 2 : 네이버 로그인, 3 : 구글 로그인
         var token: String = intent.getStringExtra("token").toString()
+
         when (signUpType) {
 
             0 -> {
                 signup_email_signup_layout.visibility = View.VISIBLE
-                signup_page_viewer.text = "$page / 6"
             }
             1 -> {
                 Toast.makeText(this, "카카오 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
                 //카카오 로그인을 했을 시 카카오idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
                 page = 1
-                signup_page_viewer.text = "$page / 6"
                 UserApiClient.instance.me { user, error ->
                     signup_name_text.setText(token)
                     //signup_name_text.setText("${user?.kakaoAccount?.profile?.nickname}")
@@ -97,7 +103,6 @@ class SignUpActivity : AppCompatActivity() {
                 //네이버 로그인을 했을 시 네이버idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
                 page = 1
-                signup_page_viewer.text = "$page / 6"
                 signup_name_text.setText(token)
 
             }
@@ -106,11 +111,18 @@ class SignUpActivity : AppCompatActivity() {
                 //구글 로그인을 했을 시 구글idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
                 page = 1
-                signup_page_viewer.text = "$page / 6"
                 signup_name_text.setText(token)
             }
-            // 지역 선택을 해 줄 배열과 액티비티의 스피너와 연결해줄 어댑터.
-            // 스피너와 어댑터를 연결
+        }
+
+        signup_page_viewer.text = "$page / 6"
+
+        //뷰들에 애니메이션을 적용해준다
+        for (i in 0 until signup_screen.childCount) {
+            val child: View = signup_screen.getChildAt(i)
+            if(child is Button) {
+                child.animation = anim
+            }
         }
 
         var regions = listOf("서울","부산","대구","인천","광주",
