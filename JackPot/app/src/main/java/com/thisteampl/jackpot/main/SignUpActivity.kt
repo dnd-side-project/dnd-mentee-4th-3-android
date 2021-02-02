@@ -148,6 +148,8 @@ class SignUpActivity : AppCompatActivity() {
                     signup_nickname_layout.visibility = View.GONE
                     signup_previous_button.visibility = View.VISIBLE
                     signup_region_layout.visibility = View.VISIBLE
+                    signup_call_name_position_text.text =
+                        signup_name_text.text.toString() + "님, 어떤\n포지션에 해당하시나요?"
                 }
             } else if(page == 2) {
                 if(region == "지역") {
@@ -165,7 +167,7 @@ class SignUpActivity : AppCompatActivity() {
                     signup_position_layout.visibility = View.GONE
                     signup_state_layout.visibility = View.VISIBLE
                 }
-                if(state == "학생") {
+                if(state[0] == '학' && state[1] == '생') {
                     signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기 (이전갔다가 돌아올 때)
                 }
             } else if(page == 4) {
@@ -179,6 +181,9 @@ class SignUpActivity : AppCompatActivity() {
                     else -> {
                         page = 5
                         signup_state_layout.visibility = View.GONE
+                        if(state[0] == '학' && state[1] == '생') {
+                            signup_state_grade_layout.visibility = View.GONE // 학생일때 가리기
+                        }
                         when (position) {
                             "개발자" -> {
                                 signup_developer_stack_layout.visibility = View.VISIBLE
@@ -236,7 +241,7 @@ class SignUpActivity : AppCompatActivity() {
                 page = 3
                 signup_position_layout.visibility = View.VISIBLE
                 signup_state_layout.visibility = View.GONE
-                if(state == "학생") {
+                if(state[0] == '학' && state[1] == '생') {
                     signup_state_grade_layout.visibility = View.GONE // 학생일때 가리기
                 }
             }else if(page == 5) {
@@ -247,15 +252,25 @@ class SignUpActivity : AppCompatActivity() {
                 } else {
                     signup_designer_tool_layout.visibility = View.GONE
                 }
-                if(state == "학생") {
+                if(state[0] == '학' && state[1] == '생') {
                     signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
                 }
             }else if(page == 6) {
                 page = 5
-                if(position == "개발자") {
-                    signup_developer_stack_layout.visibility = View.VISIBLE
-                } else {
-                    signup_designer_tool_layout.visibility = View.VISIBLE
+                when (position) {
+                    "개발자" -> {
+                        signup_developer_stack_layout.visibility = View.VISIBLE
+                    }
+                    "디자이너" -> {
+                        signup_designer_tool_layout.visibility = View.VISIBLE
+                    }
+                    else -> {
+                        page = 4
+                        signup_state_layout.visibility = View.VISIBLE
+                        if(state[0] == '학' && state[1] == '생') {
+                            signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
+                        }
+                    }
                 }
                 signup_introduce_layout.visibility = View.GONE
             }else if(page == 7) { // 프로필 공개 여부.
@@ -351,6 +366,10 @@ class SignUpActivity : AppCompatActivity() {
                         signup_state_grade_layout.visibility = View.VISIBLE
                     } else {
                         signup_state_grade_layout.visibility = View.GONE
+                        sGrageBtn[0]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_background_transparent)
+                        sGrageBtn[1]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_background_transparent)
+                        sGrageBtn[2]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_background_transparent)
+                        sGrageBtn[3]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_background_transparent)
                     }
                 }
                 else {
