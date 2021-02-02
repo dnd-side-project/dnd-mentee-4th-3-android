@@ -266,7 +266,6 @@ class SignUpActivity : AppCompatActivity() {
                 signup_page_viewer.text = "$page / 6"
             }else if(page == 5) {
                 page = 4
-                signup_write_later_button.visibility = View.GONE
                 signup_state_layout.visibility = View.VISIBLE
                 if(position == "개발자") {
                     signup_developer_stack_layout.visibility = View.GONE
@@ -276,6 +275,7 @@ class SignUpActivity : AppCompatActivity() {
                 if(state[0] == '학' && state[1] == '생') {
                     signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
                 }
+                signup_write_later_button.visibility = View.GONE
                 signup_page_viewer.text = "$page / 6"
             }else if(page == 6) {
                 page = 5
@@ -289,6 +289,7 @@ class SignUpActivity : AppCompatActivity() {
                     else -> {
                         page = 4
                         signup_state_layout.visibility = View.VISIBLE
+                        signup_write_later_button.visibility = View.GONE
                         if(state[0] == '학' && state[1] == '생') {
                             signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
                         }
