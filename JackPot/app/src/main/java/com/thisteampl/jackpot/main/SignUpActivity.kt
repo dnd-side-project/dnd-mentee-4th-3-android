@@ -365,7 +365,7 @@ class SignUpActivity : AppCompatActivity() {
             for(i in 0..3) {
                 if(i == pos) {
                     sGrageBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.radius_background_transparent_select)
-                    state = "학생 " + stateBtn[i]?.text.toString()
+                    state = "학생 " + sGrageBtn[i]?.text.toString()
                 }
                 else {
                     sGrageBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_background_transparent)
