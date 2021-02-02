@@ -222,11 +222,11 @@
             app:spinner_arrow_gravity="end"
             app:spinner_arrow_padding="8dp"
             app:spinner_arrow_show="true"
-            app:spinner_arrow_tint="#00000"
+            app:spinner_arrow_tint="#000000"
             app:spinner_divider_size="0.5dp"
             app:spinner_divider_show="true"
             app:spinner_popup_animation="normal"
-            app:spinner_popup_background="#"
+            app:spinner_popup_background="#FFFFFF"
             app:spinner_divider_color="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -394,6 +394,7 @@
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -427,7 +428,8 @@
                 android:layout_height="100dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="1학년"/>
+                android:text="1학년"
+                android:contentDescription="0"/>
 
             <Button
                 android:id="@+id/signup_student_grade_two"
@@ -435,14 +437,16 @@
                 android:layout_height="100dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="2학년"/>
+                android:text="2학년"
+                android:contentDescription="1"/>
 
             <Button
                 android:id="@+id/signup_student_grade_three"
                 android:layout_width="75dp"
                 android:layout_height="100dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="3학년"/>
+                android:text="3학년"
+                android:contentDescription="2"/>
 
             <Button
                 android:id="@+id/signup_student_grade_four"
@@ -450,7 +454,8 @@
                 android:layout_height="100dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="4학년"/>
+                android:text="4학년"
+                android:contentDescription="3"/>
 
         </LinearLayout>
 

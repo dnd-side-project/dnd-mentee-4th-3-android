@@ -314,12 +314,14 @@ class SignUpActivity : AppCompatActivity() {
         stateBtn[2]?.setOnClickListener { stateBtn[2]?.let { it1 -> this.btnOnClick(it1) }}
 
         //학생 학년 선택 리스너
-        stateBtn[0] = findViewById(R.id.signup_gr)
-        stateBtn[1] = findViewById(R.id.signup_state_jobfinder)
-        stateBtn[2] = findViewById(R.id.signup_state_junior)
-        stateBtn[0]?.setOnClickListener { stateBtn[0]?.let { it1 -> this.btnOnClick(it1) } }
-        stateBtn[1]?.setOnClickListener {stateBtn[1]?.let { it1 -> this.btnOnClick(it1) } }
-        stateBtn[2]?.setOnClickListener { stateBtn[2]?.let { it1 -> this.btnOnClick(it1) }}
+        sGrageBtn[0] = findViewById(R.id.signup_student_grade_one)
+        sGrageBtn[1] = findViewById(R.id.signup_student_grade_two)
+        sGrageBtn[2] = findViewById(R.id.signup_student_grade_three)
+        sGrageBtn[3] = findViewById(R.id.signup_student_grade_four)
+        sGrageBtn[0]?.setOnClickListener { sGrageBtn[0]?.let { it1 -> this.btnOnClick(it1) } }
+        sGrageBtn[1]?.setOnClickListener {sGrageBtn[1]?.let { it1 -> this.btnOnClick(it1) } }
+        sGrageBtn[2]?.setOnClickListener { sGrageBtn[2]?.let { it1 -> this.btnOnClick(it1) }}
+        sGrageBtn[3]?.setOnClickListener { sGrageBtn[3]?.let { it1 -> this.btnOnClick(it1) }}
     }
 
     private fun btnOnClick(v : View) {
@@ -353,6 +355,20 @@ class SignUpActivity : AppCompatActivity() {
                 }
                 else {
                     stateBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_background_transparent)
+                }
+            }
+        }
+
+        if(id == R.id.signup_student_grade_one || id == R.id.signup_student_grade_two
+            || id == R.id.signup_student_grade_three || id == R.id.signup_student_grade_four) {
+            var pos = Integer.parseInt(v.contentDescription.toString())
+            for(i in 0..3) {
+                if(i == pos) {
+                    sGrageBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.radius_background_transparent_select)
+                    state = "학생 " + stateBtn[i]?.text.toString()
+                }
+                else {
+                    sGrageBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_background_transparent)
                 }
             }
         }
