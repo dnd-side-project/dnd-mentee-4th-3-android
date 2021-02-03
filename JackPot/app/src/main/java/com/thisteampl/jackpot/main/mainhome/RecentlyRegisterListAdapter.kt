@@ -4,10 +4,12 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import java.util.*
 
 class RecentlyRegisterListAdapter (val recentlyregisterlist: ArrayList<RecentlyRegisterList>? = null): RecyclerView.Adapter<RecentlyRegisterListAdapter.ProjectView>() {
@@ -32,6 +34,7 @@ class RecentlyRegisterListAdapter (val recentlyregisterlist: ArrayList<RecentlyR
 
     override fun onBindViewHolder(holder: RecentlyRegisterListAdapter.ProjectView, position: Int) {
 
+        holder.imageview.setImageResource(recentlyregisterlist!!.get(position).recentlyiamge)
         holder.project_name.text =
             recentlyregisterlist!!.get(index = position).recentlyregister_project_name
         holder.recruitment_position.text =
@@ -50,6 +53,7 @@ class RecentlyRegisterListAdapter (val recentlyregisterlist: ArrayList<RecentlyR
     }
 
     class ProjectView(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imageview = itemView.findViewById<ImageView>(R.id.main_recently_imageview)
         val project_name = itemView.findViewById<TextView>(R.id.main_recentlyproject_textview)
         val recruitment_position =
             itemView.findViewById<TextView>(R.id.main_inputrecentlyproject_position_textview)

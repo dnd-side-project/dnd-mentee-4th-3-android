@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.thisteampl.jackpot.R
 
-class ProjectViewDetail : AppCompatActivity() {
+class SearchViewPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_project_view_detail)
+        setContentView(R.layout.activity_search_view_page)
     }
 }

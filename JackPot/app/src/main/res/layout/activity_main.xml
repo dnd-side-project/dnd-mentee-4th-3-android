@@ -56,6 +56,15 @@
 
     </RelativeLayout>
 
+    <FrameLayout
+        android:id="@+id/main_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/main_relativelayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"/>
+
     <RelativeLayout
         android:id="@+id/main_relativelayout2"
         android:layout_below="@id/main_relativelayout"
@@ -102,7 +111,7 @@
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
-    
+
     <RelativeLayout
         android:id="@+id/main_relativelayout4"
         android:layout_width="match_parent"

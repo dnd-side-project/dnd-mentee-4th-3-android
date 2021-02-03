@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import java.util.*
 
 class AttentionMemberListAdapter(val attentionmemberlist: ArrayList<AttentionMemberList> ?= null): RecyclerView.Adapter<AttentionMemberListAdapter.ProjectView>() {

@@ -1,16 +1,14 @@
 package com.thisteampl.jackpot.main.mainhome
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
-import org.w3c.dom.Text
+import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import java.util.*
 
 class AttentionListAdapter (val attentionlist: ArrayList<AttentionList>? = null): RecyclerView.Adapter<AttentionListAdapter.ProjectView>(){

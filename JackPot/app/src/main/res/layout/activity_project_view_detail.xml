@@ -1,9 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.mainhome.ProjectViewDetail">
+    android:background="#ffffff"
+    tools:context=".main.projectdetail.ProjectViewDetail">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/projectview_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/main_appname_textview"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jackpot"
+            android:textSize="24dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            />
+
+        <ImageButton
+            android:id="@+id/main_mypage_imagebutton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#ffffff"
+            android:src="@drawable/ic_baseline_person_pin_24" />
+
+        <ImageButton
+            android:id="@+id/main_bell_imagebutton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/main_mypage_imagebutton"
+            android:background="#ffffff"
+            android:src="@drawable/ic_baseline_add_alert_24" />
+
+        <ImageButton
+            android:id="@+id/main_search_imagebutton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/main_bell_imagebutton"
+            android:background="#ffffff"
+            android:src="@drawable/ic_baseline_search_24" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/projectview_relativelayout"
+        android:id="@+id/projectview_relativelayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/projectview_projectname_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="프로젝트 제목1"
+            android:textSize="28dp"
+            android:textColor="#111111"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/projectview_writename_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/projectview_projectname_textview"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="작성자"/>
+        <TextView
+            android:id="@+id/projectview_inputwritename_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/projectview_writename_textview"
+            android:layout_below="@id/projectview_projectname_textview"
+            android:text="이름"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/projectview_location_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/projectview_inputwritename_textview"
+            android:layout_below="@id/projectview_projectname_textview"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:text="지역"
+            />
+        <TextView
+            android:id="@+id/projectview_inputlocation_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/projectview_location_textview"
+            android:layout_below="@id/projectview_projectname_textview"
+            android:text="무관"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/projectview_update_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/projectview_inputlocation_textview"
+            android:layout_below="@id/projectview_projectname_textview"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:text="갱신일"
+            />
+        <TextView
+            android:id="@+id/projectview_inputupdate_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/projectview_update_textview"
+            android:layout_below="@id/projectview_projectname_textview"
+            android:text="20190101"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
+
+
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/projectview_relativelayout2"
+        >
+        <TextView
+            android:id="@+id/projectview_recruitmentposition_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모집 포지션"
+            android:textSize="24dp"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            />
+
+
+        <TextView
+            android:id="@+id/projectview_beusedstack_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용 예정 스택"
+            android:textSize="24dp"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/projectview_recruitmentposition_textview"
+            />
+
+
+        <TextView
+            android:id="@+id/projectview_currentlystacksparticipating_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용 예정 스택"
+            android:textSize="24dp"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/projectview_beusedstack_textview"
+            />
+
+        <TextView
+            android:id="@+id/projectview_abouttheproject_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="프로젝트에 대하여"
+            android:textSize="24dp"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/projectview_currentlystacksparticipating_textview"
+            />
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/projectview_abouttheproject_textview"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:hint="어쩌고 저쩌고 써주세요." />
+
+    </RelativeLayout>
+
+</RelativeLayout>

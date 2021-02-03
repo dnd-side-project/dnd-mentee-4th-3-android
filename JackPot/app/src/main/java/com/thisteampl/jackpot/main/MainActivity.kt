@@ -8,17 +8,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.animation.AnimationUtils
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.main.mainhome.AttentionMember
-import com.thisteampl.jackpot.main.mainhome.AttentionProject
-import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
+import com.thisteampl.jackpot.main.floating.MyAppeal
+import com.thisteampl.jackpot.main.floating.ProjectCreation
+import com.thisteampl.jackpot.main.mainhome.*
 import com.thisteampl.jackpot.main.mypage.MyPage
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(){
 
-    private lateinit var attentionproject : AttentionProject
-    private lateinit var attentionmember : AttentionMember
     private lateinit var recentlyregister : RecentlyRegisterProject
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +25,11 @@ class MainActivity : AppCompatActivity(){
 
         val intent = Intent(this, MyPage::class.java)
         val mainintent = Intent(this,MainActivity::class.java)
+        val searchintent = Intent(this,SearchViewPage::class.java)
+
+        main_search_imagebutton.setOnClickListener {
+            startActivity(searchintent)
+        }
 
         main_mypage_imagebutton.setOnClickListener{
             startActivity(intent)
@@ -34,7 +37,6 @@ class MainActivity : AppCompatActivity(){
 
         main_appname_textview.setOnClickListener{
             startActivity(mainintent)
-            // main 계속 호출한다면? 성능 하락하지 않을지
         }
 
         setFrag(0)
@@ -51,9 +53,16 @@ class MainActivity : AppCompatActivity(){
             setFrag(1)
         }
 
+
         recentlyregister = RecentlyRegisterProject.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister).commit()
 
+        val intentviewmore = Intent(this, ProjectViewMore::class.java)
+
+        main_viewmore_textview.setOnClickListener {
+            intentviewmore.putExtra("InputRecently",recentlyregister.recentlyregister)
+            startActivity(intentviewmore)
+        }
 
         // 참고자료 : https://jinsangjin.tistory.com/12
         val open_fab = AnimationUtils.loadAnimation(this,R.anim.fab_open)
@@ -62,6 +71,8 @@ class MainActivity : AppCompatActivity(){
         val rclockwise_rotate = AnimationUtils.loadAnimation(this,R.anim.rotate_clockwise)
         var isOpen = false
 
+        val appeal = Intent(this,MyAppeal::class.java)
+        var drawproject = Intent(this,ProjectCreation::class.java)
 
         main_optionmenu_floatingactionbutton.setOnClickListener{
             if(isOpen){
@@ -69,21 +80,28 @@ class MainActivity : AppCompatActivity(){
                 drawproject_fab.startAnimation(close_fab)
                 main_optionmenu_floatingactionbutton.startAnimation(rclockwise_rotate)
 
+
+                appeal_fab.isClickable = false
+                drawproject_fab.isClickable = false
+
+
                 isOpen = false
             }
-
             else{
                 appeal_fab.startAnimation(open_fab)
                 drawproject_fab.startAnimation(open_fab)
                 main_optionmenu_floatingactionbutton.startAnimation(anticlockwise_rotate)
 
 
-                appeal_fab.isClickable
-                drawproject_fab.isClickable
+                appeal_fab.isClickable = true
+                drawproject_fab.isClickable = true
 
-//                if(drawproject_fab.isClickable && isOpen == true){
-////                    Toast.makeText(this, "버튼 성공", Toast.LENGTH_SHORT).show()
-////                }
+                appeal_fab.setOnClickListener {
+                    startActivity(appeal)
+                }
+                drawproject_fab.setOnClickListener {
+                    startActivity(drawproject)
+                }
 
                 isOpen = true
 
@@ -98,10 +116,7 @@ class MainActivity : AppCompatActivity(){
 
         when(fragNum){
             0 -> {
-
                 ft.replace(R.id.main_projectview_framelayout,AttentionProject()).commit()
-//                attentionproject = AttentionProject.newInstance()
-//
             }
 
             1-> {
