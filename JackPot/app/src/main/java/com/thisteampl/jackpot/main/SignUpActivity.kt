@@ -211,7 +211,6 @@ class SignUpActivity : AppCompatActivity() {
                     }
                 }
                 signup_page_viewer.text = "$page / 6"
-                signup_write_later_button.visibility = View.VISIBLE
             } else if(page == 5) {
                 page = 6
                 if(position == "개발자") {
@@ -225,6 +224,7 @@ class SignUpActivity : AppCompatActivity() {
                 page = 7
                 signup_page_viewer.visibility = View.GONE
                 signup_introduce_layout.visibility = View.GONE
+                signup_exit_button.visibility = View.GONE
                 signup_open_layout.visibility = View.VISIBLE
 
                 signup_confirm_button.text = "공개할래요"
@@ -275,7 +275,6 @@ class SignUpActivity : AppCompatActivity() {
                 if(state[0] == '학' && state[1] == '생') {
                     signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
                 }
-                signup_write_later_button.visibility = View.GONE
                 signup_page_viewer.text = "$page / 6"
             }else if(page == 6) {
                 page = 5
@@ -289,7 +288,6 @@ class SignUpActivity : AppCompatActivity() {
                     else -> {
                         page = 4
                         signup_state_layout.visibility = View.VISIBLE
-                        signup_write_later_button.visibility = View.GONE
                         if(state[0] == '학' && state[1] == '생') {
                             signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
                         }
