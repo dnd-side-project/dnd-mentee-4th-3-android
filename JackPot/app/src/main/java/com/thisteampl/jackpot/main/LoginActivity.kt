@@ -19,7 +19,6 @@ import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.thisteampl.jackpot.R
 import kotlinx.android.synthetic.main.activity_login.*
-import org.json.JSONException
 
 
 /*
@@ -27,7 +26,8 @@ import org.json.JSONException
 * kakaosdk v2 사용
 *
 * 구글 로그인 기능 구현 : https://galid1.tistory.com/109
-* https://philosopher-chan.tistory.com/341 두 곳을 참조.
+* https://philosopher-chan.tistory.com/341 
+* https://chjune0205.tistory.com/136 세 곳을 참조.
 *
 * 맨 처음 앱이 시작될 때 나오는 화면. 로그인이 돼 있다면 바로 다음 메인화면으로 간다.
 * */
@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
     val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         /* error 가 null이 아니라면 로그인 불가.*/
         if (error != null) {
-            Toast.makeText(this, "카카오 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "카카오 로그인에 실패했습니다.\n $error", Toast.LENGTH_SHORT).show()
         }
         /*token이 null이 아니라면 카카오 API로 값을 불러와서 회원의 정보를 가져온다.
         * 그리고 회원가입 페이지로 이동한다.*/
@@ -71,14 +71,11 @@ class LoginActivity : AppCompatActivity() {
         override fun run(success: Boolean) {
             if (success) {
                     val accessToken: String = mOAuthLoginInstance.getAccessToken(baseContext) // <- 서버에 넘겨줄 토큰값
-                    try {
-
-                    }
-                    catch (e: JSONException) { }
                     val intent = Intent(baseContext, SignUpActivity::class.java)
                         .putExtra("signuptype", 2).putExtra("token", accessToken)
                     startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
                     finish()
+                mOAuthLoginInstance.logout(baseContext)
             } else {
                 Toast.makeText(baseContext, "네이버 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
             }
@@ -95,14 +92,13 @@ class LoginActivity : AppCompatActivity() {
             "v0NYcGwVmY" ,
             "잭팟"
         )
-
         var gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.google_client_id))
             .requestEmail()
             .build()
+
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         // 구글 로그인을 위한 GSO 객체
-
         login_email_login_button.setOnClickListener {
             Toast.makeText(this, "준비중인 기능입니다.", Toast.LENGTH_SHORT).show()
         }
@@ -151,8 +147,9 @@ class LoginActivity : AppCompatActivity() {
                 .putExtra("signuptype", 3).putExtra("token", token)
             startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
             finish()
+            googleSignInClient.signOut()
         } catch (e: ApiException) {
-            Toast.makeText(baseContext, "구글 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(baseContext, "구글 로그인에 실패했습니다.\n $e", Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "569361822110",
+    "project_id": "jackpot-1611239774705",
+    "storage_bucket": "jackpot-1611239774705.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569361822110:android:47da8b8d06a6df54fbe68f",
+        "android_client_info": {
+          "package_name": "com.thisteampl.jackpot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569361822110-n6crcos080uhuhnbielhgrdjmu3turon.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCplfAJ-TLI59lPT3nRWW7kC2BkSamUfbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569361822110-n6crcos080uhuhnbielhgrdjmu3turon.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
