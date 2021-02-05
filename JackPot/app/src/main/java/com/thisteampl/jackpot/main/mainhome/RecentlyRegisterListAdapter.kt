@@ -12,8 +12,12 @@ import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import java.util.*
 
+
+// 최근 등록된 프로젝트 어댑터(연결 구간)
 class RecentlyRegisterListAdapter (val recentlyregisterlist: ArrayList<RecentlyRegisterList>? = null): RecyclerView.Adapter<RecentlyRegisterListAdapter.ProjectView>() {
 
+
+    // onCreateViewHolder : ViewHolder와 Layout 파일을 연결해주는 역할
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -32,6 +36,8 @@ class RecentlyRegisterListAdapter (val recentlyregisterlist: ArrayList<RecentlyR
         }
     }
 
+
+    // onBindViewHolder : 생성된 ViewHolder에 바인딩 해주는 함수
     override fun onBindViewHolder(holder: RecentlyRegisterListAdapter.ProjectView, position: Int) {
 
         holder.imageview.setImageResource(recentlyregisterlist!!.get(position).recentlyiamge)

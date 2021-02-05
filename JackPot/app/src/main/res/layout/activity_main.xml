@@ -94,6 +94,15 @@
             android:layout_toRightOf="@id/main_projectattention_textview"
             />
 
+        <TextView
+            android:id="@+id/main_attentionviewmore_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="더보기 > "
+            android:textSize="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"/>
 
     </RelativeLayout>
 
@@ -131,7 +140,7 @@
             android:layout_marginTop="20dp" />
 
         <TextView
-            android:id="@+id/main_viewmore_textview"
+            android:id="@+id/main_recentlyviewmore_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="더보기 > "

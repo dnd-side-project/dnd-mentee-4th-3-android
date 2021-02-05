@@ -1,4 +1,4 @@
-package com.thisteampl.jackpot.main.mainhome
+package com.thisteampl.jackpot.main.viewmore
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,8 +8,9 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterList
 
-class ProjectViewMoreAdapter(val context: Context, val ProjectList: ArrayList<RecentlyRegisterList>?= null): BaseAdapter() {
+class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: ArrayList<RecentlyRegisterList>?= null): BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view : View = LayoutInflater.from(context).inflate(R.layout.main_projectviewdetail_list,null)
 

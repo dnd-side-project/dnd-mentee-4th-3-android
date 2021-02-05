@@ -18,6 +18,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/main_projectimage_imageview"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:background="#332C2C"
+            app:layout_constraintBottom_toTopOf="@+id/main_projecttitle_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/main_projecttitle_textview"
