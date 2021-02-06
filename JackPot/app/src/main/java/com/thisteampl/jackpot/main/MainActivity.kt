@@ -11,8 +11,6 @@ import com.thisteampl.jackpot.main.floating.MyAppeal
 import com.thisteampl.jackpot.main.floating.ProjectCreation
 import com.thisteampl.jackpot.main.mainhome.*
 import com.thisteampl.jackpot.main.mypage.MyPage
-import com.thisteampl.jackpot.main.viewmore.AttentionMemberViewMore
-import com.thisteampl.jackpot.main.viewmore.AttentionProjectViewMore
 import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -55,7 +53,6 @@ class MainActivity : AppCompatActivity(){
             main_projectattention_textview.setTextColor(Color.BLACK)
             main_memberattention_textview.setTextColor(Color.GRAY)
             setFrag(attentionlocation)
-
         }
 
         // 주목받는 멤버, 액티비티 프래그먼트 연결
@@ -70,20 +67,10 @@ class MainActivity : AppCompatActivity(){
 
         // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
         recentlyregister = RecentlyRegisterProject.newInstance()
-        supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister).commit()
+        supportFragmentManager.beginTransaction().add(R.id.main_recentlyproject_framelayout,recentlyregister).commit()
 
-        val intent_attentprojectviewmore = Intent(this,AttentionProjectViewMore::class.java)
-        val intent_attentmemberviewmore = Intent(this, AttentionMemberViewMore::class.java)
         val intentrecentlyviewmore = Intent(this, RecentlyProjectViewMore::class.java)
 
-        // 주목받는 프로젝트, 주목받는 멤버 더보기 버튼
-        main_attentionviewmore_textview.setOnClickListener {
-            if(attentionlocation == 0){
-                startActivity(intent_attentprojectviewmore)
-            }else{
-                startActivity(intent_attentmemberviewmore)
-            }
-        }
 
         // 최근에 등록된 프로젝트 더보기 버튼
         main_recentlyviewmore_textview.setOnClickListener {

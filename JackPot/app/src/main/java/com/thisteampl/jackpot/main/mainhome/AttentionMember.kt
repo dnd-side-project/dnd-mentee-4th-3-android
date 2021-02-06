@@ -36,7 +36,7 @@ class AttentionMember : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         main_attentionmemberlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),
-            LinearLayoutManager.HORIZONTAL,false)
+            LinearLayoutManager.VERTICAL,false)
         main_attentionmemberlist_recyclerview.setHasFixedSize(true)  // RecyclerView 크기 유지 (변경 x)
         main_attentionmemberlist_recyclerview.adapter = AttentionMemberListAdapter(attention)
     }

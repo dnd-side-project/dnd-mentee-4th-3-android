@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/main_recently_imageview"
+            android:id="@+id/main_attention_imageview"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="5dp"
@@ -30,7 +30,7 @@
             android:src="@drawable/android_group" />
 
         <TextView
-            android:id="@+id/main_recentlyproject_textview"
+            android:id="@+id/main_attentionproject_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -39,22 +39,22 @@
             android:textColor="#000000"
             android:textSize="14dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/main_recently_imageview"
+            app:layout_constraintStart_toEndOf="@+id/main_attention_imageview"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/main_recentlyproject_recruitment_textview"
+            android:id="@+id/main_attentionproject_recruitment_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="7dp"
             android:text="모집 포지션"
             android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/main_recently_imageview"
-            app:layout_constraintTop_toBottomOf="@+id/main_recentlyproject_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_attention_imageview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionproject_textview" />
 
         <TextView
-            android:id="@+id/main_inputrecentlyproject_position_textview"
+            android:id="@+id/main_inputattentionproject_position_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -62,11 +62,11 @@
             android:text="TextView"
             android:textSize="10dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/main_recentlyproject_recruitment_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_recentlyproject_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_attentionproject_recruitment_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionproject_textview" />
 
         <TextView
-            android:id="@+id/main_inputrecentlyproject_update_textview"
+            android:id="@+id/main_inputattentionproject_update_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -74,22 +74,22 @@
             android:text="TextView"
             android:textSize="10dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/main_recentlyproject_update_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_recentlyproject_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_attentionproject_update_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionproject_textview" />
 
         <TextView
-            android:id="@+id/main_recentlyproject_update_textview"
+            android:id="@+id/main_attentionproject_update_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="7dp"
             android:text="갱신일"
             android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/main_inputrecentlyproject_position_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_recentlyproject_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_inputattentionproject_position_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionproject_textview" />
 
         <TextView
-            android:id="@+id/main_recentlyprojectstack_textview"
+            android:id="@+id/main_attentionprojectstack_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -100,11 +100,11 @@
             android:text="stack"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/main_recently_imageview"
-            app:layout_constraintTop_toBottomOf="@+id/main_recentlyproject_recruitment_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_attention_imageview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionproject_recruitment_textview" />
 
         <TextView
-            android:id="@+id/main_recentlyprojectstack2_textview"
+            android:id="@+id/main_attentionprojectstack2_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -115,12 +115,12 @@
             android:text="stack"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/main_recentlyprojectstack_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_recentlyproject_recruitment_textview"
+            app:layout_constraintStart_toEndOf="@+id/main_attentionprojectstack_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionproject_recruitment_textview"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/main_recentlyprojectstack3_textview"
+            android:id="@+id/main_attentionprojectstack3_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -131,8 +131,8 @@
             android:text="stack"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/main_recentlyprojectstack2_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_recentlyproject_recruitment_textview"
+            app:layout_constraintStart_toEndOf="@+id/main_attentionprojectstack2_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionproject_recruitment_textview"
             app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,7 @@ class AttentionProject : Fragment() {
     // View가 만들어진 후, onViewCreated() 콜백된다.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        main_attentionprojectlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),LinearLayoutManager.HORIZONTAL,false)
+        main_attentionprojectlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),LinearLayoutManager.VERTICAL,false)
         main_attentionprojectlist_recyclerview.setHasFixedSize(true) // RecyclerView 크기 유지 (변경 x)
         main_attentionprojectlist_recyclerview.adapter = AttentionProjectListAdapter(attention)
     }

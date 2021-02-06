@@ -2,139 +2,138 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="130dp"
-        android:layout_height="170dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#303435"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <ImageView
-            android:id="@+id/main_memberimage_imageview"
-            android:layout_width="130dp"
-            android:layout_height="70dp"
-            android:background="#332C2C"
-            app:layout_constraintBottom_toTopOf="@+id/main_membertitle_textview"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/main_attention_imageview"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/android_group" />
+
+        <TextView
+            android:id="@+id/main_attentionmember_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/main_attention_imageview"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/main_membertitle_textview"
-            android:layout_width="130dp"
-            android:layout_height="100dp"
-            android:background="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/main_membername_textview"
+            android:id="@+id/main_attentionmember_recruitment_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:text="멤버"
-            android:textColor="#3F51B5"
-            android:textSize="14dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/main_membertitle_textview" />
-
-        <TextView
-            android:id="@+id/main_memberposition_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="7dp"
             android:text="모집 포지션"
             android:textSize="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_membername_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_attention_imageview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionmember_textview" />
 
         <TextView
-            android:id="@+id/main_inputmemberposition_textview"
+            android:id="@+id/main_inputattentionmember_position_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="7dp"
-            android:text="개발자"
+            android:text="TextView"
             android:textSize="10dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/main_memberposition_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_membername_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_attentionmember_recruitment_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionmember_textview" />
 
         <TextView
-            android:id="@+id/main_memberupdatedate_textview"
+            android:id="@+id/main_inputattentionmember_update_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:text="TextView"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/main_attentionmember_update_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionmember_textview" />
+
+        <TextView
+            android:id="@+id/main_attentionmember_update_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="7dp"
             android:text="갱신일"
             android:textSize="10dp"
-            app:layout_constraintStart_toStartOf="@+id/main_membertitle_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_memberposition_textview" />
+            app:layout_constraintStart_toEndOf="@+id/main_inputattentionmember_position_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionmember_textview" />
 
         <TextView
-            android:id="@+id/main_inputmemberupdatedate_textview"
+            android:id="@+id/main_attentionmemberstack_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="7dp"
-            android:text="2020.01.19"
-            android:textSize="10dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/main_memberupdatedate_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_inputmemberposition_textview" />
-
-        <TextView
-            android:id="@+id/main_projectmemberstack_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+
+            android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_textview"
             android:text="stack"
-            android:textSize="10dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_memberupdatedate_textview" />
-
-        <TextView
-            android:id="@+id/main_projectmemberstack2_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/rounded_textview"
-            android:text="stack"
-
-            android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/main_projectmemberstack_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_memberupdatedate_textview" />
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_attention_imageview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionmember_recruitment_textview" />
 
         <TextView
-            android:id="@+id/main_projectmemberstack3_textview"
+            android:id="@+id/main_attentionmemberstack2_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
+
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_textview"
             android:text="stack"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_attentionmemberstack_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionmember_recruitment_textview"
+            app:layout_constraintVertical_bias="0.0" />
 
-            android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/main_projectmemberstack2_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_memberupdatedate_textview" />
+        <TextView
+            android:id="@+id/main_attentionmemberstack3_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_textview"
+            android:text="stack"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_attentionmemberstack2_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_attentionmember_recruitment_textview"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

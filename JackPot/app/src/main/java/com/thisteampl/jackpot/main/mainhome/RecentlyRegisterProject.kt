@@ -53,7 +53,7 @@ class RecentlyRegisterProject : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         main_recentlyprojectlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),
-            LinearLayoutManager.VERTICAL,false)
+            LinearLayoutManager.HORIZONTAL,false)
         main_recentlyprojectlist_recyclerview.setHasFixedSize(true)
         main_recentlyprojectlist_recyclerview.adapter = RecentlyRegisterListAdapter(recentlyregister)
     }
