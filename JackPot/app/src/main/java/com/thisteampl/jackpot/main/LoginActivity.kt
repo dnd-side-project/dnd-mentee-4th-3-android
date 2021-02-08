@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +19,12 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.userController.CheckResponse
+import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_login.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 /*
@@ -36,6 +42,8 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var mOAuthLoginInstance : OAuthLogin // 네이버 로그인 모듈
     lateinit var googleSignInClient: GoogleSignInClient // 구글 로그인 모듈
+
+    private val userApi = userAPI.create()
 
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,10 +66,7 @@ class LoginActivity : AppCompatActivity() {
         /*token이 null이 아니라면 카카오 API로 값을 불러와서 회원의 정보를 가져온다.
         * 그리고 회원가입 페이지로 이동한다.*/
         else if (token != null) {
-            val intent = Intent(this, SignUpActivity::class.java).putExtra("signuptype", 1)
-                .putExtra("token", token.accessToken)
-            startActivity(intent)
-            finish()
+            checkThirdPartyToken(token.toString(), "kakao")
         }
     }
 
@@ -70,11 +75,8 @@ class LoginActivity : AppCompatActivity() {
     private val naverOAuthLoginHandler: OAuthLoginHandler = object : OAuthLoginHandler() {
         override fun run(success: Boolean) {
             if (success) {
-                    val accessToken: String = mOAuthLoginInstance.getAccessToken(baseContext) // <- 서버에 넘겨줄 토큰값
-                    val intent = Intent(baseContext, SignUpActivity::class.java)
-                        .putExtra("signuptype", 2).putExtra("token", accessToken)
-                    startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
-                    finish()
+                val accessToken: String = mOAuthLoginInstance.getAccessToken(baseContext) // <- 서버에 넘겨줄 토큰값
+                checkThirdPartyToken(accessToken, "naver")
                 mOAuthLoginInstance.logout(baseContext)
             } else {
                 Toast.makeText(baseContext, "네이버 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
@@ -100,7 +102,10 @@ class LoginActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         // 구글 로그인을 위한 GSO 객체
         login_email_login_button.setOnClickListener {
-            Toast.makeText(this, "준비중인 기능입니다.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(baseContext, SignUpActivity::class.java)
+                .putExtra("signuptype", "normal")
+            startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+            finish()
         }
 
         //카카오로 로그인 버튼의 기능. callback 함수를 호출해서 회원가입 페이지로 이동하게 한다.
@@ -143,13 +148,134 @@ class LoginActivity : AppCompatActivity() {
             val account =
                 completedTask.getResult(ApiException::class.java)
             val token = account?.idToken //<- 서버에 넘겨줄 구글 토큰 값.
-            val intent = Intent(baseContext, SignUpActivity::class.java)
-                .putExtra("signuptype", 3).putExtra("token", token)
-            startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
-            finish()
+            checkThirdPartyToken(token.toString(), "google")
             googleSignInClient.signOut()
         } catch (e: ApiException) {
             Toast.makeText(baseContext, "구글 로그인에 실패했습니다.\n $e", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    // 서드파티에서 받아온 토큰을 확인
+    private fun checkThirdPartyToken(token: String, type: String) {
+        when (type) {
+            "kakao" -> {
+                userApi?.getCheckKakaoToken(token)?.enqueue(object : Callback<CheckResponse>{
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure" + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        when {
+                            // 가입하지 않은 회원. 회원가입 필요.
+                            response.code().toString() == "100" -> {
+                                val intent = Intent(
+                                    baseContext,
+                                    SignUpActivity::class.java
+                                ).putExtra("signuptype", "kakao")
+                                Toast.makeText(baseContext, "카카오로 회원가입을 진행합니다.", Toast.LENGTH_SHORT)
+                                    .show()
+                                startActivity(intent)
+                                finish()
+                            }
+                            response.code().toString() == "200" -> {
+                                Toast.makeText(baseContext, "카카오 로그인에 성공하였습니다.", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                            else -> {
+                                Toast.makeText(baseContext, "로그인에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.message(), Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
+                    }
+                })
+
+            }
+            "naver" -> {
+                userApi?.getCheckNaverToken(token)?.enqueue(object : Callback<CheckResponse>{
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure" + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        when {
+                            // 가입하지 않은 회원. 회원가입 필요.
+                            response.code().toString() == "100" -> {
+                                val intent = Intent(
+                                    baseContext,
+                                    SignUpActivity::class.java
+                                ).putExtra("signuptype", "kakao")
+                                Toast.makeText(
+                                    baseContext,
+                                    "네이버로 회원가입을 진행합니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                startActivity(intent)
+                                finish()
+                            }
+                            //가입된 회원. 토큰을 받아온다.
+                            response.code().toString() == "200" -> {
+                                Toast.makeText(
+                                    baseContext,
+                                    "네이버 로그인에 성공하였습니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            else -> {
+                                Toast.makeText(baseContext, "로그인에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.message(), Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
+                    }
+
+                })
+            }
+            "google" -> {
+                userApi?.getCheckGoogleToken(token)?.enqueue(object : Callback<CheckResponse>{
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure" + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        when {
+                            // 가입하지 않은 회원. 회원가입 필요.
+                            response.code().toString() == "100" -> {
+                                val intent = Intent(
+                                    baseContext,
+                                    SignUpActivity::class.java
+                                ).putExtra("signuptype", "kakao")
+                                Toast.makeText(baseContext, "구글로 회원가입을 진행합니다.", Toast.LENGTH_SHORT)
+                                    .show()
+                                startActivity(intent)
+                                finish()
+                            }
+                            //가입된 회원. 토큰을 받아온다.
+                            response.code().toString() == "200" -> {
+                                Toast.makeText(baseContext, "구글 로그인에 성공하였습니다.", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                            else -> {
+                                Toast.makeText(baseContext, "로그인에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.message(), Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
+                    }
+
+                })
+            }
+        }
+
+
     }
 }

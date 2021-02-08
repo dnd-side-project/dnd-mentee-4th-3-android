@@ -10,12 +10,16 @@ android {
 
     defaultConfig {
         applicationId "com.thisteampl.jackpot"
-        minSdkVersion 19
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
     buildTypes {
@@ -38,13 +42,14 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
 
-    // 룸 하단 사이트 참조
-    // https://developer.android.com/training/data-storage/room?hl=ko
-    def room_version = "2.2.6"
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    // https://github.com/square/retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+
+    // https://github.com/square/okhttp
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+
+    // https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
     implementation "com.github.skydoves:powerspinner:1.1.7" //파워 스피너
     implementation "androidx.preference:preference-ktx:1.1.1"
@@ -55,4 +60,6 @@ dependencies {
     implementation "com.kakao.sdk:v2-user:2.2.0" // KaKaoSDK v2 카카오 로그인 기능 구현.
     implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.6' // Naver 네이버 로그인 기능 구현.
     implementation 'com.google.android.gms:play-services-auth:19.0.0' // 구글 로그인 기능
+
+
 }

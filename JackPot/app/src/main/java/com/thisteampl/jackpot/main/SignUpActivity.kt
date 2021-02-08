@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -13,7 +14,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.kakao.sdk.user.UserApiClient
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.userController.CheckResponse
+import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_signup.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 /* 회원가입을 위한 화면.
@@ -33,6 +39,7 @@ class SignUpActivity : AppCompatActivity() {
         duration = 350
     }
     private var emailCheck: Boolean = false
+    private val userApi = userAPI.create()
     private var page: Int = 0
     /*
     * page 변수에 따라 보여지는 layout을 visible 해준다.
@@ -78,40 +85,30 @@ class SignUpActivity : AppCompatActivity() {
 
     // 화면이 구성되고 View를 만들어 준다.
     private fun setupView(){
-        var signUpType: Int = intent.getIntExtra("signuptype", 0)
-        // 회원가입 타입, 0 : 일반회원가입, 1 : 카카오 로그인, 2 : 네이버 로그인, 3 : 구글 로그인
-        var token: String = intent.getStringExtra("token").toString()
+        var signUpType: String? = intent.getStringExtra("signuptype")
 
         when (signUpType) {
 
-            0 -> {
+            "normal" -> {
                 signup_email_signup_layout.visibility = View.VISIBLE
             }
-            1 -> {
-                Toast.makeText(this, "카카오 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+            "kakao" -> {
                 //카카오 로그인을 했을 시 카카오idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
                 page = 1
                 UserApiClient.instance.me { user, error ->
-                    signup_name_text.setText(token)
-                    //signup_name_text.setText("${user?.kakaoAccount?.profile?.nickname}")
                 }
 
             }
-            2 -> {
-                Toast.makeText(this, "네이버 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+            "naver" -> {
                 //네이버 로그인을 했을 시 네이버idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
                 page = 1
-                signup_name_text.setText(token)
-
             }
-            3 -> {
-                Toast.makeText(this, "구글 로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+            "google" -> {
                 //구글 로그인을 했을 시 구글idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
                 page = 1
-                signup_name_text.setText(token)
             }
         }
 
@@ -236,6 +233,38 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
+        //이메일 체크 버튼
+        signup_id_check_button.setOnClickListener {
+
+            if (!checkEmail(signup_id_text.text.toString())) {
+                Toast.makeText(this, "올바른 이메일 패턴을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+            } else {
+                userApi?.getCheckEmail(signup_id_text.text.toString())
+                    ?.enqueue(object : Callback<CheckResponse> {
+                        override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                            // userAPI에서 타입이나 이름 안맞췄을때
+                            Log.e("tag ", "onFailure" + t.localizedMessage)
+                        }
+
+                        override fun onResponse(
+                            call: Call<CheckResponse>,
+                            response: Response<CheckResponse>
+                        ) {
+                            var chkResponse = response.body()
+                            if (chkResponse == null) {
+                                // 무조건 클라 잘못
+                            } else {
+                                if(response.code().toString() == "200"){
+                                    Toast.makeText(baseContext, "사용 가능한 이메일입니다.", Toast.LENGTH_SHORT).show()
+                                    emailCheck = true
+                                }
+                            }
+                        }
+
+                    })
+            }
+        }
+
         signup_previous_button.setOnClickListener {
             if(page == 1) {
                 page = 0
@@ -244,7 +273,7 @@ class SignUpActivity : AppCompatActivity() {
                 signup_nickname_layout.visibility = View.GONE
                 signup_page_viewer.text = "$page / 6"
             }else if(page == 2) {
-                if(signUpType != 0) {
+                if(signUpType != "normal") {
                     signup_previous_button.visibility = View.GONE
                 }
                 page = 1
@@ -318,15 +347,6 @@ class SignUpActivity : AppCompatActivity() {
                 emailCheck = false
             }
         })
-
-        signup_id_check_button.setOnClickListener {
-            //아이디 중복확인, 추후에
-            if (!checkEmail(signup_id_text.text.toString())) {
-                Toast.makeText(this, "올바른 이메일 패턴을 입력해 주세요.", Toast.LENGTH_SHORT).show()
-            }else {
-                emailCheck = true
-            }
-        }
 
         signup_exit_button.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
