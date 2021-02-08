@@ -39,7 +39,7 @@
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@id/main_mypage_imagebutton"
             android:background="#ffffff"
-            android:src="@drawable/ic_baseline_add_alert_24" />
+            android:src="@drawable/android_alarm" />
 
         <ImageButton
             android:id="@+id/main_search_imagebutton"
@@ -182,7 +182,7 @@
         android:layout_marginTop="10dp"
         android:background="#ffffff">
 
-        <TextView
+        <Button
             android:id="@+id/main_projectattention_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -191,9 +191,11 @@
             android:layout_marginTop="5dp"
             android:text="주목받는 프로젝트"
             android:textColor="#111111"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:background="#FFFFFF"
+            />
 
-        <TextView
+        <Button
             android:id="@+id/main_memberattention_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -201,7 +203,7 @@
             android:layout_marginRight="50dp"
             android:layout_alignParentEnd="true"
             android:text="주목받는 멤버"
-            android:textSize="15dp" />
+            android:background="#FFFFFF"/>
 
     </RelativeLayout>
 
