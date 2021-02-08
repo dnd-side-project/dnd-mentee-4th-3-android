@@ -83,6 +83,7 @@
                 android:layout_weight="1"
                 android:text="이메일 확인"
                 android:background="@drawable/radius_background_transparent"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
