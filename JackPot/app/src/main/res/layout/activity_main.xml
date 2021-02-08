@@ -4,31 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#9A9999"
     tools:context="com.thisteampl.jackpot.main.MainActivity">
 
     <RelativeLayout
         android:id="@+id/main_relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
+
+        <ImageView
             android:id="@+id/main_appname_textview"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jackpot"
-            android:textSize="24dp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            />
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/android_jackpot" />
 
         <ImageButton
             android:id="@+id/main_mypage_imagebutton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
             android:background="#ffffff"
             android:src="@drawable/ic_baseline_person_pin_24" />
@@ -37,7 +35,7 @@
             android:id="@+id/main_bell_imagebutton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@id/main_mypage_imagebutton"
             android:background="#ffffff"
@@ -47,117 +45,214 @@
             android:id="@+id/main_search_imagebutton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@id/main_bell_imagebutton"
             android:background="#ffffff"
             android:src="@drawable/ic_baseline_search_24" />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_field_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/main_relativelayout"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/main_field_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="분야"
+            android:textColor="#111111"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/main_field1_imageview"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@+id/main_field_textview"
+            android:layout_alignParentStart="true"
+
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:scrollbarSize="3dp"
+            android:src="@drawable/android_ellipse" />
+
+        <ImageView
+            android:id="@+id/main_field2_imageview"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@+id/main_field_textview"
+
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/main_field1_imageview"
+            android:scrollbarSize="3dp"
+            android:src="@drawable/android_ellipse" />
+
+        <ImageView
+            android:id="@+id/main_field3_imageview"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@+id/main_field_textview"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="70dp"
+            android:layout_toStartOf="@+id/main_field4_imageview"
+            android:scrollbarSize="3dp"
+            android:src="@drawable/android_ellipse" />
+
+        <ImageView
+            android:id="@+id/main_field4_imageview"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@+id/main_field_textview"
+
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:scrollbarSize="3dp"
+            android:src="@drawable/android_ellipse" />
+
+        <ImageView
+            android:id="@+id/main_field4_imageview2"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@+id/main_field4_imageview"
+
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="30dp"
+            android:scrollbarSize="3dp"
+            android:src="@drawable/android_ellipse" />
+
+        <ImageView
+            android:id="@+id/main_field4_imageview3"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@+id/main_field1_imageview"
+
+            android:layout_marginTop="25dp"
+            android:layout_toStartOf="@+id/main_field4_imageview2"
+            android:scrollbarSize="3dp"
+            android:src="@drawable/android_ellipse" />
+
+        <ImageView
+            android:id="@+id/main_field4_imageview4"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@+id/main_field4_imageview"
+
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="25dp"
+            android:layout_toEndOf="@+id/main_field4_imageview5"
+            android:scrollbarSize="3dp"
+            android:src="@drawable/android_ellipse" />
+
+        <ImageView
+            android:id="@+id/main_field4_imageview5"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_below="@+id/main_field4_imageview"
+
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="25dp"
+            android:scrollbarSize="3dp"
+            android:src="@drawable/android_ellipse" />
+
 
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/main_framelayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/main_relativelayout"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"/>
 
     <RelativeLayout
-        android:id="@+id/main_relativelayout2"
-        android:layout_below="@id/main_relativelayout"
-        android:layout_marginTop="30dp"
+        android:id="@+id/main_attention_relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        
+        android:layout_height="30dp"
+        android:layout_below="@+id/main_field_relativelayout"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff">
+
         <TextView
             android:id="@+id/main_projectattention_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
             android:text="주목받는 프로젝트"
-            android:textSize="14dp"
             android:textColor="#111111"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp" />
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/main_memberattention_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentEnd="true"
             android:text="주목받는 멤버"
-            android:textSize="14dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@id/main_projectattention_textview"
-            />
-
+            android:textSize="15dp" />
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/main_relativelayout3"
+    <FrameLayout
+        android:id="@+id/main_projectview_framelayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/main_relativelayout2">
-
-        <FrameLayout
-            android:id="@+id/main_projectview_framelayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
-
-    </RelativeLayout>
+        android:layout_height="230dp"
+        android:layout_above="@+id/main_relativelayout4"
+        android:layout_below="@+id/main_attention_relativelayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_marginBottom="10dp"
+        android:background="#ffffff" />
 
     <RelativeLayout
         android:id="@+id/main_relativelayout4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_below="@id/main_relativelayout3">
+        android:layout_height="180dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="#ffffff">
 
         <TextView
             android:id="@+id/main_recentlyproject_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="최근에 등록된 프로젝트"
-            android:textSize="14dp"
-            android:textColor="#000000"
-            android:textStyle="bold"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="10dp"
+            android:text="최근에 등록된 프로젝트"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/main_viewmore_textview"
+            android:id="@+id/main_recentlyviewmore_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="더보기 > "
-            android:textSize="10dp"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/main_relativelayout4">
+            android:text="더보기 > "
+            android:textSize="11dp" />
 
         <FrameLayout
-            android:id="@+id/main_recentlyregisterproject_framelayout"
+            android:id="@+id/main_recentlyproject_framelayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/main_recentlyproject_textview"
             android:layout_centerHorizontal="true" />
-
     </RelativeLayout>
-
-
-
 
     <!-- 참고 웹 주소 : https://re-build.tistory.com/31 -->
 
@@ -165,30 +260,29 @@
         android:id="@+id/appeal_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/drawproject_fab"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
         android:backgroundTint="#ffffff"
         android:src="@drawable/android_appeal"
         android:visibility="invisible"
         app:borderWidth="0dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="15dp"
-        android:layout_above="@+id/drawproject_fab"
         app:fabSize="normal" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/drawproject_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/android_project_create"
-        app:fabSize="normal"
-        app:borderWidth="0dp"
-        android:visibility="invisible"
-        android:backgroundTint="#ffffff"
         android:layout_above="@+id/main_optionmenu_floatingactionbutton"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="15dp"
         android:layout_marginRight="20dp"
-        />
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="#ffffff"
+        android:src="@drawable/android_project_create"
+        android:visibility="invisible"
+        app:borderWidth="0dp"
+        app:fabSize="normal" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/main_optionmenu_floatingactionbutton"

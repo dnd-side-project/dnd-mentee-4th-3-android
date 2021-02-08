@@ -7,29 +7,37 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="130dp"
-        android:layout_height="170dp"
+        android:layout_height="135dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#303435"
+        android:layout_marginBottom="4dp"
+        android:background="#545C5E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/main_recentlyregisterprojectimage_imageview"
+            android:layout_width="130dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toTopOf="@+id/main_recentlyregisterprojecttitle_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/main_projecttitle_textview"
+            android:id="@+id/main_recentlyregisterprojecttitle_textview"
             android:layout_width="130dp"
-            android:layout_height="100dp"
+            android:layout_height="95dp"
             android:background="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/main_projectname_textview"
+            android:id="@+id/main_recentlyregisterprojectname_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -39,7 +47,7 @@
             android:textSize="14dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/main_projecttitle_textview" />
+            app:layout_constraintTop_toTopOf="@+id/main_recentlyregisterprojecttitle_textview" />
 
         <TextView
             android:id="@+id/main_position_textview"
@@ -50,7 +58,7 @@
             android:text="모집 포지션"
             android:textSize="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_projectname_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/main_recentlyregisterprojectname_textview" />
 
         <TextView
             android:id="@+id/main_inputposition_textview"
@@ -62,7 +70,7 @@
             android:textSize="10dp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/main_position_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_projectname_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/main_recentlyregisterprojectname_textview" />
 
         <TextView
             android:id="@+id/main_updatedate_textview"
@@ -72,7 +80,7 @@
             android:layout_marginTop="7dp"
             android:text="갱신일"
             android:textSize="10dp"
-            app:layout_constraintStart_toStartOf="@+id/main_projecttitle_textview"
+            app:layout_constraintStart_toStartOf="@+id/main_recentlyregisterprojecttitle_textview"
             app:layout_constraintTop_toBottomOf="@+id/main_position_textview" />
 
         <TextView
@@ -88,11 +96,11 @@
             app:layout_constraintTop_toBottomOf="@+id/main_inputposition_textview" />
 
         <TextView
-            android:id="@+id/main_projectstack_textview"
+            android:id="@+id/main_recentlyregisterprojectstack_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/rounded_textview"
             android:text="stack"
             android:textSize="10dp"
@@ -101,29 +109,29 @@
             app:layout_constraintTop_toBottomOf="@+id/main_updatedate_textview" />
 
         <TextView
-            android:id="@+id/main_projectstack2_textview"
+            android:id="@+id/main_recentlyregisterprojectstack2_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/rounded_textview"
             android:text="stack"
 
             android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/main_projectstack_textview"
+            app:layout_constraintStart_toEndOf="@+id/main_recentlyregisterprojectstack_textview"
             app:layout_constraintTop_toBottomOf="@+id/main_updatedate_textview" />
 
         <TextView
-            android:id="@+id/main_projectstack3_textview"
+            android:id="@+id/main_recentlyregisterprojectstack3_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/rounded_textview"
             android:text="stack"
 
             android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/main_projectstack2_textview"
+            app:layout_constraintStart_toEndOf="@+id/main_recentlyregisterprojectstack2_textview"
             app:layout_constraintTop_toBottomOf="@+id/main_updatedate_textview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
