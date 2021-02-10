@@ -5,6 +5,10 @@ import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -22,8 +26,11 @@ import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.userController.CheckResponse
+import com.thisteampl.jackpot.main.userController.SignIn
+import com.thisteampl.jackpot.main.userController.SignUp
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_signup.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,6 +54,12 @@ class LoginActivity : AppCompatActivity() {
 
     private val userApi = userAPI.create()
 
+    // 화면전환 애니메이션, fillAfter : 옮긴 후 원상복구, duration : 지속시간
+    private val anim: Animation = AlphaAnimation(0f, 1f).apply {
+        fillAfter = true
+        duration = 350
+    }
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
         /*token이 null이 아니라면 카카오 API로 값을 불러와서 회원의 정보를 가져온다.
         * 그리고 회원가입 페이지로 이동한다.*/
         else if (token != null) {
-            checkThirdPartyToken(token.toString(), "kakao")
+            checkThirdPartyToken(token.accessToken, "kakao")
         }
     }
 
@@ -89,6 +102,14 @@ class LoginActivity : AppCompatActivity() {
     // 화면이 구성되고 View를 만들어 준다.
     private fun setupView(){
 
+        //뷰들에 애니메이션을 적용해준다
+        for (i in 0 until login_total_layout.childCount) {
+            val child: View = login_total_layout.getChildAt(i)
+            if(child is Button) {
+                child.animation = anim
+            }
+        }
+
         mOAuthLoginInstance = OAuthLogin.getInstance()
         mOAuthLoginInstance.init( // 네이버 로그인 모듈 초기화
             this,
@@ -103,12 +124,53 @@ class LoginActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         // 구글 로그인을 위한 GSO 객체
+        
+        //이메일로 로그인하기 버튼
         login_email_login_button.setOnClickListener {
+
+            login_email_login_layout.visibility = View.VISIBLE
+            login_confirm_button.visibility = View.VISIBLE
+
+            login_first_layout.visibility = View.GONE
+        }
+
+        login_signUp_button.setOnClickListener {
             val intent = Intent(baseContext, SignUpActivity::class.java)
                 .putExtra("signuptype", "normal")
             startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
             finish()
         }
+
+        // 로그인 확인 버튼
+        login_confirm_button.setOnClickListener {
+            var signIn = SignIn(login_id_text.text.toString(), "normal",
+            login_password_text.text.toString())
+
+            userApi?.getUserLogin(signIn)
+                ?.enqueue(object : Callback<CheckResponse>{
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        if(response.code().toString() == "200") {
+                            response.body()?.token?.let { prefs.setString("token", it) }
+                            Toast.makeText(baseContext, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(baseContext, MainActivity::class.java)
+                            startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+                        } else {
+                            Toast.makeText(baseContext, "로그인에 실패했습니다.\n아이디와 비밀번호를 확인해 주세요."
+                                , Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+
+                })
+        }
+
 
         //카카오로 로그인 버튼의 기능. callback 함수를 호출해서 회원가입 페이지로 이동하게 한다.
         login_kakao_login_button.setOnClickListener {
@@ -173,7 +235,7 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         when {
                             // 가입하지 않은 회원. 회원가입 필요.
-                            response.code().toString() == "100" -> {
+                            response.code().toString() == "404" -> {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
@@ -211,7 +273,7 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         when {
                             // 가입하지 않은 회원. 회원가입 필요.
-                            response.code().toString() == "100" -> {
+                            response.code().toString() == "404" -> {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
@@ -255,7 +317,7 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         when {
                             // 가입하지 않은 회원. 회원가입 필요.
-                            response.code().toString() == "100" -> {
+                            response.code().toString() == "404" -> {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java

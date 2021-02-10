@@ -3,8 +3,9 @@ package com.thisteampl.jackpot.main.mypage
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.widget.Toast
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.main.LoginActivity
 import kotlinx.android.synthetic.main.activity_my_page.*
 
@@ -23,9 +24,12 @@ class MyPage : AppCompatActivity() {
             }
 
             mypage_logout_button.setOnClickListener {
-                mypage_profile_layout.visibility = View.GONE
-                mypage_login_button.visibility = View.VISIBLE
-                mypage_logout_button.visibility = View.GONE
+                if(GlobalApplication.prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+                    Toast.makeText(baseContext, "로그아웃할 정보가 없습니다.", Toast.LENGTH_SHORT).show()
+                } else {
+                    GlobalApplication.prefs.setString("token", "NO_TOKEN")
+                    Toast.makeText(baseContext, "정상적으로 로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+                }
            }
         }
 }

@@ -19,7 +19,7 @@ interface userAPI {
     fun getCheckNaverToken(@Query("naverToken") naverToken : String) : Call<CheckResponse>
 
     @POST("/signin")
-    fun getUserLogin(@Body signIn : SignIn) : Call<SignIn>
+    fun getUserLogin(@Body signIn : SignIn) : Call<CheckResponse>
 
     @POST("/signup")
     fun getUserSignUp(@Body signUp : SignUp) : Call<SignUp>

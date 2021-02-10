@@ -255,10 +255,10 @@ class SignUpActivity : AppCompatActivity() {
                             if (chkResponse == null) {
                                 // 무조건 클라 잘못
                             } else {
-                                if(response.code().toString() == "404"){
+                                if(response.body()!!.message == "가입하지않은 회원입니다"){
                                     Toast.makeText(baseContext, "사용 가능한 이메일입니다.", Toast.LENGTH_SHORT).show()
                                     emailCheck = true
-                                } else if(response.code().toString() == "200"){
+                                } else if(response.body()!!.message == "이미 가입한 회원입니다"){
                                     Toast.makeText(baseContext, "이미 사용중인 이메일입니다.", Toast.LENGTH_SHORT).show()
                                 }
                             }
@@ -547,7 +547,7 @@ class SignUpActivity : AppCompatActivity() {
                     response: Response<SignUp>
                 ) {
                     if(response.code().toString() == "200") {
-                        Toast.makeText(baseContext, "회원가입이 완료되었습니다..", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                         val intent = Intent(baseContext, LoginActivity::class.java)
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                     } else {
