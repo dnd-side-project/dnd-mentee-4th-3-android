@@ -573,6 +573,7 @@ class SignUpActivity : AppCompatActivity() {
                         Toast.makeText(baseContext, "\uD83C\uDF89회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                         val intent = Intent(baseContext, LoginActivity::class.java)
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        finish()
                     } else {
                         Toast.makeText(baseContext, "회원가입에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
                             .show()
