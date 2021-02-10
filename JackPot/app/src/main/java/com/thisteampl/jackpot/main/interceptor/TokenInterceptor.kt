@@ -12,7 +12,7 @@ class TokenInterceptor : Interceptor {
         val jwtToken: String = prefs.getString("token", "NO_TOKEN")
         //Log.e("[Log.e] tag : ", "$jwtToken ")
         if (jwtToken != "NO_TOKEN") {
-            builder.addHeader("x-access-token", jwtToken)
+            builder.addHeader("Authorization", "Bearer $jwtToken")
             Log.e("[Log.e] tag : ", "add header : $jwtToken")
         }
         return chain.proceed(builder.build())

@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.kakao.sdk.common.KakaoSdk
+import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.interceptor.TokenInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -48,7 +49,7 @@ class GlobalApplication : Application() {
 
         prefs = mySharedPreferences(applicationContext)
 
-        KakaoSdk.init(this, "ad84bb483482dd2c398ebc6794b65db9")
+        KakaoSdk.init(this, getString(R.string.kakao_app_key))
     }
 
 }

@@ -1,6 +1,7 @@
 package com.thisteampl.jackpot.main
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -394,10 +395,12 @@ class SignUpActivity : AppCompatActivity() {
                 if(i == pos) {
                     setStackToolBtn()
                     positionBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.radius_background_transparent_select)
+                    positionBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorButtonSelect))
                     position = positionBtn[i]?.text.toString()
                 }
                 else {
                     positionBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                    positionBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 }
             }
         }
@@ -409,19 +412,25 @@ class SignUpActivity : AppCompatActivity() {
             for(i in 0..2) {
                 if(i == pos) {
                     stateBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.radius_background_transparent_select)
+                    stateBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorButtonSelect))
                     state = stateBtn[i]?.text.toString()
                     if(i == 0) {
                         signup_state_grade_layout.visibility = View.VISIBLE
                     } else {
                         signup_state_grade_layout.visibility = View.GONE
                         sGradeBtn[0]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                        sGradeBtn[0]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                         sGradeBtn[1]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                        sGradeBtn[1]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                         sGradeBtn[2]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                        sGradeBtn[2]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                         sGradeBtn[3]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                        sGradeBtn[3]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                     }
                 }
                 else {
                     stateBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                    stateBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 }
             }
         }
@@ -433,10 +442,12 @@ class SignUpActivity : AppCompatActivity() {
             for(i in 0..3) {
                 if(i == pos) {
                     sGradeBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.radius_background_transparent_select)
+                    sGradeBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorButtonSelect))
                     state = "학생 " + sGradeBtn[i]?.text.toString()
                 }
                 else {
                     sGradeBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                    sGradeBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 }
             }
         }
@@ -446,9 +457,11 @@ class SignUpActivity : AppCompatActivity() {
     private fun stackToolBtnOnClick(button: Button) {
         if(!stackTool.contains(button.text.toString())) {
             button.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_background_transparent_select)
+            button.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorButtonSelect))
             stackTool.add(button.text.toString())
         } else {
             button.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+            button.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
             stackTool.remove(button.text.toString())
         }
     }
@@ -464,6 +477,7 @@ class SignUpActivity : AppCompatActivity() {
             val child: View = signup_developer_stack_layout_first.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 child.setOnClickListener { this.stackToolBtnOnClick(child) }
             }
         }
@@ -472,6 +486,7 @@ class SignUpActivity : AppCompatActivity() {
             val child: View = signup_developer_stack_layout_second.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 child.setOnClickListener { this.stackToolBtnOnClick(child) }
             }
         }
@@ -480,6 +495,7 @@ class SignUpActivity : AppCompatActivity() {
             val child: View = signup_developer_stack_layout_third.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 child.setOnClickListener { this.stackToolBtnOnClick(child) }
             }
         }
@@ -488,6 +504,7 @@ class SignUpActivity : AppCompatActivity() {
             val child: View = signup_developer_stack_layout_fourth.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 child.setOnClickListener { this.stackToolBtnOnClick(child) }
             }
         }
@@ -496,6 +513,7 @@ class SignUpActivity : AppCompatActivity() {
             val child: View = signup_designer_tool_layout_first.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 child.setOnClickListener { this.stackToolBtnOnClick(child) }
             }
         }
@@ -504,6 +522,7 @@ class SignUpActivity : AppCompatActivity() {
             val child: View = signup_designer_tool_layout_second.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 child.setOnClickListener { this.stackToolBtnOnClick(child) }
             }
         }
@@ -511,6 +530,7 @@ class SignUpActivity : AppCompatActivity() {
             val child: View = signup_designer_tool_layout_third.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 child.setOnClickListener { this.stackToolBtnOnClick(child) }
             }
         }
@@ -518,6 +538,7 @@ class SignUpActivity : AppCompatActivity() {
             val child: View = signup_designer_tool_layout_fourth.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 child.setOnClickListener { this.stackToolBtnOnClick(child) }
             }
         }
@@ -525,6 +546,7 @@ class SignUpActivity : AppCompatActivity() {
             val child: View = signup_designer_tool_layout_fifth.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 child.setOnClickListener { this.stackToolBtnOnClick(child) }
             }
         }
@@ -537,14 +559,15 @@ class SignUpActivity : AppCompatActivity() {
             region, stackTool)
 
         userApi?.getUserSignUp(signUp)
-            ?.enqueue(object : Callback<SignUp>{
-                override fun onFailure(call: Call<SignUp>, t: Throwable) {
-                    TODO("Not yet implemented")
+            ?.enqueue(object : Callback<CheckResponse>{
+                override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure" + t.localizedMessage)
                 }
 
                 override fun onResponse(
-                    call: Call<SignUp>,
-                    response: Response<SignUp>
+                    call: Call<CheckResponse>,
+                    response: Response<CheckResponse>
                 ) {
                     if(response.code().toString() == "200") {
                         Toast.makeText(baseContext, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()

@@ -46,4 +46,8 @@
 
     <!-- 투명한 activity 만들기 -->
     <color name="transparent">#00000000</color>
+
+    <!-- 잭팟 컬러 -->
+    <color name="colorButtonSelect">#846DFF</color>
+
 </resources>

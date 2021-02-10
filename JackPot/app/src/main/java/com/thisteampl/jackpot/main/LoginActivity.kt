@@ -41,7 +41,7 @@ import retrofit2.Response
 * kakaosdk v2 사용
 *
 * 구글 로그인 기능 구현 : https://galid1.tistory.com/109
-* https://philosopher-chan.tistory.com/341 
+* https://philosopher-chan.tistory.com/341
 * https://chjune0205.tistory.com/136 세 곳을 참조.
 *
 * 맨 처음 앱이 시작될 때 나오는 화면. 로그인이 돼 있다면 바로 다음 메인화면으로 간다.
@@ -53,12 +53,6 @@ class LoginActivity : AppCompatActivity() {
     lateinit var googleSignInClient: GoogleSignInClient // 구글 로그인 모듈
 
     private val userApi = userAPI.create()
-
-    // 화면전환 애니메이션, fillAfter : 옮긴 후 원상복구, duration : 지속시간
-    private val anim: Animation = AlphaAnimation(0f, 1f).apply {
-        fillAfter = true
-        duration = 350
-    }
 
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // 카카오 로그인을 위한 callback 메서드.
-    val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+    private val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         /* error 가 null이 아니라면 로그인 불가.*/
         if (error != null) {
             Toast.makeText(this, "카카오 로그인에 실패했습니다.\n $error", Toast.LENGTH_SHORT).show()
@@ -102,20 +96,12 @@ class LoginActivity : AppCompatActivity() {
     // 화면이 구성되고 View를 만들어 준다.
     private fun setupView(){
 
-        //뷰들에 애니메이션을 적용해준다
-        for (i in 0 until login_total_layout.childCount) {
-            val child: View = login_total_layout.getChildAt(i)
-            if(child is Button) {
-                child.animation = anim
-            }
-        }
-
         mOAuthLoginInstance = OAuthLogin.getInstance()
         mOAuthLoginInstance.init( // 네이버 로그인 모듈 초기화
             this,
-            "RQcA9ncoO8aUd2YwNz1o",
-            "v0NYcGwVmY" ,
-            "잭팟"
+            getString(R.string.naver_client_id),
+            getString(R.string.naver_client_secret) ,
+            getString(R.string.app_name)
         )
         var gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.google_client_id))
@@ -235,11 +221,11 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         when {
                             // 가입하지 않은 회원. 회원가입 필요.
-                            response.code().toString() == "404" -> {
+                            response.code().toString() == "400" -> {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
-                                ).putExtra("signuptype", type)
+                                ).putExtra("signuptype", type).putExtra("token", token)
                                 Toast.makeText(baseContext, "카카오로 회원가입을 진행합니다.", Toast.LENGTH_SHORT)
                                     .show()
                                 startActivity(intent)

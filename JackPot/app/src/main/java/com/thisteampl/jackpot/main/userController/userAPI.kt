@@ -12,8 +12,8 @@ interface userAPI {
     @GET("/googleLogin")
     fun getCheckGoogleToken(@Query("googleToken") googleToken : String) : Call<CheckResponse>
 
-    @GET("/kakaoLogin/{kakaoToken}")
-    fun getCheckKakaoToken(@Path("kakaoToken") kakaoToken : String) : Call<CheckResponse>
+    @GET("/kakaoLogin/{kakaoAccessToken}")
+    fun getCheckKakaoToken(@Path("kakaoAccessToken") kakaoAccessToken : String) : Call<CheckResponse>
 
     @GET("/naverLogin")
     fun getCheckNaverToken(@Query("naverToken") naverToken : String) : Call<CheckResponse>
@@ -22,7 +22,10 @@ interface userAPI {
     fun getUserLogin(@Body signIn : SignIn) : Call<CheckResponse>
 
     @POST("/signup")
-    fun getUserSignUp(@Body signUp : SignUp) : Call<SignUp>
+    fun getUserSignUp(@Body signUp : SignUp) : Call<CheckResponse>
+
+    @DELETE("/withdraw")
+    fun getWithDraw() : Call<CheckResponse>
 
     companion object {
         fun create() : userAPI? {
