@@ -19,6 +19,8 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.common.GlobalApplication
+import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.userController.CheckResponse
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_login.*
@@ -175,13 +177,15 @@ class LoginActivity : AppCompatActivity() {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
-                                ).putExtra("signuptype", "kakao")
+                                ).putExtra("signuptype", type)
                                 Toast.makeText(baseContext, "카카오로 회원가입을 진행합니다.", Toast.LENGTH_SHORT)
                                     .show()
                                 startActivity(intent)
                                 finish()
                             }
+                            //가입된 회원. 토큰을 받아온다. 후에 서버에서 주는 토큰을 sharedPreferences에 저장
                             response.code().toString() == "200" -> {
+                                response.body()?.token?.let { prefs.setString("token", it) }
                                 Toast.makeText(baseContext, "카카오 로그인에 성공하였습니다.", Toast.LENGTH_SHORT)
                                     .show()
                             }
@@ -211,7 +215,7 @@ class LoginActivity : AppCompatActivity() {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
-                                ).putExtra("signuptype", "kakao")
+                                ).putExtra("signuptype", type)
                                 Toast.makeText(
                                     baseContext,
                                     "네이버로 회원가입을 진행합니다.",
@@ -220,8 +224,9 @@ class LoginActivity : AppCompatActivity() {
                                 startActivity(intent)
                                 finish()
                             }
-                            //가입된 회원. 토큰을 받아온다.
+                            //가입된 회원. 토큰을 받아온다. 후에 서버에서 주는 토큰을 sharedPreferences에 저장
                             response.code().toString() == "200" -> {
+                                response.body()?.token?.let { prefs.setString("token", it) }
                                 Toast.makeText(
                                     baseContext,
                                     "네이버 로그인에 성공하였습니다.",
@@ -254,14 +259,15 @@ class LoginActivity : AppCompatActivity() {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
-                                ).putExtra("signuptype", "kakao")
+                                ).putExtra("signuptype", type)
                                 Toast.makeText(baseContext, "구글로 회원가입을 진행합니다.", Toast.LENGTH_SHORT)
                                     .show()
                                 startActivity(intent)
                                 finish()
                             }
-                            //가입된 회원. 토큰을 받아온다.
+                            //가입된 회원. 토큰을 받아온다. 후에 서버에서 주는 토큰을 sharedPreferences에 저장
                             response.code().toString() == "200" -> {
+                                response.body()?.token?.let { prefs.setString("token", it) }
                                 Toast.makeText(baseContext, "구글 로그인에 성공하였습니다.", Toast.LENGTH_SHORT)
                                     .show()
                             }

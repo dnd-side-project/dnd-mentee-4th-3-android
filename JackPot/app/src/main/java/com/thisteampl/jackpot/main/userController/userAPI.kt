@@ -3,9 +3,7 @@ package com.thisteampl.jackpot.main.userController
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.getBuilder
 import retrofit2.Call
 import retrofit2.create
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface userAPI {
     @GET("/email/is-exist")
@@ -19,6 +17,12 @@ interface userAPI {
 
     @GET("/naverLogin")
     fun getCheckNaverToken(@Query("naverToken") naverToken : String) : Call<CheckResponse>
+
+    @POST("/signin")
+    fun getUserLogin(@Body signIn : SignIn) : Call<SignIn>
+
+    @POST("/signup")
+    fun getUserSignUp(@Body signUp : SignUp) : Call<SignUp>
 
     companion object {
         fun create() : userAPI? {
