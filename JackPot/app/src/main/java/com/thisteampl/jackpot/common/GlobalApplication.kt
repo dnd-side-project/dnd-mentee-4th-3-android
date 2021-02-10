@@ -19,10 +19,10 @@ import java.util.concurrent.TimeUnit
 class GlobalApplication : Application() {
 
     companion object {
-        var BASE_URL = "http://52.78.49.189:8080"
+        var BASE_URL = "http://3.36.62.198:8080/"
 
-        var ACCESS_TOKEN = "ACCESS_TOKEN"
-        var sPref : SharedPreferences? = null
+        lateinit var prefs: mySharedPreferences
+
 
         var retrofit: Retrofit? = null
         fun getBuilder(): Retrofit? {
@@ -46,9 +46,7 @@ class GlobalApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        if(sPref == null) {
-            sPref = applicationContext.getSharedPreferences(ACCESS_TOKEN, Context.MODE_PRIVATE)
-        }
+        prefs = mySharedPreferences(applicationContext)
 
         KakaoSdk.init(this, "ad84bb483482dd2c398ebc6794b65db9")
     }

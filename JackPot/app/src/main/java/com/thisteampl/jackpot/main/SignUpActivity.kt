@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import com.kakao.sdk.user.UserApiClient
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.userController.CheckResponse
+import com.thisteampl.jackpot.main.userController.SignUp
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_signup.*
 import retrofit2.Call
@@ -52,7 +53,9 @@ class SignUpActivity : AppCompatActivity() {
     private var region = "지역" // 지역 저장용
     private var position = "직군" // 직군 : 기획자, 개발자, 디자이너
     private var state = "상태" // 상태 : 학생, 취업 준비생, 주니어
-
+    private var signUpType = "" 
+    // 회원가입 상태, normal : 일반 로그인, kakao, naver, google : 서드파티 로그인
+    
     //이메일 정규식 확인, https://blog.codejun.space/49
     private val EMAIL_ADDRESS_PATTERN : Pattern = Pattern.compile(
         "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
@@ -85,7 +88,7 @@ class SignUpActivity : AppCompatActivity() {
 
     // 화면이 구성되고 View를 만들어 준다.
     private fun setupView(){
-        var signUpType: String? = intent.getStringExtra("signuptype")
+        signUpType = intent.getStringExtra("signuptype").toString()
 
         when (signUpType) {
 
@@ -227,9 +230,7 @@ class SignUpActivity : AppCompatActivity() {
                 signup_confirm_button.text = "공개할래요"
                 signup_previous_button.text = "공개하고싶지 않아요"
             } else if(page == 7) { // 프로필 공개 여부
-                Toast.makeText(this, "회원가입이 완료되었습니다.\n프로필을 다른 사람이 확인할 수 있습니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                signUp("yes")
             }
         }
 
@@ -254,9 +255,11 @@ class SignUpActivity : AppCompatActivity() {
                             if (chkResponse == null) {
                                 // 무조건 클라 잘못
                             } else {
-                                if(response.code().toString() == "200"){
+                                if(response.code().toString() == "404"){
                                     Toast.makeText(baseContext, "사용 가능한 이메일입니다.", Toast.LENGTH_SHORT).show()
                                     emailCheck = true
+                                } else if(response.code().toString() == "200"){
+                                    Toast.makeText(baseContext, "이미 사용중인 이메일입니다.", Toast.LENGTH_SHORT).show()
                                 }
                             }
                         }
@@ -325,9 +328,7 @@ class SignUpActivity : AppCompatActivity() {
                 signup_introduce_layout.visibility = View.GONE
                 signup_page_viewer.text = "$page / 6"
             }else if(page == 7) { // 프로필 공개 여부.
-                Toast.makeText(this, "회원가입이 완료되었습니다.\n프로필을 다른 사람이 확인할 수 없습니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                signUp("no")
             }
         }
 
@@ -529,4 +530,32 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    //회원가입 완료 메서드. 매개변수로 프로필 공개 여부를 넣어준다.
+    private fun signUp(profileOpen: String) {
+        var signUp = SignUp("ROLE_USER", state, signup_id_text.text.toString(),
+            position, signUpType, signup_name_text.text.toString(), signup_password_text.text.toString(),
+            region, stackTool)
+
+        userApi?.getUserSignUp(signUp)
+            ?.enqueue(object : Callback<SignUp>{
+                override fun onFailure(call: Call<SignUp>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onResponse(
+                    call: Call<SignUp>,
+                    response: Response<SignUp>
+                ) {
+                    if(response.code().toString() == "200") {
+                        Toast.makeText(baseContext, "회원가입이 완료되었습니다..", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(baseContext, LoginActivity::class.java)
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    } else {
+                        Toast.makeText(baseContext, "회원가입에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+
+            })
+    }
 }
