@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.floating.MyAppeal
 import com.thisteampl.jackpot.main.floating.ProjectCreation
 import com.thisteampl.jackpot.main.mainhome.*
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val intent = Intent(this, MyPage::class.java)
+        val mypageIntent = Intent(this, MyPage::class.java)
         val mainintent = Intent(this,MainActivity::class.java)
         val searchintent = Intent(this,SearchViewPage::class.java)
 
@@ -34,7 +35,12 @@ class MainActivity : AppCompatActivity(){
 
         // 나의 페이지
         main_mypage_imagebutton.setOnClickListener{
-            startActivity(intent)
+            if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            } else {
+                startActivity(mypageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
         }
 
         // MainActivity 실행

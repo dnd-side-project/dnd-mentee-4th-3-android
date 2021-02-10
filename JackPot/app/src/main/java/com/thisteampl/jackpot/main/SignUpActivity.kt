@@ -570,7 +570,7 @@ class SignUpActivity : AppCompatActivity() {
                     response: Response<CheckResponse>
                 ) {
                     if(response.code().toString() == "200") {
-                        Toast.makeText(baseContext, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext, "\uD83C\uDF89회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                         val intent = Intent(baseContext, LoginActivity::class.java)
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                     } else {
