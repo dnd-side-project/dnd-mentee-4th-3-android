@@ -31,6 +31,8 @@ import com.thisteampl.jackpot.main.userController.SignUp
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_signup.*
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
         /*token이 null이 아니라면 카카오 API로 값을 불러와서 회원의 정보를 가져온다.
         * 그리고 회원가입 페이지로 이동한다.*/
         else if (token != null) {
-            checkThirdPartyToken(token.accessToken, "kakao")
+            checkThirdPartyToken(token.accessToken, "kakao", "id")
         }
     }
 
@@ -84,8 +86,16 @@ class LoginActivity : AppCompatActivity() {
     private val naverOAuthLoginHandler: OAuthLoginHandler = object : OAuthLoginHandler() {
         override fun run(success: Boolean) {
             if (success) {
-                val accessToken: String = mOAuthLoginInstance.getAccessToken(baseContext) // <- 서버에 넘겨줄 토큰값
-                checkThirdPartyToken(accessToken, "naver")
+                var accessToken = mOAuthLoginInstance.getAccessToken(baseContext)
+                var id: String
+                Thread {
+                    val data: String = mOAuthLoginInstance.requestApi(baseContext, accessToken, "https://openapi.naver.com/v1/nid/me")
+                    try {
+                        id = JSONObject(data).getJSONObject("response").getString("id")
+                        checkThirdPartyToken(accessToken, "naver", id)
+                    }
+                    catch (e: JSONException) { }
+                }.start()
                 mOAuthLoginInstance.logout(baseContext)
             } else {
                 Toast.makeText(baseContext, "네이버 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
@@ -199,7 +209,7 @@ class LoginActivity : AppCompatActivity() {
             val account =
                 completedTask.getResult(ApiException::class.java)
             val token = account?.idToken //<- 서버에 넘겨줄 구글 토큰 값.
-            checkThirdPartyToken(token.toString(), "google")
+            checkThirdPartyToken(token.toString(), "google", account?.id.toString())
             googleSignInClient.signOut()
         } catch (e: ApiException) {
             Toast.makeText(baseContext, "구글 로그인에 실패했습니다.\n $e", Toast.LENGTH_SHORT).show()
@@ -207,7 +217,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // 서드파티에서 받아온 토큰을 확인
-    private fun checkThirdPartyToken(token: String, type: String) {
+    private fun checkThirdPartyToken(token: String, type: String, id: String) {
         when (type) {
             "kakao" -> {
                 userApi?.getCheckKakaoToken(token)?.enqueue(object : Callback<CheckResponse>{
@@ -267,7 +277,7 @@ class LoginActivity : AppCompatActivity() {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
-                                ).putExtra("signuptype", type)
+                                ).putExtra("signuptype", type).putExtra("SNSID", id)
                                 Toast.makeText(
                                     baseContext,
                                     "네이버로 회원가입을 진행합니다.",
@@ -314,7 +324,7 @@ class LoginActivity : AppCompatActivity() {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
-                                ).putExtra("signuptype", type)
+                                ).putExtra("signuptype", type).putExtra("SNSID", id)
                                 Toast.makeText(baseContext, "구글로 회원가입을 진행합니다.", Toast.LENGTH_SHORT)
                                     .show()
                                 startActivity(intent)

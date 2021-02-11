@@ -111,17 +111,20 @@ class SignUpActivity : AppCompatActivity() {
                 signup_nickname_layout.visibility = View.VISIBLE
                 page = 1
                 UserApiClient.instance.me { user, error ->
+                    signup_id_text.setText(user?.id.toString())
                 }
 
             }
             "naver" -> {
                 //네이버 로그인을 했을 시 네이버idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
+                signup_id_text.setText(intent.getStringExtra("SNSID").toString())
                 page = 1
             }
             "google" -> {
                 //구글 로그인을 했을 시 구글idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
+                signup_id_text.setText(intent.getStringExtra("SNSID").toString())
                 page = 1
             }
         }
