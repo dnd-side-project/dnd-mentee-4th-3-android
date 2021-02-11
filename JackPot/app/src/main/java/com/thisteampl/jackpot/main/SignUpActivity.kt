@@ -23,7 +23,18 @@ import kotlinx.android.synthetic.main.activity_signup.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 import java.util.regex.Pattern
+import javax.activation.DataHandler
+import javax.activation.FileDataSource
+import javax.mail.Message
+import javax.mail.PasswordAuthentication
+import javax.mail.Session
+import javax.mail.Transport
+import javax.mail.internet.InternetAddress
+import javax.mail.internet.MimeBodyPart
+import javax.mail.internet.MimeMessage
+import javax.mail.internet.MimeMultipart
 
 /* 회원가입을 위한 화면.
 * 지역 스피너 : https://black-jin0427.tistory.com/222 참고했음.
@@ -43,6 +54,7 @@ class SignUpActivity : AppCompatActivity() {
     }
     private var emailCheck: Boolean = false
     private var nameCheck: Boolean = false
+    var authCode = ""
     private val userApi = userAPI.create()
     private var page: Int = 0
     /*
@@ -311,10 +323,12 @@ class SignUpActivity : AppCompatActivity() {
                             call: Call<CheckResponse>,
                             response: Response<CheckResponse>
                         ) {
+                            authCode = makeCode()
                             if (response.code().toString() == "404") {
-                                Toast.makeText(baseContext, "사용 가능한 이메일입니다.", Toast.LENGTH_SHORT)
+                                sendEmail(signup_id_text.text.toString(), authCode)
+                                Toast.makeText(baseContext, "입력하신 이메일로 인증을 보냈습니다.\n인증코드를 입력해 주세요.", Toast.LENGTH_SHORT)
                                     .show()
-                                emailCheck = true
+                                signup_auth_layout.visibility = View.VISIBLE
                             } else {
                                 Toast.makeText(
                                     baseContext,
@@ -324,6 +338,22 @@ class SignUpActivity : AppCompatActivity() {
                             }
                         }
                     })
+            }
+        }
+
+        //인증번호 입력 버튼
+        signup_auth_check_button.setOnClickListener {
+            if(signup_auth_text.text.toString() == authCode) {
+                Toast.makeText(baseContext, "인증되었습니다.", Toast.LENGTH_SHORT)
+                    .show()
+                signup_auth_text.isEnabled = false
+                signup_id_text.isEnabled = false
+                signup_auth_check_button.isEnabled = false
+                signup_id_check_button.isEnabled = false
+                emailCheck = true
+            } else {
+                Toast.makeText(baseContext, "인증코드를 확인해 주세요.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -633,6 +663,64 @@ class SignUpActivity : AppCompatActivity() {
                 child.setOnClickListener { this.stackToolBtnOnClick(child) }
             }
         }
+    }
+    
+    //이메일 인증을 위한 랜덤 코드
+    fun makeCode(): String {
+        val str = listOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+            "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+        
+        var code = ""
+        for(i in 1..8) {
+            val random = Random()
+            val num = random.nextInt(str.size)
+            code += str[num]
+        }
+        return code
+    }
+    
+    //이메일 인증 메일 보내기 https://heegyukim.medium.com/
+    fun sendEmail(
+        dest: String,       // 받는 메일 주소
+        code: String       // 인증 코드
+    )
+    {
+
+        var title = "잭팟 인증번호 메일입니다."      // 메일 제목
+        var body = "인증번호는 $code 입니다."       // 메일 내용
+
+        // 보내는 메일 주소와 비밀번호
+        val username = "dndjackpot3@gmail.com"
+        val password = "thisteampl3!"
+
+        val props = Properties();
+        props["mail.smtp.auth"] = "true"
+        props["mail.smtp.starttls.enable"] = "true"
+        props["mail.smtp.host"] = "smtp.gmail.com"
+        props["mail.smtp.port"] = "587"
+
+        // 비밀번호 인증으로 세션 생성
+        val session = Session.getInstance(props,
+            object: javax.mail.Authenticator() {
+                override  fun getPasswordAuthentication(): PasswordAuthentication {
+                    return PasswordAuthentication(username, password)
+                }
+            })
+
+        // 메시지 객체 만들기
+        val message = MimeMessage(session)
+        message.setFrom(InternetAddress(username))
+        // 수신자 설정, 여러명으로도 가능
+        message.setRecipients(
+            Message.RecipientType.TO,
+            InternetAddress.parse(dest))
+        message.subject = title
+        message.setText(body)
+
+        // 전송
+        Thread {
+            Transport.send(message)
+        }.start()
     }
 
     //회원가입 완료 메서드. 매개변수로 프로필 공개 여부를 넣어준다.

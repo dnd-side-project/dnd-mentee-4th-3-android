@@ -91,11 +91,48 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/signup_auth_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/signup_auth_text"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:hint="인증번호"
+                android:singleLine="true"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/signup_auth_check_button"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="인증번호\n확인"
+                android:background="@drawable/radius_background_transparent"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
         <EditText
             android:id="@+id/signup_password_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="180dp"
             android:layout_marginRight="72dp"
             android:hint="비밀번호(6글자 ~ 15글자)"
             android:inputType="textPassword"
@@ -110,7 +147,7 @@
             android:id="@+id/signup_password_check_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="320dp"
             android:layout_marginRight="72dp"
             android:hint="비밀번호 확인"
             android:inputType="textPassword"

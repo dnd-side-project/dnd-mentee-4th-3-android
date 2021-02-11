@@ -54,6 +54,11 @@ dependencies {
     implementation "com.github.skydoves:powerspinner:1.1.7" //파워 스피너
     implementation "androidx.preference:preference-ktx:1.1.1"
 
+    // SMTP 이메일 인증을 위한 파일
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/mail.jar')
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
