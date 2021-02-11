@@ -54,11 +54,6 @@ dependencies {
     implementation "com.github.skydoves:powerspinner:1.1.7" //파워 스피너
     implementation "androidx.preference:preference-ktx:1.1.1"
 
-    // SMTP 이메일 인증을 위한 파일
-    implementation files('libs/activation.jar')
-    implementation files('libs/additionnal.jar')
-    implementation files('libs/mail.jar')
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -66,5 +61,8 @@ dependencies {
     implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.6' // Naver 네이버 로그인 기능 구현.
     implementation 'com.google.android.gms:play-services-auth:19.0.0' // 구글 로그인 기능
 
-
+    // SMTP 이메일 인증을 위한 파일
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/mail.jar')
 }

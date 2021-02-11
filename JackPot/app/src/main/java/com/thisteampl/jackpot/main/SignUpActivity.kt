@@ -1,7 +1,6 @@
 package com.thisteampl.jackpot.main
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,7 +12,6 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import com.kakao.sdk.user.UserApiClient
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.userController.CheckResponse
@@ -25,16 +23,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import java.util.regex.Pattern
-import javax.activation.DataHandler
-import javax.activation.FileDataSource
 import javax.mail.Message
-import javax.mail.PasswordAuthentication
 import javax.mail.Session
 import javax.mail.Transport
 import javax.mail.internet.InternetAddress
-import javax.mail.internet.MimeBodyPart
 import javax.mail.internet.MimeMessage
-import javax.mail.internet.MimeMultipart
 
 /* 회원가입을 위한 화면.
 * 지역 스피너 : https://black-jin0427.tistory.com/222 참고했음.
@@ -68,9 +61,9 @@ class SignUpActivity : AppCompatActivity() {
     private var region = "지역" // 지역 저장용
     private var position = "직군" // 직군 : 기획자, 개발자, 디자이너
     private var state = "상태" // 상태 : 학생, 취업 준비생, 주니어
-    private var signUpType = "" 
+    private var signUpType = ""
     // 회원가입 상태, normal : 일반 로그인, kakao, naver, google : 서드파티 로그인
-    
+
     //이메일 정규식 확인, https://blog.codejun.space/49
     private val EMAIL_ADDRESS_PATTERN : Pattern = Pattern.compile(
         "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
@@ -664,12 +657,12 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
-    
+
     //이메일 인증을 위한 랜덤 코드
     fun makeCode(): String {
         val str = listOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
             "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9")
-        
+
         var code = ""
         for(i in 1..8) {
             val random = Random()
@@ -678,7 +671,7 @@ class SignUpActivity : AppCompatActivity() {
         }
         return code
     }
-    
+
     //이메일 인증 메일 보내기 https://heegyukim.medium.com/
     fun sendEmail(
         dest: String,       // 받는 메일 주소
@@ -691,7 +684,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // 보내는 메일 주소와 비밀번호
         val username = "dndjackpot3@gmail.com"
-        val password = "thisteampl3!"
+        val password = ""
 
         val props = Properties();
         props["mail.smtp.auth"] = "true"
@@ -702,8 +695,8 @@ class SignUpActivity : AppCompatActivity() {
         // 비밀번호 인증으로 세션 생성
         val session = Session.getInstance(props,
             object: javax.mail.Authenticator() {
-                override  fun getPasswordAuthentication(): PasswordAuthentication {
-                    return PasswordAuthentication(username, password)
+                override  fun getPasswordAuthentication(): javax.mail.PasswordAuthentication {
+                    return javax.mail.PasswordAuthentication(username, password)
                 }
             })
 
