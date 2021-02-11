@@ -18,6 +18,9 @@ interface userAPI {
     @GET("/naverLogin")
     fun getCheckNaverToken(@Query("naverToken") naverToken : String) : Call<CheckResponse>
 
+    @GET("/name/is-exist")
+    fun getCheckName(@Query("name") name : String) : Call<CheckResponse>
+
     @POST("/signin")
     fun getUserLogin(@Body signIn : SignIn) : Call<CheckResponse>
 

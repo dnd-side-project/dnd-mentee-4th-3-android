@@ -147,6 +147,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(baseContext, "로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
                             val intent = Intent(baseContext, MainActivity::class.java)
                             startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+                            finish()
                         } else {
                             Toast.makeText(baseContext, "로그인에 실패했습니다.\n아이디와 비밀번호를 확인해 주세요."
                                 , Toast.LENGTH_SHORT)
@@ -221,7 +222,7 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         when {
                             // 가입하지 않은 회원. 회원가입 필요.
-                            response.code().toString() == "400" -> {
+                            response.code().toString() == "404" -> {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
@@ -236,6 +237,9 @@ class LoginActivity : AppCompatActivity() {
                                 response.body()?.token?.let { prefs.setString("token", it) }
                                 Toast.makeText(baseContext, "카카오 로그인에 성공하였습니다.", Toast.LENGTH_SHORT)
                                     .show()
+                                val intent = Intent(baseContext, MainActivity::class.java)
+                                startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+                                finish()
                             }
                             else -> {
                                 Toast.makeText(baseContext, "로그인에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.message(), Toast.LENGTH_SHORT)
@@ -259,7 +263,7 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         when {
                             // 가입하지 않은 회원. 회원가입 필요.
-                            response.code().toString() == "404" -> {
+                            response.code().toString() == "400" -> {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
@@ -280,6 +284,9 @@ class LoginActivity : AppCompatActivity() {
                                     "네이버 로그인에 성공하였습니다.",
                                     Toast.LENGTH_SHORT
                                 ).show()
+                                val intent = Intent(baseContext, MainActivity::class.java)
+                                startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+                                finish()
                             }
                             else -> {
                                 Toast.makeText(baseContext, "로그인에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.message(), Toast.LENGTH_SHORT)
@@ -303,7 +310,7 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         when {
                             // 가입하지 않은 회원. 회원가입 필요.
-                            response.code().toString() == "404" -> {
+                            response.code().toString() == "400" -> {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
@@ -318,6 +325,9 @@ class LoginActivity : AppCompatActivity() {
                                 response.body()?.token?.let { prefs.setString("token", it) }
                                 Toast.makeText(baseContext, "구글 로그인에 성공하였습니다.", Toast.LENGTH_SHORT)
                                     .show()
+                                val intent = Intent(baseContext, MainActivity::class.java)
+                                startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+                                finish()
                             }
                             else -> {
                                 Toast.makeText(baseContext, "로그인에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.message(), Toast.LENGTH_SHORT)

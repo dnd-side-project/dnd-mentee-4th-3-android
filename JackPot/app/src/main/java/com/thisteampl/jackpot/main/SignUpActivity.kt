@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import com.kakao.sdk.user.UserApiClient
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.userController.CheckResponse
@@ -41,6 +42,7 @@ class SignUpActivity : AppCompatActivity() {
         duration = 350
     }
     private var emailCheck: Boolean = false
+    private var nameCheck: Boolean = false
     private val userApi = userAPI.create()
     private var page: Int = 0
     /*
@@ -67,6 +69,14 @@ class SignUpActivity : AppCompatActivity() {
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+"
     )
+
+    //닉네임 정규식 확인, https://jizard.tistory.com/233
+    fun isValidNickname(nickname: String?): Boolean {
+        val trimmedNickname = nickname?.trim().toString()
+        val exp = Regex("^[가-힣ㄱ-ㅎa-zA-Z0-9._-]{3,}\$")
+        return !trimmedNickname.isNullOrEmpty() && exp.matches(trimmedNickname)
+    }
+
 
     private fun checkEmail(email: String): Boolean {
         return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
@@ -134,104 +144,155 @@ class SignUpActivity : AppCompatActivity() {
             region = newItem
         }
 
+        //닉네임 중복 확인 버튼
+        signup_name_check_button.setOnClickListener {
+            if(!isValidNickname(signup_name_text.text.toString())) {
+                Toast.makeText(this, "유효한 닉네임을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+            } else if(signup_name_text.text.trim().length < 3 || signup_name_text.text.trim().length > 8) {
+                Toast.makeText(this, "닉네임은 최소 3글자 최대 8글자 입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                userApi?.getCheckName(signup_name_text.text.toString())
+                    ?.enqueue(object : Callback<CheckResponse> {
+                        override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                            // userAPI에서 타입이나 이름 안맞췄을때
+                            Log.e("tag ", "onFailure" + t.localizedMessage)
+                        }
+
+                        override fun onResponse(
+                            call: Call<CheckResponse>,
+                            response: Response<CheckResponse>
+                        ) {
+                            var chkResponse = response.body()
+                            if (chkResponse == null) {
+                                // 무조건 클라 잘못
+                            } else {
+                                if (response.body()!!.message == "사용가능") {
+                                    Toast.makeText(
+                                        baseContext,
+                                        "사용 가능한 닉네임입니다.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    nameCheck = true
+                                } else {
+                                    Toast.makeText(
+                                        baseContext,
+                                        "사용 불가능한 닉네임입니다.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                        }
+                    })
+            }
+        }
+
         // 회원가입 다음 버튼
         signup_confirm_button.setOnClickListener {
-            if(page == 0) {
-                if(!emailCheck){
-                    Toast.makeText(this, "이메일 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show()
-                }else if(signup_password_text.text.length < 6 || signup_password_text.text.length > 15) {
-                    Toast.makeText(this, "비밀번호는 최소 6글자 최대 15글자 입니다.", Toast.LENGTH_SHORT).show()
-                } else if(signup_password_check_text.text.toString() != signup_password_text.text.toString()) {
-                    Toast.makeText(this, "비밀번호와 비밀번호 확인이 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
-                } else {
-                    page = 1
-                    signup_email_signup_layout.visibility = View.GONE
-                    signup_nickname_layout.visibility = View.VISIBLE
-                    signup_previous_button.visibility = View.VISIBLE
-                }
-                signup_page_viewer.text = "$page / 6"
-            } else if(page == 1) {
-                if(signup_name_text.text.trim().length < 3 || signup_name_text.text.trim().length > 6) {
-                    Toast.makeText(this, "닉네임은 최소 3글자 최대 6글자 입니다.", Toast.LENGTH_SHORT).show()
-                } else {
-                    page = 2
-                    signup_nickname_layout.visibility = View.GONE
-                    signup_previous_button.visibility = View.VISIBLE
-                    signup_region_layout.visibility = View.VISIBLE
-                    signup_call_name_position_text.text =
-                        signup_name_text.text.toString() + "님, 어떤\n포지션에 해당하시나요?"
-                }
-                signup_page_viewer.text = "$page / 6"
-            } else if(page == 2) {
-                if(region == "지역") {
-                    Toast.makeText(this, "지역을 선택해주세요.", Toast.LENGTH_SHORT).show()
-                } else {
-                    page = 3
-                    signup_region_layout.visibility = View.GONE
-                    signup_position_layout.visibility = View.VISIBLE
-                }
-                signup_page_viewer.text = "$page / 6"
-            } else if(page == 3) {
-                if(position == "직군") {
-                    Toast.makeText(this, "직군을 선택해주세요.", Toast.LENGTH_SHORT).show()
-                } else {
-                    page = 4
-                    signup_position_layout.visibility = View.GONE
-                    signup_state_layout.visibility = View.VISIBLE
-                }
-                if(state[0] == '학' && state[1] == '생') {
-                    signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기 (이전갔다가 돌아올 때)
-                }
-                signup_page_viewer.text = "$page / 6"
-            } else if(page == 4) {
-                when (state) {
-                    "상태" -> {
-                        Toast.makeText(this, "현재 상태를 선택해주세요.", Toast.LENGTH_SHORT).show()
+            when (page) {
+                0 -> {
+                    if(!emailCheck){
+                        Toast.makeText(this, "이메일 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show()
+                    }else if(signup_password_text.text.length < 6 || signup_password_text.text.length > 15) {
+                        Toast.makeText(this, "비밀번호는 최소 6글자 최대 15글자 입니다.", Toast.LENGTH_SHORT).show()
+                    } else if(signup_password_check_text.text.toString() != signup_password_text.text.toString()) {
+                        Toast.makeText(this, "비밀번호와 비밀번호 확인이 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        page = 1
+                        signup_email_signup_layout.visibility = View.GONE
+                        signup_nickname_layout.visibility = View.VISIBLE
+                        signup_previous_button.visibility = View.VISIBLE
                     }
-                    "학생" -> {
-                        Toast.makeText(this, "학년을 선택해주세요.", Toast.LENGTH_SHORT).show()
+                    signup_page_viewer.text = "$page / 6"
+                }
+                1 -> {
+                    if(!nameCheck) {
+                        Toast.makeText(this, "닉네임 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        page = 2
+                        signup_nickname_layout.visibility = View.GONE
+                        signup_previous_button.visibility = View.VISIBLE
+                        signup_region_layout.visibility = View.VISIBLE
+                        signup_call_name_position_text.text =
+                            signup_name_text.text.toString() + "님, 어떤\n포지션에 해당하시나요?"
                     }
-                    else -> {
-                        page = 5
-                        signup_state_layout.visibility = View.GONE
-                        if(state[0] == '학' && state[1] == '생') {
-                            signup_state_grade_layout.visibility = View.GONE // 학생일때 가리기
+                    signup_page_viewer.text = "$page / 6"
+                }
+                2 -> {
+                    if(region == "지역") {
+                        Toast.makeText(this, "지역을 선택해주세요.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        page = 3
+                        signup_region_layout.visibility = View.GONE
+                        signup_position_layout.visibility = View.VISIBLE
+                    }
+                    signup_page_viewer.text = "$page / 6"
+                }
+                3 -> {
+                    if(position == "직군") {
+                        Toast.makeText(this, "직군을 선택해주세요.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        page = 4
+                        signup_position_layout.visibility = View.GONE
+                        signup_state_layout.visibility = View.VISIBLE
+                    }
+                    if(state[0] == '학' && state[1] == '생') {
+                        signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기 (이전갔다가 돌아올 때)
+                    }
+                    signup_page_viewer.text = "$page / 6"
+                }
+                4 -> {
+                    when (state) {
+                        "상태" -> {
+                            Toast.makeText(this, "현재 상태를 선택해주세요.", Toast.LENGTH_SHORT).show()
                         }
-                        when (position) {
-                            "개발자" -> {
-                                signup_developer_stack_layout.visibility = View.VISIBLE
+                        "학생" -> {
+                            Toast.makeText(this, "학년을 선택해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {
+                            page = 5
+                            signup_state_layout.visibility = View.GONE
+                            if(state[0] == '학' && state[1] == '생') {
+                                signup_state_grade_layout.visibility = View.GONE // 학생일때 가리기
                             }
-                            "디자이너" -> {
-                                signup_designer_tool_layout.visibility = View.VISIBLE
-                            }
-                            else -> {
-                                page = 6
-                                signup_introduce_layout.visibility = View.VISIBLE
+                            when (position) {
+                                "개발자" -> {
+                                    signup_developer_stack_layout.visibility = View.VISIBLE
+                                }
+                                "디자이너" -> {
+                                    signup_designer_tool_layout.visibility = View.VISIBLE
+                                }
+                                else -> {
+                                    page = 6
+                                    signup_introduce_layout.visibility = View.VISIBLE
+                                }
                             }
                         }
                     }
+                    signup_page_viewer.text = "$page / 6"
                 }
-                signup_page_viewer.text = "$page / 6"
-            } else if(page == 5) {
-                page = 6
-                if(position == "개발자") {
-                    signup_developer_stack_layout.visibility = View.GONE
-                } else {
-                    signup_designer_tool_layout.visibility = View.GONE
+                5 -> {
+                    page = 6
+                    if(position == "개발자") {
+                        signup_developer_stack_layout.visibility = View.GONE
+                    } else {
+                        signup_designer_tool_layout.visibility = View.GONE
+                    }
+                    signup_introduce_layout.visibility = View.VISIBLE
+                    signup_page_viewer.text = "$page / 6"
                 }
-                signup_introduce_layout.visibility = View.VISIBLE
-                signup_page_viewer.text = "$page / 6"
-            } else if(page == 6) {
-                page = 7
-                signup_page_viewer.visibility = View.GONE
-                signup_introduce_layout.visibility = View.GONE
-                signup_exit_button.visibility = View.GONE
-                signup_open_layout.visibility = View.VISIBLE
+                6 -> {
+                    page = 7
+                    signup_page_viewer.visibility = View.GONE
+                    signup_introduce_layout.visibility = View.GONE
+                    signup_exit_button.visibility = View.GONE
+                    signup_open_layout.visibility = View.VISIBLE
 
-                signup_confirm_button.text = "공개할래요"
-                signup_previous_button.text = "공개하고싶지 않아요"
-            } else if(page == 7) { // 프로필 공개 여부
-                signUp("yes")
+                    signup_confirm_button.text = "공개할래요"
+                    signup_previous_button.text = "공개하고싶지 않아요"
+                }
+                7 -> { // 프로필 공개 여부
+                    signUp("yes")
+                }
             }
         }
 
@@ -264,72 +325,80 @@ class SignUpActivity : AppCompatActivity() {
                                 }
                             }
                         }
-
                     })
             }
         }
 
+        //이전 버튼
         signup_previous_button.setOnClickListener {
-            if(page == 1) {
-                page = 0
-                signup_previous_button.visibility = View.GONE
-                signup_email_signup_layout.visibility = View.VISIBLE
-                signup_nickname_layout.visibility = View.GONE
-                signup_page_viewer.text = "$page / 6"
-            }else if(page == 2) {
-                if(signUpType != "normal") {
+            when (page) {
+                1 -> {
+                    page = 0
                     signup_previous_button.visibility = View.GONE
+                    signup_email_signup_layout.visibility = View.VISIBLE
+                    signup_nickname_layout.visibility = View.GONE
+                    signup_page_viewer.text = "$page / 6"
                 }
-                page = 1
-                signup_nickname_layout.visibility = View.VISIBLE
-                signup_region_layout.visibility = View.GONE
-                signup_page_viewer.text = "$page / 6"
-            }else if(page == 3) {
-                page = 2
-                signup_region_layout.visibility = View.VISIBLE
-                signup_position_layout.visibility = View.GONE
-                signup_page_viewer.text = "$page / 6"
-            }else if(page == 4) {
-                page = 3
-                signup_position_layout.visibility = View.VISIBLE
-                signup_state_layout.visibility = View.GONE
-                if(state[0] == '학' && state[1] == '생') {
-                    signup_state_grade_layout.visibility = View.GONE // 학생일때 가리기
-                }
-                signup_page_viewer.text = "$page / 6"
-            }else if(page == 5) {
-                page = 4
-                signup_state_layout.visibility = View.VISIBLE
-                if(position == "개발자") {
-                    signup_developer_stack_layout.visibility = View.GONE
-                } else {
-                    signup_designer_tool_layout.visibility = View.GONE
-                }
-                if(state[0] == '학' && state[1] == '생') {
-                    signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
-                }
-                signup_page_viewer.text = "$page / 6"
-            }else if(page == 6) {
-                page = 5
-                when (position) {
-                    "개발자" -> {
-                        signup_developer_stack_layout.visibility = View.VISIBLE
+                2 -> {
+                    if(signUpType != "normal") {
+                        signup_previous_button.visibility = View.GONE
                     }
-                    "디자이너" -> {
-                        signup_designer_tool_layout.visibility = View.VISIBLE
+                    page = 1
+                    signup_nickname_layout.visibility = View.VISIBLE
+                    signup_region_layout.visibility = View.GONE
+                    signup_page_viewer.text = "$page / 6"
+                }
+                3 -> {
+                    page = 2
+                    signup_region_layout.visibility = View.VISIBLE
+                    signup_position_layout.visibility = View.GONE
+                    signup_page_viewer.text = "$page / 6"
+                }
+                4 -> {
+                    page = 3
+                    signup_position_layout.visibility = View.VISIBLE
+                    signup_state_layout.visibility = View.GONE
+                    if(state[0] == '학' && state[1] == '생') {
+                        signup_state_grade_layout.visibility = View.GONE // 학생일때 가리기
                     }
-                    else -> {
-                        page = 4
-                        signup_state_layout.visibility = View.VISIBLE
-                        if(state[0] == '학' && state[1] == '생') {
-                            signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
+                    signup_page_viewer.text = "$page / 6"
+                }
+                5 -> {
+                    page = 4
+                    signup_state_layout.visibility = View.VISIBLE
+                    if(position == "개발자") {
+                        signup_developer_stack_layout.visibility = View.GONE
+                    } else {
+                        signup_designer_tool_layout.visibility = View.GONE
+                    }
+                    if(state[0] == '학' && state[1] == '생') {
+                        signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
+                    }
+                    signup_page_viewer.text = "$page / 6"
+                }
+                6 -> {
+                    page = 5
+                    when (position) {
+                        "개발자" -> {
+                            signup_developer_stack_layout.visibility = View.VISIBLE
+                        }
+                        "디자이너" -> {
+                            signup_designer_tool_layout.visibility = View.VISIBLE
+                        }
+                        else -> {
+                            page = 4
+                            signup_state_layout.visibility = View.VISIBLE
+                            if(state[0] == '학' && state[1] == '생') {
+                                signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
+                            }
                         }
                     }
+                    signup_introduce_layout.visibility = View.GONE
+                    signup_page_viewer.text = "$page / 6"
                 }
-                signup_introduce_layout.visibility = View.GONE
-                signup_page_viewer.text = "$page / 6"
-            }else if(page == 7) { // 프로필 공개 여부.
-                signUp("no")
+                7 -> { // 프로필 공개 여부.
+                    signUp("no")
+                }
             }
         }
 
@@ -349,7 +418,23 @@ class SignUpActivity : AppCompatActivity() {
                 emailCheck = false
             }
         })
+        //닉네임 체크를 위한 메서드, 위와 마찬가지로 변경 감지
+        signup_name_text.addTextChangedListener (object : TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+                //입력이 끝날때 작동
+                nameCheck = false
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //입력 전에 작동
+                nameCheck = false
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //타이핑 되는 텍스트에 변화가 있을 경우.
+                nameCheck = false
+            }
+        })
 
+        //나가기 버튼
         signup_exit_button.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
