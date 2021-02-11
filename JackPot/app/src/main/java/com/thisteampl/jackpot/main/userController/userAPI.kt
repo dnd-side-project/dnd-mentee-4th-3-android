@@ -10,13 +10,13 @@ interface userAPI {
     fun getCheckEmail(@Query("email") email : String) : Call<CheckResponse>
 
     @GET("/googleLogin")
-    fun getCheckGoogleToken(@Query("googleToken") googleToken : String) : Call<CheckResponse>
+    fun getCheckGoogleToken(@Query("token") token : String) : Call<CheckResponse>
 
     @GET("/kakaoLogin/{kakaoAccessToken}")
     fun getCheckKakaoToken(@Path("kakaoAccessToken") kakaoAccessToken : String) : Call<CheckResponse>
 
     @GET("/naverLogin")
-    fun getCheckNaverToken(@Query("naverToken") naverToken : String) : Call<CheckResponse>
+    fun getCheckNaverToken(@Query("token") token : String) : Call<CheckResponse>
 
     @GET("/name/is-exist")
     fun getCheckName(@Query("name") name : String) : Call<CheckResponse>

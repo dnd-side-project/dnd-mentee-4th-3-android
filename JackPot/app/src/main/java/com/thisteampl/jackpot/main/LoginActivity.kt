@@ -226,7 +226,7 @@ class LoginActivity : AppCompatActivity() {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
-                                ).putExtra("signuptype", type).putExtra("token", token)
+                                ).putExtra("signuptype", type)
                                 Toast.makeText(baseContext, "카카오로 회원가입을 진행합니다.", Toast.LENGTH_SHORT)
                                     .show()
                                 startActivity(intent)
@@ -263,7 +263,7 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         when {
                             // 가입하지 않은 회원. 회원가입 필요.
-                            response.code().toString() == "400" -> {
+                            response.code().toString() == "404" -> {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java
@@ -310,7 +310,7 @@ class LoginActivity : AppCompatActivity() {
                     ) {
                         when {
                             // 가입하지 않은 회원. 회원가입 필요.
-                            response.code().toString() == "400" -> {
+                            response.code().toString() == "404" -> {
                                 val intent = Intent(
                                     baseContext,
                                     SignUpActivity::class.java

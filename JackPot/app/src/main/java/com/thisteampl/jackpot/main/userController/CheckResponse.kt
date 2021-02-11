@@ -6,5 +6,7 @@ class CheckResponse (
     @SerializedName("token")
     var token : String,
     @SerializedName("errorMessage")
-    var errorMessage : String
+    var errorMessage : String,
+    @SerializedName("errorCode")
+    var errorCode : String
 )
