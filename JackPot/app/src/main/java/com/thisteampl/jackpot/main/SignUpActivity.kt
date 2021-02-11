@@ -162,24 +162,19 @@ class SignUpActivity : AppCompatActivity() {
                             call: Call<CheckResponse>,
                             response: Response<CheckResponse>
                         ) {
-                            var chkResponse = response.body()
-                            if (chkResponse == null) {
-                                // 무조건 클라 잘못
+                            if (response.code().toString() == "404") {
+                                Toast.makeText(
+                                    baseContext,
+                                    "사용 가능한 닉네임입니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                nameCheck = true
                             } else {
-                                if (response.body()!!.message == "사용가능") {
-                                    Toast.makeText(
-                                        baseContext,
-                                        "사용 가능한 닉네임입니다.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    nameCheck = true
-                                } else {
-                                    Toast.makeText(
-                                        baseContext,
-                                        "사용 불가능한 닉네임입니다.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
+                                Toast.makeText(
+                                    baseContext,
+                                    "사용 불가능한 닉네임입니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     })
@@ -313,16 +308,16 @@ class SignUpActivity : AppCompatActivity() {
                             call: Call<CheckResponse>,
                             response: Response<CheckResponse>
                         ) {
-                            var chkResponse = response.body()
-                            if (chkResponse == null) {
-                                // 무조건 클라 잘못
+                            if (response.code().toString() == "404") {
+                                Toast.makeText(baseContext, "사용 가능한 이메일입니다.", Toast.LENGTH_SHORT)
+                                    .show()
+                                emailCheck = true
                             } else {
-                                if(response.body()!!.message == "가입하지않은 회원입니다"){
-                                    Toast.makeText(baseContext, "사용 가능한 이메일입니다.", Toast.LENGTH_SHORT).show()
-                                    emailCheck = true
-                                } else if(response.body()!!.message == "이미 가입한 회원입니다"){
-                                    Toast.makeText(baseContext, "이미 사용중인 이메일입니다.", Toast.LENGTH_SHORT).show()
-                                }
+                                Toast.makeText(
+                                    baseContext,
+                                    "이미 사용중이거나\n사용 불가능한 이메일입니다.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     })

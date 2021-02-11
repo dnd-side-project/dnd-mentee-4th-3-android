@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 class CheckResponse (
     @SerializedName("token")
     var token : String,
-    @SerializedName("message")
-    var message : String
+    @SerializedName("errorMessage")
+    var errorMessage : String
 )
