@@ -684,7 +684,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // 보내는 메일 주소와 비밀번호
         val username = "dndjackpot3@gmail.com"
-        val password = ""
+        val password = "thisteampl33!"
 
         val props = Properties();
         props["mail.smtp.auth"] = "true"

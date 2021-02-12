@@ -15,14 +15,14 @@
 
         <ImageView
             android:id="@+id/projectviewdetail_appname_imageview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="86dp"
+            android:layout_height="55dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/android_jackpot" />
+            android:src="@drawable/jackpot_logo" />
 
         <ImageButton
             android:id="@+id/projectviewdetail_mypage_imagebutton"
