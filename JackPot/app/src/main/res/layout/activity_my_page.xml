@@ -7,28 +7,267 @@
     android:orientation="vertical"
     tools:context=".main.mypage.MyPage">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My_Page"
-        android:textSize="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="마이페이지"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/mypage_login_button"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/mypage_back_button"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/android_back" />
+
+        <Button
+            android:id="@+id/detail_add_content_button"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/android_setting"
+            android:layout_gravity="right"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <ImageView
+            android:id="@+id/mypage_profile_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginRight="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/android_ellipse" />
+        
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:gravity="center|left"
+            android:layout_marginRight="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/mypage_job_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="직업"
+                android:textSize="16dp"
+                android:textColor="@color/colorGray"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/mypage_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="닉네임"
+                android:textSize="16dp"
+                android:textColor="@color/colorBlack"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/mypage_watchprofile_button"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="280dp"
+            android:text="프로필 보기"
+            android:background="@drawable/radius_background_transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="?android:attr/listDivider" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="나의 프로젝트"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBlack"
+            android:layout_marginRight="270dp"
+            android:layout_marginBottom="110dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/mypage_project_num_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0개"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorLightGray"
+            android:layout_marginRight="140dp"
+            android:layout_marginBottom="110dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="70dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mypage_no_project_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="아직 참여중인 프로젝트가 없어요"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorLightGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="?android:attr/listDivider" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <Button
+            android:id="@+id/mypage_myscrap_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="나의 스크랩"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:background="@color/transparent"
+            android:layout_marginRight="200dp"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/mypage_select_myscrap_bottombar"
+            android:layout_width="100dp"
+            android:layout_height="3dp"
+            android:background="@color/colorWhiteGray"
+            android:layout_marginRight="200dp"
+            android:layout_marginBottom="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/mypage_mycomment_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="댓글 단 프로젝트"
+            android:textColor="@color/colorLightGray"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:background="@color/transparent"
+            android:layout_marginLeft="200dp"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/mypage_select_mycomment_bottombar"
+            android:layout_width="140dp"
+            android:layout_height="3dp"
+            android:background="@color/colorWhiteGray"
+            android:layout_marginLeft="200dp"
+            android:layout_marginBottom="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="70dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mypage_no_scrap_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="아직 스크랩한 프로젝트나 멤버가 없어요"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorLightGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:text="로그인"
-        android:textSize="45dp" />
+        android:gravity="center">
 
     <Button
         android:id="@+id/mypage_logout_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:text="로그아웃"
-        android:textSize="45dp" />
+        android:textSize="25dp" />
 
     <Button
         android:id="@+id/mypage_withdraw_button"
@@ -36,6 +275,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
         android:text="회원탈퇴"
-        android:textSize="45dp" />
+        android:textSize="25dp" />
+
+    </LinearLayout>
 
 </LinearLayout>
