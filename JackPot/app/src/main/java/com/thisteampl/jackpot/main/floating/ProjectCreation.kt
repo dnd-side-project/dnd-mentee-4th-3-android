@@ -12,15 +12,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.userController.CheckResponse
 import kotlinx.android.synthetic.main.activity_project_creation.*
 import kotlinx.android.synthetic.main.activity_signup.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ProjectCreation : AppCompatActivity() {
-
-    // 해야할 것
-    // 2. 2 page로 구성하기
-    // 3. Database에 넘기기
-
+    
 
     // SignUpActivity 참고함
     // 모집 포지션, 분야를 위한 stack 선언
@@ -28,9 +28,9 @@ class ProjectCreation : AppCompatActivity() {
     private val stackToolfield = mutableListOf<String>()
 
     // 프로젝트 방식, 프로젝트 예상 기간을 위한 arrayOfNulls 선언
-    private var systembtn = arrayOfNulls<Button>(2)
+    private var openoffbtn = arrayOfNulls<Button>(2)
     private var periodbtn = arrayOfNulls<Button>(3)
-    private var systemtext = "system"
+    private var openofftext = "openoff"
     private var periodtext = "period"
 
     private var page: Int = 1
@@ -39,11 +39,14 @@ class ProjectCreation : AppCompatActivity() {
 
 
     // 사용자가 선택한 item
+    private val selecteddeveloperItems = ArrayList<String>() // 개발자 스택
+    private val selecteddesignerItems = ArrayList<String>()  // 디자이너 스택
+    private val selectAllItems = ArrayList<String>()         // 개발자, 디자이너 스택 합치기
+    private val selectpositionItems = ArrayList<String>()    // 포지션
+    private val selectedfieldItems = ArrayList<String>()     // 분야
 
-    private val selecteddeveloperItems = ArrayList<String>()
-    private val selecteddesignerItems = ArrayList<String>()
-    private val selectpositionItems = ArrayList<String>()
-    private val selectedfieldItems = ArrayList<String>()
+    // API
+    private val projectapi = projectAPI.create()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,18 +118,18 @@ class ProjectCreation : AppCompatActivity() {
 
         // 프로젝트 방식
 
-        systembtn[0] = findViewById(R.id.projectcreate_offperiod_button)
-        systembtn[1] = findViewById(R.id.projectcreate_openperiod_button)
-        systembtn[0]?.setOnClickListener {
-            systembtn[0]?.let { it1 ->
+        openoffbtn[0] = findViewById(R.id.projectcreate_offperiod_button)
+        openoffbtn[1] = findViewById(R.id.projectcreate_openperiod_button)
+        openoffbtn[0]?.setOnClickListener {
+            openoffbtn[0]?.let { it1 ->
                 this.onClickBtn(
                     it1,
                     0
                 )
             }
         }
-        systembtn[1]?.setOnClickListener {
-            systembtn[1]?.let { it2 ->
+        openoffbtn[1]?.setOnClickListener {
+            openoffbtn[1]?.let { it2 ->
                 this.onClickBtn(
                     it2,
                     1
@@ -255,31 +258,81 @@ class ProjectCreation : AppCompatActivity() {
 
         // 버튼 눌렸을 때 1 page, 2 page 구분
         createproject_writerecruitment_button.setOnClickListener {
-            if (page == 1) {
-                if (checkPageButton()) {
-                    page = 2
-                    projectcreate_write_recruitment_article_constraintlayout.visibility =
-                        View.GONE
-                    projectcreate_write_recruitment_article2_constraintlayout.visibility =
-                        View.VISIBLE
+            if (checkPageButton()) {
+                page = 2
+                projectcreate_write_recruitment_article_constraintlayout.visibility =
+                    View.GONE
+                projectcreate_write_recruitment_article2_constraintlayout.visibility =
+                    View.VISIBLE
 
+                // 사용 예정 스택, 모집 포지션, 분야
+                selectAllItems.addAll(selecteddeveloperItems)
+                selectAllItems.addAll(selecteddesignerItems)
+                selectpositionItems.addAll(stackToolposition)
+                selectedfieldItems.addAll(stackToolfield)
 
-                    selectpositionItems.addAll(stackToolposition)
-                    selectedfieldItems.addAll(stackToolposition)
+                createproject_line1_button.background = ContextCompat.getDrawable(
+                    this@ProjectCreation, R.drawable.page_line_background
+                )
 
-                    if (selectedfieldItems[0] is String) {
-                        Log.d("문자열 : ", "String ${selectedfieldItems[0]}[0]입니다.")
-                    }
-                    if (selectpositionItems[0] is String) {
-                        Log.d("문자열 : ", "${selectpositionItems[0]} 입니다.")
-                    }
-                }
-                projectcreate_page_textview.text = "$page  /  2"
-            } else if (page == 2) {
+                createproject_line2_button.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.page_line_background_select
+                )
+
+                SelectPage2()
 
             }
+            projectcreate_page_textview.text = "$page  /  2"
+        }
+
+
+    }
+
+    // Page2를 선택했을 때 (마지막 page)
+    private fun SelectPage2() {
+        createproject_submitrecruitment_button.setOnClickListener {
+
+            var recruitmentproject = ProjectCreationElement(
+                selectpositionItems,
+                selectAllItems,
+                openofftext,
+                stacklistregions,
+                periodtext,
+                selectedfieldItems,
+                createproject_projecttitle_edittext.text.toString(),
+                createproject_projectdetail_edittext.text.toString()
+            )
+
+
+
+            // API 작성 DB에 넘김
+            projectapi?.getRecruitmentProject(recruitmentproject)
+                ?.enqueue(object : Callback<CheckResponse> {
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        Log.d("TAG : ","projectapi - onFailure() called /")
+                    }
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        if(response.code().toString() == "200"){ // 200 : 요청이 정상적으로 처리 되었다면
+                            ToastmakeTextPrint ("프로젝트 모집글 작성 완료되었습니다.")
+                        }else{
+                            ToastmakeTextPrint ("프로젝트 모집글 작성 실패하였습니다.")
+                        }
+                    }
+
+                })
+
+
+            finish ()
+
+
+
 
         }
+
 
     }
 
@@ -291,7 +344,7 @@ class ProjectCreation : AppCompatActivity() {
         if (selecteddeveloperItems.isEmpty() && selecteddesignerItems.isEmpty()) {
             ToastmakeTextPrint("사용 예정 스택 입력해주세요."); return false
         }
-        if (systemtext.equals("system")) {
+        if (openofftext.equals("openoff")) {
             ToastmakeTextPrint("프로젝트 방식을 선택해주세요."); return false
         }
         if (stacklistregions.equals("지역")) {
@@ -320,13 +373,13 @@ class ProjectCreation : AppCompatActivity() {
         if (id == R.id.projectcreate_offperiod_button || id == R.id.projectcreate_openperiod_button) {
             for (i in 0..1) {
                 if (i == index) {
-                    systembtn[i]?.background = ContextCompat.getDrawable(
+                    openoffbtn[i]?.background = ContextCompat.getDrawable(
                         this@ProjectCreation,
                         R.drawable.radius_background_transparent_select
                     )
-                    systemtext = systembtn[i]?.text.toString()
+                    openofftext = openoffbtn[i]?.text.toString()
                 } else {
-                    systembtn[i]?.background = ContextCompat.getDrawable(
+                    openoffbtn[i]?.background = ContextCompat.getDrawable(
                         this@ProjectCreation,
                         R.drawable.radius_button_effect
                     )
@@ -396,7 +449,7 @@ class ProjectCreation : AppCompatActivity() {
                             }
 
                         }
-                }).setPositiveButton("확인", object : DialogInterface.OnClickListener {
+                    }).setPositiveButton("확인", object : DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface?, which: Int) {
                         // 사용자가 확인 버튼 눌렸을 때
                         if (selecteddeveloperItems.size == 0) {
@@ -450,7 +503,7 @@ class ProjectCreation : AppCompatActivity() {
                             }
 
                         }
-                }).setPositiveButton("확인", object : DialogInterface.OnClickListener {
+                    }).setPositiveButton("확인", object : DialogInterface.OnClickListener {
                     override fun onClick(dialog: DialogInterface?, which: Int) {
                         // 사용자가 확인 버튼 눌렸을 때
                         if (selecteddesignerItems.size == 0) {
@@ -473,7 +526,7 @@ class ProjectCreation : AppCompatActivity() {
 
                 }).create().show()
             }
-            
+
         }
 
     }

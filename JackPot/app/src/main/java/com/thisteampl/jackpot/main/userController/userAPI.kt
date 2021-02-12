@@ -30,6 +30,8 @@ interface userAPI {
     @DELETE("/withdraw")
     fun getWithDraw() : Call<CheckResponse>
 
+
+
     companion object {
         fun create() : userAPI? {
             return getBuilder()?.create()

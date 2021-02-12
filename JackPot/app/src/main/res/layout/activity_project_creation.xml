@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.floating.ProjectCreation">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/projectcreate_title_constraintlayout"
@@ -71,35 +76,31 @@
             <LinearLayout
                 android:id="@+id/createproject_imageline_linerlayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:weightSum="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/projectcreate_page_textview">
 
 
-                <ImageView
-                    android:id="@+id/createproject_line2_imageview"
+                <Button
+                    android:id="@+id/createproject_line1_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:adjustViewBounds="true"
-                    app:layout_constraintStart_toEndOf="@+id/createproject_line_imageview"
-                    app:srcCompat="@drawable/android_createprojectline" />
+                    android:background="@drawable/page_line_background_select"
+                    />
 
-                <ImageView
-                    android:id="@+id/createproject_line_imageview"
+                <Button
+                    android:id="@+id/createproject_line2_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    app:layout_constraintStart_toStartOf="parent"
+
                     app:layout_constraintTop_toBottomOf="@+id/projectcreate_page_textview"
-                    app:srcCompat="@drawable/android_createprojectline"
-                    tools:ignore="MissingConstraints" />
-
-
+                    android:background="@drawable/pageline_button_effect"
+                    />
 
             </LinearLayout>
 
@@ -111,7 +112,7 @@
             android:id="@+id/projectcreate_write_recruitment_article_constraintlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="150dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -151,6 +152,7 @@
                     android:background="@drawable/radius_button_effect"
                     android:text="기획자"
                     android:textSize="11dp"
+                    android:textColor="#000000"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -162,6 +164,7 @@
                     android:background="@drawable/radius_button_effect"
                     android:text="개발자"
                     android:textSize="11dp"
+                    android:textColor="#000000"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/createproject_position1_Button" />
 
@@ -173,6 +176,7 @@
                     android:background="@drawable/radius_button_effect"
                     android:text="디자이너"
                     android:textSize="11dp"
+                    android:textColor="#000000"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/createproject_position2_Button"
                     app:layout_constraintTop_toBottomOf="@+id/createproject_recruitmentposition2_textview" />
@@ -245,7 +249,7 @@
 
 
             <LinearLayout
-                android:id="@+id/projectcreate_projectsystem_linearlayout"
+                android:id="@+id/projectcreate_projectopenoff_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -261,6 +265,8 @@
                     android:layout_marginStart="30dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="오프라인"
+                    android:textColor="#000000"
+                    android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -271,6 +277,8 @@
                     android:layout_marginStart="15dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="온라인"
+                    android:textColor="#000000"
+                    android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/projectcreate_offperiod_button" />
             </LinearLayout>
@@ -286,7 +294,7 @@
                 android:textSize="13dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/projectcreate_projectsystem_linearlayout"
+                app:layout_constraintTop_toBottomOf="@+id/projectcreate_projectopenoff_linearlayout"
                 tools:ignore="MissingConstraints" />
 
 
@@ -356,6 +364,8 @@
                     android:layout_marginStart="40dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="~1개월"
+                    android:textColor="#000000"
+                    android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -366,6 +376,8 @@
                     android:layout_marginStart="15dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="~2개월"
+                    android:textSize="11dp"
+                    android:textColor="#000000"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/projectcreate_month_button" />
 
@@ -376,6 +388,8 @@
                     android:layout_marginStart="15dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="~3개월"
+                    android:textSize="11dp"
+                    android:textColor="#000000"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/projectcreate_month2_button" />
             </LinearLayout>
@@ -413,6 +427,7 @@
                     android:background="@drawable/radius_button_effect"
                     android:text="IT"
                     android:textSize="11dp"
+                    android:textColor="#000000"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -425,6 +440,7 @@
                     android:text="예술/장착"
                     android:textSize="11dp"
                     android:textStyle="bold"
+                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_field_it_textview" />
 
                 <Button
@@ -436,6 +452,7 @@
                     android:text="건강/스포츠"
                     android:textSize="11dp"
                     android:textStyle="bold"
+                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_art_textview" />
 
                 <Button
@@ -447,6 +464,7 @@
                     android:text="요리"
                     android:textSize="11dp"
                     android:textStyle="bold"
+                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_cook_textview" />
 
             </LinearLayout>
@@ -469,6 +487,7 @@
                     android:text="취미"
                     android:textSize="11dp"
                     android:textStyle="bold"
+                    android:textColor="#000000"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
@@ -480,6 +499,7 @@
                     android:text="휴식"
                     android:textSize="11dp"
                     android:textStyle="bold"
+                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_hobby_textview" />
 
                 <Button
@@ -491,6 +511,7 @@
                     android:text="기타"
                     android:textSize="11dp"
                     android:textStyle="bold"
+                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_rest_textview" />
 
                 <Button
@@ -502,6 +523,7 @@
                     android:text="경제"
                     android:textSize="11dp"
                     android:textStyle="bold"
+                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_etc_textview" />
 
                 <Button
@@ -513,6 +535,7 @@
                     android:text="자기계발"
                     android:textSize="11dp"
                     android:textStyle="bold"
+                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_economy_textview" />
             </LinearLayout>
 
@@ -525,6 +548,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="30dp"
                 android:text="모집글 작성하기"
+                android:background="@drawable/radius_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.666"
@@ -536,33 +560,118 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <!-- 2 page -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/projectcreate_write_recruitment_article2_constraintlayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_height="match_parent"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/projectcreate_title_constraintlayout">
 
-            <TextView
-                android:id="@+id/createproject_projecttitle_textview"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
-                android:text="프로젝트 제목"
-                android:textColor="#000000"
-                android:textSize="13dp"
-                android:textStyle="bold"
+                android:orientation="vertical"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints">
 
-                tools:ignore="MissingConstraints" />
+                <TextView
+                    android:id="@+id/createproject_projecttitle_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="100dp"
+                    android:layout_marginTop="30dp"
+                    android:text="프로젝트 제목"
+                    android:textColor="#000000"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints" />
 
+                <EditText
+                    android:id="@+id/createproject_projecttitle_edittext"
+                    android:layout_width="320dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/radius_background_transparent"
+                    android:hint="프로젝트를 잘 설명할 수 있는 제목을 적어주세요."
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textSize="11dp"
+                    android:ems="9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/createproject_projecttitle_textview" />
+
+                <TextView
+                    android:id="@+id/createproject_projectdetail_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="100dp"
+                    android:text="프로젝트 상세"
+                    android:textColor="#000000"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/createproject_projecttitle_edittext"
+                    tools:ignore="MissingConstraints" />
+
+                <EditText
+                    android:id="@+id/createproject_projectdetail_edittext"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="8"
+                    android:background="@drawable/radius_background_transparent"
+                    android:ems="9"
+                    android:layout_gravity="center"
+                    android:gravity="top"
+                    android:hint="프로젝트 주제에 대해 작성해주세요. 프로젝트 목적(새로운 툴 공부 등) 자세하게 작성해주시면 다른 멤버들이 참고하기 좋아요."
+                    android:inputType="textMultiLine"
+                    android:lines="7"
+                    android:padding="8dp"
+                    android:textSize="11dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/createproject_projectdetail_textview" />
+
+                <Button
+                    android:id="@+id/createproject_submitrecruitment_button"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="280dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="모집글 게시하기"
+                    android:background="@drawable/radius_background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.666"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>
