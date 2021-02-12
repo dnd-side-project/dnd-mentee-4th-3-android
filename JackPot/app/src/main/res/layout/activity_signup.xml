@@ -263,25 +263,250 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <com.skydoves.powerspinner.PowerSpinnerView
-            android:id="@+id/signup_region_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="72dp"
-            android:hint="지역"
-            android:padding="10dp"
-            android:textSize="14dp"
-            android:textStyle="bold"
-            app:spinner_arrow_gravity="end"
-            app:spinner_arrow_padding="8dp"
-            app:spinner_arrow_show="true"
-            app:spinner_arrow_tint="#000000"
-            app:spinner_divider_size="0.5dp"
-            app:spinner_divider_show="true"
-            app:spinner_popup_animation="normal"
-            app:spinner_popup_background="#FFFFFF"
-            app:spinner_divider_color="@color/colorWhite"
+        <Button
+            android:id="@+id/signup_region_seoul"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="280dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="서울"
+            android:contentDescription="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_gyeonggi"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="100dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="경기"
+            android:contentDescription="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_incheon"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="80dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="인천"
+            android:contentDescription="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_daejeon"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="280dp"
+            android:layout_marginTop="125dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="대전"
+            android:contentDescription="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_gwangju"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="125dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="광주"
+            android:contentDescription="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_ulsan"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="125dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="울산"
+            android:contentDescription="5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_sejong"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="280dp"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="세종"
+            android:contentDescription="6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_daegu"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="대구"
+            android:contentDescription="7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_busan"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="부산"
+            android:contentDescription="8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_gangwondo"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="270dp"
+            android:layout_marginTop="375dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="강원도"
+            android:contentDescription="9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_chungbuk"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="375dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="충청북도"
+            android:contentDescription="10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_chungnam"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="375dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="충청남도"
+            android:contentDescription="11"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_jeollabuk"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="260dp"
+            android:layout_marginTop="500dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="전라북도"
+            android:contentDescription="12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_jeollanam"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="500dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="전라남도"
+            android:contentDescription="13"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_gyeongnam"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="500dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="경상남도"
+            android:contentDescription="14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_gyeongbuk"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="260dp"
+            android:layout_marginTop="625dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="경상북도"
+            android:contentDescription="15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_jejudo"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="625dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="제주도"
+            android:contentDescription="16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_region_overseas"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="625dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="해외"
+            android:contentDescription="17"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -553,168 +778,157 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <LinearLayout
-            android:id="@+id/signup_developer_stack_layout_first"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:gravity="left"
+        <Button
+            android:id="@+id/signup_stack_developer_cpp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="260dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="C++"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
-                android:id="@+id/signup_stack_developer_cpp"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="C++"/>
-
-            <Button
-                android:id="@+id/signup_stack_developer_java"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Java"
-                android:textAllCaps="false"/>
-
-            <Button
-                android:id="@+id/signup_stack_developer_python"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Python"
-                android:textAllCaps="false"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/signup_developer_stack_layout_second"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="175dp"
-            android:gravity="left"
+        <Button
+            android:id="@+id/signup_stack_developer_java"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Java"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
-                android:id="@+id/signup_stack_developer_jsc"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Java Script"
-                android:textAllCaps="false"/>
-
-            <Button
-                android:id="@+id/signup_stack_developer_htmlcss"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="HTML/CSS"
-                android:textAllCaps="false"/>
-
-            <Button
-                android:id="@+id/signup_stack_developer_swift"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Swift"
-                android:textAllCaps="false"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/signup_developer_stack_layout_third"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            android:gravity="left"
+        <Button
+            android:id="@+id/signup_stack_developer_python"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="180dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Python"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
-                android:id="@+id/signup_stack_developer_spring"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Spring"
-                android:textAllCaps="false"/>
-
-            <Button
-                android:id="@+id/signup_stack_developer_kotlin"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Kotlin"
-                android:textAllCaps="false"/>
-
-            <Button
-                android:id="@+id/signup_stack_developer_django"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Django"
-                android:textAllCaps="false"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/signup_developer_stack_layout_fourth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="425dp"
-            android:gravity="left"
+        <Button
+            android:id="@+id/signup_stack_developer_jsc"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginRight="260dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Java Script"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
-                android:id="@+id/signup_stack_developer_reactjs"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="React.JS"
-                android:textAllCaps="false"/>
+        <Button
+            android:id="@+id/signup_stack_developer_htmlcss"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="HTML/CSS"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
-                android:id="@+id/signup_stack_developer_flask"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Flask"
-                android:textAllCaps="false"/>
+        <Button
+            android:id="@+id/signup_stack_developer_swift"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginLeft="180dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Swift"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/signup_stack_developer_spring"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="260dp"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Spring"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_stack_developer_kotlin"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="250dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Kotlin"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_stack_developer_django"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="250dp"
+            android:layout_marginLeft="180dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Django"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_stack_developer_reactjs"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="375dp"
+            android:layout_marginRight="260dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="React.JS"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/signup_stack_developer_flask"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="375dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Flask"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/signup_write_later_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="230dp"
-        android:layout_marginTop="420dp"
-        android:text="다음에 작성할래요."
-        android:visibility="gone"
-        android:background="@android:color/transparent"
-        android:textColor="#979797"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_designer_tool_layout"
@@ -753,175 +967,173 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <LinearLayout
-            android:id="@+id/signup_designer_tool_layout_first"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:gravity="left"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
             <Button
                 android:id="@+id/signup_tool_designer_photoshop"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="210dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Adobe PhotoShop"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_tool_designer_illustrator"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
+                android:layout_marginLeft="110dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Adobe Illustrator"
-                android:textAllCaps="false"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/signup_designer_tool_layout_second"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="175dp"
-            android:gravity="left"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_tool_designer_xd"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="125dp"
+                android:layout_marginRight="260dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Adobe XD"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_tool_designer_figma"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="125dp"
+                android:layout_marginRight="40dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Figma"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_tool_designer_sketch"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginTop="125dp"
+                android:layout_marginLeft="180dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Sketch"
-                android:textAllCaps="false"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/signup_designer_tool_layout_third"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            android:gravity="left"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_tool_designer_principle"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="250dp"
+                android:layout_marginRight="260dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Principle"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_stack_developer_Indesign"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="250dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Adobe Indesign"
-                android:textAllCaps="false"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/signup_designer_tool_layout_fourth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="425dp"
-            android:gravity="left"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_tool_designer_aftereffects"
                 android:layout_width="175dp"
                 android:layout_height="50dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="375dp"
+                android:layout_marginRight="190dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Adobe After Effects"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_tool_designer_premiere"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="375dp"
+                android:layout_marginLeft="150dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Adobe Premiere"
-                android:textAllCaps="false"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/signup_designer_tool_layout_fifth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="550dp"
-            android:gravity="left"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_tool_designer_c4d"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="500dp"
+                android:layout_marginRight="260dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="C4D"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_tool_designer_protopie"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="500dp"
+                android:layout_marginRight="40dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Protopie"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
                 android:id="@+id/signup_tool_designer_zeplin"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginTop="500dp"
+                android:layout_marginLeft="180dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Zeplin"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1021,7 +1233,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="510dp"
+        android:layout_marginTop="530dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

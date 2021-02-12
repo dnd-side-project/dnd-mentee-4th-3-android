@@ -38,6 +38,7 @@ class SignUpActivity : AppCompatActivity() {
     private var positionBtn = arrayOfNulls<Button>(3)
     private var stateBtn = arrayOfNulls<Button>(3)
     private var sGradeBtn = arrayOfNulls<Button>(4)
+    private var regionBtn = arrayOfNulls<Button>(18)
     private val stackTool = mutableListOf<String>()
 
     // 화면전환 애니메이션, fillAfter : 옮긴 후 원상복구, duration : 지속시간
@@ -144,13 +145,6 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
-        var regions = listOf("서울","부산","대구","인천","광주",
-            "대전","울산","세종","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도")
-        // 지역 선택을 해 줄 배열과 액티비티의 스피너와 연결해줄 어댑터.
-        signup_region_spinner.setItems(regions) // 스피너와 어댑터를 연결
-        signup_region_spinner.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
-            region = newItem
-        }
 
         //닉네임 중복 확인 버튼
         signup_name_check_button.setOnClickListener {
@@ -439,6 +433,7 @@ class SignUpActivity : AppCompatActivity() {
                 emailCheck = false
             }
         })
+
         //닉네임 체크를 위한 메서드, 위와 마찬가지로 변경 감지
         signup_name_text.addTextChangedListener (object : TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
@@ -462,34 +457,10 @@ class SignUpActivity : AppCompatActivity() {
             finish()
         }
 
-        //직군 선택 리스터
-        positionBtn[0] = findViewById(R.id.signup_director_button)
-        positionBtn[1] = findViewById(R.id.signup_developer_button)
-        positionBtn[2] = findViewById(R.id.signup_designer_button)
-        positionBtn[0]?.setOnClickListener { positionBtn[0]?.let { it1 -> this.btnOnClick(it1) } }
-        positionBtn[1]?.setOnClickListener {positionBtn[1]?.let { it1 -> this.btnOnClick(it1) } }
-        positionBtn[2]?.setOnClickListener { positionBtn[2]?.let { it1 -> this.btnOnClick(it1) }}
-
-        //상태 선택 리스너
-        stateBtn[0] = findViewById(R.id.signup_state_student)
-        stateBtn[1] = findViewById(R.id.signup_state_jobfinder)
-        stateBtn[2] = findViewById(R.id.signup_state_junior)
-        stateBtn[0]?.setOnClickListener { stateBtn[0]?.let { it1 -> this.btnOnClick(it1) } }
-        stateBtn[1]?.setOnClickListener {stateBtn[1]?.let { it1 -> this.btnOnClick(it1) } }
-        stateBtn[2]?.setOnClickListener { stateBtn[2]?.let { it1 -> this.btnOnClick(it1) }}
-
-        //학생 학년 선택 리스너
-        sGradeBtn[0] = findViewById(R.id.signup_student_grade_one)
-        sGradeBtn[1] = findViewById(R.id.signup_student_grade_two)
-        sGradeBtn[2] = findViewById(R.id.signup_student_grade_three)
-        sGradeBtn[3] = findViewById(R.id.signup_student_grade_four)
-        sGradeBtn[0]?.setOnClickListener { sGradeBtn[0]?.let { it1 -> this.btnOnClick(it1) } }
-        sGradeBtn[1]?.setOnClickListener {sGradeBtn[1]?.let { it1 -> this.btnOnClick(it1) } }
-        sGradeBtn[2]?.setOnClickListener { sGradeBtn[2]?.let { it1 -> this.btnOnClick(it1) }}
-        sGradeBtn[3]?.setOnClickListener { sGradeBtn[3]?.let { it1 -> this.btnOnClick(it1) }}
-
+        makeBtnFunc()
     }
 
+    //버튼 선택 리스너. 선택 시 테두리 색과 텍스트 색상이 바뀌게 했다.
     private fun btnOnClick(v : View) {
         var id = v.id
 
@@ -510,9 +481,8 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
-
         // 상태 선택 버튼의 리스너 설정
-        if(id == R.id.signup_state_student || id == R.id.signup_state_jobfinder
+        else if(id == R.id.signup_state_student || id == R.id.signup_state_jobfinder
             || id == R.id.signup_state_junior) {
             var pos = Integer.parseInt(v.contentDescription.toString())
             for(i in 0..2) {
@@ -524,14 +494,10 @@ class SignUpActivity : AppCompatActivity() {
                         signup_state_grade_layout.visibility = View.VISIBLE
                     } else {
                         signup_state_grade_layout.visibility = View.GONE
-                        sGradeBtn[0]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                        sGradeBtn[0]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
-                        sGradeBtn[1]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                        sGradeBtn[1]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
-                        sGradeBtn[2]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                        sGradeBtn[2]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
-                        sGradeBtn[3]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                        sGradeBtn[3]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
+                        for(j in 0..3) {
+                            sGradeBtn[j]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                            sGradeBtn[j]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
+                        }
                     }
                 }
                 else {
@@ -540,9 +506,8 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
-
         // 학년 선택 버튼의 리스너 설정
-        if(id == R.id.signup_student_grade_one || id == R.id.signup_student_grade_two
+        else if(id == R.id.signup_student_grade_one || id == R.id.signup_student_grade_two
             || id == R.id.signup_student_grade_three || id == R.id.signup_student_grade_four) {
             var pos = Integer.parseInt(v.contentDescription.toString())
             for(i in 0..3) {
@@ -556,6 +521,70 @@ class SignUpActivity : AppCompatActivity() {
                     sGradeBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
                 }
             }
+        }
+        // 지역 선택 버튼 리스너 설정
+        else {
+            var pos = Integer.parseInt(v.contentDescription.toString())
+            for(i in 0..17) {
+                if(i == pos) {
+                    regionBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.radius_background_transparent_select)
+                    regionBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorButtonSelect))
+                    region = regionBtn[i]?.text.toString()
+                }
+                else {
+                    regionBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
+                    regionBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
+                }
+            }
+        }
+    }
+
+    private fun makeBtnFunc() {
+        //직군 선택 리스터
+        positionBtn[0] = signup_director_button
+        positionBtn[1] = signup_developer_button
+        positionBtn[2] = signup_designer_button
+        for(i in 0..2) {
+            positionBtn[i]?.setOnClickListener { positionBtn[i]?.let{it1 -> this.btnOnClick(it1)} }
+        }
+
+        //상태 선택 리스너
+        stateBtn[0] = signup_state_student
+        stateBtn[1] = signup_state_jobfinder
+        stateBtn[2] = signup_state_junior
+        for(i in 0..2) {
+            stateBtn[i]?.setOnClickListener { stateBtn[i]?.let{it1 -> this.btnOnClick(it1)} }
+        }
+
+        //학생 학년 선택 리스너
+        sGradeBtn[0] = signup_student_grade_one
+        sGradeBtn[1] = signup_student_grade_two
+        sGradeBtn[2] = signup_student_grade_three
+        sGradeBtn[3] = signup_student_grade_four
+        for(i in 0..3) {
+            sGradeBtn[i]?.setOnClickListener { sGradeBtn[i]?.let{it1 -> this.btnOnClick(it1)} }
+        }
+
+        regionBtn[0] = signup_region_seoul
+        regionBtn[1] = signup_region_gyeonggi
+        regionBtn[2] = signup_region_incheon
+        regionBtn[3] = signup_region_daejeon
+        regionBtn[4] = signup_region_gwangju
+        regionBtn[5] = signup_region_ulsan
+        regionBtn[6] = signup_region_sejong
+        regionBtn[7] = signup_region_daegu
+        regionBtn[8] = signup_region_busan
+        regionBtn[9] = signup_region_gangwondo
+        regionBtn[10] = signup_region_chungbuk
+        regionBtn[11] = signup_region_chungnam
+        regionBtn[12] = signup_region_jeollabuk
+        regionBtn[13] = signup_region_jeollanam
+        regionBtn[14] = signup_region_gyeongnam
+        regionBtn[15] = signup_region_gyeongbuk
+        regionBtn[16] = signup_region_jejudo
+        regionBtn[17] = signup_region_overseas
+        for(i in 0..17) {
+            regionBtn[i]?.setOnClickListener { regionBtn[i]?.let{it1 -> this.btnOnClick(it1)} }
         }
     }
 
@@ -574,13 +603,12 @@ class SignUpActivity : AppCompatActivity() {
 
     /*
     * 스택, 툴 버튼을 설정해 주는 메서드, 그리고 스택, 툴을 저장해주는 리스트를 초기화해준다.
-    * 스택 레이아웃을 통째로 받아와서 getChild를 해서 버튼들에만 입력해주면 훨씬 더 코드가 간결해질 것 같다.
     * */
     private fun setStackToolBtn(){
         stackTool.clear()
 
-        for (i in 0 until signup_developer_stack_layout_first.childCount) {
-            val child: View = signup_developer_stack_layout_first.getChildAt(i)
+        for (i in 0 until signup_developer_stack_layout.childCount) {
+            val child: View = signup_developer_stack_layout.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
                 child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
@@ -588,68 +616,8 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
-        for (i in 0 until signup_developer_stack_layout_second.childCount) {
-            val child: View = signup_developer_stack_layout_second.getChildAt(i)
-            if(child is Button) {
-                child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
-                child.setOnClickListener { this.stackToolBtnOnClick(child) }
-            }
-        }
-
-        for (i in 0 until signup_developer_stack_layout_third.childCount) {
-            val child: View = signup_developer_stack_layout_third.getChildAt(i)
-            if(child is Button) {
-                child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
-                child.setOnClickListener { this.stackToolBtnOnClick(child) }
-            }
-        }
-
-        for (i in 0 until signup_developer_stack_layout_fourth.childCount) {
-            val child: View = signup_developer_stack_layout_fourth.getChildAt(i)
-            if(child is Button) {
-                child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
-                child.setOnClickListener { this.stackToolBtnOnClick(child) }
-            }
-        }
-
-        for (i in 0 until signup_designer_tool_layout_first.childCount) {
-            val child: View = signup_designer_tool_layout_first.getChildAt(i)
-            if(child is Button) {
-                child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
-                child.setOnClickListener { this.stackToolBtnOnClick(child) }
-            }
-        }
-
-        for (i in 0 until signup_designer_tool_layout_second.childCount) {
-            val child: View = signup_designer_tool_layout_second.getChildAt(i)
-            if(child is Button) {
-                child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
-                child.setOnClickListener { this.stackToolBtnOnClick(child) }
-            }
-        }
-        for (i in 0 until signup_designer_tool_layout_third.childCount) {
-            val child: View = signup_designer_tool_layout_third.getChildAt(i)
-            if(child is Button) {
-                child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
-                child.setOnClickListener { this.stackToolBtnOnClick(child) }
-            }
-        }
-        for (i in 0 until signup_designer_tool_layout_fourth.childCount) {
-            val child: View = signup_designer_tool_layout_fourth.getChildAt(i)
-            if(child is Button) {
-                child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
-                child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))
-                child.setOnClickListener { this.stackToolBtnOnClick(child) }
-            }
-        }
-        for (i in 0 until signup_designer_tool_layout_fifth.childCount) {
-            val child: View = signup_designer_tool_layout_fifth.getChildAt(i)
+        for (i in 0 until signup_designer_tool_layout.childCount) {
+            val child: View = signup_designer_tool_layout.getChildAt(i)
             if(child is Button) {
                 child.background = ContextCompat.getDrawable(this@SignUpActivity, R.drawable.radius_button_effect)
                 child.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorBlack))

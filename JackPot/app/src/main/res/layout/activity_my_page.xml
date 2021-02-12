@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -220,6 +225,7 @@
             android:background="@color/colorWhiteGray"
             android:layout_marginLeft="200dp"
             android:layout_marginBottom="70dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -249,6 +255,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+        <TextView
+            android:id="@+id/mypage_no_comment_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="아직 댓글을 단 프로젝트가 없어요"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:textColor="@color/colorLightGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
@@ -261,22 +282,23 @@
         android:layout_height="wrap_content"
         android:gravity="center">
 
-    <Button
-        android:id="@+id/mypage_logout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="25dp"
-        android:text="로그아웃"
-        android:textSize="25dp" />
+        <Button
+            android:id="@+id/mypage_logout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:text="로그아웃"
+            android:textSize="25dp" />
 
-    <Button
-        android:id="@+id/mypage_withdraw_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:text="회원탈퇴"
-        android:textSize="25dp" />
+        <Button
+            android:id="@+id/mypage_withdraw_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="회원탈퇴"
+            android:textSize="25dp" />
 
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>
