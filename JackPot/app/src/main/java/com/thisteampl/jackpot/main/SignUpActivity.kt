@@ -128,7 +128,7 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
-        signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+        signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
 
         //뷰들에 애니메이션을 적용해준다
         for (i in 0 until signup_screen.childCount) {
@@ -192,7 +192,7 @@ class SignUpActivity : AppCompatActivity() {
                         signup_nickname_layout.visibility = View.VISIBLE
                         signup_previous_button.visibility = View.VISIBLE
                     }
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 1 -> {
                     if(!nameCheck) {
@@ -205,7 +205,7 @@ class SignUpActivity : AppCompatActivity() {
                         signup_call_name_position_text.text =
                             signup_name_text.text.toString() + "님, 어떤\n포지션에 해당하시나요?"
                     }
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 2 -> {
                     if(region == "지역") {
@@ -215,7 +215,7 @@ class SignUpActivity : AppCompatActivity() {
                         signup_region_layout.visibility = View.GONE
                         signup_position_layout.visibility = View.VISIBLE
                     }
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 3 -> {
                     if(position == "직군") {
@@ -228,7 +228,7 @@ class SignUpActivity : AppCompatActivity() {
                     if(state[0] == '학' && state[1] == '생') {
                         signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기 (이전갔다가 돌아올 때)
                     }
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 4 -> {
                     when (state) {
@@ -254,31 +254,45 @@ class SignUpActivity : AppCompatActivity() {
                                 else -> {
                                     signup_progressbar.progress = 6
                                     signup_introduce_layout.visibility = View.VISIBLE
+                                    signup_introduce_firstlink_text.hint = " 개인 웹사이트가 있다면 입력해주세요."
+                                    signup_introduce_firstlink_text.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_global),
+                                        null, null, null)
+                                    signup_introduce_secondlink_text.visibility = View.GONE
                                 }
                             }
                         }
                     }
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 5 -> {
                     signup_progressbar.progress = 6
                     if(position == "개발자") {
                         signup_developer_stack_layout.visibility = View.GONE
+                        signup_introduce_firstlink_text.hint = " 깃허브 링크를 입력해주세요."
+                        signup_introduce_firstlink_text.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_github),
+                            null, null, null)
                     } else {
+                        signup_introduce_firstlink_text.hint = " 비핸스 링크를 입력해주세요."
+                        signup_introduce_firstlink_text.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_behance),
+                            null, null, null)
                         signup_designer_tool_layout.visibility = View.GONE
                     }
+                    signup_introduce_secondlink_text.visibility = View.VISIBLE
+                    signup_introduce_secondlink_text.hint = "기타 개인 웹사이트가 있다면 입력해주세요."
+                    signup_introduce_secondlink_text.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_global),
+                        null, null, null)
                     signup_introduce_layout.visibility = View.VISIBLE
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 6 -> {
                     signup_progressbar.progress = 7
-                    signup_page_viewer.visibility = View.GONE
                     signup_introduce_layout.visibility = View.GONE
                     signup_exit_button.visibility = View.GONE
                     signup_open_layout.visibility = View.VISIBLE
 
                     signup_confirm_button.text = "공개할래요"
                     signup_previous_button.text = "공개하고싶지 않아요"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 7 -> { // 프로필 공개 여부
                     signUp("yes")
@@ -345,22 +359,22 @@ class SignUpActivity : AppCompatActivity() {
                     signup_previous_button.visibility = View.GONE
                     signup_email_signup_layout.visibility = View.VISIBLE
                     signup_nickname_layout.visibility = View.GONE
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 2 -> {
                     if(signUpType != "normal") {
-                        signup_previous_button.visibility = View.GONE
+                        signup_previous_button.visibility = View.INVISIBLE
                     }
                     signup_progressbar.progress = 1
                     signup_nickname_layout.visibility = View.VISIBLE
                     signup_region_layout.visibility = View.GONE
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 3 -> {
                     signup_progressbar.progress = 2
                     signup_region_layout.visibility = View.VISIBLE
                     signup_position_layout.visibility = View.GONE
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 4 -> {
                     signup_progressbar.progress = 3
@@ -369,7 +383,7 @@ class SignUpActivity : AppCompatActivity() {
                     if(state[0] == '학' && state[1] == '생') {
                         signup_state_grade_layout.visibility = View.GONE // 학생일때 가리기
                     }
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 5 -> {
                     signup_progressbar.progress = 4
@@ -382,7 +396,7 @@ class SignUpActivity : AppCompatActivity() {
                     if(state[0] == '학' && state[1] == '생') {
                         signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
                     }
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 6 -> {
                     signup_progressbar.progress = 5
@@ -402,7 +416,7 @@ class SignUpActivity : AppCompatActivity() {
                         }
                     }
                     signup_introduce_layout.visibility = View.GONE
-                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 7 -> { // 프로필 공개 여부.
                     signUp("no")

@@ -6,17 +6,32 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="680dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <Button
+        android:id="@+id/signup_previous_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginRight="150dp"
+        android:visibility="invisible"
+        android:background="@drawable/android_back"/>
+
     <Button
         android:id="@+id/signup_exit_button"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        android:layout_marginRight="330dp"
-        android:layout_marginBottom="640dp"
-        android:background="@drawable/close_24px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginLeft="150dp"
+        android:background="@drawable/close_24px" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/signup_page_viewer"
@@ -24,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="600dp"
         android:layout_marginLeft="320dp"
-        android:text="1 / 6"
+        android:text="1 / 7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -1176,13 +1191,39 @@
 
         <EditText
             android:id="@+id/signup_introduce_text"
-            android:layout_width="320dp"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
             android:textSize="14dp"
             android:hint="프로젝트에 임하는 각오,\n본인의 경력 등을 자유롭게 입력해 주세요."
-            android:lines="10"
+            android:lines="12"
             android:inputType="textMultiLine"
+            android:background="@drawable/radius_background_transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/signup_introduce_firstlink_text"
+            android:layout_width="360dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="460dp"
+            android:textSize="14dp"
+            android:hint="첫번째 링크"
+            android:background="@drawable/radius_background_transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/signup_introduce_secondlink_text"
+            android:layout_width="360dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="550dp"
+            android:textSize="14dp"
+            android:hint="두번째 링크"
             android:background="@drawable/radius_background_transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -1241,15 +1282,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/signup_previous_button"
-            android:layout_width="160dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="20dp"
-            android:visibility="gone"
-            android:background="@drawable/radius_background"
-            android:text="이전"/>
-
-        <Button
             android:id="@+id/signup_confirm_button"
             android:layout_width="160dp"
             android:layout_height="40dp"
@@ -1266,7 +1298,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="550dp"
         android:progressTint="@color/colorBlack"
-        android:max="6"
+        android:max="7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
