@@ -18,9 +18,9 @@
 
     <Button
         android:id="@+id/signup_previous_button"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginRight="150dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginRight="140dp"
         android:visibility="invisible"
         android:background="@drawable/android_back"/>
 
@@ -28,17 +28,17 @@
         android:id="@+id/signup_exit_button"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="140dp"
         android:background="@drawable/close_24px" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/signup_page_viewer"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="600dp"
-        android:layout_marginLeft="320dp"
+        android:layout_marginLeft="300dp"
         android:text="1 / 7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,9 +47,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_email_signup_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -177,9 +178,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_nickname_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -243,9 +245,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_region_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -531,9 +534,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_position_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -609,9 +613,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_state_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -686,9 +691,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_state_grade_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -758,9 +764,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_developer_stack_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -947,9 +954,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_designer_tool_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -1154,9 +1162,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_introduce_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -1233,9 +1242,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_open_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -1313,7 +1323,7 @@
     <ProgressBar
         android:id="@+id/signup_progressbar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="550dp"
         android:progressTint="@color/colorBlack"
