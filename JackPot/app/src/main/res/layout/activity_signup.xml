@@ -1282,6 +1282,25 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
+            android:id="@+id/signup_writenexttime_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/radius_background"
+            android:alpha="0.5"
+            android:text="다음에 작성할래요"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/signup_noopen_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/radius_background"
+            android:text="공개하고싶지 않아요"
+            android:visibility="gone"/>
+
+        <Button
             android:id="@+id/signup_confirm_button"
             android:layout_width="160dp"
             android:layout_height="40dp"

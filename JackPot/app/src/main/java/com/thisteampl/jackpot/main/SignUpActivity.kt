@@ -262,6 +262,7 @@ class SignUpActivity : AppCompatActivity() {
                             }
                         }
                     }
+                    signup_writenexttime_button.visibility = View.VISIBLE
                     signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 5 -> {
@@ -287,11 +288,11 @@ class SignUpActivity : AppCompatActivity() {
                 6 -> {
                     signup_progressbar.progress = 7
                     signup_introduce_layout.visibility = View.GONE
-                    signup_exit_button.visibility = View.GONE
                     signup_open_layout.visibility = View.VISIBLE
+                    signup_writenexttime_button.visibility = View.GONE
 
                     signup_confirm_button.text = "공개할래요"
-                    signup_previous_button.text = "공개하고싶지 않아요"
+                    signup_noopen_button.visibility = View.VISIBLE
                     signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 7 -> { // 프로필 공개 여부
@@ -356,7 +357,7 @@ class SignUpActivity : AppCompatActivity() {
             when (signup_progressbar.progress) {
                 1 -> {
                     signup_progressbar.progress = 0
-                    signup_previous_button.visibility = View.GONE
+                    signup_previous_button.visibility = View.INVISIBLE
                     signup_email_signup_layout.visibility = View.VISIBLE
                     signup_nickname_layout.visibility = View.GONE
                     signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
@@ -396,6 +397,7 @@ class SignUpActivity : AppCompatActivity() {
                     if(state[0] == '학' && state[1] == '생') {
                         signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
                     }
+                    signup_writenexttime_button.visibility = View.GONE
                     signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 6 -> {
@@ -408,6 +410,7 @@ class SignUpActivity : AppCompatActivity() {
                             signup_designer_tool_layout.visibility = View.VISIBLE
                         }
                         else -> {
+                            signup_writenexttime_button.visibility = View.GONE
                             signup_progressbar.progress = 4
                             signup_state_layout.visibility = View.VISIBLE
                             if(state[0] == '학' && state[1] == '생') {
@@ -418,9 +421,30 @@ class SignUpActivity : AppCompatActivity() {
                     signup_introduce_layout.visibility = View.GONE
                     signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
-                7 -> { // 프로필 공개 여부.
-                    signUp("no")
+                7 -> { // 프로필 공개 여부 페이지.
+                    signup_confirm_button.text = "확인"
+                    signup_noopen_button.visibility = View.GONE
+                    signup_writenexttime_button.visibility = View.VISIBLE
+                    signup_progressbar.progress = 6
+                    signup_open_layout.visibility = View.GONE
+                    signup_introduce_layout.visibility = View.VISIBLE
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
+            }
+        }
+
+        signup_noopen_button.setOnClickListener {
+            signUp("no")
+        }
+
+        //다음에 작성할래요 버튼
+        signup_writenexttime_button.setOnClickListener {
+            if(signup_progressbar.progress == 5) {
+                stackTool.clear()
+                signup_confirm_button.callOnClick()
+            } else if(signup_progressbar.progress == 6) {
+                clearIntroduce()
+                signup_confirm_button.callOnClick()
             }
         }
 
@@ -478,6 +502,7 @@ class SignUpActivity : AppCompatActivity() {
             for(i in 0..2) {
                 if(i == pos) {
                     setStackToolBtn()
+                    clearIntroduce()
                     positionBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.radius_background_transparent_select)
                     positionBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorButtonSelect))
                     position = positionBtn[i]?.text.toString()
@@ -689,6 +714,12 @@ class SignUpActivity : AppCompatActivity() {
         Thread {
             Transport.send(message)
         }.start()
+    }
+
+    private fun clearIntroduce() {
+        signup_introduce_text.setText("")
+        signup_introduce_firstlink_text.setText("")
+        signup_introduce_secondlink_text.setText("")
     }
 
     //회원가입 완료 메서드. 매개변수로 프로필 공개 여부를 넣어준다.
