@@ -50,13 +50,6 @@ class SignUpActivity : AppCompatActivity() {
     private var nameCheck: Boolean = false
     var authCode = ""
     private val userApi = userAPI.create()
-    private var page: Int = 0
-    /*
-    * page 변수에 따라 보여지는 layout을 visible 해준다.
-    * SNS로 시작할 경우 -> 1페이지부터 시작
-    * 0 : 이메일, 비밀번호 적는 페이지(이메일로 시작하기)
-    * 1 : 닉네임 적는 페이지 / 2 : 지역 / 3 : 직군 / 4 : 상태 / 5 : 스택 / 6 : 자기소개 / 7 : 프로필 공개여부
-    * */
 
     /* 유저 정보에 저장해 둘 3개 SNS의 idx들*/
     private var region = "지역" // 지역 저장용
@@ -115,7 +108,7 @@ class SignUpActivity : AppCompatActivity() {
             "kakao" -> {
                 //카카오 로그인을 했을 시 카카오idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
-                page = 1
+                signup_progressbar.progress = 1
                 UserApiClient.instance.me { user, error ->
                     signup_id_text.setText(user?.id.toString())
                 }
@@ -125,17 +118,17 @@ class SignUpActivity : AppCompatActivity() {
                 //네이버 로그인을 했을 시 네이버idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
                 signup_id_text.setText(intent.getStringExtra("SNSID").toString())
-                page = 1
+                signup_progressbar.progress = 1
             }
             "google" -> {
                 //구글 로그인을 했을 시 구글idx와 이름을 불러온다.
                 signup_nickname_layout.visibility = View.VISIBLE
                 signup_id_text.setText(intent.getStringExtra("SNSID").toString())
-                page = 1
+                signup_progressbar.progress = 1
             }
         }
 
-        signup_page_viewer.text = "$page / 6"
+        signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
 
         //뷰들에 애니메이션을 적용해준다
         for (i in 0 until signup_screen.childCount) {
@@ -185,7 +178,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // 회원가입 다음 버튼
         signup_confirm_button.setOnClickListener {
-            when (page) {
+            when (signup_progressbar.progress) {
                 0 -> {
                     if(!emailCheck){
                         Toast.makeText(this, "이메일 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show()
@@ -194,48 +187,48 @@ class SignUpActivity : AppCompatActivity() {
                     } else if(signup_password_check_text.text.toString() != signup_password_text.text.toString()) {
                         Toast.makeText(this, "비밀번호와 비밀번호 확인이 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
                     } else {
-                        page = 1
+                        signup_progressbar.progress = 1
                         signup_email_signup_layout.visibility = View.GONE
                         signup_nickname_layout.visibility = View.VISIBLE
                         signup_previous_button.visibility = View.VISIBLE
                     }
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 1 -> {
                     if(!nameCheck) {
                         Toast.makeText(this, "닉네임 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show()
                     } else {
-                        page = 2
+                        signup_progressbar.progress = 2
                         signup_nickname_layout.visibility = View.GONE
                         signup_previous_button.visibility = View.VISIBLE
                         signup_region_layout.visibility = View.VISIBLE
                         signup_call_name_position_text.text =
                             signup_name_text.text.toString() + "님, 어떤\n포지션에 해당하시나요?"
                     }
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 2 -> {
                     if(region == "지역") {
                         Toast.makeText(this, "지역을 선택해주세요.", Toast.LENGTH_SHORT).show()
                     } else {
-                        page = 3
+                        signup_progressbar.progress = 3
                         signup_region_layout.visibility = View.GONE
                         signup_position_layout.visibility = View.VISIBLE
                     }
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 3 -> {
                     if(position == "직군") {
                         Toast.makeText(this, "직군을 선택해주세요.", Toast.LENGTH_SHORT).show()
                     } else {
-                        page = 4
+                        signup_progressbar.progress = 4
                         signup_position_layout.visibility = View.GONE
                         signup_state_layout.visibility = View.VISIBLE
                     }
                     if(state[0] == '학' && state[1] == '생') {
                         signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기 (이전갔다가 돌아올 때)
                     }
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 4 -> {
                     when (state) {
@@ -246,7 +239,7 @@ class SignUpActivity : AppCompatActivity() {
                             Toast.makeText(this, "학년을 선택해주세요.", Toast.LENGTH_SHORT).show()
                         }
                         else -> {
-                            page = 5
+                            signup_progressbar.progress = 5
                             signup_state_layout.visibility = View.GONE
                             if(state[0] == '학' && state[1] == '생') {
                                 signup_state_grade_layout.visibility = View.GONE // 학생일때 가리기
@@ -259,26 +252,26 @@ class SignUpActivity : AppCompatActivity() {
                                     signup_designer_tool_layout.visibility = View.VISIBLE
                                 }
                                 else -> {
-                                    page = 6
+                                    signup_progressbar.progress = 6
                                     signup_introduce_layout.visibility = View.VISIBLE
                                 }
                             }
                         }
                     }
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 5 -> {
-                    page = 6
+                    signup_progressbar.progress = 6
                     if(position == "개발자") {
                         signup_developer_stack_layout.visibility = View.GONE
                     } else {
                         signup_designer_tool_layout.visibility = View.GONE
                     }
                     signup_introduce_layout.visibility = View.VISIBLE
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 6 -> {
-                    page = 7
+                    signup_progressbar.progress = 7
                     signup_page_viewer.visibility = View.GONE
                     signup_introduce_layout.visibility = View.GONE
                     signup_exit_button.visibility = View.GONE
@@ -346,40 +339,40 @@ class SignUpActivity : AppCompatActivity() {
 
         //이전 버튼
         signup_previous_button.setOnClickListener {
-            when (page) {
+            when (signup_progressbar.progress) {
                 1 -> {
-                    page = 0
+                    signup_progressbar.progress = 0
                     signup_previous_button.visibility = View.GONE
                     signup_email_signup_layout.visibility = View.VISIBLE
                     signup_nickname_layout.visibility = View.GONE
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 2 -> {
                     if(signUpType != "normal") {
                         signup_previous_button.visibility = View.GONE
                     }
-                    page = 1
+                    signup_progressbar.progress = 1
                     signup_nickname_layout.visibility = View.VISIBLE
                     signup_region_layout.visibility = View.GONE
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 3 -> {
-                    page = 2
+                    signup_progressbar.progress = 2
                     signup_region_layout.visibility = View.VISIBLE
                     signup_position_layout.visibility = View.GONE
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 4 -> {
-                    page = 3
+                    signup_progressbar.progress = 3
                     signup_position_layout.visibility = View.VISIBLE
                     signup_state_layout.visibility = View.GONE
                     if(state[0] == '학' && state[1] == '생') {
                         signup_state_grade_layout.visibility = View.GONE // 학생일때 가리기
                     }
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 5 -> {
-                    page = 4
+                    signup_progressbar.progress = 4
                     signup_state_layout.visibility = View.VISIBLE
                     if(position == "개발자") {
                         signup_developer_stack_layout.visibility = View.GONE
@@ -389,10 +382,10 @@ class SignUpActivity : AppCompatActivity() {
                     if(state[0] == '학' && state[1] == '생') {
                         signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
                     }
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 6 -> {
-                    page = 5
+                    signup_progressbar.progress = 5
                     when (position) {
                         "개발자" -> {
                             signup_developer_stack_layout.visibility = View.VISIBLE
@@ -401,7 +394,7 @@ class SignUpActivity : AppCompatActivity() {
                             signup_designer_tool_layout.visibility = View.VISIBLE
                         }
                         else -> {
-                            page = 4
+                            signup_progressbar.progress = 4
                             signup_state_layout.visibility = View.VISIBLE
                             if(state[0] == '학' && state[1] == '생') {
                                 signup_state_grade_layout.visibility = View.VISIBLE // 학생일때 보이기
@@ -409,7 +402,7 @@ class SignUpActivity : AppCompatActivity() {
                         }
                     }
                     signup_introduce_layout.visibility = View.GONE
-                    signup_page_viewer.text = "$page / 6"
+                    signup_page_viewer.text = signup_progressbar.progress.toString() + " / 6"
                 }
                 7 -> { // 프로필 공개 여부.
                     signUp("no")

@@ -6,6 +6,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.floating.MyAppeal
@@ -36,6 +37,8 @@ class MainActivity : AppCompatActivity(){
         // 나의 페이지
         main_mypage_imagebutton.setOnClickListener{
             if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+                Toast.makeText(this, "로그인 정보가 없습니다." +
+                        "\n로그인 화면으로 이동합니다.",Toast.LENGTH_LONG).show()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             } else {
