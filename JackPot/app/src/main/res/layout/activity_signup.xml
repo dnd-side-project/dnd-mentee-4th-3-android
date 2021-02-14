@@ -4,7 +4,8 @@
     android:id="@+id/signup_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    android:background="@color/colorWhite">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,6 +75,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="72dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +85,7 @@
                 android:id="@+id/signup_id_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:hint="이메일"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
@@ -150,7 +152,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="180dp"
-            android:layout_marginRight="72dp"
+            android:layout_marginRight="147dp"
             android:hint="비밀번호(6글자 ~ 15글자)"
             android:inputType="textPassword"
             android:singleLine="true"
@@ -165,7 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="320dp"
-            android:layout_marginRight="72dp"
+            android:layout_marginRight="147dp"
             android:hint="비밀번호 확인"
             android:inputType="textPassword"
             android:singleLine="true"
@@ -219,6 +221,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="72dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
