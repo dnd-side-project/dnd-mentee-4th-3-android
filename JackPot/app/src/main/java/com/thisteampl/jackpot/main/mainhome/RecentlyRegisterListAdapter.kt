@@ -39,15 +39,15 @@ class RecentlyRegisterListAdapter (val recentlyregisterlist: ArrayList<RecentlyR
     // onBindViewHolder : 생성된 ViewHolder에 바인딩 해주는 함수
     override fun onBindViewHolder(holder: RecentlyRegisterListAdapter.ProjectView, position: Int) {
 
-        holder.imageview.setImageResource(recentlyregisterlist!!.get(position).recentlyiamge)
-        holder.project_name.text =
-            recentlyregisterlist.get(index = position).recentlyregister_project_name
-        holder.recruitment_position.text =
-            recentlyregisterlist.get(index = position).recentlyregister_recruitment_position
-        holder.update_date.text = recentlyregisterlist.get(index = position).update_date
-        holder.stack1.text = recentlyregisterlist.get(index = position).stack1
-        holder.stack2.text = recentlyregisterlist.get(index = position).stack2
-        holder.stack3.text = recentlyregisterlist.get(index = position).stack3
+//        holder.imageview.setImageResource(recentlyregisterlist!!.get(position).recentlyiamge)
+//        holder.project_name.text =
+//            recentlyregisterlist.get(index = position).recentlyregister_project_name
+//        holder.recruitment_position.text =
+//            recentlyregisterlist.get(index = position).recentlyregister_recruitment_position
+//        holder.update_date.text = recentlyregisterlist.get(index = position).update_date
+//        holder.stack1.text = recentlyregisterlist.get(index = position).stack1
+//        holder.stack2.text = recentlyregisterlist.get(index = position).stack2
+//        holder.stack3.text = recentlyregisterlist.get(index = position).stack3
 
 
         holder.itemView.setOnClickListener {
@@ -64,7 +64,7 @@ class RecentlyRegisterListAdapter (val recentlyregisterlist: ArrayList<RecentlyR
     }
 
     class ProjectView(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageview = itemView.findViewById<ImageView>(R.id.main_recentlyregisterprojectimage_imageview)
+//        val imageview = itemView.findViewById<ImageView>(R.id.main_recentlyregisterprojectimage_imageview)
         val project_name = itemView.findViewById<TextView>(R.id.main_recentlyregisterprojectname_textview)
         val recruitment_position =
             itemView.findViewById<TextView>(R.id.main_inputposition_textview)

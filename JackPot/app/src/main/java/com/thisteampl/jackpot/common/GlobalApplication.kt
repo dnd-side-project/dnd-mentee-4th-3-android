@@ -3,9 +3,11 @@ package com.thisteampl.jackpot.common
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.kakao.sdk.common.KakaoSdk
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.interceptor.TokenInterceptor
+import com.thisteampl.jackpot.main.projectController.projectAPI
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -39,10 +41,13 @@ class GlobalApplication : Application() {
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
+
             }
             return retrofit
         }
+
     }
+
 
     override fun onCreate() {
         super.onCreate()

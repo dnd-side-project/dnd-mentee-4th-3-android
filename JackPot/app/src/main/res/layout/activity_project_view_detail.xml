@@ -44,15 +44,7 @@
             android:background="#ffffff"
             android:src="@drawable/ic_baseline_add_alert_24" />
 
-        <ImageButton
-            android:id="@+id/projectviewdetail_search_imagebutton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@id/projectviewdetail_bell_imagebutton"
-            android:background="#ffffff"
-            android:src="@drawable/ic_baseline_search_24" />
+
 
         <TextView
             android:id="@+id/projectview_proceeding_textview"

@@ -64,11 +64,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
-
                 android:text="1  /  2"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/android_createprojectline"
                 app:layout_constraintTop_toBottomOf="@+id/createproject_longline_imageview"
                 />
 
@@ -116,8 +114,10 @@
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
 
             <TextView
@@ -151,8 +151,8 @@
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="기획자"
-                    android:textSize="11dp"
                     android:textColor="#000000"
+                    android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -163,8 +163,8 @@
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="개발자"
-                    android:textSize="11dp"
                     android:textColor="#000000"
+                    android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/createproject_position1_Button" />
 
@@ -175,8 +175,8 @@
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="디자이너"
-                    android:textSize="11dp"
                     android:textColor="#000000"
+                    android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/createproject_position2_Button"
                     app:layout_constraintTop_toBottomOf="@+id/createproject_recruitmentposition2_textview" />
@@ -213,8 +213,8 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="30dp"
                     android:background="@drawable/radius_button_effect"
-                    android:textColor="#000000"
                     android:text="개발자"
+                    android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -225,8 +225,8 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
                     android:background="@drawable/radius_button_effect"
-                    android:textColor="#000000"
                     android:text="디자이너"
+                    android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/createproject_developer_button" />
@@ -293,6 +293,7 @@
                 android:textColor="#000000"
                 android:textSize="13dp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/projectcreate_projectopenoff_linearlayout"
                 tools:ignore="MissingConstraints" />
@@ -303,6 +304,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/createproject_regions_textview">
@@ -375,9 +377,9 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
                     android:background="@drawable/radius_button_effect"
-                    android:text="~2개월"
-                    android:textSize="11dp"
+                    android:text="~3개월"
                     android:textColor="#000000"
+                    android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/projectcreate_month_button" />
 
@@ -387,9 +389,9 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
                     android:background="@drawable/radius_button_effect"
-                    android:text="~3개월"
-                    android:textSize="11dp"
+                    android:text="~6개월"
                     android:textColor="#000000"
+                    android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/projectcreate_month2_button" />
             </LinearLayout>
@@ -426,8 +428,8 @@
                     android:layout_marginStart="40dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="IT"
-                    android:textSize="11dp"
                     android:textColor="#000000"
+                    android:textSize="11dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -437,10 +439,10 @@
                     android:layout_height="30dp"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/radius_button_effect"
-                    android:text="예술/장착"
+                    android:text="예술/창작"
+                    android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_field_it_textview" />
 
                 <Button
@@ -450,9 +452,9 @@
                     android:layout_marginStart="10dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="건강/스포츠"
+                    android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_art_textview" />
 
                 <Button
@@ -462,9 +464,9 @@
                     android:layout_marginStart="10dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="요리"
+                    android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_cook_textview" />
 
             </LinearLayout>
@@ -485,9 +487,9 @@
                     android:layout_marginStart="40dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="취미"
+                    android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    android:textColor="#000000"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
@@ -497,9 +499,9 @@
                     android:layout_marginStart="10dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="휴식"
+                    android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_hobby_textview" />
 
                 <Button
@@ -509,9 +511,9 @@
                     android:layout_marginStart="10dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="기타"
+                    android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_rest_textview" />
 
                 <Button
@@ -521,9 +523,9 @@
                     android:layout_marginStart="10dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="경제"
+                    android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_etc_textview" />
 
                 <Button
@@ -533,9 +535,9 @@
                     android:layout_marginStart="10dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="자기계발"
+                    android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    android:textColor="#000000"
                     app:layout_constraintStart_toEndOf="@+id/create_economy_textview" />
             </LinearLayout>
 
@@ -544,11 +546,11 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="30dp"
-                android:text="모집글 작성하기"
                 android:background="@drawable/radius_background"
+                android:text="모집글 작성하기"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.666"
@@ -558,7 +560,6 @@
                 app:layout_constraintVertical_bias="1.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"

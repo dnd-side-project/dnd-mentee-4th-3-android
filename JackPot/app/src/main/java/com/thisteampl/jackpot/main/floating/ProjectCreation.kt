@@ -1,26 +1,24 @@
 package com.thisteampl.jackpot.main.floating
 
-import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.main.userController.CheckResponse
+import com.thisteampl.jackpot.main.projectController.ProjectElement
+import com.thisteampl.jackpot.main.projectController.projectAPI
 import kotlinx.android.synthetic.main.activity_project_creation.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ProjectCreation : AppCompatActivity() {
-    
+
 
     // SignUpActivity 참고함
     // 모집 포지션, 분야를 위한 stack 선언
@@ -39,14 +37,13 @@ class ProjectCreation : AppCompatActivity() {
 
 
     // 사용자가 선택한 item
-    private val selecteddeveloperItems = ArrayList<String>() // 개발자 스택
-    private val selecteddesignerItems = ArrayList<String>()  // 디자이너 스택
-    private val selectAllItems = ArrayList<String>()         // 개발자, 디자이너 스택 합치기
-    private val selectpositionItems = ArrayList<String>()    // 포지션
-    private val selectedfieldItems = ArrayList<String>()     // 분야
+    private val selecteddeveloperItems = mutableListOf<String>() // 개발자 스택
+    private val selecteddesignerItems = mutableListOf<String>()  // 디자이너 스택
+    private val selectAllItems = mutableListOf<String>()         // 개발자, 디자이너 스택 합치기
+    private val selectpositionItems = mutableListOf<String>()    // 포지션
+    private val selectedfieldItems = mutableListOf<String>()     // 분야
 
-    // API
-    private val projectapi = projectAPI.create()
+    private var projectapi = projectAPI.projectRetrofitService()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,8 +97,7 @@ class ProjectCreation : AppCompatActivity() {
 
         // 사용 예정 스택, 개발자
         var stacktobeusingdeveloper = arrayOf<String>(
-            "JAVA", "C++", "Python", "JavaScript", "Html/CSS", "Swift", "Spring", "Kotlin",
-            "Django", "React.js", "Flask"
+            "java", "cplus", "javascript", "python", "ruby", "django"
         )
         StackTobeUsed(createproject_developer_button, stacktobeusingdeveloper)
 
@@ -116,52 +112,40 @@ class ProjectCreation : AppCompatActivity() {
         StackTobeUsed(createproject_designer_button, stacktobeusingdesigner)
 
 
-        // 프로젝트 방식
-
-        openoffbtn[0] = findViewById(R.id.projectcreate_offperiod_button)
-        openoffbtn[1] = findViewById(R.id.projectcreate_openperiod_button)
-        openoffbtn[0]?.setOnClickListener {
-            openoffbtn[0]?.let { it1 ->
-                this.onClickBtn(
-                    it1,
-                    0
-                )
-            }
-        }
-        openoffbtn[1]?.setOnClickListener {
-            openoffbtn[1]?.let { it2 ->
-                this.onClickBtn(
-                    it2,
-                    1
-                )
-            }
-        }
-
-
         // 지역
         var regions = listOf(
-            "서울",
-            "부산",
-            "대구",
-            "인천",
-            "광주",
-            "대전",
-            "울산",
-            "세종",
-            "경기도",
-            "강원도",
-            "충청북도",
-            "충청남도",
-            "전라북도",
-            "전라남도",
-            "경상북도",
-            "경상남도",
-            "제주도"
+            "서울", "부산", "대구", "광주", "울산", "세종", "경기도", "강원도"
         )
 
         createproject_regions_spinner.setItems(regions)
         createproject_regions_spinner.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
             stacklistregions = newItem
+        }
+
+
+        // 프로젝트 방식
+
+        openoffbtn[0] = findViewById(R.id.projectcreate_offperiod_button)
+        openoffbtn[1] = findViewById(R.id.projectcreate_openperiod_button)
+        openoffbtn[0]?.setOnClickListener {
+
+
+            openoffbtn[0]?.let { it1 ->
+                this.onClickBtn(
+                    it1,
+                    0,2
+                )
+            }
+        }
+        openoffbtn[1]?.setOnClickListener {
+
+
+            openoffbtn[1]?.let { it2 ->
+                this.onClickBtn(
+                    it2,
+                    1,2
+                )
+            }
         }
 
 
@@ -173,7 +157,7 @@ class ProjectCreation : AppCompatActivity() {
             periodbtn[0]?.let { it1 ->
                 this.onClickBtn(
                     it1,
-                    0
+                    0,3
                 )
             }
         }
@@ -181,7 +165,7 @@ class ProjectCreation : AppCompatActivity() {
             periodbtn[1]?.let { it1 ->
                 this.onClickBtn(
                     it1,
-                    1
+                    1,3
                 )
             }
         }
@@ -189,7 +173,7 @@ class ProjectCreation : AppCompatActivity() {
             periodbtn[2]?.let { it1 ->
                 this.onClickBtn(
                     it1,
-                    2
+                    2,3
                 )
             }
         }
@@ -212,6 +196,16 @@ class ProjectCreation : AppCompatActivity() {
                             this@ProjectCreation,
                             R.drawable.radius_background_transparent_select
                         )
+                        if (child.text.toString().equals("건강/스포츠")) {
+                            child.text = "건강_스포츠"
+                            Log.d("tag", "분야 확인${child.text}")
+                        }
+
+                        if (child.text.toString().equals("예술/창작")) {
+                            child.text = "예술_창작"
+                            Log.d("tag", "분야 확인${child.text}")
+                        }
+
                         stackToolfield.add(child.text.toString())
                     } else {
                         child.background = ContextCompat.getDrawable(
@@ -265,6 +259,19 @@ class ProjectCreation : AppCompatActivity() {
                 projectcreate_write_recruitment_article2_constraintlayout.visibility =
                     View.VISIBLE
 
+
+//                for (i in 0..stackToolfield.size-1) {
+//                    // 백엔드에서는 / 를 사용할 수 없어 변환 과정
+//                    if (stackToolfield[i].equals("건강/스포츠")) {
+//                        stackToolfield[i] = "건강_스포츠"
+//                        Log.d("tag ","${stackToolfield[i]}")
+//                    }
+//                    if (stackToolfield[i].equals("예술/창작")) {
+//                        stackToolfield[i] = "예술_창작"
+//                        Log.d("tag ","${stackToolfield[i]}")
+//                    }
+//                }
+
                 // 사용 예정 스택, 모집 포지션, 분야
                 selectAllItems.addAll(selecteddeveloperItems)
                 selectAllItems.addAll(selecteddesignerItems)
@@ -289,46 +296,47 @@ class ProjectCreation : AppCompatActivity() {
 
     }
 
+
     // Page2를 선택했을 때 (마지막 page)
     private fun SelectPage2() {
+
         createproject_submitrecruitment_button.setOnClickListener {
 
             var recruitmentproject = ProjectCreationElement(
-                selectpositionItems,
-                selectAllItems,
-                openofftext,
-                stacklistregions,
-                periodtext,
                 selectedfieldItems,
-                createproject_projecttitle_edittext.text.toString(),
-                createproject_projectdetail_edittext.text.toString()
+                stacklistregions,
+                createproject_projectdetail_edittext.text.toString(),
+                selectAllItems,
+                createproject_projecttitle_edittext.text.toString()
             )
 
 
-
             // API 작성 DB에 넘김
-            projectapi?.getRecruitmentProject(recruitmentproject)
-                ?.enqueue(object : Callback<CheckResponse> {
-                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
-                        Log.d("TAG : ","projectapi - onFailure() called /")
+            projectapi?.postRecruitmentProject(recruitmentproject)
+                ?.enqueue(object : Callback<ProjectElement> {
+                    override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
+                        Log.d("tag : ", "error")
+
                     }
+
                     override fun onResponse(
-                        call: Call<CheckResponse>,
-                        response: Response<CheckResponse>
+                        call: Call<ProjectElement>,
+                        response: Response<ProjectElement>
                     ) {
-                        if(response.code().toString() == "200"){ // 200 : 요청이 정상적으로 처리 되었다면
-                            ToastmakeTextPrint ("프로젝트 모집글 작성 완료되었습니다.")
+                        Log.d("tag : ", "true")
+                        Log.d("tag : ", "${response.code().toString()}")
+
+                        if(!response.isSuccessful){
+                            Log.d("tag : ","실패")
+                            Log.d("tag : ", "${response.code().toString()}")
                         }else{
-                            ToastmakeTextPrint ("프로젝트 모집글 작성 실패하였습니다.")
+                            Log.d("tag : ","성공")
+                            Log.d("tag : ", "${response.code().toString()}")
                         }
                     }
-
                 })
 
-
-            finish ()
-
-
+            finish()
 
 
         }
@@ -365,26 +373,65 @@ class ProjectCreation : AppCompatActivity() {
         Toast.makeText(this, word, Toast.LENGTH_SHORT).show()
     }
 
+
+    var checkoffout:Int = -1
+    var checkexpectedperiod:Int = -1
+
     // 버튼 둘 중 하나만 선택되게 하기 위해 사용
-    private fun onClickBtn(v: View, index: Int) {
+    private fun onClickBtn(v: View, index: Int,btnsize: Int) {
         var id = v.id
+
+
+        var checkoff:Int = btnsize-1
 
         // 프로젝트 방식
         if (id == R.id.projectcreate_offperiod_button || id == R.id.projectcreate_openperiod_button) {
-            for (i in 0..1) {
-                if (i == index) {
-                    openoffbtn[i]?.background = ContextCompat.getDrawable(
-                        this@ProjectCreation,
-                        R.drawable.radius_background_transparent_select
-                    )
-                    openofftext = openoffbtn[i]?.text.toString()
-                } else {
-                    openoffbtn[i]?.background = ContextCompat.getDrawable(
-                        this@ProjectCreation,
-                        R.drawable.radius_button_effect
-                    )
+
+
+            // 선택된 상태라면 체크 취소하기
+            if(index==checkoffout){
+
+                // 오프라인 부분이면 지역부분 빼기
+                if(index==0){
+                    createproject_regions_textview.visibility = View.GONE
+                    projectcreate_regions_linearlayout.visibility = View.GONE
+                    createproject_regions_spinner.text = "지역"
+                    stacklistregions = "지역"
                 }
+                openoffbtn[index]?.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_button_effect
+                )
+                
+                // 초기화
+                openofftext = "openoff"
+                checkoffout = -1
             }
+            else{
+
+                if(index==0){
+                    createproject_regions_textview.visibility = View.VISIBLE
+                    projectcreate_regions_linearlayout.visibility = View.VISIBLE
+
+                }else{
+                    createproject_regions_textview.visibility = View.GONE
+                    projectcreate_regions_linearlayout.visibility = View.GONE
+                    createproject_regions_spinner.text = "지역"
+                    stacklistregions = "지역"
+                }
+
+                openoffbtn[index]?.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_background_transparent_select
+                )
+                openoffbtn[checkoff-index]?.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_button_effect
+                )
+                openofftext = openoffbtn[index]?.text.toString()
+                checkoffout = index
+            }
+
         }
 
 
@@ -393,11 +440,22 @@ class ProjectCreation : AppCompatActivity() {
             || id == R.id.projectcreate_month3_button
         ) {
             for (i in 0..2) {
-                if (i == index) {
+
+                // 1. 이미 버튼 on 되어 있는 곳에 한 번 더 눌렸을 때 off
+                // 2. 해당 자리 버튼일 때 버튼 on
+                // 3. 이외의 버튼(버튼 적용되는 곳 이외) off
+                if(checkexpectedperiod == i){
+                    periodbtn[i]?.background = ContextCompat.getDrawable(
+                        this@ProjectCreation,
+                        R.drawable.radius_button_effect
+                    )
+                    checkexpectedperiod = -1
+                } else if(i == index) {
                     periodbtn[i]?.background = ContextCompat.getDrawable(
                         this@ProjectCreation,
                         R.drawable.radius_background_transparent_select
                     )
+                    checkexpectedperiod = i
                     periodtext = periodbtn[i]?.text.toString()
                 } else {
                     periodbtn[i]?.background = ContextCompat.getDrawable(
@@ -418,7 +476,7 @@ class ProjectCreation : AppCompatActivity() {
 
             booleanArrayOf()
 
-            if (stack[0].equals("JAVA")) {
+            if (stack[0].equals("java")) {
                 val dialog = AlertDialog.Builder(this@ProjectCreation)
                 dialog.setMultiChoiceItems(stack,
                     booleanArrayOf(

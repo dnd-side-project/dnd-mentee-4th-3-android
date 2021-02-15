@@ -24,21 +24,9 @@ class RecentlyRegisterProject : Fragment() {
     init {
         recentlyregister = arrayListOf(
             RecentlyRegisterList(R.drawable.android_appeal,"프로젝트 체크","디자이너","2020.01.31","c++","c#","c"),
-            RecentlyRegisterList(R.drawable.android_group,"프로젝트 체크","디자이너","2020.01.31","java","eclipse","ki"),
-            RecentlyRegisterList(R.drawable.android_plus_sign,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac"),
-            RecentlyRegisterList(R.drawable.android_group,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac"),
-            RecentlyRegisterList(R.drawable.android_group,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac"),
-            RecentlyRegisterList(R.drawable.android_appeal,"프로젝트 체크","디자이너","2020.01.31","c++","c#","c"),
-            RecentlyRegisterList(R.drawable.android_group,"프로젝트 체크","디자이너","2020.01.31","java","eclipse","ki"),
-            RecentlyRegisterList(R.drawable.android_plus_sign,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac"),
-            RecentlyRegisterList(R.drawable.android_group,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac"),
-            RecentlyRegisterList(R.drawable.android_group,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac"),
-            RecentlyRegisterList(R.drawable.android_appeal,"프로젝트 체크","디자이너","2020.01.31","c++","c#","c"),
-            RecentlyRegisterList(R.drawable.android_group,"프로젝트 체크","디자이너","2020.01.31","java","eclipse","ki"),
-            RecentlyRegisterList(R.drawable.android_plus_sign,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac"),
-            RecentlyRegisterList(R.drawable.android_group,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac"),
-            RecentlyRegisterList(R.drawable.android_group,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac")
-        )
+            RecentlyRegisterList(0,"프로젝트 체크","디자이너","2020.01.31","java","eclipse","ki"),
+            RecentlyRegisterList(R.drawable.android_plus_sign,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac")
+          )
 
 
     }

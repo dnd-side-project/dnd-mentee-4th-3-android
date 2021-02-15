@@ -9,8 +9,6 @@ import com.thisteampl.jackpot.main.mainhome.SearchViewPage
 import com.thisteampl.jackpot.main.mypage.MyPage
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.main_appname_textview
-import kotlinx.android.synthetic.main.activity_main.main_mypage_imagebutton
-import kotlinx.android.synthetic.main.activity_main.main_search_imagebutton
 import kotlinx.android.synthetic.main.activity_project_view_detail.*
 
 class ProjectViewDetail : AppCompatActivity() {
@@ -49,9 +47,9 @@ class ProjectViewDetail : AppCompatActivity() {
         val searchintent = Intent(this, SearchViewPage::class.java)
 
         // 검색
-        projectviewdetail_search_imagebutton.setOnClickListener {
-            startActivity(searchintent)
-        }
+//        projectviewdetail_search_imagebutton.setOnClickListener {
+//            startActivity(searchintent)
+//        }
 
         // 나의 페이지
         projectviewdetail_mypage_imagebutton.setOnClickListener{

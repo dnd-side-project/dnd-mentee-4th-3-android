@@ -29,12 +29,12 @@ class MainActivity : AppCompatActivity(){
         val searchintent = Intent(this,SearchViewPage::class.java)
 
         // 검색
-        main_search_imagebutton.setOnClickListener {
+        main_search_imageview.setOnClickListener {
             startActivity(searchintent)
         }
 
         // 나의 페이지
-        main_mypage_imagebutton.setOnClickListener{
+        main_mypage_imageview.setOnClickListener{
             if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -54,35 +54,35 @@ class MainActivity : AppCompatActivity(){
 
         // 주목받는 프로젝트, 액티비티 프래그먼트 연결
         // attentionlocation => 더보기 버튼 옵션 넣기 위해 사용
-        main_projectattention_textview.setOnClickListener {
-            attentionlocation = 0
-            main_projectattention_textview.setTextColor(Color.BLACK)
-            main_memberattention_textview.setTextColor(Color.GRAY)
-            setFrag(attentionlocation)
-        }
+//        main_projectattention_textview.setOnClickListener {
+//            attentionlocation = 0
+//            main_projectattention_textview.setTextColor(Color.BLACK)
+//            main_memberattention_textview.setTextColor(Color.GRAY)
+//            setFrag(attentionlocation)
+//        }
 
         // 주목받는 멤버, 액티비티 프래그먼트 연결
         // attentionlocation => 더보기 버튼 옵션 넣기 위해 사용
-        main_memberattention_textview.setOnClickListener {
-            attentionlocation += 1
-            main_memberattention_textview.setTextColor(Color.BLACK)
-            main_projectattention_textview.setTextColor(Color.GRAY)
-            setFrag(attentionlocation)
-        }
+//        main_memberattention_textview.setOnClickListener {
+//            attentionlocation += 1
+//            main_memberattention_textview.setTextColor(Color.BLACK)
+//            main_projectattention_textview.setTextColor(Color.GRAY)
+//            setFrag(attentionlocation)
+//        }
 
 
         // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
-        recentlyregister = RecentlyRegisterProject.newInstance()
-        supportFragmentManager.beginTransaction().add(R.id.main_recentlyproject_framelayout,recentlyregister).commit()
+//        recentlyregister = RecentlyRegisterProject.newInstance()
+//        supportFragmentManager.beginTransaction().add(R.id.main_recentlyproject_framelayout,recentlyregister).commit()
 
         val intentrecentlyviewmore = Intent(this, RecentlyProjectViewMore::class.java)
 
 
         // 최근에 등록된 프로젝트 더보기 버튼
-        main_recentlyviewmore_textview.setOnClickListener {
-            intentrecentlyviewmore.putExtra("InputRecently",recentlyregister.recentlyregister)
-            startActivity(intentrecentlyviewmore)
-        }
+//        main_recentlyviewmore_textview.setOnClickListener {
+//            intentrecentlyviewmore.putExtra("InputRecently",recentlyregister.recentlyregister)
+//            startActivity(intentrecentlyviewmore)
+//        }
 
         // 참고자료 : https://jinsangjin.tistory.com/12
         // xml값을 로딩하기위해 AnimationUtils.loadAnimation 사용
@@ -143,13 +143,13 @@ class MainActivity : AppCompatActivity(){
         val ft = supportFragmentManager.beginTransaction()
 
         when(fragNum){
-            0 -> {
-                ft.replace(R.id.main_projectview_framelayout,AttentionProject()).commit()
-            }
-
-            1-> {
-                ft.replace(R.id.main_projectview_framelayout,AttentionMember()).commit()
-            }
+//            0 -> {
+//                ft.replace(R.id.main_projectview_framelayout,AttentionProject()).commit()
+//            }
+//
+//            1-> {
+//                ft.replace(R.id.main_projectview_framelayout,AttentionMember()).commit()
+//            }
         }
 
     }
