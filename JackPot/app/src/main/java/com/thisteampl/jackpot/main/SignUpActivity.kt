@@ -686,7 +686,7 @@ class SignUpActivity : AppCompatActivity() {
         val username = "dndjackpot3@gmail.com"
         val password = ""
 
-        val props = Properties();
+        val props = Properties()
         props["mail.smtp.auth"] = "true"
         props["mail.smtp.starttls.enable"] = "true"
         props["mail.smtp.host"] = "smtp.gmail.com"

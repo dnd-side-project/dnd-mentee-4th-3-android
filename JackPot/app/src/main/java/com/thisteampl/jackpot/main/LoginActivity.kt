@@ -14,7 +14,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.nhn.android.naverlogin.OAuthLogin
@@ -212,6 +214,29 @@ class LoginActivity : AppCompatActivity() {
 
     // 서드파티에서 받아온 토큰을 확인
     private fun checkThirdPartyToken(token: String, type: String, id: String) {
+
+        //파이어베이스 알림을 위한 토큰 받아오기.
+        var fcmToken: String?
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.w(
+                        "log_FCM",
+                        "Fetching FCM registration token failed",
+                        task.exception
+                    )
+                    return@OnCompleteListener
+                }
+
+                // Get new FCM registration token
+                fcmToken = task.result
+
+                // Log and toast
+                val msg = "토큰 : $fcmToken"
+                Log.d("log_FCM", msg)
+            })
+
+
         when (type) {
             "kakao" -> {
                 userApi?.getCheckKakaoToken(token)?.enqueue(object : Callback<CheckResponse>{

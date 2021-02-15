@@ -65,4 +65,11 @@ dependencies {
     implementation files('libs/activation.jar')
     implementation files('libs/additionnal.jar')
     implementation files('libs/mail.jar')
+
+    // Notification을 위한 Firebase FCM SDK
+    implementation platform('com.google.firebase:firebase-bom:26.5.0')
+    implementation 'com.google.firebase:firebase-core:18.0.2'
+    implementation 'com.google.firebase:firebase-messaging:21.0.1'
+    implementation 'androidx.work:work-runtime:2.5.0'
+    implementation 'com.firebase:firebase-jobdispatcher:0.6.0'
 }
