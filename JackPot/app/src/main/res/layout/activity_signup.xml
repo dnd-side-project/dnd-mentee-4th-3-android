@@ -4,27 +4,44 @@
     android:id="@+id/signup_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    android:background="@color/colorWhite">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="680dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <Button
+        android:id="@+id/signup_previous_button"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginRight="140dp"
+        android:visibility="invisible"
+        android:background="@drawable/android_back"/>
 
     <Button
         android:id="@+id/signup_exit_button"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        android:layout_marginRight="330dp"
-        android:layout_marginBottom="600dp"
-        android:background="@drawable/close_24px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginLeft="140dp"
+        android:background="@drawable/close_24px" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/signup_page_viewer"
-        android:layout_width="wrap_content"
+        android:textAlignment="textEnd"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="600dp"
-        android:layout_marginLeft="240dp"
-        android:text="1 / 6"
+        android:layout_marginLeft="260dp"
+        android:text="1 / 7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,9 +49,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_email_signup_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,6 +75,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="72dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +85,7 @@
                 android:id="@+id/signup_id_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:hint="이메일"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
@@ -133,7 +152,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="180dp"
-            android:layout_marginRight="72dp"
+            android:layout_marginRight="147dp"
             android:hint="비밀번호(6글자 ~ 15글자)"
             android:inputType="textPassword"
             android:singleLine="true"
@@ -148,7 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="320dp"
-            android:layout_marginRight="72dp"
+            android:layout_marginRight="147dp"
             android:hint="비밀번호 확인"
             android:inputType="textPassword"
             android:singleLine="true"
@@ -162,9 +181,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_nickname_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -201,6 +221,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="72dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -228,9 +249,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_region_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -516,9 +538,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_position_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -556,7 +579,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:gravity="center"
+            android:gravity="left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -594,9 +617,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_state_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -633,7 +657,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:gravity="center"
+            android:gravity="left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -671,9 +695,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_state_grade_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="250dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -696,7 +721,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -743,9 +768,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_developer_stack_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -932,9 +958,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_designer_tool_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -1139,9 +1166,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_introduce_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -1176,13 +1204,39 @@
 
         <EditText
             android:id="@+id/signup_introduce_text"
-            android:layout_width="320dp"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
             android:textSize="14dp"
             android:hint="프로젝트에 임하는 각오,\n본인의 경력 등을 자유롭게 입력해 주세요."
-            android:lines="10"
+            android:lines="12"
             android:inputType="textMultiLine"
+            android:background="@drawable/radius_background_transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/signup_introduce_firstlink_text"
+            android:layout_width="360dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="460dp"
+            android:textSize="14dp"
+            android:hint="첫번째 링크"
+            android:background="@drawable/radius_background_transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/signup_introduce_secondlink_text"
+            android:layout_width="360dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="550dp"
+            android:textSize="14dp"
+            android:hint="두번째 링크"
             android:background="@drawable/radius_background_transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -1192,9 +1246,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_open_layout"
-        android:layout_width="360dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -1233,7 +1288,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="530dp"
+        android:layout_marginTop="600dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -1241,13 +1296,23 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/signup_previous_button"
+            android:id="@+id/signup_writenexttime_button"
             android:layout_width="160dp"
             android:layout_height="40dp"
             android:layout_marginRight="20dp"
-            android:visibility="gone"
             android:background="@drawable/radius_background"
-            android:text="이전"/>
+            android:alpha="0.5"
+            android:text="다음에 작성할래요"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/signup_noopen_button"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/radius_background"
+            android:text="공개하고싶지 않아요"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/signup_confirm_button"
@@ -1258,5 +1323,18 @@
 
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/signup_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="550dp"
+        android:progressTint="@color/colorBlack"
+        android:max="7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
