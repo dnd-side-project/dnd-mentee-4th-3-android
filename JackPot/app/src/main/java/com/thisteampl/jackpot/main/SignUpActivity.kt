@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
 import com.kakao.sdk.user.UserApiClient
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.userController.CheckResponse
-import com.thisteampl.jackpot.main.userController.SignUp
+import com.thisteampl.jackpot.main.userController.User
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_signup.*
 import retrofit2.Call
@@ -296,7 +296,7 @@ class SignUpActivity : AppCompatActivity() {
                     signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 7 -> { // 프로필 공개 여부
-                    signUp("yes")
+                    signUp(true)
                 }
             }
         }
@@ -434,7 +434,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         signup_noopen_button.setOnClickListener {
-            signUp("no")
+            signUp(false)
         }
 
         //다음에 작성할래요 버튼
@@ -686,7 +686,7 @@ class SignUpActivity : AppCompatActivity() {
         val username = "dndjackpot3@gmail.com"
         val password = ""
 
-        val props = Properties();
+        val props = Properties()
         props["mail.smtp.auth"] = "true"
         props["mail.smtp.starttls.enable"] = "true"
         props["mail.smtp.host"] = "smtp.gmail.com"
@@ -723,9 +723,9 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     //회원가입 완료 메서드. 매개변수로 프로필 공개 여부를 넣어준다.
-    private fun signUp(profileOpen: String) {
-        var signUp = SignUp("ROLE_USER", state, signup_id_text.text.toString(),
-            position, signUpType, signup_name_text.text.toString(), signup_password_text.text.toString(),
+    private fun signUp(profileOpen: Boolean) {
+        var signUp = User("ROLE_USER", state, signup_id_text.text.toString(),
+            position, signUpType, signup_name_text.text.toString(), signup_password_text.text.toString(), profileOpen,
             region, stackTool)
 
         userApi?.getUserSignUp(signUp)
