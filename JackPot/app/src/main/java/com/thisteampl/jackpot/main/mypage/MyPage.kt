@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.LoginActivity
@@ -22,17 +23,26 @@ import retrofit2.Response
 class MyPage : AppCompatActivity() {
 
     private val userApi = userAPI.create()
-    lateinit var user: User
+    lateinit var myProjectAdapter: MyProjectAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
 
         getProfile()
+        setUpRecyclerView()
         setupView()
     }
         // 마이페이지 뷰 셋팅하는 메서드. 로그인 돼 있을 경우와 로그아웃 돼 있을 경우를 분리한다.
         private fun setupView(){
+            var p1 = ProjectBigVer("진행 중", "프로젝트 1", listOf("C++", "Java", "Figma"))
+            var p2 = ProjectBigVer("완료", "프로젝트 2", listOf("Python", "Django", "Adobe PhotoShop"))
+            var p3 = ProjectBigVer("진행 중", "프로젝트 3", listOf("C++", "Java", "HTML / CSS", "Java Script","Python", "Django", "Adobe PhotoShop", "Figma"))
+            myProjectAdapter.items.add(p1)
+            myProjectAdapter.items.add(p2)
+            myProjectAdapter.items.add(p3)
+
+            mypage_project_num_text.text = myProjectAdapter.items.size.toString() + "개"
 
             mypage_back_button.setOnClickListener { super.onBackPressed() }
 
@@ -131,5 +141,11 @@ class MyPage : AppCompatActivity() {
                     }
                 }
             })
+    }
+
+    private fun setUpRecyclerView(){
+        myProjectAdapter = MyProjectAdapter()
+        mypage_myproject_recyclerview.adapter = myProjectAdapter
+        mypage_myproject_recyclerview.layoutManager = LinearLayoutManager(this)
     }
 }
