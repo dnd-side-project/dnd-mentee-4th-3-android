@@ -1,5 +1,6 @@
 package com.thisteampl.jackpot.main.mypage
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +9,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
+import com.thisteampl.jackpot.main.LoginActivity
+import com.thisteampl.jackpot.main.userController.CheckProfile
 import com.thisteampl.jackpot.main.userController.CheckResponse
+import com.thisteampl.jackpot.main.userController.User
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_my_page.*
 import retrofit2.Call
@@ -18,10 +22,13 @@ import retrofit2.Response
 class MyPage : AppCompatActivity() {
 
     private val userApi = userAPI.create()
+    lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
+
+        getProfile()
         setupView()
     }
         // 마이페이지 뷰 셋팅하는 메서드. 로그인 돼 있을 경우와 로그아웃 돼 있을 경우를 분리한다.
@@ -86,4 +93,43 @@ class MyPage : AppCompatActivity() {
                 mypage_select_mycomment_bottombar.visibility = View.GONE
             }
         }
+
+    // 프로필을 가져오는 메서드.
+    private fun getProfile(){
+        userApi?.getProfile()?.enqueue(
+            object : Callback<CheckProfile> {
+                override fun onFailure(call: Call<CheckProfile>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckProfile>,
+                    response: Response<CheckProfile>
+                ) {
+                    when {
+                        response.code().toString() == "200" -> {
+                            Log.e("getProfile ", "User : " + response.body()!!.result.email)
+                        }
+                        response.code().toString() == "401" -> {
+                            Toast.makeText(
+                                baseContext,
+                                "토큰 유효기간이 만료됐습니다.\n 로그인 페이지로 이동합니다.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            prefs.setString("token", "NO_TOKEN")
+                            val intent = Intent(baseContext, LoginActivity::class.java)
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            finish()
+                        }
+                        else -> {
+                            Toast.makeText(
+                                baseContext, "에러가 발생했습니다. 에러코드 : " + response.code()
+                                , Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            })
+    }
 }

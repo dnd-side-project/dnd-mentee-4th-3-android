@@ -256,6 +256,8 @@ class LoginActivity : AppCompatActivity() {
                                         baseContext, "\uD83D\uDD11재설정한 비밀번호로 로그인 해주세요."
                                         , Toast.LENGTH_SHORT
                                     ).show()
+                                    val intent = Intent(baseContext, LoginActivity::class.java)
+                                    startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
                                     finish()
                                 } else {
                                     Toast.makeText(
@@ -373,7 +375,7 @@ class LoginActivity : AppCompatActivity() {
 
         // 보내는 메일 주소와 비밀번호
         val username = "dndjackpot3@gmail.com"
-        val password = "thisteampl33!"
+        val password = ""
 
         val props = Properties()
         props["mail.smtp.auth"] = "true"

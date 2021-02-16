@@ -30,6 +30,9 @@ interface userAPI {
     @PUT("/password-modify")
     fun getFindPW(@Query("email") email : String, @Query("password") password : String) : Call<CheckResponse>
 
+    @GET("/myprofile")
+    fun getProfile() : Call<CheckProfile>
+
     @DELETE("/withdraw")
     fun getWithDraw() : Call<CheckResponse>
 
