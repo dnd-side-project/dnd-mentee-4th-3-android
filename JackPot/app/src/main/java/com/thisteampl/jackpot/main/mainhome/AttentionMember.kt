@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
-import kotlinx.android.synthetic.main.fragment_attention_member.*
 import kotlinx.android.synthetic.main.fragment_attention_project.*
 
 // 참고 자료 : https://youtu.be/BT206iXW9bk
@@ -35,10 +34,10 @@ class AttentionMember : Fragment() {
     // View가 만들어진 후, onViewCreated() 콜백된다.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        main_attentionmemberlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),
+        main_attentionprojectlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),
             LinearLayoutManager.VERTICAL,false)
-        main_attentionmemberlist_recyclerview.setHasFixedSize(true)  // RecyclerView 크기 유지 (변경 x)
-        main_attentionmemberlist_recyclerview.adapter = AttentionMemberListAdapter(attention)
+        main_attentionprojectlist_recyclerview.setHasFixedSize(true)  // RecyclerView 크기 유지 (변경 x)
+        main_attentionprojectlist_recyclerview.adapter = AttentionMemberListAdapter(attention)
     }
 
     // 액티비티 프래그먼트 연결될 때 onAttach
@@ -48,7 +47,7 @@ class AttentionMember : Fragment() {
 
     // onCreate 후에 화면을 구성할 때 호출되는 부분
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_attention_member,container,false)
+        val view = inflater.inflate(R.layout.fragment_attention_project,container,false)
         return view
     }
 

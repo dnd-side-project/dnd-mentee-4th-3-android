@@ -53,19 +53,19 @@ class MainActivity : AppCompatActivity(){
 
 
         var attentionlocation : Int = 0
-        setFrag(attentionlocation)
-
+        setFrag(0)
+        setFrag(1)
         // 주목받는 프로젝트, 액티비티 프래그먼트 연결
         // attentionlocation => 더보기 버튼 옵션 넣기 위해 사용
 //        main_projectattention_textview.setOnClickListener {
 //            attentionlocation = 0
 //            main_projectattention_textview.setTextColor(Color.BLACK)
 //            main_memberattention_textview.setTextColor(Color.GRAY)
-//            setFrag(attentionlocation)
+//
 //        }
 
-        // 주목받는 멤버, 액티비티 프래그먼트 연결
-        // attentionlocation => 더보기 버튼 옵션 넣기 위해 사용
+//         주목받는 멤버, 액티비티 프래그먼트 연결
+//         attentionlocation => 더보기 버튼 옵션 넣기 위해 사용
 //        main_memberattention_textview.setOnClickListener {
 //            attentionlocation += 1
 //            main_memberattention_textview.setTextColor(Color.BLACK)
@@ -146,13 +146,13 @@ class MainActivity : AppCompatActivity(){
         val ft = supportFragmentManager.beginTransaction()
 
         when(fragNum){
-//            0 -> {
-//                ft.replace(R.id.main_projectview_framelayout,AttentionProject()).commit()
-//            }
-//
-//            1-> {
-//                ft.replace(R.id.main_projectview_framelayout,AttentionMember()).commit()
-//            }
+            0 -> {
+                ft.replace(R.id.main_projectview_framelayout,AttentionProject()).commit()
+            }
+
+            1-> {
+                ft.replace(R.id.main_projectview_framelayout2,AttentionMember()).commit()
+            }
         }
 
     }

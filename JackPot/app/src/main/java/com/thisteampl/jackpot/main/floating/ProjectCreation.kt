@@ -26,10 +26,10 @@ class ProjectCreation : AppCompatActivity() {
     private val stackToolfield = mutableListOf<String>()
 
     // 프로젝트 방식, 프로젝트 예상 기간을 위한 arrayOfNulls 선언
-    private var openoffbtn = arrayOfNulls<Button>(2)
-    private var periodbtn = arrayOfNulls<Button>(3)
-    private var openofftext = "openoff"
-    private var periodtext = "period"
+    private var onoffbtn = arrayOfNulls<Button>(2)
+    private var durationbtn = arrayOfNulls<Button>(3)
+    private var onofftext = "onoff"
+    private var durationtext = "duration"
 
     private var page: Int = 1
 
@@ -114,7 +114,8 @@ class ProjectCreation : AppCompatActivity() {
 
         // 지역
         var regions = listOf(
-            "서울", "부산", "대구", "광주", "울산", "세종", "경기도", "강원도"
+            "서울", "부산", "대구", "인천", "대전", "광주", "울산", "세종","경기도",
+            "강원도"
         )
 
         createproject_regions_spinner.setItems(regions)
@@ -125,22 +126,22 @@ class ProjectCreation : AppCompatActivity() {
 
         // 프로젝트 방식
 
-        openoffbtn[0] = findViewById(R.id.projectcreate_offperiod_button)
-        openoffbtn[1] = findViewById(R.id.projectcreate_openperiod_button)
-        openoffbtn[0]?.setOnClickListener {
+        onoffbtn[0] = findViewById(R.id.projectcreate_offduration_button)
+        onoffbtn[1] = findViewById(R.id.projectcreate_onduration_button)
+        onoffbtn[0]?.setOnClickListener {
 
 
-            openoffbtn[0]?.let { it1 ->
+            onoffbtn[0]?.let { it1 ->
                 this.onClickBtn(
                     it1,
                     0,2
                 )
             }
         }
-        openoffbtn[1]?.setOnClickListener {
+        onoffbtn[1]?.setOnClickListener {
 
 
-            openoffbtn[1]?.let { it2 ->
+            onoffbtn[1]?.let { it2 ->
                 this.onClickBtn(
                     it2,
                     1,2
@@ -150,27 +151,27 @@ class ProjectCreation : AppCompatActivity() {
 
 
         // 프로젝트 예상시간
-        periodbtn[0] = findViewById(R.id.projectcreate_month_button)
-        periodbtn[1] = findViewById(R.id.projectcreate_month2_button)
-        periodbtn[2] = findViewById(R.id.projectcreate_month3_button)
-        periodbtn[0]?.setOnClickListener {
-            periodbtn[0]?.let { it1 ->
+        durationbtn[0] = findViewById(R.id.projectcreate_month_button)
+        durationbtn[1] = findViewById(R.id.projectcreate_month2_button)
+        durationbtn[2] = findViewById(R.id.projectcreate_month3_button)
+        durationbtn[0]?.setOnClickListener {
+            durationbtn[0]?.let { it1 ->
                 this.onClickBtn(
                     it1,
                     0,3
                 )
             }
         }
-        periodbtn[1]?.setOnClickListener {
-            periodbtn[1]?.let { it1 ->
+        durationbtn[1]?.setOnClickListener {
+            durationbtn[1]?.let { it1 ->
                 this.onClickBtn(
                     it1,
                     1,3
                 )
             }
         }
-        periodbtn[2]?.setOnClickListener {
-            periodbtn[2]?.let { it1 ->
+        durationbtn[2]?.setOnClickListener {
+            durationbtn[2]?.let { it1 ->
                 this.onClickBtn(
                     it1,
                     2,3
@@ -303,7 +304,10 @@ class ProjectCreation : AppCompatActivity() {
         createproject_submitrecruitment_button.setOnClickListener {
 
             var recruitmentproject = ProjectCreationElement(
+                durationtext,
                 selectedfieldItems,
+                onofftext,
+                selectpositionItems,
                 stacklistregions,
                 createproject_projectdetail_edittext.text.toString(),
                 selectAllItems,
@@ -352,13 +356,13 @@ class ProjectCreation : AppCompatActivity() {
         if (selecteddeveloperItems.isEmpty() && selecteddesignerItems.isEmpty()) {
             ToastmakeTextPrint("사용 예정 스택 입력해주세요."); return false
         }
-        if (openofftext.equals("openoff")) {
+        if (onofftext.equals("onoff")) {
             ToastmakeTextPrint("프로젝트 방식을 선택해주세요."); return false
         }
         if (stacklistregions.equals("지역")) {
             ToastmakeTextPrint("$stacklistregions 지역을 입력해주세요."); return false
         }
-        if (periodtext.equals("period")) {
+        if (durationtext.equals("duration")) {
             ToastmakeTextPrint("프로젝트 예상 기간을 선택해주세요."); return false
         }
         if (stackToolfield.size == 0) {
@@ -375,7 +379,7 @@ class ProjectCreation : AppCompatActivity() {
 
 
     var checkoffout:Int = -1
-    var checkexpectedperiod:Int = -1
+    var checkexpectedduration:Int = -1
 
     // 버튼 둘 중 하나만 선택되게 하기 위해 사용
     private fun onClickBtn(v: View, index: Int,btnsize: Int) {
@@ -385,7 +389,7 @@ class ProjectCreation : AppCompatActivity() {
         var checkoff:Int = btnsize-1
 
         // 프로젝트 방식
-        if (id == R.id.projectcreate_offperiod_button || id == R.id.projectcreate_openperiod_button) {
+        if (id == R.id.projectcreate_offduration_button || id == R.id.projectcreate_onduration_button) {
 
 
             // 선택된 상태라면 체크 취소하기
@@ -398,13 +402,13 @@ class ProjectCreation : AppCompatActivity() {
                     createproject_regions_spinner.text = "지역"
                     stacklistregions = "지역"
                 }
-                openoffbtn[index]?.background = ContextCompat.getDrawable(
+                onoffbtn[index]?.background = ContextCompat.getDrawable(
                     this@ProjectCreation,
                     R.drawable.radius_button_effect
                 )
                 
                 // 초기화
-                openofftext = "openoff"
+                onofftext = "onoff"
                 checkoffout = -1
             }
             else{
@@ -420,15 +424,15 @@ class ProjectCreation : AppCompatActivity() {
                     stacklistregions = "지역"
                 }
 
-                openoffbtn[index]?.background = ContextCompat.getDrawable(
+                onoffbtn[index]?.background = ContextCompat.getDrawable(
                     this@ProjectCreation,
                     R.drawable.radius_background_transparent_select
                 )
-                openoffbtn[checkoff-index]?.background = ContextCompat.getDrawable(
+                onoffbtn[checkoff-index]?.background = ContextCompat.getDrawable(
                     this@ProjectCreation,
                     R.drawable.radius_button_effect
                 )
-                openofftext = openoffbtn[index]?.text.toString()
+                onofftext = onoffbtn[index]?.text.toString()
                 checkoffout = index
             }
 
@@ -444,21 +448,21 @@ class ProjectCreation : AppCompatActivity() {
                 // 1. 이미 버튼 on 되어 있는 곳에 한 번 더 눌렸을 때 off
                 // 2. 해당 자리 버튼일 때 버튼 on
                 // 3. 이외의 버튼(버튼 적용되는 곳 이외) off
-                if(checkexpectedperiod == i){
-                    periodbtn[i]?.background = ContextCompat.getDrawable(
+                if(checkexpectedduration == i){
+                    durationbtn[i]?.background = ContextCompat.getDrawable(
                         this@ProjectCreation,
                         R.drawable.radius_button_effect
                     )
-                    checkexpectedperiod = -1
+                    checkexpectedduration = -1
                 } else if(i == index) {
-                    periodbtn[i]?.background = ContextCompat.getDrawable(
+                    durationbtn[i]?.background = ContextCompat.getDrawable(
                         this@ProjectCreation,
                         R.drawable.radius_background_transparent_select
                     )
-                    checkexpectedperiod = i
-                    periodtext = periodbtn[i]?.text.toString()
+                    checkexpectedduration = i
+                    durationtext = durationbtn[i]?.text.toString()
                 } else {
-                    periodbtn[i]?.background = ContextCompat.getDrawable(
+                    durationbtn[i]?.background = ContextCompat.getDrawable(
                         this@ProjectCreation,
                         R.drawable.radius_button_effect
                     )

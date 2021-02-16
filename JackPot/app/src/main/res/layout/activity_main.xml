@@ -12,197 +12,6 @@
         android:layout_height="wrap_content">
 
 
-        <!--        <RelativeLayout-->
-<!--            android:id="@+id/main_field_relativelayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="150dp"-->
-<!--            android:layout_below="@+id/main_relativelayout"-->
-<!--            android:layout_alignParentStart="true"-->
-<!--            android:layout_marginStart="0dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:background="#ffffff">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/main_field_textview"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:text="분야"-->
-<!--                android:textColor="#111111"-->
-<!--                android:textSize="15dp"-->
-<!--                android:textStyle="bold" />-->
-
-
-<!--            <ImageView-->
-<!--                android:id="@+id/main_field2_imageview"-->
-<!--                android:layout_width="32dp"-->
-<!--                android:layout_height="32dp"-->
-<!--                android:layout_below="@+id/main_field_textview"-->
-
-<!--                android:layout_marginLeft="70dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_toEndOf="@+id/main_field1_imageview"-->
-<!--                android:scrollbarSize="3dp"-->
-<!--                android:src="@drawable/android_ellipse" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/main_field3_imageview"-->
-<!--                android:layout_width="32dp"-->
-<!--                android:layout_height="32dp"-->
-<!--                android:layout_below="@+id/main_field_textview"-->
-
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginRight="70dp"-->
-<!--                android:layout_toStartOf="@+id/main_field4_imageview"-->
-<!--                android:scrollbarSize="3dp"-->
-<!--                android:src="@drawable/android_ellipse" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/main_field4_imageview"-->
-<!--                android:layout_width="32dp"-->
-<!--                android:layout_height="32dp"-->
-<!--                android:layout_below="@+id/main_field_textview"-->
-
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginRight="30dp"-->
-<!--                android:scrollbarSize="3dp"-->
-<!--                android:src="@drawable/android_ellipse" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/main_field4_imageview2"-->
-<!--                android:layout_width="32dp"-->
-<!--                android:layout_height="32dp"-->
-<!--                android:layout_below="@+id/main_field4_imageview"-->
-
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_marginLeft="70dp"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:layout_marginRight="30dp"-->
-<!--                android:scrollbarSize="3dp"-->
-<!--                android:src="@drawable/android_ellipse" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/main_field4_imageview3"-->
-<!--                android:layout_width="32dp"-->
-<!--                android:layout_height="32dp"-->
-<!--                android:layout_below="@+id/main_field1_imageview"-->
-
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:layout_toStartOf="@+id/main_field4_imageview2"-->
-<!--                android:scrollbarSize="3dp"-->
-<!--                android:src="@drawable/android_ellipse" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/main_field4_imageview4"-->
-<!--                android:layout_width="32dp"-->
-<!--                android:layout_height="32dp"-->
-<!--                android:layout_below="@+id/main_field4_imageview"-->
-
-<!--                android:layout_marginLeft="70dp"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:layout_toEndOf="@+id/main_field4_imageview5"-->
-<!--                android:scrollbarSize="3dp"-->
-<!--                android:src="@drawable/android_ellipse" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/main_field4_imageview5"-->
-<!--                android:layout_width="32dp"-->
-<!--                android:layout_height="32dp"-->
-<!--                android:layout_below="@+id/main_field4_imageview"-->
-
-<!--                android:layout_alignParentStart="true"-->
-<!--                android:layout_marginLeft="30dp"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:scrollbarSize="3dp"-->
-<!--                android:src="@drawable/android_ellipse" />-->
-
-
-<!--        </RelativeLayout>-->
-
-
-<!--        <RelativeLayout-->
-<!--            android:id="@+id/main_attention_relativelayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:layout_below="@+id/main_field_relativelayout"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:background="#ffffff">-->
-
-<!--            <Button-->
-<!--                android:id="@+id/main_projectattention_textview"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentStart="true"-->
-<!--                android:layout_marginLeft="50dp"-->
-<!--                android:layout_marginTop="5dp"-->
-<!--                android:background="#FFFFFF"-->
-<!--                android:text="주목받는 프로젝트"-->
-<!--                android:textColor="#111111"-->
-<!--                android:textSize="15dp" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/main_memberattention_textview"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_marginTop="5dp"-->
-<!--                android:layout_marginRight="50dp"-->
-<!--                android:background="#FFFFFF"-->
-<!--                android:text="주목받는 멤버" />-->
-
-<!--        </RelativeLayout>-->
-
-<!--        <FrameLayout-->
-<!--            android:id="@+id/main_projectview_framelayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="230dp"-->
-<!--            android:layout_above="@+id/main_relativelayout4"-->
-<!--            android:layout_below="@+id/main_attention_relativelayout"-->
-<!--            android:layout_alignParentStart="true"-->
-<!--            android:layout_alignParentLeft="false"-->
-<!--            android:layout_alignParentRight="false"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:background="#ffffff" />-->
-
-<!--        <RelativeLayout-->
-<!--            android:id="@+id/main_relativelayout4"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="180dp"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:background="#ffffff">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/main_recentlyproject_textview"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:text="최근에 등록된 프로젝트"-->
-<!--                android:textColor="#000000"-->
-<!--                android:textSize="15dp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/main_recentlyviewmore_textview"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentRight="true"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                android:text="더보기 > "-->
-<!--                android:textSize="11dp" />-->
-
-<!--            <FrameLayout-->
-<!--                android:id="@+id/main_recentlyproject_framelayout"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/main_recentlyproject_textview"-->
-<!--                android:layout_centerHorizontal="true" />-->
-<!--        </RelativeLayout>-->
-
         <!-- 참고 웹 주소 : https://re-build.tistory.com/31 -->
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -564,27 +373,41 @@
                 app:layout_constraintTop_toTopOf="@+id/main_repose_imgbtn"
                 app:srcCompat="@drawable/field_repose" />
 
-            <!--        <ImageView-->
-            <!--            android:id="@+id/main_field_imageview7"-->
-            <!--            android:layout_width="55dp"-->
-            <!--            android:layout_height="55dp"-->
 
-            <!--            android:layout_marginStart="100dp"-->
-            <!--            android:layout_marginTop="20dp"-->
-            <!--            android:src="@drawable/circle_imageview" />-->
+            <RelativeLayout
+                android:id="@+id/main_relativelayout3"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/main_hobby_textview4"
+                app:layout_constraintTop_toBottomOf="@+id/main_hobby_textview4">
 
-            <!--        <ImageView-->
-            <!--            android:id="@+id/main_field1_imageview8"-->
-            <!--            android:layout_width="55dp"-->
-            <!--            android:layout_height="55dp"-->
+                <FrameLayout
+                    android:id="@+id/main_projectview_framelayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
 
-            <!--            android:layout_marginStart="50dp"-->
-            <!--            android:layout_marginTop="20dp"-->
-            <!--            android:layout_marginEnd="50dp"-->
-            <!--            android:src="@drawable/circle_imageview" />-->
+            </RelativeLayout>
 
 
+            <RelativeLayout
+                android:id="@+id/main_relativelayout1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/main_relativelayout3"
+                app:layout_constraintTop_toBottomOf="@+id/main_relativelayout3">
+
+                <FrameLayout
+                    android:id="@+id/main_projectview_framelayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/appeal_fab"

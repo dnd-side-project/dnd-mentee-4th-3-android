@@ -12,12 +12,12 @@
         android:orientation="vertical"
         >
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_attentionprojectlist_recyclerview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_attentionprojectlist_recyclerview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"/>
 
     </RelativeLayout>
 

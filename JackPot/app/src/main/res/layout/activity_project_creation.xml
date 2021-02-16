@@ -249,7 +249,7 @@
 
 
             <LinearLayout
-                android:id="@+id/projectcreate_projectopenoff_linearlayout"
+                android:id="@+id/projectcreate_projectonoff_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -259,7 +259,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/createproject_projectway_textview">
 
                 <Button
-                    android:id="@+id/projectcreate_offperiod_button"
+                    android:id="@+id/projectcreate_offduration_button"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_marginStart="30dp"
@@ -271,7 +271,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
-                    android:id="@+id/projectcreate_openperiod_button"
+                    android:id="@+id/projectcreate_onduration_button"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
@@ -280,7 +280,7 @@
                     android:textColor="#000000"
                     android:textSize="11dp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/projectcreate_offperiod_button" />
+                    app:layout_constraintStart_toEndOf="@+id/projectcreate_offduration_button" />
             </LinearLayout>
 
             <TextView
@@ -295,7 +295,7 @@
                 android:textStyle="bold"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/projectcreate_projectopenoff_linearlayout"
+                app:layout_constraintTop_toBottomOf="@+id/projectcreate_projectonoff_linearlayout"
                 tools:ignore="MissingConstraints" />
 
 
