@@ -36,9 +36,10 @@ class MainActivity : AppCompatActivity(){
 
         // 나의 페이지
         main_mypage_imageview.setOnClickListener{
+            // 후에 401 에러 시 만료 에러 + 다시 로그인
             if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
                 Toast.makeText(this, "로그인 정보가 없습니다." +
-                        "\n로그인 화면으로 이동합니다.",Toast.LENGTH_LONG).show()
+                        "\n로그인 화면으로 이동합니다.",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             } else {

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp">
+
+    <ImageView
+        android:id="@+id/holder_mypage_bigver_projectimage"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginRight="280dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/close_btn_img_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/holder_mypage_bigver_progress"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:text="진행상황"
+        android:padding="3dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="7dp"
+        android:textAlignment="center"
+        android:background="@color/colorWhiteGray"
+        app:layout_constraintBottom_toBottomOf="@+id/holder_mypage_bigver_projectimage"
+        app:layout_constraintEnd_toEndOf="@+id/holder_mypage_bigver_projectimage"
+        app:layout_constraintStart_toStartOf="@+id/holder_mypage_bigver_projectimage" />
+
+    <TextView
+        android:id="@+id/holder_mypage_bigver_projectname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="120dp"
+        android:layout_marginBottom="76dp"
+        android:text="제목"
+        android:textColor="@color/colorBlack"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/holder_mypage_bigver_stackTool_layout"
+        android:layout_width="255dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/holder_mypage_bigver_projectimage"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/holder_mypage_bigver_stackTool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radius_background_transparent"
+                android:paddingTop ="3dp"
+                android:paddingBottom ="3dp"
+                android:paddingRight ="8dp"
+                android:paddingLeft="8dp"
+                android:layout_marginRight="5dp"
+                android:text="스택 / 툴"
+                android:textColor="@color/colorBlack"
+                android:textSize="8dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/holder_mypage_bigver_joinmember_layout"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="66dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/holder_mypage_bigver_projectimage"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/holder_mypage_bigver_joinmember"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_marginRight="5dp"
+            android:src="@color/colorGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="12dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="320dp"
+        android:background="@drawable/android_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

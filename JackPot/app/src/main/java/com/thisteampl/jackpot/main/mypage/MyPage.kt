@@ -1,6 +1,5 @@
 package com.thisteampl.jackpot.main.mypage
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
-import com.thisteampl.jackpot.main.LoginActivity
 import com.thisteampl.jackpot.main.userController.CheckResponse
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_my_page.*
@@ -74,21 +71,19 @@ class MyPage : AppCompatActivity() {
             mypage_mycomment_button.setOnClickListener {
                 mypage_mycomment_button.setTextColor(ContextCompat.getColor(this, R.color.colorBlack))
                 mypage_select_mycomment_bottombar.visibility = View.VISIBLE
-                mypage_no_comment_text.visibility = View.VISIBLE
+                mypage_no_scrapcomment_text.text = "아직 댓글을 단 프로젝트가 없어요"
 
-                mypage_no_scrap_text.visibility = View.GONE
                 mypage_select_myscrap_bottombar.visibility = View.GONE
                 mypage_myscrap_button.setTextColor(ContextCompat.getColor(this, R.color.colorLightGray))
             }
 
             mypage_myscrap_button.setOnClickListener {
-                mypage_no_scrap_text.visibility = View.VISIBLE
+                mypage_no_scrapcomment_text.text = "아직 스크랩한 프로젝트나 멤버가 없어요"
                 mypage_select_myscrap_bottombar.visibility = View.VISIBLE
                 mypage_myscrap_button.setTextColor(ContextCompat.getColor(this, R.color.colorBlack))
 
                 mypage_mycomment_button.setTextColor(ContextCompat.getColor(this, R.color.colorLightGray))
                 mypage_select_mycomment_bottombar.visibility = View.GONE
-                mypage_no_comment_text.visibility = View.GONE
             }
         }
 }
