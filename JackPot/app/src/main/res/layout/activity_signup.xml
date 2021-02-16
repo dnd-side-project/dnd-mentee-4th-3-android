@@ -1170,6 +1170,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="180dp"
         android:paddingLeft="40dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -1203,7 +1204,7 @@
 
         <EditText
             android:id="@+id/signup_introduce_text"
-            android:layout_width="360dp"
+            android:layout_width="335dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
             android:textSize="14dp"
@@ -1212,33 +1213,30 @@
             android:inputType="textMultiLine"
             android:background="@drawable/radius_background_transparent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <EditText
             android:id="@+id/signup_introduce_firstlink_text"
-            android:layout_width="360dp"
+            android:layout_width="335dp"
             android:layout_height="36dp"
             android:layout_marginTop="460dp"
             android:textSize="14dp"
             android:hint="첫번째 링크"
             android:background="@drawable/radius_background_transparent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <EditText
             android:id="@+id/signup_introduce_secondlink_text"
-            android:layout_width="360dp"
+            android:layout_width="335dp"
             android:layout_height="36dp"
             android:layout_marginTop="550dp"
             android:textSize="14dp"
             android:hint="두번째 링크"
             android:background="@drawable/radius_background_transparent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
