@@ -22,20 +22,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/holder_mypage_bigver_progress"
-        android:layout_width="96dp"
-        android:layout_height="wrap_content"
-        android:text="진행상황"
-        android:padding="3dp"
-        android:textColor="@color/colorBlack"
-        android:textSize="7dp"
-        android:textAlignment="center"
-        android:background="@color/colorWhiteGray"
-        app:layout_constraintBottom_toBottomOf="@+id/holder_mypage_bigver_projectimage"
-        app:layout_constraintEnd_toEndOf="@+id/holder_mypage_bigver_projectimage"
-        app:layout_constraintStart_toStartOf="@+id/holder_mypage_bigver_projectimage" />
-
-    <TextView
         android:id="@+id/holder_mypage_bigver_projectname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

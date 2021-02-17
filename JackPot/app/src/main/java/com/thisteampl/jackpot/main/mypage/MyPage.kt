@@ -13,7 +13,6 @@ import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.LoginActivity
 import com.thisteampl.jackpot.main.userController.CheckProfile
 import com.thisteampl.jackpot.main.userController.CheckResponse
-import com.thisteampl.jackpot.main.userController.User
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_my_page.*
 import retrofit2.Call
@@ -35,9 +34,9 @@ class MyPage : AppCompatActivity() {
     }
         // 마이페이지 뷰 셋팅하는 메서드. 로그인 돼 있을 경우와 로그아웃 돼 있을 경우를 분리한다.
         private fun setupView(){
-            var p1 = ProjectBigVer("진행 중", "프로젝트 1", listOf("C++", "Java", "Figma"))
-            var p2 = ProjectBigVer("완료", "프로젝트 2", listOf("Python", "Django", "Adobe PhotoShop"))
-            var p3 = ProjectBigVer("진행 중", "프로젝트 3", listOf("C++", "Java", "HTML / CSS", "Java Script","Python", "Django", "Adobe PhotoShop", "Figma"))
+            var p1 = MyProject("프로젝트 1", listOf("1", "2"))
+            var p2 = MyProject("프로젝트 2", listOf("1", "2"))
+            var p3 = MyProject("프로젝트 3", listOf("1"))
             myProjectAdapter.items.add(p1)
             myProjectAdapter.items.add(p2)
             myProjectAdapter.items.add(p3)

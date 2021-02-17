@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
@@ -255,7 +256,9 @@ class SignUpActivity : AppCompatActivity() {
                                     signup_progressbar.progress = 6
                                     signup_introduce_layout.visibility = View.VISIBLE
                                     signup_introduce_firstlink_text.hint = " 개인 웹사이트가 있다면 입력해주세요."
-                                    signup_introduce_firstlink_text.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_global),
+                                    var drawble = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_global)
+                                    drawble?.setBounds(0,0, 72, 72)
+                                    signup_introduce_firstlink_text.setCompoundDrawables(drawble,
                                         null, null, null)
                                     signup_introduce_secondlink_text.visibility = View.GONE
                                 }
@@ -270,17 +273,23 @@ class SignUpActivity : AppCompatActivity() {
                     if(position == "개발자") {
                         signup_developer_stack_layout.visibility = View.GONE
                         signup_introduce_firstlink_text.hint = " 깃허브 링크를 입력해주세요."
-                        signup_introduce_firstlink_text.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_github),
+                        var drawble = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_github)
+                        drawble?.setBounds(0,0, 72, 72)
+                        signup_introduce_firstlink_text.setCompoundDrawables(drawble,
                             null, null, null)
                     } else {
                         signup_introduce_firstlink_text.hint = " 비핸스 링크를 입력해주세요."
-                        signup_introduce_firstlink_text.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_behance),
+                        var drawble = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_behance)
+                        drawble?.setBounds(0,0, 72, 72)
+                        signup_introduce_firstlink_text.setCompoundDrawables(drawble,
                             null, null, null)
                         signup_designer_tool_layout.visibility = View.GONE
                     }
                     signup_introduce_secondlink_text.visibility = View.VISIBLE
                     signup_introduce_secondlink_text.hint = "기타 개인 웹사이트가 있다면 입력해주세요."
-                    signup_introduce_secondlink_text.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_global),
+                    var drawble = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_global)
+                    drawble?.setBounds(0,0, 72, 72)
+                    signup_introduce_secondlink_text.setCompoundDrawables(drawble,
                         null, null, null)
                     signup_introduce_layout.visibility = View.VISIBLE
                     signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
@@ -749,7 +758,7 @@ class SignUpActivity : AppCompatActivity() {
                     response: Response<CheckResponse>
                 ) {
                     if(response.code().toString() == "200") {
-                        Toast.makeText(baseContext, "\uD83C\uDF89회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext, "\uD83C\uDF89잭팟의 멤버가 되신것을 환영합니다!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(baseContext, LoginActivity::class.java)
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         finish()

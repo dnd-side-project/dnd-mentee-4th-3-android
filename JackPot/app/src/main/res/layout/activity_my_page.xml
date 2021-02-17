@@ -189,8 +189,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_gravity="center"
+        android:layout_width="360dp"
+        android:layout_height="2dp"
         android:background="?android:attr/listDivider" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -264,8 +265,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_gravity="center"
+        android:layout_width="360dp"
+        android:layout_height="2dp"
         android:background="?android:attr/listDivider" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -365,8 +367,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_gravity="center"
+        android:layout_width="360dp"
+        android:layout_height="2dp"
         android:background="?android:attr/listDivider" />
 
     <LinearLayout

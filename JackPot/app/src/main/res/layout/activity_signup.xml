@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="이메일 확인"
-                android:background="@drawable/radius_background_transparent"
+                android:background="@drawable/radius_button_effect"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -140,7 +140,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="인증번호\n확인"
-                android:background="@drawable/radius_background_transparent"
+                android:background="@drawable/radius_button_effect"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -247,7 +247,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="중복확인"
-            android:background="@drawable/radius_background_transparent" />
+            android:background="@drawable/radius_button_effect" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
