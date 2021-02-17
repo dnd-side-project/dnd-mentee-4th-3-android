@@ -68,6 +68,18 @@ class ProfileActivity: AppCompatActivity() {
                             if(response.body()!!.result.privacy) {
                                 profile_profile_close_image.visibility = View.GONE
                             }
+
+                            when (response.body()!!.result.job) {
+                                "개발자" -> {
+                                    profile_availablestackTool_text.text = "기술 스택"
+                                }
+                                "디자이너" -> {
+                                    profile_availablestackTool_text.text = "사용 가능 툴"
+                                }
+                                else -> {
+                                    profile_availablestackTool_text.visibility = View.GONE
+                                }
+                            }
                                 // 기술스택 동적 추가
                             for (i in response.body()!!.result.stacks) {
                                 var layoutParams = LinearLayout.LayoutParams(
