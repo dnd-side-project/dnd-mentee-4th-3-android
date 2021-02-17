@@ -213,6 +213,7 @@ class LoginActivity : AppCompatActivity() {
                                     , Toast.LENGTH_SHORT
                                 ).show()
                                 sendAuth = true
+                                login_findPW_email_text.isEnabled = false
                                 sendEmail(login_findPW_email_text.text.toString(), authCode)
                                 login_findPW_emailcheck_title_text.text = "메일로 보내드린\n인증번호를 입력해주세요."
                                 login_findPW_auth_layout.visibility = View.VISIBLE

@@ -49,5 +49,8 @@
 
     <!-- 잭팟 컬러 -->
     <color name="colorButtonSelect">#846DFF</color>
+    <color name="colorDeveloper">#439AFF</color>
+    <color name="colorDesigner">#FF739B</color>
+    <color name="colorDirector">#5ED7AB</color>
 
 </resources>

@@ -501,10 +501,19 @@ class SignUpActivity : AppCompatActivity() {
             var pos = Integer.parseInt(v.contentDescription.toString())
             for(i in 0..2) {
                 if(i == pos) {
+                    when (i) {
+                        0 -> {
+                            positionBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.signup_director_select)
+                            positionBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorDirector))}
+                        1 -> {
+                            positionBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.signup_developer_select)
+                            positionBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorDeveloper))}
+                        2 -> {
+                            positionBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.signup_designer_select)
+                            positionBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorDesigner))}
+                    }
                     setStackToolBtn()
                     clearIntroduce()
-                    positionBtn[i]?.background = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.radius_background_transparent_select)
-                    positionBtn[i]?.setTextColor(ContextCompat.getColor(this@SignUpActivity, R.color.colorButtonSelect))
                     position = positionBtn[i]?.text.toString()
                 }
                 else {
