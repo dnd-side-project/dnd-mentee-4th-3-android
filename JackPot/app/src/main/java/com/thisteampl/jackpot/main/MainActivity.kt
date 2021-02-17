@@ -5,21 +5,32 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
+import com.thisteampl.jackpot.main.filtering.FilteringSearch
 import com.thisteampl.jackpot.main.floating.MyAppeal
 import com.thisteampl.jackpot.main.floating.ProjectCreation
 import com.thisteampl.jackpot.main.mainhome.*
 import com.thisteampl.jackpot.main.mypage.MyPage
+import com.thisteampl.jackpot.main.projectController.ProjectElement
 import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_main.*
+import com.thisteampl.jackpot.main.projectController.projectAPI
+import okhttp3.Callback
+import retrofit2.Call
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity(){
 
     private lateinit var recentlyregister : RecentlyRegisterProject
+
+    // projectAPI retrofit
+    private var projectapi = projectAPI.projectRetrofitService()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +38,7 @@ class MainActivity : AppCompatActivity(){
 
         val mypageIntent = Intent(this, MyPage::class.java)
         val mainintent = Intent(this,MainActivity::class.java)
-        val searchintent = Intent(this,SearchViewPage::class.java)
+        val searchintent = Intent(this,FilteringSearch::class.java)
 
         // 검색
         main_search_imageview.setOnClickListener {
@@ -130,6 +141,10 @@ class MainActivity : AppCompatActivity(){
                 }
                 drawproject_fab.setOnClickListener {
                     startActivity(drawproject)
+
+
+
+
                 }
 
                 isOpen = true
@@ -138,24 +153,100 @@ class MainActivity : AppCompatActivity(){
         }
 
 
-    }
+        // 확인라인
+        btn.setOnClickListener {
 
+            for(i in 1..10){
+                projectapi?.getprojectsID(i)
+                    ?.enqueue(object : retrofit2.Callback<ProjectElement>{
+                        override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
+                            Log.d("tag : ","Not found id")
+                        }
+                        override fun onResponse(
+                            call: Call<ProjectElement>,
+                            response: Response<ProjectElement>
+                        ) {
+                            Log.d("tag num : ","${i}")
+                            Log.d("tag, id : ","${response.code()}")
+                            Log.d("tag, 기간 : ","${response.body()?.getduration()}")
+                            Log.d("tag, 관심 : ","${response.body()?.getinterest()?.duration}")
+                            Log.d("tag, 지역 : ","${response.body()?.getinterest()?.region}")
+                            Log.d("tag, 제목 : ","${response.body()?.getinterest()?.title}")
+                            Log.d("tag, 포지션 : ","${response.body()?.getinterest()?.position}")
+
+
+
+                        }
+
+                    })
+            }
+
+            projectapi?.getprojectsID(1)
+                ?.enqueue(object : retrofit2.Callback<ProjectElement>{
+                    override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
+                        Log.d("tag : ","Not found id")
+                    }
+                    override fun onResponse(
+                        call: Call<ProjectElement>,
+                        response: Response<ProjectElement>
+                    ) {
+
+                        Log.d("tag num : ","${1}")
+                        Log.d("tag, id : ","${response.code()}")
+                        Log.d("tag, 기간 : ","${response.body()?.getduration()}")
+                        Log.d("tag, 관심 : ","${response.body()?.getinterest()?.duration}")
+                        Log.d("tag, 지역 : ","${response.body()?.getinterest()?.region}")
+                        Log.d("tag, 제목 : ","${response.body()?.getinterest()?.title}")
+                        Log.d("tag, 포지션 : ","${response.body()?.getinterest()?.position}")
+
+                    }
+
+                })
+
+            projectapi?.getprojectsID(6)
+                ?.enqueue(object : retrofit2.Callback<ProjectElement>{
+                    override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
+                        Log.d("tag : ","Not found id")
+                    }
+                    override fun onResponse(
+                        call: Call<ProjectElement>,
+                        response: Response<ProjectElement>
+                    ) {
+
+                        Log.d("tag num : ","${6}")
+                        Log.d("tag, id : ","${response.code()}")
+                        Log.d("tag, 기간 : ","${response.body()?.getduration()}")
+                        Log.d("tag, 관심 : ","${response.body()?.getinterest()?.duration}")
+                        Log.d("tag, 지역 : ","${response.body()?.getinterest()?.region}")
+                        Log.d("tag, 제목 : ","${response.body()?.getinterest()?.title}")
+                        Log.d("tag, 포지션 : ","${response.body()?.getinterest()?.position}")
+
+                    }
+
+                })
+        }
+
+
+    }
 
 
     // 0번 : 주목받는 프로젝트, 1번 : 주목받는 멤버
     private fun setFrag(fragNum : Int){
         val ft = supportFragmentManager.beginTransaction()
 
-        when(fragNum){
-            0 -> {
-                ft.replace(R.id.main_projectview_framelayout,AttentionProject()).commit()
-            }
-
-            1-> {
-                ft.replace(R.id.main_projectview_framelayout2,AttentionMember()).commit()
-            }
-        }
+//        when(fragNum){
+//            0 -> {
+//                ft.replace(R.id.main_projectview_framelayout,AttentionProject()).commit()
+//            }
+//
+//            1-> {
+//                ft.replace(R.id.main_projectview_framelayout2,AttentionMember()).commit()
+//            }
+//        }
 
     }
+
+
+
 
 }

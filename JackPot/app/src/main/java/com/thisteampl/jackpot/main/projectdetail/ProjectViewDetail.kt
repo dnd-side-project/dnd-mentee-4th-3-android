@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
-import com.thisteampl.jackpot.main.mainhome.SearchViewPage
+import com.thisteampl.jackpot.main.filtering.FilteringSearch
 import com.thisteampl.jackpot.main.mypage.MyPage
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.main_appname_textview
@@ -44,7 +44,7 @@ class ProjectViewDetail : AppCompatActivity() {
 
         val intent = Intent(this, MyPage::class.java)
         val mainintent = Intent(this, MainActivity::class.java)
-        val searchintent = Intent(this, SearchViewPage::class.java)
+        val searchintent = Intent(this, FilteringSearch::class.java)
 
         // 검색
 //        projectviewdetail_search_imagebutton.setOnClickListener {

@@ -197,15 +197,6 @@ class ProjectCreation : AppCompatActivity() {
                             this@ProjectCreation,
                             R.drawable.radius_background_transparent_select
                         )
-                        if (child.text.toString().equals("건강/스포츠")) {
-                            child.text = "건강_스포츠"
-                            Log.d("tag", "분야 확인${child.text}")
-                        }
-
-                        if (child.text.toString().equals("예술/창작")) {
-                            child.text = "예술_창작"
-                            Log.d("tag", "분야 확인${child.text}")
-                        }
 
                         stackToolfield.add(child.text.toString())
                     } else {
@@ -261,17 +252,17 @@ class ProjectCreation : AppCompatActivity() {
                     View.VISIBLE
 
 
-//                for (i in 0..stackToolfield.size-1) {
-//                    // 백엔드에서는 / 를 사용할 수 없어 변환 과정
-//                    if (stackToolfield[i].equals("건강/스포츠")) {
-//                        stackToolfield[i] = "건강_스포츠"
-//                        Log.d("tag ","${stackToolfield[i]}")
-//                    }
-//                    if (stackToolfield[i].equals("예술/창작")) {
-//                        stackToolfield[i] = "예술_창작"
-//                        Log.d("tag ","${stackToolfield[i]}")
-//                    }
-//                }
+                for (i in 0..stackToolfield.size-1) {
+                    // 백엔드에서는 / 를 사용할 수 없어 변환 과정
+                    if (stackToolfield[i].equals("건강/스포츠")) {
+                        stackToolfield[i] = "건강_스포츠"
+                        Log.d("tag ","${stackToolfield[i]}")
+                    }
+                    if (stackToolfield[i].equals("예술/창작")) {
+                        stackToolfield[i] = "예술_창작"
+                        Log.d("tag ","${stackToolfield[i]}")
+                    }
+                }
 
                 // 사용 예정 스택, 모집 포지션, 분야
                 selectAllItems.addAll(selecteddeveloperItems)
@@ -317,7 +308,7 @@ class ProjectCreation : AppCompatActivity() {
 
             // API 작성 DB에 넘김
             projectapi?.postRecruitmentProject(recruitmentproject)
-                ?.enqueue(object : Callback<ProjectElement> {
+                ?.enqueue(object : retrofit2.Callback<ProjectElement> {
                     override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
                         Log.d("tag : ", "error")
 
@@ -327,15 +318,15 @@ class ProjectCreation : AppCompatActivity() {
                         call: Call<ProjectElement>,
                         response: Response<ProjectElement>
                     ) {
-                        Log.d("tag : ", "true")
-                        Log.d("tag : ", "${response.code().toString()}")
 
+                        // 데이터 전달하지 못했다면
                         if(!response.isSuccessful){
                             Log.d("tag : ","실패")
                             Log.d("tag : ", "${response.code().toString()}")
                         }else{
                             Log.d("tag : ","성공")
                             Log.d("tag : ", "${response.code().toString()}")
+                            ToastmakeTextPrint("프로젝트 모집글 작성 완료되었습니다.")
                         }
                     }
                 })
@@ -359,7 +350,7 @@ class ProjectCreation : AppCompatActivity() {
         if (onofftext.equals("onoff")) {
             ToastmakeTextPrint("프로젝트 방식을 선택해주세요."); return false
         }
-        if (stacklistregions.equals("지역")) {
+        if (stacklistregions.equals("지역")&&onofftext.equals("오프라인")) {
             ToastmakeTextPrint("$stacklistregions 지역을 입력해주세요."); return false
         }
         if (durationtext.equals("duration")) {
@@ -592,4 +583,6 @@ class ProjectCreation : AppCompatActivity() {
         }
 
     }
+
+
 }

@@ -374,38 +374,48 @@
                 app:srcCompat="@drawable/field_repose" />
 
 
-            <RelativeLayout
-                android:id="@+id/main_relativelayout3"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/main_hobby_textview4"
-                app:layout_constraintTop_toBottomOf="@+id/main_hobby_textview4">
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="테스트"
+                android:layout_marginLeft="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_hobby_textview5" />
 
-                <FrameLayout
-                    android:id="@+id/main_projectview_framelayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+            <!--            <RelativeLayout-->
+<!--                android:id="@+id/main_relativelayout3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_below="@id/main_hobby_textview4"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/main_hobby_textview4">-->
 
-            </RelativeLayout>
+<!--                <FrameLayout-->
+<!--                    android:id="@+id/main_projectview_framelayout"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_centerHorizontal="true" />-->
+
+<!--            </RelativeLayout>-->
 
 
-            <RelativeLayout
-                android:id="@+id/main_relativelayout1"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/main_relativelayout3"
-                app:layout_constraintTop_toBottomOf="@+id/main_relativelayout3">
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/main_relativelayout1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:layout_below="@id/main_relativelayout3"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/main_relativelayout3">-->
 
-                <FrameLayout
-                    android:id="@+id/main_projectview_framelayout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
+<!--                <FrameLayout-->
+<!--                    android:id="@+id/main_projectview_framelayout2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_centerHorizontal="true" />-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

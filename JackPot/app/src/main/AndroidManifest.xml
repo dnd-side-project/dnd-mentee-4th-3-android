@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.thisteampl.jackpot">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+
 
     <application
         android:name=".common.GlobalApplication"
@@ -14,13 +16,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
+        <service
+            android:name="com.thisteampl.jackpot.main.fcm.MyJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
         <activity android:name=".main.floating.ProjectCreation" />
         <activity android:name=".main.floating.MyAppeal" />
         <activity android:name=".main.mainhome.SearchViewPage" />
         <activity android:name=".main.viewmore.RecentlyProjectViewMore" />
         <activity android:name=".main.mypage.MyPage" />
         <activity android:name=".main.projectdetail.ProjectViewDetail" />
-        <activity android:name=".main.LoginActivity" />
+        <activity android:name=".main.LoginActivity">
+
+
+        </activity>
         <activity android:name=".main.SignUpActivity" />
         <activity android:name=".main.MainActivity">
             <intent-filter>
