@@ -6,21 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorButtonSelect"
-    tools:context=".main.mypage.MyPage">
+    tools:context=".main.userpage.MyPage">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,8 +36,8 @@
 
         <Button
             android:id="@+id/detail_add_content_button"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
             android:background="@drawable/android_setting_white" />
@@ -50,10 +47,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        android:layout_height="120dp">
 
         <ImageView
             android:id="@+id/mypage_profile_image"
@@ -81,28 +75,29 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/mypage_job_text"
+                    android:id="@+id/mypage_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:text="직업"
+                    android:text="닉네임"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16dp"
+                    android:textSize="18dp"
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/mypage_profile_open_image"
+                    android:id="@+id/mypage_profile_close_image"
                     android:layout_width="17dp"
                     android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
                     app:srcCompat="@drawable/mypage_lock" />
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/mypage_name_text"
+                android:id="@+id/mypage_job_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="닉네임"
+                android:text="직업"
                 android:textColor="@color/colorWhite"
                 android:textSize="16dp" />
 
@@ -127,36 +122,32 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/mypage_bottom_white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        android:background="@drawable/mypage_bottom_white">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="150dp"
-            android:layout_marginBottom="110dp"
+            android:layout_marginTop="30dp"
             android:text="나의 프로젝트"
             android:textColor="@color/colorBlack"
             android:textSize="16dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mypage_project_num_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="125dp"
-            android:layout_marginBottom="110dp"
+            android:layout_marginTop="33dp"
             android:text="0개"
             android:textColor="@color/colorLightGray"
             android:textSize="12dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -165,6 +156,8 @@
             android:id="@+id/mypage_myproject_recyclerview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -173,7 +166,8 @@
             android:id="@+id/mypage_no_project_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="20dp"
             android:text="아직 참여중인 프로젝트가 없어요"
             android:textColor="@color/colorLightGray"
             android:textSize="16dp"
@@ -186,41 +180,49 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center|bottom"
+        android:background="@color/colorWhite">
+
+        <View
+            android:layout_width="360dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@color/colorLightGray" />
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+        android:background="@color/colorWhite">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="150dp"
-            android:layout_marginBottom="110dp"
             android:text="참여 신청한 프로젝트"
             android:textColor="@color/colorBlack"
             android:textSize="16dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mypage_registerproject_num_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="110dp"
+            android:layout_marginTop="3dp"
             android:text="0개"
             android:textColor="@color/colorLightGray"
             android:textSize="12dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -230,15 +232,18 @@
             android:id="@+id/mypage_myregisterproject_recyclerview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mypage_no_registerproject_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="20dp"
             android:text="프로젝트에 참여하고 싶다면 신청해보세요!"
             android:textColor="@color/colorLightGray"
             android:textSize="16dp"
@@ -251,26 +256,36 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center|bottom"
+        android:background="@color/colorWhite">
+
+        <View
+            android:layout_width="360dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@color/colorLightGray" />
+
+    </LinearLayout>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+        android:background="@color/colorWhite">
 
         <Button
             android:id="@+id/mypage_myscrap_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="260dp"
-            android:layout_marginBottom="100dp"
             android:background="@color/transparent"
             android:text="나의 스크랩"
             android:textSize="16dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -280,9 +295,8 @@
             android:layout_width="100dp"
             android:layout_height="3dp"
             android:layout_marginRight="260dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginTop="40dp"
             android:background="@color/colorLightPurple"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -291,13 +305,11 @@
             android:id="@+id/mypage_mycomment_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
             android:background="@color/transparent"
             android:text="댓글 단 프로젝트"
             android:textColor="@color/colorLightGray"
             android:textSize="16dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -306,10 +318,9 @@
             android:id="@+id/mypage_select_mycomment_bottombar"
             android:layout_width="140dp"
             android:layout_height="3dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginTop="40dp"
             android:background="@color/colorLightPurple"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -319,6 +330,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -327,7 +339,8 @@
             android:id="@+id/mypage_no_scrapcomment_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="40dp"
             android:text="아직 스크랩한 프로젝트가 없어요.\n관심있는 프로젝트를 스크랩 해보세요!"
             android:textColor="@color/colorLightGray"
             android:textSize="16dp"
@@ -346,10 +359,8 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+        android:background="@color/colorWhite"
+        android:gravity="center">
 
         <Button
             android:id="@+id/mypage_logout_button"
@@ -369,6 +380,6 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

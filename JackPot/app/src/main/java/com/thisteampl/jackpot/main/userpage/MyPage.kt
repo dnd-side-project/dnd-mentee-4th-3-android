@@ -1,4 +1,4 @@
-package com.thisteampl.jackpot.main.mypage
+package com.thisteampl.jackpot.main.userpage
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -122,6 +122,11 @@ class MyPage : AppCompatActivity() {
                 mypage_mycomment_button.setTextColor(ContextCompat.getColor(this, R.color.colorLightGray))
                 mypage_select_mycomment_bottombar.visibility = View.GONE
             }
+
+            mypage_watchprofile_button.setOnClickListener {
+                val intent = Intent(baseContext, ProfileActivity::class.java).putExtra("title", "내 프로필")
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
         }
 
     // 프로필을 가져오는 메서드.
@@ -142,8 +147,8 @@ class MyPage : AppCompatActivity() {
                             Log.e("getProfile ", "User : " + response.body()!!.result.toString())
                             mypage_job_text.text = response.body()!!.result.job + " ・ " + response.body()!!.result.career
                             mypage_name_text.text = response.body()!!.result.name
-                            if(!response.body()!!.result.privacy) {
-                                mypage_profile_open_image.visibility = View.GONE
+                            if(response.body()!!.result.privacy) {
+                                mypage_profile_close_image.visibility = View.GONE
                             }
                         }
                         response.code().toString() == "401" -> {
@@ -172,24 +177,24 @@ class MyPage : AppCompatActivity() {
         myProjectAdapter = MyProjectAdapter()
         mypage_myproject_recyclerview.adapter = myProjectAdapter
         mypage_myproject_recyclerview.layoutManager = LinearLayoutManager(this)
-        var mp1 = MyProject("마스크 구매정보 APP 같이 만들어요", listOf("1", "2", "3", "4", "5"))
+/*        var mp1 = MyProject("마스크 구매정보 APP 같이 만들어요", listOf("1", "2", "3", "4", "5"))
         var mp2 = MyProject("옷장 정보 APP 만들기", listOf("1", "2", "3"))
         myProjectAdapter.items.add(mp1)
-        myProjectAdapter.items.add(mp2)
+        myProjectAdapter.items.add(mp2)*/
 
         myRegisterProjectAdapter = AnotherProjectAdapter()
         mypage_myregisterproject_recyclerview.adapter = myRegisterProjectAdapter
         mypage_myregisterproject_recyclerview.layoutManager = LinearLayoutManager(this)
-        var mr1 = AnotherProject("가계부 어플 같이 만들어요! :D", "개발자", listOf("JAVA", "Django", "Figma"))
+/*        var mr1 = AnotherProject("가계부 어플 같이 만들어요! :D", "개발자", listOf("JAVA", "Django", "Figma"))
         var mr2 = AnotherProject("간단한 축구 관련 앱 만들기!", "개발자", listOf("JAVA", "Kotlin", "Figma", "Adobe PhotoShop"))
         myRegisterProjectAdapter.items.add(mr1)
-        myRegisterProjectAdapter.items.add(mr2)
+        myRegisterProjectAdapter.items.add(mr2)*/
 
         myScrapProjectAdapter = AnotherProjectAdapter()
         mypage_myscrapcomment_recyclerview.adapter = myScrapProjectAdapter
         mypage_myscrapcomment_recyclerview.layoutManager = LinearLayoutManager(this)
 
         myCommentProjectAdapter = AnotherProjectAdapter()
-        myCommentProjectAdapter.items.add(mr1)
+        //myCommentProjectAdapter.items.add(mr1)
     }
 }

@@ -1,4 +1,4 @@
-package com.thisteampl.jackpot.main.mypage
+package com.thisteampl.jackpot.main.userpage
 
 import android.view.LayoutInflater
 import android.view.View

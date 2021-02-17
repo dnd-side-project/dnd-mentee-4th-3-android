@@ -2,7 +2,6 @@ package com.thisteampl.jackpot.main
 
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,12 +13,11 @@ import com.thisteampl.jackpot.main.filtering.FilteringSearch
 import com.thisteampl.jackpot.main.floating.MyAppeal
 import com.thisteampl.jackpot.main.floating.ProjectCreation
 import com.thisteampl.jackpot.main.mainhome.*
-import com.thisteampl.jackpot.main.mypage.MyPage
+import com.thisteampl.jackpot.main.userpage.MyPage
 import com.thisteampl.jackpot.main.projectController.ProjectElement
 import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_main.*
 import com.thisteampl.jackpot.main.projectController.projectAPI
-import okhttp3.Callback
 import retrofit2.Call
 import retrofit2.Response
 
