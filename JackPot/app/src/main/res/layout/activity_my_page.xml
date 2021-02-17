@@ -6,24 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorButtonSelect"
     tools:context=".main.mypage.MyPage">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="마이페이지"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorWhite"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -31,21 +35,25 @@
             android:id="@+id/mypage_back_button"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:background="@drawable/android_back" />
+            android:background="@drawable/android_back_white" />
 
         <Button
             android:id="@+id/detail_add_content_button"
             android:layout_width="36dp"
             android:layout_height="36dp"
+            android:layout_gravity="right"
             android:layout_marginRight="10dp"
-            android:background="@drawable/android_setting"
-            android:layout_gravity="right"/>
+            android:background="@drawable/android_setting_white" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <ImageView
             android:id="@+id/mypage_profile_image"
@@ -56,14 +64,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/android_ellipse" />
-        
+            app:srcCompat="@drawable/mypage_profile_background" />
+
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:orientation="vertical"
-            android:gravity="center|left"
             android:layout_marginLeft="100dp"
+            android:gravity="center|left"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -78,15 +86,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:text="직업"
+                    android:textColor="@color/colorWhite"
                     android:textSize="16dp"
-                    android:textColor="@color/colorGray"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/mypage_profile_open_image"
                     android:layout_width="17dp"
                     android:layout_height="24dp"
-                    app:srcCompat="@drawable/profile_open_true" />
+                    app:srcCompat="@drawable/mypage_lock" />
 
             </LinearLayout>
 
@@ -95,19 +103,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="닉네임"
-                android:textSize="16dp"
-                android:textColor="@color/colorBlack"/>
+                android:textColor="@color/colorWhite"
+                android:textSize="16dp" />
 
         </LinearLayout>
 
         <Button
             android:id="@+id/mypage_watchprofile_button"
             android:layout_width="72dp"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:layout_marginLeft="280dp"
+            android:background="@drawable/radius_background"
             android:text="프로필 보기"
             android:textSize="12dp"
-            android:background="@drawable/radius_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -115,16 +123,17 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="?android:attr/listDivider" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="wrap_content"
+        android:background="@drawable/mypage_bottom_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         <TextView
+            android:id="@+id/textView3"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="150dp"
@@ -135,8 +144,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/mypage_project_num_text"
@@ -153,24 +161,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="70dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mypage_myproject_recyclerview"
             android:layout_width="wrap_content"
-            android:layout_height="90dp"
-            android:layout_marginTop="55dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mypage_no_project_text"
@@ -189,15 +186,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_gravity="center"
-        android:layout_width="360dp"
-        android:layout_height="2dp"
-        android:background="?android:attr/listDivider" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
         <TextView
             android:id="@+id/textView2"
@@ -211,8 +208,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/mypage_registerproject_num_text"
@@ -229,25 +225,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="70dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mypage_myregisterproject_recyclerview"
             android:layout_width="wrap_content"
-            android:layout_height="90dp"
-            android:layout_marginTop="55dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
             android:id="@+id/mypage_no_registerproject_text"
@@ -266,15 +251,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_gravity="center"
-        android:layout_width="360dp"
-        android:layout_height="2dp"
-        android:background="?android:attr/listDivider" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout5"
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
         <Button
             android:id="@+id/mypage_myscrap_button"
@@ -333,7 +317,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mypage_myscrapcomment_recyclerview"
             android:layout_width="wrap_content"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -357,16 +341,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <View
-        android:layout_gravity="center"
-        android:layout_width="360dp"
-        android:layout_height="2dp"
-        android:background="?android:attr/listDivider" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
         <Button
             android:id="@+id/mypage_logout_button"
@@ -386,5 +369,6 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.core.widget.NestedScrollView>

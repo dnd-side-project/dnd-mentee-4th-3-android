@@ -142,10 +142,8 @@ class MyPage : AppCompatActivity() {
                             Log.e("getProfile ", "User : " + response.body()!!.result.toString())
                             mypage_job_text.text = response.body()!!.result.job + " ・ " + response.body()!!.result.career
                             mypage_name_text.text = response.body()!!.result.name
-                            if(response.body()!!.result.privacy) {
-                                mypage_profile_open_image.setImageResource(R.drawable.profile_open_true)
-                            } else {
-                                mypage_profile_open_image.setImageResource(R.drawable.profile_open_false)
+                            if(!response.body()!!.result.privacy) {
+                                mypage_profile_open_image.visibility = View.GONE
                             }
                         }
                         response.code().toString() == "401" -> {

@@ -9,14 +9,14 @@ interface userAPI {
     @GET("/email/is-exist")
     fun getCheckEmail(@Query("email") email : String) : Call<CheckResponse>
 
-    @GET("/googleLogin")
-    fun getCheckGoogleToken(@Query("token") token : String) : Call<CheckResponse>
+    @POST("/googleLogin")
+    fun getCheckGoogleToken(@Body signIn : SNSSignIn) : Call<CheckResponse>
 
-    @GET("/kakaoLogin/{kakaoAccessToken}")
-    fun getCheckKakaoToken(@Path("kakaoAccessToken") kakaoAccessToken : String) : Call<CheckResponse>
+    @POST("/kakaoLogin")
+    fun getCheckKakaoToken(@Body signIn : SNSSignIn) : Call<CheckResponse>
 
-    @GET("/naverLogin")
-    fun getCheckNaverToken(@Query("token") token : String) : Call<CheckResponse>
+    @POST("/naverLogin")
+    fun getCheckNaverToken(@Body signIn : SNSSignIn) : Call<CheckResponse>
 
     @GET("/name/is-exist")
     fun getCheckName(@Query("name") name : String) : Call<CheckResponse>

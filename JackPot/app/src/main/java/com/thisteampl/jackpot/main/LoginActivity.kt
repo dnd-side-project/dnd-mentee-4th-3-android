@@ -27,6 +27,7 @@ import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.userController.CheckResponse
+import com.thisteampl.jackpot.main.userController.SNSSignIn
 import com.thisteampl.jackpot.main.userController.SignIn
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_login.*
@@ -74,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-//        makeFCMToken()
+
         setupView()
     }
 
@@ -410,10 +411,10 @@ class LoginActivity : AppCompatActivity() {
 
     // 서드파티에서 받아온 토큰을 확인
     private fun checkThirdPartyToken(token: String, type: String, id: String) {
-
+        var signIn = SNSSignIn(makeFCMToken(), token)
         when (type) {
             "kakao" -> {
-                userApi?.getCheckKakaoToken(token)?.enqueue(object : Callback<CheckResponse>{
+                userApi?.getCheckKakaoToken(signIn)?.enqueue(object : Callback<CheckResponse>{
                     override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
                         // userAPI에서 타입이나 이름 안맞췄을때
                         Log.e("tag ", "onFailure" + t.localizedMessage)
@@ -454,7 +455,7 @@ class LoginActivity : AppCompatActivity() {
 
             }
             "naver" -> {
-                userApi?.getCheckNaverToken(token)?.enqueue(object : Callback<CheckResponse>{
+                userApi?.getCheckNaverToken(signIn)?.enqueue(object : Callback<CheckResponse>{
                     override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
                         // userAPI에서 타입이나 이름 안맞췄을때
                         Log.e("tag ", "onFailure" + t.localizedMessage)
@@ -501,7 +502,7 @@ class LoginActivity : AppCompatActivity() {
                 })
             }
             "google" -> {
-                userApi?.getCheckGoogleToken(token)?.enqueue(object : Callback<CheckResponse>{
+                userApi?.getCheckGoogleToken(signIn)?.enqueue(object : Callback<CheckResponse>{
                     override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
                         // userAPI에서 타입이나 이름 안맞췄을때
                         Log.e("tag ", "onFailure" + t.localizedMessage)

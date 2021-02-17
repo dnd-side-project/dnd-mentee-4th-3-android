@@ -325,10 +325,11 @@
 
     <Button
         android:id="@+id/login_confirm_button"
-        android:layout_width="280dp"
+        android:layout_width="320dp"
         android:layout_height="40dp"
         android:layout_marginTop="510dp"
-        android:background="@drawable/radius_background"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/radius_background_purple"
         android:text="확인"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
