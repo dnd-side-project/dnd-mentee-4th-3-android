@@ -119,7 +119,9 @@ class MyPage : AppCompatActivity() {
                 ) {
                     when {
                         response.code().toString() == "200" -> {
-                            Log.e("getProfile ", "User : " + response.body()!!.result.email)
+                            Log.e("getProfile ", "User : " + response.body()!!.result.toString())
+                            mypage_job_text.text = response.body()!!.result.job
+                            mypage_name_text.text = response.body()!!.result.name
                         }
                         response.code().toString() == "401" -> {
                             Toast.makeText(

@@ -6,5 +6,5 @@ class CheckProfile (
     @SerializedName("message")
     var message : String,
     @SerializedName("result")
-    var result : User
+    var result : Profile
 )
