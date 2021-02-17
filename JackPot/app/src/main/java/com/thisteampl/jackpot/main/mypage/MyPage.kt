@@ -23,6 +23,9 @@ class MyPage : AppCompatActivity() {
 
     private val userApi = userAPI.create()
     lateinit var myProjectAdapter: MyProjectAdapter
+    lateinit var myRegisterProjectAdapter: AnotherProjectAdapter
+    lateinit var myScrapProjectAdapter: AnotherProjectAdapter
+    lateinit var myCommentProjectAdapter: AnotherProjectAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +37,20 @@ class MyPage : AppCompatActivity() {
     }
         // 마이페이지 뷰 셋팅하는 메서드. 로그인 돼 있을 경우와 로그아웃 돼 있을 경우를 분리한다.
         private fun setupView(){
-            var p1 = MyProject("프로젝트 1", listOf("1", "2"))
-            var p2 = MyProject("프로젝트 2", listOf("1", "2"))
-            var p3 = MyProject("프로젝트 3", listOf("1"))
-            myProjectAdapter.items.add(p1)
-            myProjectAdapter.items.add(p2)
-            myProjectAdapter.items.add(p3)
-
             mypage_project_num_text.text = myProjectAdapter.items.size.toString() + "개"
+            mypage_registerproject_num_text.text = myRegisterProjectAdapter.items.size.toString() + "개"
+
+            if(myProjectAdapter.items.size == 0) {
+                mypage_no_project_text.visibility = View.VISIBLE
+            } else { mypage_no_project_text.visibility = View.GONE }
+
+            if(myRegisterProjectAdapter.items.size == 0) {
+                mypage_no_registerproject_text.visibility = View.VISIBLE
+            } else { mypage_no_registerproject_text.visibility = View.GONE }
+
+            if(myScrapProjectAdapter.items.size == 0) {
+                mypage_no_scrapcomment_text.visibility = View.VISIBLE
+            } else { mypage_no_scrapcomment_text.visibility = View.GONE }
 
             mypage_back_button.setOnClickListener { super.onBackPressed() }
 
@@ -85,16 +94,28 @@ class MyPage : AppCompatActivity() {
             }
 
             mypage_mycomment_button.setOnClickListener {
+                mypage_myscrapcomment_recyclerview.adapter = myCommentProjectAdapter
+
+                if(myCommentProjectAdapter.items.size == 0) {
+                    mypage_no_scrapcomment_text.visibility = View.VISIBLE
+                } else { mypage_no_scrapcomment_text.visibility = View.GONE }
+
                 mypage_mycomment_button.setTextColor(ContextCompat.getColor(this, R.color.colorBlack))
                 mypage_select_mycomment_bottombar.visibility = View.VISIBLE
-                mypage_no_scrapcomment_text.text = "아직 댓글을 단 프로젝트가 없어요"
+                mypage_no_scrapcomment_text.text = "아직 댓글을 단 프로젝트가 없어요."
 
                 mypage_select_myscrap_bottombar.visibility = View.GONE
                 mypage_myscrap_button.setTextColor(ContextCompat.getColor(this, R.color.colorLightGray))
             }
 
             mypage_myscrap_button.setOnClickListener {
-                mypage_no_scrapcomment_text.text = "아직 스크랩한 프로젝트나 멤버가 없어요"
+                mypage_myscrapcomment_recyclerview.adapter = myScrapProjectAdapter
+
+                if(myScrapProjectAdapter.items.size == 0) {
+                    mypage_no_scrapcomment_text.visibility = View.VISIBLE
+                } else { mypage_no_scrapcomment_text.visibility = View.GONE }
+
+                mypage_no_scrapcomment_text.text = "아직 스크랩한 프로젝트가 없어요.\n관심있는 프로젝트를 스크랩 해보세요!"
                 mypage_select_myscrap_bottombar.visibility = View.VISIBLE
                 mypage_myscrap_button.setTextColor(ContextCompat.getColor(this, R.color.colorBlack))
 
@@ -153,5 +174,24 @@ class MyPage : AppCompatActivity() {
         myProjectAdapter = MyProjectAdapter()
         mypage_myproject_recyclerview.adapter = myProjectAdapter
         mypage_myproject_recyclerview.layoutManager = LinearLayoutManager(this)
+        var mp1 = MyProject("마스크 구매정보 APP 같이 만들어요", listOf("1", "2", "3", "4", "5"))
+        var mp2 = MyProject("옷장 정보 APP 만들기", listOf("1", "2", "3"))
+        myProjectAdapter.items.add(mp1)
+        myProjectAdapter.items.add(mp2)
+
+        myRegisterProjectAdapter = AnotherProjectAdapter()
+        mypage_myregisterproject_recyclerview.adapter = myRegisterProjectAdapter
+        mypage_myregisterproject_recyclerview.layoutManager = LinearLayoutManager(this)
+        var mr1 = AnotherProject("가계부 어플 같이 만들어요! :D", "개발자", listOf("JAVA", "Django", "Figma"))
+        var mr2 = AnotherProject("간단한 축구 관련 앱 만들기!", "개발자", listOf("JAVA", "Kotlin", "Figma", "Adobe PhotoShop"))
+        myRegisterProjectAdapter.items.add(mr1)
+        myRegisterProjectAdapter.items.add(mr2)
+
+        myScrapProjectAdapter = AnotherProjectAdapter()
+        mypage_myscrapcomment_recyclerview.adapter = myScrapProjectAdapter
+        mypage_myscrapcomment_recyclerview.layoutManager = LinearLayoutManager(this)
+
+        myCommentProjectAdapter = AnotherProjectAdapter()
+        myCommentProjectAdapter.items.add(mr1)
     }
 }
