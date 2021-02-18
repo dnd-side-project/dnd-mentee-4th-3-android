@@ -18,12 +18,8 @@ import com.thisteampl.jackpot.main.projectController.ProjectElement
 import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_main.*
 import com.thisteampl.jackpot.main.projectController.projectAPI
-<<<<<<< HEAD
-import kotlinx.android.synthetic.main.activity_project_creation.*
-import kotlinx.android.synthetic.main.activity_project_creation.view.*
-import okhttp3.Callback
-=======
->>>>>>> 4166160e174753c9d7715eaedbd59e5876b55e28
+
+
 import retrofit2.Call
 import retrofit2.Response
 

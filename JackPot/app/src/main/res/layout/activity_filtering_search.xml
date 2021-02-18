@@ -49,17 +49,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <Button
         android:id="@+id/createproject_minusbutton_imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:layout_marginEnd="24dp"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/createproject_longline_imageview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/android_minus" />
+        android:background="@drawable/android_backbutton"
+        />
 
     <ImageView
         android:id="@+id/createproject_longline_imageview"

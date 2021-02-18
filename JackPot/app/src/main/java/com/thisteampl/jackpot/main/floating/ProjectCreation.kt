@@ -25,7 +25,7 @@ class ProjectCreation : AppCompatActivity() {
     // SignUpActivity 참고함
     // 모집 포지션, 분야를 위한 stack 선언
     private val stackToolposition = mutableListOf<String>()
-    private val stackToolfield = mutableListOf<String>()
+
     private val stackTooldeveloper = mutableListOf<String>() // 개발자 스택
     private val stackTooldesigner = mutableListOf<String>()  // 디자이너 스택
 
@@ -33,12 +33,14 @@ class ProjectCreation : AppCompatActivity() {
     // 프로젝트 방식, 프로젝트 예상 기간을 위한 arrayOfNulls 선언
     private var onoffbtn = arrayOfNulls<Button>(2)
     private var durationbtn = arrayOfNulls<Button>(3)
+    private var projectfieldbtn = arrayOfNulls<Button>(8)
     private var onofftext = "onoff"
     private var durationtext = "duration"
+    private var projectfieldtext = "field"
 
     private var page: Int = 1
 
-    private var stacklistregions = "지역" // 지역 list 저장용
+    private var regiontext = "지역" // 지역 list 저장용
 
 
     // 사용자가 선택한 item
@@ -48,9 +50,7 @@ class ProjectCreation : AppCompatActivity() {
     private val selectedfieldItems = mutableListOf<String>()     // 분야
 
     private var projectapi = projectAPI.projectRetrofitService()
-
-//    private var developerbuttons = ArrayList<Button>(10)
-//    private var designerbuttons = ArrayList<Button>()
+    
 
 
 
@@ -58,7 +58,7 @@ class ProjectCreation : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_creation)
 
-        createproject_minusbutton_imageview.setOnClickListener {
+        createproject_minusbutton_button.setOnClickListener {
             finish()
         }
 
@@ -358,7 +358,6 @@ class ProjectCreation : AppCompatActivity() {
 
         // 1 page
         stackToolposition.clear()
-        stackToolfield.clear()
 
         // 개발자 버튼 클릭했을 때
         createproject_developer_Button.setOnClickListener {
@@ -507,7 +506,7 @@ class ProjectCreation : AppCompatActivity() {
 
         createproject_regions_spinner.setItems(regions)
         createproject_regions_spinner.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
-            stacklistregions = newItem
+            regiontext = newItem
         }
 
 
@@ -566,67 +565,76 @@ class ProjectCreation : AppCompatActivity() {
             }
         }
 
-        // 분야 자기계발 ~ 요리
-        for (i in 0 until projectcreate_field_linearlayout.childCount) {
-            val child: View = projectcreate_field_linearlayout.getChildAt(i)
+        // 분야
+        projectfieldbtn[0] = findViewById(R.id.create_field_it_textview)
+        projectfieldbtn[1] = findViewById(R.id.create_hobby_textview)
+        projectfieldbtn[2] = findViewById(R.id.create_economy_textview)
+        projectfieldbtn[3] = findViewById(R.id.create_cook_textview)
+        projectfieldbtn[4] = findViewById(R.id.create_it_textview)
+        projectfieldbtn[5] = findViewById(R.id.create_rest_textview)
+        projectfieldbtn[6] = findViewById(R.id.create_health_textview)
+        projectfieldbtn[7] = findViewById(R.id.create_holiday_textview)
 
-            // 해당 버튼에 효과 주기
-            if (child is Button) {
-                child.background = ContextCompat.getDrawable(
-                    this@ProjectCreation,
-                    R.drawable.radius_button_effect
+
+        projectfieldbtn[0]?.setOnClickListener{
+            projectfieldbtn[0]?.let {it1->
+                this.onClickBtn(
+                    it1,0,8
                 )
-                child.setOnClickListener {
-
-                    // child
-                    if (!stackToolfield.contains(child.text.toString())) {
-                        child.background = ContextCompat.getDrawable(
-                            this@ProjectCreation,
-                            R.drawable.radius_background_transparent_select
-                        )
-
-                        stackToolfield.add(child.text.toString())
-                    } else {
-                        child.background = ContextCompat.getDrawable(
-                            this@ProjectCreation,
-                            R.drawable.radius_button_effect
-                        )
-                        stackToolfield.remove(child.text.toString())
-                    }
-
-                }
             }
         }
 
-        // 분야 IT ~ 휴식
-        for (i in 0 until projectcreate_field2_linearlayout.childCount) {
-            val child: View = projectcreate_field2_linearlayout.getChildAt(i)
-
-            // 해당 버튼에 효과 주기
-            if (child is Button) {
-                child.background = ContextCompat.getDrawable(
-                    this@ProjectCreation,
-                    R.drawable.radius_button_effect
+        projectfieldbtn[1]?.setOnClickListener{
+            projectfieldbtn[1]?.let {it1->
+                this.onClickBtn(
+                    it1,1,8
                 )
-                child.setOnClickListener {
-
-                    if (!stackToolfield.contains(child.text.toString())) {
-                        child.background = ContextCompat.getDrawable(
-                            this@ProjectCreation,
-                            R.drawable.radius_background_transparent_select
-                        )
-                        stackToolfield.add(child.text.toString())
-                    } else {
-                        child.background = ContextCompat.getDrawable(
-                            this@ProjectCreation,
-                            R.drawable.radius_button_effect
-                        )
-                        stackToolfield.remove(child.text.toString())
-                    }
-
-                }
             }
         }
+
+        projectfieldbtn[2]?.setOnClickListener{
+            projectfieldbtn[2]?.let {it1->
+                this.onClickBtn(
+                    it1,2,8
+                )
+            }
+        }
+        projectfieldbtn[3]?.setOnClickListener{
+            projectfieldbtn[3]?.let {it1->
+                this.onClickBtn(
+                    it1,3,8
+                )
+            }
+        }
+        projectfieldbtn[4]?.setOnClickListener{
+            projectfieldbtn[4]?.let {it1->
+                this.onClickBtn(
+                    it1,4,8
+                )
+            }
+        }
+        projectfieldbtn[5]?.setOnClickListener{
+            projectfieldbtn[5]?.let {it1->
+                this.onClickBtn(
+                    it1,5,8
+                )
+            }
+        }
+        projectfieldbtn[6]?.setOnClickListener{
+            projectfieldbtn[6]?.let {it1->
+                this.onClickBtn(
+                    it1,6,8
+                )
+            }
+        }
+        projectfieldbtn[7]?.setOnClickListener{
+            projectfieldbtn[7]?.let {it1->
+                this.onClickBtn(
+                    it1,7,8
+                )
+            }
+        }
+
 
 
         // 버튼 눌렸을 때 1 page, 2 page 구분
@@ -639,39 +647,28 @@ class ProjectCreation : AppCompatActivity() {
                     View.VISIBLE
 
 
-                for (i in 0..stackToolfield.size-1) {
-                    // 백엔드에서는 / 를 사용할 수 없어 변환 과정
-                    if (stackToolfield[i].equals("예술/창작")) {
-                        stackToolfield[i] = "예술_창작"
-                        Log.d("tag ","${stackToolfield[i]}")
-                    }
+                createproject_minusbutton_button.visibility = View.GONE
+                createproject_beforebutton_button.visibility = View.VISIBLE
+
+                // 이전 page로 이동하기 위해 뒤로가기 버튼
+                createproject_beforebutton_button.setOnClickListener {
+
+                    projectcreate_write_recruitment_article_constraintlayout.visibility =
+                        View.VISIBLE
+                    projectcreate_write_recruitment_article2_constraintlayout.visibility =
+                        View.GONE
+                    createproject_minusbutton_button.visibility = View.VISIBLE
+                    createproject_beforebutton_button.visibility = View.GONE
+
+                    createproject_line2_button.background = ContextCompat.getDrawable(
+                        this@ProjectCreation,
+                        R.drawable.page_line_background
+                    )
+
+                    page = 1
+                    projectcreate_page_textview.text = "$page  /  2"
                 }
 
-
-                // 사용 예정 스택, 모집 포지션, 분야
-                stackToolAll.addAll(stackTooldeveloper)
-                stackToolAll.addAll(stackTooldesigner)
-
-                for(i in 0..stackToolAll.size-1){
-                    if(stackToolAll[i].equals("Html/CSS")){
-                        stackToolAll[i] = "Html_CSS"
-                    }
-
-                    if(stackToolAll[i].equals("React.JS")){
-                        stackToolAll[i] = "React_js"
-                    }
-                    if(stackToolAll[i].equals("After Effects")){
-                        stackToolAll[i] = "After_Effects"
-                    }
-
-                    Log.d("tag : ","${stackToolAll[i].toString()}")
-                }
-
-                createproject_minusbutton_imageview.visibility = View.GONE
-                createproject_beforebutton_imageview.visibility = View.VISIBLE
-
-                selectpositionItems.addAll(stackToolposition)
-                selectedfieldItems.addAll(stackToolfield)
 
 
                 createproject_line2_button.background = ContextCompat.getDrawable(
@@ -694,12 +691,45 @@ class ProjectCreation : AppCompatActivity() {
 
         createproject_submitrecruitment_button.setOnClickListener {
 
+            if(projectfieldtext.equals("예술/창작")){
+                projectfieldtext = "예술/창작"
+            }
+
+            ToastmakeTextPrint("실행중입니다.")
+            Log.d("tag : ","실행중입니다.")
+            // 사용 예정 스택, 모집 포지션, 분야
+            stackToolAll.addAll(stackTooldeveloper)
+            stackToolAll.addAll(stackTooldesigner)
+
+            for(i in 0..stackTooldeveloper.size-1){
+                Log.d("개발자 : ","${stackTooldeveloper[i]}")
+            }
+
+            for(i in 0..stackTooldesigner.size-1){
+                Log.d("디자이너 : ","${stackTooldesigner[i]}")
+            }
+            for(i in 0..stackToolAll.size-1){
+                if(stackToolAll[i].equals("Html/CSS")){
+                    stackToolAll[i] = "Html_CSS"
+                }
+
+                if(stackToolAll[i].equals("React.JS")){
+                    stackToolAll[i] = "React_js"
+                }
+                if(stackToolAll[i].equals("After Effects")){
+                    stackToolAll[i] = "After_Effects"
+                }
+
+                Log.d("tag : ","${stackToolAll[i].toString()}")
+            }
+            selectpositionItems.addAll(stackToolposition)
+
             var recruitmentproject = ProjectCreationElement(
                 durationtext,
-                selectedfieldItems,
+                projectfieldtext,
                 onofftext,
                 selectpositionItems,
-                stacklistregions,
+                regiontext,
                 createproject_projectdetail_edittext.text.toString(),
                 stackToolAll,
                 createproject_projecttitle_edittext.text.toString()
@@ -750,13 +780,13 @@ class ProjectCreation : AppCompatActivity() {
         if (onofftext.equals("onoff")) {
             ToastmakeTextPrint("프로젝트 방식을 선택해주세요."); return false
         }
-        if (stacklistregions.equals("지역")&&onofftext.equals("오프라인")) {
-            ToastmakeTextPrint("$stacklistregions 지역을 입력해주세요."); return false
+        if (regiontext.equals("지역")&&onofftext.equals("오프라인")) {
+            ToastmakeTextPrint("$regiontext 지역을 입력해주세요."); return false
         }
         if (durationtext.equals("duration")) {
             ToastmakeTextPrint("프로젝트 예상 기간을 선택해주세요."); return false
         }
-        if (stackToolfield.size == 0) {
+        if (projectfieldtext.equals("field")) {
             ToastmakeTextPrint("분야를 선택해주세요."); return false
         }
 
@@ -771,6 +801,7 @@ class ProjectCreation : AppCompatActivity() {
 
     var checkoffout:Int = -1
     var checkexpectedduration:Int = -1
+    var checkexpectedfield:Int = -1
 
     // 버튼 둘 중 하나만 선택되게 하기 위해 사용
     private fun onClickBtn(v: View, index: Int,btnsize: Int) {
@@ -791,7 +822,7 @@ class ProjectCreation : AppCompatActivity() {
                     createproject_regions_textview.visibility = View.GONE
                     projectcreate_regions_linearlayout.visibility = View.GONE
                     createproject_regions_spinner.text = "지역"
-                    stacklistregions = "지역"
+                    regiontext = "지역"
                 }
                 onoffbtn[index]?.background = ContextCompat.getDrawable(
                     this@ProjectCreation,
@@ -812,7 +843,7 @@ class ProjectCreation : AppCompatActivity() {
                     createproject_regions_textview.visibility = View.GONE
                     projectcreate_regions_linearlayout.visibility = View.GONE
                     createproject_regions_spinner.text = "지역"
-                    stacklistregions = "지역"
+                    regiontext = "지역"
                 }
 
                 onoffbtn[index]?.background = ContextCompat.getDrawable(
@@ -854,6 +885,40 @@ class ProjectCreation : AppCompatActivity() {
                     durationtext = durationbtn[i]?.text.toString()
                 } else {
                     durationbtn[i]?.background = ContextCompat.getDrawable(
+                        this@ProjectCreation,
+                        R.drawable.radius_button_effect
+                    )
+                }
+            }
+        }
+
+
+        // 분야
+        if (id == R.id.create_field_it_textview || id == R.id.create_hobby_textview
+            || id == R.id.create_economy_textview || id == R.id.create_cook_textview
+            || id == R.id.create_it_textview || id == R.id.create_rest_textview
+            || id == R.id.create_health_textview || id == R.id.create_holiday_textview
+        ) {
+            for (i in 0..7) {
+
+                // 1. 이미 버튼 on 되어 있는 곳에 한 번 더 눌렸을 때 off
+                // 2. 해당 자리 버튼일 때 버튼 on
+                // 3. 이외의 버튼(버튼 적용되는 곳 이외) off
+                if(checkexpectedfield == i){
+                    projectfieldbtn[i]?.background = ContextCompat.getDrawable(
+                        this@ProjectCreation,
+                        R.drawable.radius_button_effect
+                    )
+                    checkexpectedfield = -1
+                } else if(i == index) {
+                    projectfieldbtn[i]?.background = ContextCompat.getDrawable(
+                        this@ProjectCreation,
+                        R.drawable.radius_background_transparent_select
+                    )
+                    checkexpectedfield = i
+                    projectfieldtext = projectfieldbtn[i]?.text.toString()
+                } else {
+                    projectfieldbtn[i]?.background = ContextCompat.getDrawable(
                         this@ProjectCreation,
                         R.drawable.radius_button_effect
                     )

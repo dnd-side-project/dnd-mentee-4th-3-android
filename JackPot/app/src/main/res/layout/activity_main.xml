@@ -109,7 +109,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/main_selftdevelopment_imgbtn"
                 app:layout_constraintStart_toStartOf="@+id/main_selftdevelopment_imgbtn"
                 app:layout_constraintTop_toTopOf="@+id/main_selftdevelopment_imgbtn"
-                app:srcCompat="@drawable/field_self_development" />
+                app:srcCompat="@drawable/field_selfdeveloper" />
 
             <TextView
                 android:id="@+id/main_selfdevelopment_textview"
@@ -373,17 +373,7 @@
                 app:layout_constraintTop_toTopOf="@+id/main_repose_imgbtn"
                 app:srcCompat="@drawable/field_repose" />
 
-
-            <Button
-                android:id="@+id/btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:text="테스트"
-                android:layout_marginLeft="50dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/main_hobby_textview5" />
-
+            
             <!--            <RelativeLayout-->
 <!--                android:id="@+id/main_relativelayout3"-->
 <!--                android:layout_width="match_parent"-->

@@ -35,31 +35,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/createproject_minusbutton_imageview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <Button
+                android:id="@+id/createproject_minusbutton_button"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/createproject_longline_imageview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:visibility="visible"
-                app:srcCompat="@drawable/android_minus" />
+                android:background="@drawable/android_backbutton"
+                />
 
-            <ImageView
-                android:id="@+id/createproject_beforebutton_imageview"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+            <Button
+                android:id="@+id/createproject_beforebutton_button"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/createproject_longline_imageview"
+                app:layout_constraintBottom_toBottomOf="@+id/createproject_longline_imageview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/android_back" />
+                android:background="@drawable/android_back"
+                />
 
             <TextView
                 android:id="@+id/createproject_longline_imageview"
@@ -709,7 +711,7 @@
                 android:textColor="#000000"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/projectcreate_projectonoff_linearlayout"
                 tools:ignore="MissingConstraints" />
@@ -720,7 +722,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/createproject_regions_textview">
