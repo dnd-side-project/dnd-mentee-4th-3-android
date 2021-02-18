@@ -23,10 +23,12 @@ class RecentlyRegisterProject : Fragment() {
     // init 초기화할 때, list를 삽입한다.
     init {
         recentlyregister = arrayListOf(
-            RecentlyRegisterList(R.drawable.android_appeal,"프로젝트 체크","디자이너","2020.01.31","c++","c#","c"),
-            RecentlyRegisterList(0,"프로젝트 체크","디자이너","2020.01.31","java","eclipse","ki"),
-            RecentlyRegisterList(R.drawable.android_plus_sign,"프로젝트 체크","디자이너","2020.01.31","Kotlin","window","mac")
-          )
+            RecentlyRegisterList(R.drawable.android_appeal,"프로젝트 체크","디자이너","30분전"),
+            RecentlyRegisterList(0,"프로젝트 체크2","개발자","30분전"),
+            RecentlyRegisterList(R.drawable.android_appeal,"프로젝트 체크3","개발자","10분전"),
+            RecentlyRegisterList(0,"프로젝트 체크4","개발자","10분전"),
+            RecentlyRegisterList(0,"프로젝트 체크5","개발자","10분전")
+        )
 
 
     }
@@ -41,7 +43,7 @@ class RecentlyRegisterProject : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         main_attentionprojectlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),
-            LinearLayoutManager.HORIZONTAL,false)
+            LinearLayoutManager.VERTICAL,false)
         main_attentionprojectlist_recyclerview.setHasFixedSize(true)
         main_attentionprojectlist_recyclerview.adapter = RecentlyRegisterListAdapter(recentlyregister)
     }

@@ -20,18 +20,18 @@ class AttentionProject : Fragment() {
     // init 초기화할 때, list를 삽입한다.
     init{
         attention = arrayListOf(
-            AttentionProjectList(R.drawable.android_appeal,"프로젝트 체크","개발자","2020.01.29","c++","c#","c"),
-            AttentionProjectList(R.drawable.android_appeal,"프로젝트 체크","개발자","2020.01.29","java","javascript","jsp"),
-            AttentionProjectList(R.drawable.android_appeal,"프로젝트 체크","개발자","2020.01.29","linux","window","mac"),
-            AttentionProjectList(R.drawable.android_appeal,"프로젝트 체크","개발자","2020.01.29","linux","window","mac"),
-            AttentionProjectList(R.drawable.android_appeal,"프로젝트 체크","개발자","2020.01.29","linux","window","mac")
+            AttentionProjectList(R.drawable.android_appeal,"프로젝트 체크","개발자"),
+            AttentionProjectList(R.drawable.android_appeal,"프로젝트 체크","개발자"),
+            AttentionProjectList(R.drawable.android_appeal,"프로젝트 체크","개발자"),
+            AttentionProjectList(R.drawable.android_appeal,"프로젝트 체크","개발자"),
+            AttentionProjectList(R.drawable.android_appeal,"프로젝트 체크","개발자")
         )
     }
 
     // View가 만들어진 후, onViewCreated() 콜백된다.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        main_attentionprojectlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),LinearLayoutManager.VERTICAL,false)
+        main_attentionprojectlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),LinearLayoutManager.HORIZONTAL,false)
         main_attentionprojectlist_recyclerview.setHasFixedSize(true) // RecyclerView 크기 유지 (변경 x)
         main_attentionprojectlist_recyclerview.adapter = AttentionProjectListAdapter(attention)
     }

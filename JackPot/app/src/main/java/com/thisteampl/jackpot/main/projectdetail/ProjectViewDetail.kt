@@ -17,20 +17,12 @@ class ProjectViewDetail : AppCompatActivity() {
         // 상세 page text, intent로 정보 전달한다.
         var project = intent.getStringExtra("project")
         var position = intent.getStringExtra("position")
-        var update = intent.getStringExtra("update")
-        var stack1 = intent.getStringExtra("stack1")
-        var stack2 = intent.getStringExtra("stack2")
-        var stack3 = intent.getStringExtra("stack3")
 
         projectview_projectname_textview.text = project
 
         // 이름, 지역 입력해야한다.
 
         // db에서 가져올 내용 text
-        projectview_inputupdate_textview.text = update
-        projectview_stack1_textview.text = stack1
-        projectview_stack2_textview.text = stack2
-        projectview_stack3_textview.text = stack3
         projectview_participate_textview.text = position
 
         

@@ -18,18 +18,12 @@ class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: Arra
         val project_name = view.findViewById<TextView>(R.id.main_projectviewdetail_textview)
         val inputprojectviewdetail_position = view.findViewById<TextView>(R.id.main_inputprojectviewdetail_position_textview)
         val inputprojectviewdetail_update = view.findViewById<TextView>(R.id.main_inputprojectviewdetail_update_textview)
-        val projectviewdetailstack = view.findViewById<TextView>(R.id.main_projectviewdetailstack_textview)
-        val projectviewdetailstack2 = view.findViewById<TextView>(R.id.main_projectviewdetailstack2_textview)
-        val projectviewdetailstack3 = view.findViewById<TextView>(R.id.main_projectviewdetailstack3_textview)
 
         var list = ProjectList!![position]
         profile.setImageResource(list.recentlyiamge)
         project_name.text = list.recentlyregister_project_name
         inputprojectviewdetail_position.text = list.recentlyregister_recruitment_position
         inputprojectviewdetail_update.text = list.update_date
-        projectviewdetailstack.text = list.stack1
-        projectviewdetailstack2.text = list.stack2
-        projectviewdetailstack3.text = list.stack3
 
         return view
     }

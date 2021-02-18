@@ -37,20 +37,12 @@ class AttentionProjectListAdapter (val attentionlist: ArrayList<AttentionProject
         holder.imageview.setImageResource(attentionlist!!.get(position).project_image)
         holder.project_name.text = attentionlist.get(index = position).attention_project_name
         holder.recruitment_position.text = attentionlist.get(index = position).attention_recruitment_position
-        holder.update_date.text = attentionlist.get(index = position).update_date
-        holder.stack1.text = attentionlist.get(index = position).stack1
-        holder.stack2.text = attentionlist.get(index = position).stack2
-        holder.stack3.text = attentionlist.get(index = position).stack3
 
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
-            intent.putExtra("project", holder.project_name.text as String?)
-            intent.putExtra("position",holder.recruitment_position.text as String?)
-            intent.putExtra("update",holder.update_date.text as String?)
-            intent.putExtra("stack1",holder.stack1.text as String?)
-            intent.putExtra("stack2",holder.stack2.text as String?)
-            intent.putExtra("stack3",holder.stack3.text as String?)
+            intent.putExtra("project", holder.project_name.text.toString())
+            intent.putExtra("position",holder.recruitment_position.text.toString())
             holder.itemView.context.startActivity(intent)
         }
     }
@@ -59,10 +51,7 @@ class AttentionProjectListAdapter (val attentionlist: ArrayList<AttentionProject
         val imageview = itemView.findViewById<ImageView>(R.id.main_attention_imageview)
         val project_name = itemView.findViewById<TextView>(R.id.main_attentionproject_textview)
         val recruitment_position = itemView.findViewById<TextView>(R.id.main_inputattentionproject_position_textview)
-        val update_date = itemView.findViewById<TextView>(R.id.main_inputattentionproject_update_textview)
-        val stack1 = itemView.findViewById<TextView>(R.id.main_attentionprojectstack_textview)
-        val stack2 = itemView.findViewById<TextView>(R.id.main_attentionprojectstack2_textview)
-        val stack3 = itemView.findViewById<TextView>(R.id.main_attentionprojectstack3_textview)
+
 
     }
 

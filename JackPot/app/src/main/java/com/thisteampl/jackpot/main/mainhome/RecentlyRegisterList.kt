@@ -9,18 +9,13 @@ import android.os.Parcelable
 class RecentlyRegisterList(
     val recentlyiamge: Int,
     var recentlyregister_project_name: String?, var recentlyregister_recruitment_position: String?,
-    var update_date:String?,
-    var stack1:String?,
-    var stack2:String?,
-    var stack3:String?):Parcelable {
+    var update_date:String?):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString()) {
+        parcel.readString()
+    ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -28,9 +23,6 @@ class RecentlyRegisterList(
         parcel.writeString(recentlyregister_project_name)
         parcel.writeString(recentlyregister_recruitment_position)
         parcel.writeString(update_date)
-        parcel.writeString(stack1)
-        parcel.writeString(stack2)
-        parcel.writeString(stack3)
     }
 
     override fun describeContents(): Int {

@@ -19,14 +19,15 @@ class AttentionMember : Fragment() {
 
     // init 초기화할 때, list를 삽입한다.
     init{
+//        for (num in 1..5){
+//
+//        }
          attention = arrayListOf(
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자","2020.01.29","c++","c#","c"),
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자","2020.01.29","java","javascript","jsp"),
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자","2020.01.29","linux","window","mac"),
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자","2020.01.29","linux","window","mac"),
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자","2020.01.29","linux","window","mac"),
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자","2020.01.29","linux","window","mac"),
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자","2020.01.29","linux","window","mac")
+            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자"),
+            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자"),
+            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자"),
+            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자"),
+            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자")
 
         )
     }
@@ -35,7 +36,7 @@ class AttentionMember : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         main_attentionprojectlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),
-            LinearLayoutManager.VERTICAL,false)
+            LinearLayoutManager.HORIZONTAL,false)
         main_attentionprojectlist_recyclerview.setHasFixedSize(true)  // RecyclerView 크기 유지 (변경 x)
         main_attentionprojectlist_recyclerview.adapter = AttentionMemberListAdapter(attention)
     }

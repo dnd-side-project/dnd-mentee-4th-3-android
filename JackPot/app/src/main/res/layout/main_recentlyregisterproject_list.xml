@@ -5,131 +5,87 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/main_recentlyproject_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginRight="280dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/myprj_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/main_recentlytitle_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="40dp"
+        android:text="제목"
+        android:textColor="@color/colorBlack"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/main_recentlyproject_image"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/main_recentlyprojecttable_imageview"
-            android:layout_width="160dp"
-            android:layout_height="180dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/project_border_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/main_recruitment_position_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="모집 포지션"
+        android:textSize="10dp"
+        app:layout_constraintStart_toEndOf="@+id/main_recentlyproject_image"
+        app:layout_constraintTop_toBottomOf="@+id/main_recentlytitle_textview" />
 
+    <TextView
+        android:id="@+id/main_inputrecentlyproject_position_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:text="개발자"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/main_recruitment_position_textview"
+        app:layout_constraintTop_toBottomOf="@+id/main_recentlytitle_textview" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="140dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/project_empty_grayoval"
-            app:layout_constraintEnd_toEndOf="@+id/main_recentlyprojecttable_imageview"
-            app:layout_constraintStart_toStartOf="@+id/main_recentlyprojecttable_imageview"
-            app:layout_constraintTop_toTopOf="@+id/main_recentlyprojecttable_imageview" />
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/main_recentlyproject_image"
+        app:layout_constraintTop_toBottomOf="@+id/main_recruitment_position_textview">
 
-        <TextView
-            android:id="@+id/main_recentlyregisterprojectname_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text="프로젝트 제목 2"
-            android:textColor="#000000"
-            android:textSize="14dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/main_recentlyprojecttable_imageview"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        <LinearLayout
+            android:id="@+id/holder_main_attention_stackTool_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/main_position_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:text="모집 포지션"
-            android:textSize="10dp"
-            app:layout_constraintStart_toStartOf="@+id/main_recentlyprojecttable_imageview"
-            app:layout_constraintTop_toBottomOf="@+id/main_recentlyregisterprojectname_textview" />
+    <TextView
+        android:id="@+id/main_recentlytime_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginBottom="15dp"
+        android:text="10분전"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/horizontalScrollView" />
 
-        <TextView
-            android:id="@+id/main_inputposition_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="10dp"
-            android:text="개발자"
-            android:textSize="10dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/main_position_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_recentlyregisterprojectname_textview" />
-
-        <TextView
-            android:id="@+id/main_updatedate_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="7dp"
-            android:text="갱신일"
-            android:textSize="10dp"
-            app:layout_constraintStart_toStartOf="@+id/main_recentlyprojecttable_imageview"
-            app:layout_constraintTop_toBottomOf="@+id/main_position_textview" />
-
-        <TextView
-            android:id="@+id/main_inputupdatedate_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="7dp"
-            android:text="2020.01.19"
-            android:textSize="10dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/main_updatedate_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_inputposition_textview" />
-
-        <TextView
-            android:id="@+id/main_recentlyregisterprojectstack_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/radius_background_transparent"
-            android:text="stack"
-            android:textSize="10dp"
-            app:layout_constraintStart_toStartOf="@+id/main_recentlyprojecttable_imageview"
-            app:layout_constraintTop_toBottomOf="@+id/main_updatedate_textview" />
-
-        <TextView
-            android:id="@+id/main_recentlyregisterprojectstack2_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/radius_background_transparent"
-            android:text="stack"
-            android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/main_recentlyregisterprojectstack_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_updatedate_textview" />
-
-        <TextView
-            android:id="@+id/main_recentlyregisterprojectstack3_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/radius_background_transparent"
-            android:text="stack"
-            android:textSize="10dp"
-            app:layout_constraintStart_toEndOf="@+id/main_recentlyregisterprojectstack2_textview"
-            app:layout_constraintTop_toBottomOf="@+id/main_updatedate_textview" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

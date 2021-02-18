@@ -15,11 +15,12 @@
         <!-- 참고 웹 주소 : https://re-build.tistory.com/31 -->
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/main_relativelayout"
+            android:id="@+id/main_field_relativelayout"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:background="#F4F2F2"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -373,86 +374,143 @@
                 app:layout_constraintTop_toTopOf="@+id/main_repose_imgbtn"
                 app:srcCompat="@drawable/field_repose" />
 
-            
-            <!--            <RelativeLayout-->
-<!--                android:id="@+id/main_relativelayout3"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:layout_below="@id/main_hobby_textview4"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/main_hobby_textview4">-->
 
-<!--                <FrameLayout-->
-<!--                    android:id="@+id/main_projectview_framelayout"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_centerHorizontal="true" />-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_attention_constraintlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_hobby_textview4">
 
-<!--            </RelativeLayout>-->
+                <TextView
+                    android:id="@+id/main_projectattention_button"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text="주목받는 프로젝트"
+                    android:textColor="#121212"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/main_attentionprojectline_textview"
+                    android:layout_width="120dp"
+                    android:layout_height="3dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:background="@drawable/page_line_background_select"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/main_projectattention_button" />
+
+                <TextView
+                    android:id="@+id/main_memberattention_button"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="23dp"
+                    android:background="#FFFFFF"
+                    android:text="주목받는 멤버"
+                    android:textColor="@color/colorGray"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/main_projectattention_button"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/main_attentionmemberline_textview"
+                    android:layout_width="100dp"
+                    android:layout_height="3dp"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:background="@drawable/page_line_background_white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/main_attentionprojectline_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/main_memberattention_button" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-<!--            <RelativeLayout-->
-<!--                android:id="@+id/main_relativelayout1"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:layout_below="@id/main_relativelayout3"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/main_relativelayout3">-->
+            <FrameLayout
+                android:id="@+id/main_projectview_framelayout"
+                android:layout_width="match_parent"
+                android:layout_height="176dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_attention_constraintlayout" />
 
-<!--                <FrameLayout-->
-<!--                    android:id="@+id/main_projectview_framelayout2"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_centerHorizontal="true" />-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_recentlyproject_ConstraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_projectview_framelayout">
 
-<!--            </RelativeLayout>-->
+                <TextView
+                    android:id="@+id/main_recentlyproject_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:text="최근에 등록된 프로젝트"
+                    android:textColor="#000000"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/main_recentlyviewmore_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="더보기"
+                    android:textSize="11dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <FrameLayout
+                android:id="@+id/main_recentlyregisterproject_framelayout"
+                android:layout_width="match_parent"
+                android:layout_height="473dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_recentlyproject_ConstraintLayout"
+                />
+
+
+            <Button
+                android:id="@+id/main_optionmenu_floatingactionbutton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+
+                android:background="@drawable/project_write"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/appeal_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/drawproject_fab"
-            android:layout_alignParentRight="true"
-            android:backgroundTint="#ffffff"
-            android:src="@drawable/android_appeal"
-            android:visibility="invisible"
-            android:layout_marginRight="10dp"
-            app:borderWidth="0dp"
-            app:fabSize="normal"
-            app:layout_constraintBottom_toTopOf="@+id/drawproject_fab"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/drawproject_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="#ffffff"
-            android:src="@drawable/android_project_create"
-            android:visibility="invisible"
-            app:borderWidth="0dp"
-            app:fabSize="normal"
-            app:layout_constraintBottom_toTopOf="@+id/main_optionmenu_floatingactionbutton"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/main_optionmenu_floatingactionbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="10dp"
-            android:backgroundTint="@color/cardview_dark_background"
-            android:src="@drawable/android_plus_sign"
-            app:borderWidth="0dp"
-            app:fabSize="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_relativelayout"
-            tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

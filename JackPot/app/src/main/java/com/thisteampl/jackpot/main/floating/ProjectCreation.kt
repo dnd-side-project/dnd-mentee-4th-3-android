@@ -709,15 +709,18 @@ class ProjectCreation : AppCompatActivity() {
                 Log.d("디자이너 : ","${stackTooldesigner[i]}")
             }
             for(i in 0..stackToolAll.size-1){
-                if(stackToolAll[i].equals("Html/CSS")){
+                if(stackToolAll[i] == "Html/CSS"){
                     stackToolAll[i] = "Html_CSS"
                 }
 
-                if(stackToolAll[i].equals("React.JS")){
+                if(stackToolAll[i] == "React.JS"){
                     stackToolAll[i] = "React_js"
                 }
-                if(stackToolAll[i].equals("After Effects")){
+                if(stackToolAll[i] == "After Effects"){
                     stackToolAll[i] = "After_Effects"
+                }
+                if(stackToolAll[i] == "C++"){
+                    stackToolAll[i] = "Cplus"
                 }
 
                 Log.d("tag : ","${stackToolAll[i].toString()}")
