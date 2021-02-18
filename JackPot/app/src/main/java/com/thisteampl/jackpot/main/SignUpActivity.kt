@@ -168,7 +168,7 @@ class SignUpActivity : AppCompatActivity() {
                             } else {
                                 Toast.makeText(
                                     baseContext,
-                                    "사용 불가능한 닉네임입니다.",
+                                    "이미 사용중이거나\n사용 불가능한 닉네임입니다.",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
