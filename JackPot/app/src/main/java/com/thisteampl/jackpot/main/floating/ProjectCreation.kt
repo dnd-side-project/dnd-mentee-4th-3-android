@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
+import androidx.core.view.marginTop
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.projectController.ProjectElement
 import com.thisteampl.jackpot.main.projectController.projectAPI
@@ -24,6 +26,9 @@ class ProjectCreation : AppCompatActivity() {
     // 모집 포지션, 분야를 위한 stack 선언
     private val stackToolposition = mutableListOf<String>()
     private val stackToolfield = mutableListOf<String>()
+    private val stackTooldeveloper = mutableListOf<String>() // 개발자 스택
+    private val stackTooldesigner = mutableListOf<String>()  // 디자이너 스택
+
 
     // 프로젝트 방식, 프로젝트 예상 기간을 위한 arrayOfNulls 선언
     private var onoffbtn = arrayOfNulls<Button>(2)
@@ -37,13 +42,16 @@ class ProjectCreation : AppCompatActivity() {
 
 
     // 사용자가 선택한 item
-    private val selecteddeveloperItems = mutableListOf<String>() // 개발자 스택
-    private val selecteddesignerItems = mutableListOf<String>()  // 디자이너 스택
-    private val selectAllItems = mutableListOf<String>()         // 개발자, 디자이너 스택 합치기
+
+    private val stackToolAll = mutableListOf<String>()         // 개발자, 디자이너 스택 합치기
     private val selectpositionItems = mutableListOf<String>()    // 포지션
     private val selectedfieldItems = mutableListOf<String>()     // 분야
 
     private var projectapi = projectAPI.projectRetrofitService()
+
+//    private var developerbuttons = ArrayList<Button>(10)
+//    private var designerbuttons = ArrayList<Button>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,63 +67,442 @@ class ProjectCreation : AppCompatActivity() {
     }
 
 
+    // 개발자 (시간 없어 기초로 만들었습니다.)
+
+    var developer_btn:Boolean = false
+    var designer_btn:Boolean = false
+    var planner_btn:Boolean = false
+    // 가독성 떨어짐
+    // 개발자 툴 name
+    var java:Boolean = false ; var cplus:Boolean = false ; var python:Boolean = false ; var js:Boolean = false ; var html:Boolean = false
+    var swift:Boolean = false ; var spring:Boolean = false ; var kotlin:Boolean = false ; var django:Boolean = false
+    var reactjs:Boolean = false; var flask:Boolean = false
+    var developercheck_index:Int = 0
+
+    // 디자이너 툴 name
+    var photoshop = false ; var illusrator = false ; var xd = false; var figma = false; var sketch = false; var principle= false;
+    var protopie = false ; var after_effects = false; var premiere = false; var indesign = false; var c4d = false; var zeplin = false;
+    var designercheck_index:Int = 0
+
+
+    // 개발자 툴 관련 소스
+    // selectbtn : 선택, selectoutbtn : 선택하지 않았을 때
+    private fun selectinbtn(btn: Button){
+        btn.background = ContextCompat.getDrawable(
+            this@ProjectCreation,
+            R.drawable.radius_background_transparent_select
+        )
+        developercheck_index++
+        stackTooldeveloper.add(btn.text.toString())
+    }
+
+    private fun selectoutbtn(btn: Button){
+        btn.background = ContextCompat.getDrawable(
+            this@ProjectCreation,
+            R.drawable.radius_background_transparent
+        )
+        developercheck_index--
+        stackTooldeveloper.remove(btn.text.toString())
+    }
+
+
+    // 개발자 툴
+    private fun developertool(){
+        createproject_java_Button.setOnClickListener {
+            if(java == false){
+                selectinbtn(createproject_java_Button)
+                java = true
+            }else{
+                java = false
+                selectoutbtn(createproject_java_Button)
+            }
+
+        }
+
+        createproject_cpluse_Button.setOnClickListener {
+            if(cplus == false){
+                selectinbtn(createproject_cpluse_Button)
+                cplus = true
+            }else{
+                cplus = false
+                selectoutbtn(createproject_cpluse_Button)
+            }
+
+        }
+
+        createproject_python_Button.setOnClickListener {
+            if(python == false){
+                selectinbtn(createproject_python_Button)
+                python = true
+            }else{
+                python = false
+                selectoutbtn(createproject_python_Button)
+            }
+        }
+
+        createproject_javascript_Button.setOnClickListener {
+            if(js == false){
+                selectinbtn(createproject_javascript_Button)
+                js = true
+            }else{
+                js = false
+                selectoutbtn(createproject_javascript_Button)
+            }
+        }
+
+        createproject_html_css_Button.setOnClickListener {
+            if(html == false){
+                selectinbtn(createproject_html_css_Button)
+                html = true
+            }else{
+                html = false
+                selectoutbtn(createproject_html_css_Button)
+            }
+        }
+
+        createproject_swift_Button.setOnClickListener {
+            if(swift == false){
+                selectinbtn(createproject_swift_Button)
+                swift = true
+            }else{
+                swift = false
+                selectoutbtn(createproject_swift_Button)
+            }
+        }
+
+        createproject_spring_Button.setOnClickListener {
+            if(spring == false){
+                selectinbtn(createproject_spring_Button)
+                spring = true
+            }else{
+                spring = false
+                selectoutbtn(createproject_spring_Button)
+            }
+        }
+        createproject_kotlin_Button.setOnClickListener {
+            if(kotlin == false){
+                selectinbtn(createproject_kotlin_Button)
+                kotlin = true
+            }else{
+                kotlin = false
+                selectoutbtn(createproject_kotlin_Button)
+            }
+        }
+        createproject_django_Button.setOnClickListener {
+            if(django == false){
+                selectinbtn(createproject_django_Button)
+                django = true
+            }else{
+                django = false
+                selectoutbtn(createproject_django_Button)
+            }
+        }
+        createproject_reactjs_Button.setOnClickListener {
+            if(reactjs == false){
+                selectinbtn(createproject_reactjs_Button)
+                reactjs = true
+            }else{
+                reactjs = false
+                selectoutbtn(createproject_reactjs_Button)
+            }
+        }
+        createproject_flask_Button.setOnClickListener {
+            if(flask == false){
+                selectinbtn(createproject_flask_Button)
+                flask = true
+            }else{
+                flask = false
+                selectoutbtn(createproject_flask_Button)
+            }
+        }
+
+    }
+
+    // 디자이너 툴 관련 소스
+    // selectindesignerbtn : 선택, selectoutdesignerbtn : 선택하지 않았을 때
+    private fun selectindesignerbtn(btn: Button){
+        btn.background = ContextCompat.getDrawable(
+            this@ProjectCreation,
+            R.drawable.radius_background_transparent_select
+        )
+        designercheck_index++
+        stackTooldesigner.add(btn.text.toString())
+    }
+
+    private fun selectoutdesignerbtn(btn: Button){
+        btn.background = ContextCompat.getDrawable(
+            this@ProjectCreation,
+            R.drawable.radius_background_transparent
+        )
+        designercheck_index--
+        stackTooldesigner.remove(btn.text.toString())
+    }
+
+    private fun designertool(){
+        createproject_photoshop_Button.setOnClickListener {
+            if(photoshop == false){
+                selectindesignerbtn(createproject_photoshop_Button)
+                photoshop = true
+            }else{
+                photoshop = false
+                selectoutdesignerbtn(createproject_photoshop_Button)
+            }
+        }
+        createproject_illustrator_Button.setOnClickListener {
+            if(illusrator == false){
+                selectindesignerbtn(createproject_illustrator_Button)
+                illusrator = true
+            }else{
+                illusrator = false
+                selectoutdesignerbtn(createproject_illustrator_Button)
+            }
+        }
+        createproject_xd_Button.setOnClickListener {
+            if(xd == false){
+                selectindesignerbtn(createproject_xd_Button)
+                xd = true
+            }else{
+                xd = false
+                selectoutdesignerbtn(createproject_xd_Button)
+            }
+        }
+
+        createproject_figma_Button.setOnClickListener {
+            if(figma == false){
+                selectindesignerbtn(createproject_figma_Button)
+                figma = true
+            }else{
+                figma = false
+                selectoutdesignerbtn(createproject_figma_Button)
+            }
+        }
+
+        createproject_sketch_Button.setOnClickListener {
+            if(sketch == false){
+                selectindesignerbtn(createproject_sketch_Button)
+                sketch = true
+            }else{
+                sketch = false
+                selectoutdesignerbtn(createproject_sketch_Button)
+            }
+        }
+
+        createproject_principle_Button.setOnClickListener {
+            if(principle == false){
+                selectindesignerbtn(createproject_principle_Button)
+                principle = true
+            }else{
+                principle = false
+                selectoutdesignerbtn(createproject_principle_Button)
+            }
+        }
+        createproject_protopie_Button.setOnClickListener {
+            if(protopie == false){
+                selectindesignerbtn(createproject_protopie_Button)
+                protopie = true
+            }else{
+                protopie = false
+                selectoutdesignerbtn(createproject_protopie_Button)
+            }
+        }
+        createproject_after_effects_Button.setOnClickListener {
+            if(after_effects == false){
+                selectindesignerbtn(createproject_after_effects_Button)
+                after_effects = true
+            }else{
+                after_effects = false
+                selectoutdesignerbtn(createproject_after_effects_Button)
+            }
+        }
+        createproject_premiere_Button.setOnClickListener {
+            if(premiere == false){
+                selectindesignerbtn(createproject_premiere_Button)
+                premiere = true
+            }else{
+                premiere = false
+                selectoutdesignerbtn(createproject_premiere_Button)
+            }
+        }
+        createproject_indesign_Button.setOnClickListener {
+            if(indesign== false){
+                selectindesignerbtn(createproject_indesign_Button)
+                indesign = true
+            }else{
+                indesign = false
+                selectoutdesignerbtn(createproject_indesign_Button)
+            }
+        }
+        createproject_c4d_Button.setOnClickListener {
+            if(c4d == false){
+                selectindesignerbtn(createproject_c4d_Button)
+                c4d = true
+            }else{
+                c4d = false
+                selectoutdesignerbtn(createproject_c4d_Button)
+            }
+        }
+        createproject_zeplin_Button.setOnClickListener {
+            if(zeplin == false){
+                selectindesignerbtn(createproject_zeplin_Button)
+                zeplin = true
+            }else{
+                zeplin = false
+                selectoutdesignerbtn(createproject_zeplin_Button)
+            }
+        }
+
+    }
+
+
     private fun setWriteProjectRecruitment() {
 
         // 1 page
         stackToolposition.clear()
         stackToolfield.clear()
 
-        // 스택, 툴 버튼 설정 메서드 (signupactivity btnOnClick 이용)
-        // 모집포지션
-        for (i in 0 until projectcreate_position_linearlayout.childCount) {
-            val child: View = projectcreate_position_linearlayout.getChildAt(i)
+        // 개발자 버튼 클릭했을 때
+        createproject_developer_Button.setOnClickListener {
 
-            // 해당 버튼에 효과 주기
-            if (child is Button) {
-                child.background =
-                    ContextCompat.getDrawable(this@ProjectCreation, R.drawable.radius_button_effect)
-                child.setOnClickListener {
+            createproject_projectstack_constraintLayout.visibility = View.VISIBLE
+            createproject_projectstackdesigner_constraintLayout.visibility = View.GONE
 
-                    if (!stackToolposition.contains(child.text.toString())) {
-                        child.background = ContextCompat.getDrawable(
-                            this@ProjectCreation,
-                            R.drawable.radius_background_transparent_select
-                        )
-                        stackToolposition.add(child.text.toString())
-                    } else {
-                        child.background = ContextCompat.getDrawable(
-                            this@ProjectCreation,
-                            R.drawable.radius_button_effect
-                        )
-                        stackToolposition.remove(child.text.toString())
-                    }
-
-                }
+            if(designercheck_index == 0){
+                createproject_designer_Button.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_background_transparent
+                )
+                designer_btn = false
+                stackToolposition.remove(createproject_designer_Button.text.toString())
             }
+
+            // 개발자 툴이 닫혀있을 때
+            if(!developer_btn){
+                createproject_developer_Button.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_background_transparent_select
+                )
+                createproject_projectstack_constraintLayout.visibility = View.VISIBLE
+                createproject_projectstackdesigner_constraintLayout.visibility = View.GONE
+
+                // 개발자 툴 오픈
+                developertool()
+                stackToolposition.add(createproject_developer_Button.text.toString())
+                developer_btn = true
+            }else if(developer_btn && developercheck_index == 0){
+                // 개발자 버튼을 눌릴 때 : 개발자 툴에 아무런 버튼 입력 없을 때 버튼 효과 빼기
+                createproject_developer_Button.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_background_transparent
+                )
+                stackToolposition.remove(createproject_developer_Button.text.toString())
+                developer_btn = false
+                createproject_projectstack_constraintLayout.visibility = View.GONE
+                createproject_projectstackdesigner_constraintLayout.visibility = View.GONE
+            }
+
         }
 
 
-        // 사용 예정 스택, 개발자
-        var stacktobeusingdeveloper = arrayOf<String>(
-            "java", "cplus", "javascript", "python", "ruby", "django"
-        )
-        StackTobeUsed(createproject_developer_button, stacktobeusingdeveloper)
+        // 디자이너 버튼 클릭했을 때
+        createproject_designer_Button.setOnClickListener {
+            createproject_projectstack_constraintLayout.visibility = View.GONE
+            createproject_projectstackdesigner_constraintLayout.visibility = View.VISIBLE
+
+            if (developercheck_index == 0) {
+                createproject_developer_Button.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_background_transparent
+                )
+                developer_btn = false
+                stackToolposition.remove(createproject_developer_Button.text.toString())
+            }
 
 
-        // 사용 예정 스택, 디자이너
-        var stacktobeusingdesigner = arrayOf<String>(
-            "Adobe Photoshop", "Adobe Illustrator", "Adobe XD", "Figma", "Sketch", "Principle",
-            "Adobe Indesign", "Adobe After Effects", "Adobe Premiere", "C4D", "Protopie"
-        )
+            // 디자이너 툴이 닫혀있을 때
+            if(!designer_btn){
+                createproject_designer_Button.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_background_transparent_select
+                )
+                createproject_projectstack_constraintLayout.visibility = View.GONE
+                createproject_projectstackdesigner_constraintLayout.visibility = View.VISIBLE
+                
+                // 디자이너 툴 오픈
+                designertool()
+                designer_btn = true
+                stackToolposition.add(createproject_designer_Button.text.toString())
+            }else if(designer_btn && designercheck_index == 0){
+                // 디자이너 버튼을 눌릴 때 : 디자이너 툴에 아무런 버튼 입력 없을 때 버튼 효과 빼기
+                createproject_designer_Button.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_background_transparent
+                )
+                designer_btn = false
+                createproject_projectstack_constraintLayout.visibility = View.GONE
+                createproject_projectstackdesigner_constraintLayout.visibility = View.GONE
+                stackToolposition.remove(createproject_designer_Button.text.toString())
+            }
 
-        // 개발자, 디자이너 개수 맞춘다. (기술 스택 개수)
-        StackTobeUsed(createproject_designer_button, stacktobeusingdesigner)
+        }
+        createproject_planner_Button.setOnClickListener{
 
+//
+//            // 개발자, 디자이너 툴 아무런 입력이 없을 때
+//            if(designercheck_index == 0 || developercheck_index == 0){
+//
+//                if(developercheck_index == 0){
+//                    createproject_developer_Button.background = ContextCompat.getDrawable(
+//                        this@ProjectCreation,
+//                        R.drawable.radius_background_transparent
+//                    )
+//                    developer_btn = false
+//                    stackToolposition.remove(createproject_developer_Button.text.toString())
+//                    createproject_projectstack_constraintLayout.visibility = View.GONE
+//
+//                }
+//
+//                if(designercheck_index == 0){
+//                    createproject_designer_Button.background = ContextCompat.getDrawable(
+//                        this@ProjectCreation,
+//                        R.drawable.radius_background_transparent
+//                    )
+//                    designer_btn = false
+//                    stackToolposition.remove(createproject_designer_Button.text.toString())
+//                    createproject_projectstackdesigner_constraintLayout.visibility = View.GONE
+//                }
+//
+//            }
+
+
+            // 기획자 버튼 닫혀있을 때
+            if(!planner_btn){
+                createproject_planner_Button.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_background_transparent_select
+                )
+                planner_btn = true
+                stackToolposition.add(createproject_planner_Button.text.toString())
+
+
+
+            }else{  // 기획자 버튼 열려있을 때
+                createproject_planner_Button.background = ContextCompat.getDrawable(
+                    this@ProjectCreation,
+                    R.drawable.radius_background_transparent
+                )
+
+                planner_btn = false
+                stackToolposition.remove(createproject_planner_Button.text.toString())
+            }
+
+
+        }
 
         // 지역
         var regions = listOf(
-            "서울", "부산", "대구", "인천", "대전", "광주", "울산", "세종","경기도",
-            "강원도"
+            "서울", "경기", "인천", "대전", "광주", "울산", "세종","대구","부산","강원도",
+            "충청북도","충청남도","전라북도","전라남도","경상남도","경상북도","제주도",
+            "해외"
         )
 
         createproject_regions_spinner.setItems(regions)
@@ -179,7 +566,7 @@ class ProjectCreation : AppCompatActivity() {
             }
         }
 
-        // 분야 IT ~ 요리
+        // 분야 자기계발 ~ 요리
         for (i in 0 until projectcreate_field_linearlayout.childCount) {
             val child: View = projectcreate_field_linearlayout.getChildAt(i)
 
@@ -211,7 +598,7 @@ class ProjectCreation : AppCompatActivity() {
             }
         }
 
-        // 분야 취미 ~ 자기계발
+        // 분야 IT ~ 휴식
         for (i in 0 until projectcreate_field2_linearlayout.childCount) {
             val child: View = projectcreate_field2_linearlayout.getChildAt(i)
 
@@ -254,25 +641,38 @@ class ProjectCreation : AppCompatActivity() {
 
                 for (i in 0..stackToolfield.size-1) {
                     // 백엔드에서는 / 를 사용할 수 없어 변환 과정
-                    if (stackToolfield[i].equals("건강/스포츠")) {
-                        stackToolfield[i] = "건강_스포츠"
-                        Log.d("tag ","${stackToolfield[i]}")
-                    }
                     if (stackToolfield[i].equals("예술/창작")) {
                         stackToolfield[i] = "예술_창작"
                         Log.d("tag ","${stackToolfield[i]}")
                     }
                 }
 
+
                 // 사용 예정 스택, 모집 포지션, 분야
-                selectAllItems.addAll(selecteddeveloperItems)
-                selectAllItems.addAll(selecteddesignerItems)
+                stackToolAll.addAll(stackTooldeveloper)
+                stackToolAll.addAll(stackTooldesigner)
+
+                for(i in 0..stackToolAll.size-1){
+                    if(stackToolAll[i].equals("Html/CSS")){
+                        stackToolAll[i] = "Html_CSS"
+                    }
+
+                    if(stackToolAll[i].equals("React.JS")){
+                        stackToolAll[i] = "React_js"
+                    }
+                    if(stackToolAll[i].equals("After Effects")){
+                        stackToolAll[i] = "After_Effects"
+                    }
+
+                    Log.d("tag : ","${stackToolAll[i].toString()}")
+                }
+
+                createproject_minusbutton_imageview.visibility = View.GONE
+                createproject_beforebutton_imageview.visibility = View.VISIBLE
+
                 selectpositionItems.addAll(stackToolposition)
                 selectedfieldItems.addAll(stackToolfield)
 
-                createproject_line1_button.background = ContextCompat.getDrawable(
-                    this@ProjectCreation, R.drawable.page_line_background
-                )
 
                 createproject_line2_button.background = ContextCompat.getDrawable(
                     this@ProjectCreation,
@@ -301,7 +701,7 @@ class ProjectCreation : AppCompatActivity() {
                 selectpositionItems,
                 stacklistregions,
                 createproject_projectdetail_edittext.text.toString(),
-                selectAllItems,
+                stackToolAll,
                 createproject_projecttitle_edittext.text.toString()
             )
 
@@ -344,8 +744,8 @@ class ProjectCreation : AppCompatActivity() {
         if (stackToolposition.size == 0) {
             ToastmakeTextPrint("모집 포지션 선택해주세요."); return false
         }
-        if (selecteddeveloperItems.isEmpty() && selecteddesignerItems.isEmpty()) {
-            ToastmakeTextPrint("사용 예정 스택 입력해주세요."); return false
+        if(stackTooldeveloper.size == 0 && stackTooldesigner.size == 0){
+            ToastmakeTextPrint("툴 선택해주세요."); return false
         }
         if (onofftext.equals("onoff")) {
             ToastmakeTextPrint("프로젝트 방식을 선택해주세요."); return false
@@ -397,7 +797,7 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_button_effect
                 )
-                
+
                 // 초기화
                 onofftext = "onoff"
                 checkoffout = -1
@@ -460,128 +860,6 @@ class ProjectCreation : AppCompatActivity() {
                 }
             }
         }
-    }
-
-
-    var developerbool: BooleanArray = BooleanArray(11)
-    var designerbool: BooleanArray = BooleanArray(11)
-
-    private fun StackTobeUsed(btn: Button, stack: Array<String>) {
-        btn.setOnClickListener {
-
-            booleanArrayOf()
-
-            if (stack[0].equals("java")) {
-                val dialog = AlertDialog.Builder(this@ProjectCreation)
-                dialog.setMultiChoiceItems(stack,
-                    booleanArrayOf(
-                        developerbool[0],
-                        developerbool[1],
-                        developerbool[2],
-                        developerbool[3],
-                        developerbool[4],
-                        developerbool[5],
-                        developerbool[6],
-                        developerbool[7],
-                        developerbool[8],
-                        developerbool[9],
-                        developerbool[10]
-                    ),
-                    object : DialogInterface.OnMultiChoiceClickListener {
-                        override fun onClick(
-                            dialog: DialogInterface?,
-                            which: Int,
-                            isChecked: Boolean
-                        ) {
-                            if (isChecked) {
-                                developerbool[which] = true
-                                selecteddeveloperItems.add(stack[which])
-                            } else {
-                                developerbool[which] = false
-                                selecteddeveloperItems.remove(stack[which])
-                            }
-
-                        }
-                    }).setPositiveButton("확인", object : DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                        // 사용자가 확인 버튼 눌렸을 때
-                        if (selecteddeveloperItems.size == 0) {
-                            createproject_developer_button.background =
-                                ContextCompat.getDrawable(
-                                    this@ProjectCreation,
-                                    R.drawable.radius_background_transparent
-                                )
-                        } else {
-                            var items = ""
-                            for (selitem in selecteddeveloperItems) {
-                                items += (selitem + ", ")
-                            }
-                            createproject_developer_button.background =
-                                ContextCompat.getDrawable(
-                                    this@ProjectCreation,
-                                    R.drawable.radius_background_transparent_select
-                                )
-                        }
-                    }
-                }).create().show()
-            } else {
-
-                val dialog = AlertDialog.Builder(this@ProjectCreation)
-                dialog.setMultiChoiceItems(stack,
-                    booleanArrayOf(
-                        designerbool[0],
-                        designerbool[1],
-                        designerbool[2],
-                        designerbool[3],
-                        designerbool[4],
-                        designerbool[5],
-                        designerbool[6],
-                        designerbool[7],
-                        designerbool[8],
-                        designerbool[9],
-                        designerbool[10]
-                    ),
-                    object : DialogInterface.OnMultiChoiceClickListener {
-                        override fun onClick(
-                            dialog: DialogInterface?,
-                            which: Int,
-                            isChecked: Boolean
-                        ) {
-                            if (isChecked) {
-                                designerbool[which] = true
-                                selecteddesignerItems.add(stack[which])
-                            } else {
-                                designerbool[which] = false
-                                selecteddesignerItems.remove(stack[which])
-                            }
-
-                        }
-                    }).setPositiveButton("확인", object : DialogInterface.OnClickListener {
-                    override fun onClick(dialog: DialogInterface?, which: Int) {
-                        // 사용자가 확인 버튼 눌렸을 때
-                        if (selecteddesignerItems.size == 0) {
-                            createproject_designer_button.background = ContextCompat.getDrawable(
-                                this@ProjectCreation,
-                                R.drawable.radius_background_transparent
-                            )
-                        } else {
-                            var items = ""
-                            for (selitem in selecteddesignerItems) {
-                                items += (selitem + ", ")
-                            }
-
-                            createproject_designer_button.background = ContextCompat.getDrawable(
-                                this@ProjectCreation,
-                                R.drawable.radius_background_transparent_select
-                            )
-                        }
-                    }
-
-                }).create().show()
-            }
-
-        }
-
     }
 
 

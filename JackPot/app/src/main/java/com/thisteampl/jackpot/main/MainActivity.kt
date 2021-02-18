@@ -19,6 +19,8 @@ import com.thisteampl.jackpot.main.projectController.ProjectElement
 import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_main.*
 import com.thisteampl.jackpot.main.projectController.projectAPI
+import kotlinx.android.synthetic.main.activity_project_creation.*
+import kotlinx.android.synthetic.main.activity_project_creation.view.*
 import okhttp3.Callback
 import retrofit2.Call
 import retrofit2.Response
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity(){
 
     // projectAPI retrofit
     private var projectapi = projectAPI.projectRetrofitService()
-
+    private val selectAllItems = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -173,6 +175,7 @@ class MainActivity : AppCompatActivity(){
                             Log.d("tag, 지역 : ","${response.body()?.getinterest()?.region}")
                             Log.d("tag, 제목 : ","${response.body()?.getinterest()?.title}")
                             Log.d("tag, 포지션 : ","${response.body()?.getinterest()?.position}")
+                            Log.d("tag, 스택 : ","${response.body()?.getinterest()?.stacks}")
 
 
 
@@ -180,6 +183,7 @@ class MainActivity : AppCompatActivity(){
 
                     })
             }
+
 
             projectapi?.getprojectsID(1)
                 ?.enqueue(object : retrofit2.Callback<ProjectElement>{
