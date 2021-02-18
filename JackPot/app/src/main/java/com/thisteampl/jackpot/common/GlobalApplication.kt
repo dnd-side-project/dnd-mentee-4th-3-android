@@ -8,6 +8,7 @@ import com.kakao.sdk.common.KakaoSdk
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.interceptor.TokenInterceptor
 import com.thisteampl.jackpot.main.projectController.projectAPI
+import com.thisteampl.jackpot.main.userController.userAPI
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,7 +26,6 @@ class GlobalApplication : Application() {
         var BASE_URL = "http://3.36.62.198:8080/"
 
         lateinit var prefs: mySharedPreferences
-
 
         var retrofit: Retrofit? = null
         fun getBuilder(): Retrofit? {

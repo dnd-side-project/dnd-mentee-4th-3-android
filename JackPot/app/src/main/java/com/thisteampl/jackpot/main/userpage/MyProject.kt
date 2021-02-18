@@ -1,4 +1,4 @@
-package com.thisteampl.jackpot.main.mypage
+package com.thisteampl.jackpot.main.userpage
 
 data class MyProject (
     var name: String,

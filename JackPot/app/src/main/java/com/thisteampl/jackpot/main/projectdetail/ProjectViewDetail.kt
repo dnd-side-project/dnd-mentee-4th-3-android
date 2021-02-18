@@ -6,9 +6,7 @@ import android.os.Bundle
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
 import com.thisteampl.jackpot.main.filtering.FilteringSearch
-import com.thisteampl.jackpot.main.mypage.MyPage
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.main_appname_textview
+import com.thisteampl.jackpot.main.userpage.MyPage
 import kotlinx.android.synthetic.main.activity_project_view_detail.*
 
 class ProjectViewDetail : AppCompatActivity() {
