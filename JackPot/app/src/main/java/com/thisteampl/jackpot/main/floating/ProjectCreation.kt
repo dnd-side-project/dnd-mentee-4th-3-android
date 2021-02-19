@@ -692,22 +692,15 @@ class ProjectCreation : AppCompatActivity() {
         createproject_submitrecruitment_button.setOnClickListener {
 
             if(projectfieldtext.equals("예술/창작")){
-                projectfieldtext = "예술/창작"
+                projectfieldtext = "예술_창작"
             }
 
             ToastmakeTextPrint("실행중입니다.")
-            Log.d("tag : ","실행중입니다.")
             // 사용 예정 스택, 모집 포지션, 분야
             stackToolAll.addAll(stackTooldeveloper)
             stackToolAll.addAll(stackTooldesigner)
 
-            for(i in 0..stackTooldeveloper.size-1){
-                Log.d("개발자 : ","${stackTooldeveloper[i]}")
-            }
 
-            for(i in 0..stackTooldesigner.size-1){
-                Log.d("디자이너 : ","${stackTooldesigner[i]}")
-            }
             for(i in 0..stackToolAll.size-1){
                 if(stackToolAll[i] == "Html/CSS"){
                     stackToolAll[i] = "Html_CSS"
@@ -723,13 +716,33 @@ class ProjectCreation : AppCompatActivity() {
                     stackToolAll[i] = "Cplus"
                 }
 
-                Log.d("tag : ","${stackToolAll[i].toString()}")
+
             }
             selectpositionItems.addAll(stackToolposition)
 
+            
+            // 수정
+            val listprojectfield = mutableListOf<String>()
+                listprojectfield.add(projectfieldtext)
+
+            Log.d("예상 기간 : ","${durationtext}")
+            Log.d("분야 : ","${listprojectfield[0]}")
+            Log.d("프로젝트 방식 : ","${onofftext}")
+            for(i in 0..selectpositionItems.size-1){
+                Log.d("포지션 스택 : ","${selectpositionItems[i].toString()}")
+            }
+            Log.d("지역 : ","${regiontext}")
+            Log.d("글 내용: ","${createproject_projectdetail_edittext.text.toString()}")
+            for(i in 0..stackToolAll.size-1){
+                Log.d("포지션 스택 : ","${stackToolAll[i].toString()}")
+            }
+
+            Log.d("제목 내용: ","${createproject_projecttitle_edittext.text.toString()}")
+
+
             var recruitmentproject = ProjectCreationElement(
                 durationtext,
-                projectfieldtext,
+                listprojectfield,
                 onofftext,
                 selectpositionItems,
                 regiontext,

@@ -15,13 +15,11 @@ import com.thisteampl.jackpot.main.floating.ProjectCreation
 import com.thisteampl.jackpot.main.mainhome.AttentionMember
 import com.thisteampl.jackpot.main.mainhome.AttentionProject
 import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
-import com.thisteampl.jackpot.main.projectController.ProjectElement
-import com.thisteampl.jackpot.main.projectController.projectAPI
+
 import com.thisteampl.jackpot.main.userpage.MyPage
 import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Response
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recentlyregister: RecentlyRegisterProject
 
     // projectAPI retrofit
-    private var projectapi = projectAPI.projectRetrofitService()
+
     private val selectAllItems = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,40 +36,14 @@ class MainActivity : AppCompatActivity() {
 
         val mypageIntent = Intent(this, MyPage::class.java)
         val mainintent = Intent(this, MainActivity::class.java)
-        val searchintent = Intent(this, FilteringSearch::class.java)
 
 
-
-//        for (i in 1..10) {
-//            projectapi?.getprojectsID(i)
-//                ?.enqueue(object : retrofit2.Callback<ProjectElement> {
-//                    override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
-//                        Log.d("tag : ", "Not found id")
-//                    }
-//
-//                    override fun onResponse(
-//                        call: Call<ProjectElement>,
-//                        response: Response<ProjectElement>
-//                    ) {
-//                        Log.d("tag num : ", "${i}")
-//                        Log.d("tag, id : ", "${response.code()}")
-//                        Log.d("tag, 기간 : ", "${response.body()?.getduration()}")
-//                        Log.d("tag, 관심 : ", "${response.body()?.getinterest()?.duration}")
-//                        Log.d("tag, 지역 : ", "${response.body()?.getinterest()?.region}")
-//                        Log.d("tag, 제목 : ", "${response.body()?.getinterest()?.title}")
-//                        Log.d("tag, 포지션 : ", "${response.body()?.getinterest()?.position}")
-//                        Log.d("tag, 스택 : ", "${response.body()?.getinterest()?.stacks}")
-//
-//
-//                    }
-//
-//                })
-//        }
 
 
         // 검색
         main_search_imageview.setOnClickListener {
-            startActivity(searchintent)
+            val searchintentpage = Intent(this, FilteringSearch::class.java)
+            startActivity(searchintentpage)
         }
 
         //
@@ -137,25 +109,24 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-//        // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
+        // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
         recentlyregister = RecentlyRegisterProject.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister).commit()
 
 
-        // 최근에 등록된 프로젝트 더보기 버튼
-        // 여기서 문제
+
+        // 참고 자료 : https://medium.com/@logishudson0218/intent-flag%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4-d8c91ddd3bfc
+        // addFlags() : 새로운 flag를 기존 flag에 붙임
+        // 최근에 등록된 프로젝트 더보기 버튼 (더보기 page에서 백엔드 연결할 예정)
         main_recentlyviewmore_textview.setOnClickListener {
             val intentrecentlyviewmore = Intent(this, RecentlyProjectViewMore::class.java)
-            intentrecentlyviewmore.putExtra("InputRecently",recentlyregister.recentlyregister)
+            intentrecentlyviewmore.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intentrecentlyviewmore)
         }
 
 
 
         // 플로팅 버튼 눌렸을 때
-        // 참고 자료 : https://medium.com/@logishudson0218/intent-flag%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4-d8c91ddd3bfc
-        // addFlags() : 새로운 flag를 기존 flag에 붙임
-
         main_optionmenu_floatingactionbutton.setOnClickListener {
             var drawproject:Intent = Intent(this, ProjectCreation::class.java)
             drawproject.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

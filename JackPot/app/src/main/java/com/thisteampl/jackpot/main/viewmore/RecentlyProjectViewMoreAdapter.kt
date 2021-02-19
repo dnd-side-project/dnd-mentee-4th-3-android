@@ -10,7 +10,9 @@ import android.widget.TextView
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterList
 
-class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: ArrayList<RecentlyRegisterList>?= null): BaseAdapter() {
+// 상세페이지 ListView
+
+class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: MutableList<RecentlyRegisterList> = mutableListOf()): BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view : View = LayoutInflater.from(context).inflate(R.layout.main_projectviewdetail_list,null)
 
@@ -18,6 +20,7 @@ class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: Arra
         val project_name = view.findViewById<TextView>(R.id.main_projectviewdetail_textview)
         val inputprojectviewdetail_position = view.findViewById<TextView>(R.id.main_inputprojectviewdetail_position_textview)
         val inputprojectviewdetail_update = view.findViewById<TextView>(R.id.main_inputprojectviewdetail_update_textview)
+
 
         var list = ProjectList!![position]
         profile.setImageResource(list.recentlyiamge)
@@ -37,6 +40,6 @@ class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: Arra
     }
 
     override fun getCount(): Int {
-        return ProjectList!!.size
+        return ProjectList?.size
     }
 }

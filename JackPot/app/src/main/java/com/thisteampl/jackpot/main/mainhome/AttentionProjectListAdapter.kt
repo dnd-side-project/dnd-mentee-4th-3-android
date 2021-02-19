@@ -6,54 +6,60 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
+import kotlinx.android.synthetic.main.main_attentionproject_list.view.*
 import java.util.*
 
 // 주목받는 프로젝트 어댑터(연결 구간)
-class AttentionProjectListAdapter (val attentionlist: ArrayList<AttentionProjectList>? = null): RecyclerView.Adapter<AttentionProjectListAdapter.ProjectView>(){
+class AttentionProjectListAdapter(val attentionlist: MutableList<AttentionProjectList> = mutableListOf()) :
+    RecyclerView.Adapter<AttentionProjectListAdapter.AttentionProjectListAdapterRecyclerViewHolder>() {
+
+
+    class AttentionProjectListAdapterRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     // onCreateViewHolder : ViewHolder와 Layout 파일을 연결해주는 역할
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttentionProjectListAdapter.ProjectView {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.main_attentionproject_list,parent,false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): AttentionProjectListAdapterRecyclerViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.main_attentionproject_list, parent, false)
 
-        return ProjectView(view)
+        return AttentionProjectListAdapterRecyclerViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         if (attentionlist != null) {
             return attentionlist.size
-        }else{
+        } else {
             return 0
         }
     }
 
 
     // onBindViewHolder : 생성된 ViewHolder에 바인딩 해주는 함수
-    override fun onBindViewHolder(holder: AttentionProjectListAdapter.ProjectView, position: Int) {
+    override fun onBindViewHolder(
+        holder: AttentionProjectListAdapterRecyclerViewHolder,
+        position: Int
+    ) {
 
-        holder.imageview.setImageResource(attentionlist!!.get(position).project_image)
-        holder.project_name.text = attentionlist.get(index = position).attention_project_name
-        holder.recruitment_position.text = attentionlist.get(index = position).attention_recruitment_position
+
+        val item = attentionlist[position]
+
+        with(holder.itemView) {
+            main_attentionitem_image.setImageResource(item.project_image)
+            main_attentionproject_textview.text = item.attention_project_name
+            main_inputattentionproject_position_textview.text = item.attention_recruitment_position
 
 
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
-            intent.putExtra("project", holder.project_name.text.toString())
-            intent.putExtra("position",holder.recruitment_position.text.toString())
-            holder.itemView.context.startActivity(intent)
+            holder.itemView.setOnClickListener {
+                val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
+                holder.itemView.context.startActivity(intent)
+            }
         }
-    }
-
-    class ProjectView(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val imageview = itemView.findViewById<ImageView>(R.id.main_attention_imageview)
-        val project_name = itemView.findViewById<TextView>(R.id.main_attentionproject_textview)
-        val recruitment_position = itemView.findViewById<TextView>(R.id.main_inputattentionproject_position_textview)
 
 
     }
-
-
 }

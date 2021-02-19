@@ -8,16 +8,20 @@ import kotlinx.android.synthetic.main.activity_project_view_more.*
 import java.util.ArrayList
 
 class RecentlyProjectViewMore : AppCompatActivity() {
-    var recentlyregister: ArrayList<RecentlyRegisterList>? = null
+    var recentlyregister: MutableList<RecentlyRegisterList> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_view_more)
 
         // MainActivity에서 데이터 전달된 값 recentlyregister에 저장 (getParcelableArrayListExtra => ArrayList전달 받음)
-        recentlyregister = intent.getParcelableArrayListExtra<RecentlyRegisterList>("InputRecently")
+
+        
+        // 백엔드 관련 코드 작성 부분
 
 
+
+        // ListView 어댑터
         val adapter =
             RecentlyProjectViewMoreAdapter(
                 this,

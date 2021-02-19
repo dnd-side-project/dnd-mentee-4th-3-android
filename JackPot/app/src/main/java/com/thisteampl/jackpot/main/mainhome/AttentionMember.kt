@@ -2,6 +2,7 @@ package com.thisteampl.jackpot.main.mainhome
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,25 +10,54 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
+import com.thisteampl.jackpot.main.projectController.ProjectElement
+import com.thisteampl.jackpot.main.projectController.projectAPI
 import kotlinx.android.synthetic.main.fragment_attention_project.*
+import retrofit2.Call
+import retrofit2.Response
 
 // 참고 자료 : https://youtu.be/BT206iXW9bk
 // 주목 받는 멤버 class
 class AttentionMember : Fragment() {
 
-    var attention : ArrayList<AttentionMemberList>? = null
-
+    var attention : MutableList<AttentionMemberList> = mutableListOf()
+    private var projectapi = projectAPI.projectRetrofitService()
     // init 초기화할 때, list를 삽입한다.
     init{
-//        for (num in 1..5){
-//
-//        }
+        
+        // 백엔드 호출
+        for (i in 1..10) {
+            projectapi?.getprojectsID(i)
+                ?.enqueue(object : retrofit2.Callback<ProjectElement> {
+                    override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
+                        Log.d("tag : ", "Not found id")
+                    }
+
+                    override fun onResponse(
+                        call: Call<ProjectElement>,
+                        response: Response<ProjectElement>
+                    ) {
+                        Log.d("tag num : ", "${i}")
+                        Log.d("tag, id : ", "${response.code()}")
+                        Log.d("tag, 기간 : ", "${response.body()?.getduration()}")
+                        Log.d("tag, 관심 : ", "${response.body()?.getinterest()?.duration}")
+                        Log.d("tag, 지역 : ", "${response.body()?.getinterest()?.region}")
+                        Log.d("tag, 제목 : ", "${response.body()?.getinterest()?.title}")
+                        Log.d("tag, 포지션 : ", "${response.body()?.getinterest()?.position}")
+                        Log.d("tag, 스택 : ", "${response.body()?.getinterest()?.stacks}")
+
+
+                    }
+
+                })
+        }
+
          attention = arrayListOf(
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.android_plus_sign,"멤버 체크","개발자")
+            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
+            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
+            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
+            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
+            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자")
 
         )
     }
