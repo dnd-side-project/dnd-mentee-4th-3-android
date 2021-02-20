@@ -112,6 +112,14 @@
     android:layout_height="wrap_content"
     android:background="@drawable/mypage_bottom_white">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_availablestackTool_layout"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
     <TextView
         android:id="@+id/profile_availablestackTool_text"
         android:layout_width="200dp"
@@ -144,28 +152,31 @@
         </LinearLayout>
 
     </HorizontalScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/textView8"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="150dp"
         android:text="포트폴리오"
+        android:textColor="@color/colorBlack"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/profile_availablestackTool_layout" />
 
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
         android:layout_width="350dp"
         android:layout_height="20dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="10dp"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView8">
 
         <LinearLayout
             android:id="@+id/profile_portfolio_layout"
@@ -178,23 +189,24 @@
     </HorizontalScrollView>
 
     <TextView
+        android:id="@+id/textView9"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="150dp"
         android:text="자기소개"
+        android:textColor="@color/colorBlack"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
 
     <TextView
         android:id="@+id/profile_introduce_text"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/radius_background_transparent"
         android:padding="5dp"
         android:text="자기소개가 없습니다."
@@ -202,20 +214,20 @@
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
         android:layout_marginRight="150dp"
+        android:layout_marginTop="20dp"
         android:text="후기 (준비중인 기능)"
+        android:textColor="@color/colorBlack"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/profile_introduce_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

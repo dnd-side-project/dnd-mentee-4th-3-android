@@ -599,7 +599,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:drawableLeft="@drawable/android_signup_global"
-                android:hint=" 두번째 링크"
+                android:hint=" 개인 웹사이트가 있다면 입력해 주세요."
                 android:singleLine="true"
                 android:textSize="14dp"
                 android:theme="@style/EditTextTheme" />

@@ -133,7 +133,7 @@ class ProfileActivity: AppCompatActivity() {
                                     profile_job_background_image.setImageResource(R.drawable.background_designer)
                                 }
                                 else -> {
-                                    profile_availablestackTool_text.visibility = View.GONE
+                                    profile_availablestackTool_layout.visibility = View.GONE
                                     profile_job_background_image.setImageResource(R.drawable.background_director)
                                 }
                             }
