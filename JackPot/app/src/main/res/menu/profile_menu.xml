@@ -15,6 +15,11 @@
                 app:showAsAction="never"
                 />
             <item
+                android:id="@+id/profile_edit_password_menu"
+                android:title="비밀번호 변경"
+                app:showAsAction="never"
+                />
+            <item
                 android:id="@+id/profile_privacy_open_menu"
                 android:title="프로필 공개로 변경"
                 app:showAsAction="never"

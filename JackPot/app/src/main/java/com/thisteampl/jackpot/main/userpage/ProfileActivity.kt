@@ -78,6 +78,9 @@ class ProfileActivity: AppCompatActivity() {
                     mMenu?.findItem(R.id.profile_privacy_open_menu)?.isVisible = false
                     mMenu?.findItem(R.id.profile_privacy_close_menu)?.isVisible = true
                 }
+                if(userprofile.loginType != "normal") {
+                    mMenu?.findItem(R.id.profile_edit_password_menu)?.isVisible = false
+                }
             }
             R.id.profile_edit_menu -> {
                 val intent = Intent(baseContext, ProfileEditActivity::class.java)
@@ -88,6 +91,9 @@ class ProfileActivity: AppCompatActivity() {
             }
             R.id.profile_privacy_close_menu -> {
                 setProfile(false)
+            }
+            R.id.profile_edit_password_menu -> {
+
             }
         }
         return super.onOptionsItemSelected(item)

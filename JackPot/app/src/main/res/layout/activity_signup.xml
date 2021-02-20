@@ -737,7 +737,7 @@
             <Button
                 android:id="@+id/signup_student_grade_one"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="1학년"
@@ -746,7 +746,7 @@
             <Button
                 android:id="@+id/signup_student_grade_two"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="2학년"
@@ -755,7 +755,7 @@
             <Button
                 android:id="@+id/signup_student_grade_three"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="3학년"
                 android:contentDescription="2"/>
@@ -763,7 +763,7 @@
             <Button
                 android:id="@+id/signup_student_grade_four"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="4학년"
