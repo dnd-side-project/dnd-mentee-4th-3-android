@@ -156,6 +156,17 @@ class MyPage : AppCompatActivity() {
                             if(response.body()!!.result.privacy) {
                                 mypage_profile_close_image.visibility = View.GONE
                             }
+                            when (response.body()!!.result.job) {
+                                "개발자" -> {
+                                    mypage_job_background_image.setImageResource(R.drawable.background_developer)
+                                }
+                                "디자이너" -> {
+                                    mypage_job_background_image.setImageResource(R.drawable.background_designer)
+                                }
+                                else -> {
+                                    mypage_job_background_image.setImageResource(R.drawable.background_director)
+                                }
+                            }
                         }
                         response.code().toString() == "401" -> {
                             Toast.makeText(

@@ -52,6 +52,7 @@ class ProfileActivity: AppCompatActivity() {
 
         if(profile_title_text.text == "내 프로필") {
             getProfile()
+            profile_memberscrap_button.visibility = View.GONE
         } else {
 
         }
@@ -123,12 +124,15 @@ class ProfileActivity: AppCompatActivity() {
                             when (response.body()!!.result.job) {
                                 "개발자" -> {
                                     profile_availablestackTool_text.text = "기술 스택"
+                                    profile_job_background_image.setImageResource(R.drawable.background_developer)
                                 }
                                 "디자이너" -> {
                                     profile_availablestackTool_text.text = "사용 가능 툴"
+                                    profile_job_background_image.setImageResource(R.drawable.background_designer)
                                 }
                                 else -> {
                                     profile_availablestackTool_text.visibility = View.GONE
+                                    profile_job_background_image.setImageResource(R.drawable.background_director)
                                 }
                             }
                                 // 기술스택 동적 추가

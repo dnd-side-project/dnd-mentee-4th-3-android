@@ -51,7 +51,7 @@
         android:layout_height="120dp">
 
         <ImageView
-            android:id="@+id/mypage_profile_image"
+            android:id="@+id/mypage_job_background_image"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginRight="300dp"
@@ -59,7 +59,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/mypage_profile_background" />
+            app:srcCompat="@drawable/background_developer" />
 
         <LinearLayout
             android:layout_width="200dp"
