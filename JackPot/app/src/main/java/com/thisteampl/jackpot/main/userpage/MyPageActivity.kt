@@ -19,7 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyPage : AppCompatActivity() {
+class MyPageActivity : AppCompatActivity() {
 
     private val userApi = userAPI.create()
     lateinit var myProjectAdapter: MyProjectAdapter

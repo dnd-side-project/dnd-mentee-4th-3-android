@@ -18,7 +18,7 @@ import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
 import com.thisteampl.jackpot.main.userController.CheckProfile
 import com.thisteampl.jackpot.main.userController.userAPI
 
-import com.thisteampl.jackpot.main.userpage.MyPage
+import com.thisteampl.jackpot.main.userpage.MyPageActivity
 import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mypageIntent = Intent(this, MyPage::class.java)
+        val mypageIntent = Intent(this, MyPageActivity::class.java)
         val mainintent = Intent(this, MainActivity::class.java)
         getProfile()
 

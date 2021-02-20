@@ -56,12 +56,11 @@
 
             <TextView
                 android:id="@+id/profile_edit_job_icon_text"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:text="🎉"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🤖"
                 android:textSize="36dp"
-                android:layout_gravity="center"
-                android:background="@drawable/background_developer"/>
+                android:layout_gravity="center"/>
 
             <ImageView
                 android:layout_width="32dp"
@@ -641,9 +640,11 @@
             android:layout_width="320dp"
             android:layout_height="40dp"
             android:layout_marginTop="35dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/radius_background_purple"
             android:text="저장"
             android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_edit_introduce_text" />

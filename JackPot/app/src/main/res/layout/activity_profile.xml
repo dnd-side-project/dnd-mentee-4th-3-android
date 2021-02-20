@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/colorButtonSelect"
-        tools:context=".main.userpage.MyPage">
+        tools:context=".main.userpage.MyPageActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/profile_toolbar"
@@ -44,13 +44,27 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/profile_job_background_image"
+            <FrameLayout
                 android:layout_width="88dp"
                 android:layout_height="88dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="15dp">
+
+
+            <ImageView
+                android:id="@+id/profile_job_background_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:src="@drawable/background_developer"/>
 
+                <TextView
+                    android:id="@+id/profile_job_icon_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="🤖"
+                    android:textSize="48dp"/>
+
+            </FrameLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">

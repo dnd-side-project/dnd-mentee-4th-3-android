@@ -25,7 +25,7 @@
         </service>
         <activity android:name=".main.floating.ProjectCreation" />
         <activity android:name=".main.viewmore.RecentlyProjectViewMore" />
-        <activity android:name=".main.userpage.MyPage" />
+        <activity android:name=".main.userpage.MyPageActivity" />
         <activity android:name=".main.userpage.ProfileActivity" />
         <activity android:name=".main.filtering.FilteringSearch"/>
         <activity android:name=".main.userpage.ProfileEditActivity" />
