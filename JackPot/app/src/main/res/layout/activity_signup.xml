@@ -99,10 +99,11 @@
             <Button
                 android:id="@+id/signup_id_check_button"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="1"
                 android:text="중복확인"
-                android:background="@drawable/radius_button_effect"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/radius_background_purple"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -129,6 +130,7 @@
                 android:hint="인증번호"
                 android:singleLine="true"
                 android:textSize="14dp"
+                android:layout_gravity="center|bottom"
                 android:theme="@style/EditTextTheme"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -137,10 +139,11 @@
 
             <Button
                 android:id="@+id/signup_auth_check_button"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="인증번호\n확인"
-                android:background="@drawable/radius_button_effect"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/radius_background_purple"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -153,7 +156,7 @@
             android:id="@+id/signup_password_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="240dp"
             android:layout_marginRight="147dp"
             android:hint="비밀번호(6글자 ~ 15글자)"
             android:inputType="textPassword"
@@ -169,7 +172,7 @@
             android:id="@+id/signup_password_check_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="320dp"
+            android:layout_marginTop="380dp"
             android:layout_marginRight="147dp"
             android:hint="비밀번호 확인"
             android:inputType="textPassword"
@@ -244,10 +247,11 @@
         <Button
             android:id="@+id/signup_name_check_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:text="중복확인"
-            android:background="@drawable/radius_button_effect" />
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/radius_background_purple" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -728,7 +732,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -736,7 +740,7 @@
             <Button
                 android:id="@+id/signup_student_grade_one"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="1학년"
@@ -745,7 +749,7 @@
             <Button
                 android:id="@+id/signup_student_grade_two"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="2학년"
@@ -754,7 +758,7 @@
             <Button
                 android:id="@+id/signup_student_grade_three"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="3학년"
                 android:contentDescription="2"/>
@@ -762,7 +766,7 @@
             <Button
                 android:id="@+id/signup_student_grade_four"
                 android:layout_width="75dp"
-                android:layout_height="100dp"
+                android:layout_height="75dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="4학년"
@@ -812,53 +816,47 @@
 
         <Button
             android:id="@+id/signup_stack_developer_cpp"
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="50dp"
-            android:layout_marginRight="260dp"
             android:background="@drawable/radius_button_effect"
-            android:text="C++"
+            android:text="Cplus"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
             android:id="@+id/signup_stack_developer_java"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="50dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/radius_button_effect"
-            android:text="Java"
+            android:text="JAVA"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/signup_stack_developer_cpp"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/signup_stack_developer_python"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="180dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/radius_button_effect"
             android:text="Python"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/signup_stack_developer_java"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/signup_stack_developer_jsc"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_marginTop="125dp"
-            android:layout_marginRight="260dp"
             android:background="@drawable/radius_button_effect"
-            android:text="Java Script"
+            android:text="Javascript"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -867,98 +865,89 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginTop="125dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/radius_button_effect"
-            android:text="HTML/CSS"
+            android:text="Html_CSS"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/signup_stack_developer_jsc"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/signup_stack_developer_swift"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="50dp"
             android:layout_marginTop="125dp"
-            android:layout_marginLeft="180dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/radius_button_effect"
             android:text="Swift"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/signup_stack_developer_htmlcss"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/signup_stack_developer_spring"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="50dp"
-            android:layout_marginRight="260dp"
             android:layout_marginTop="250dp"
             android:background="@drawable/radius_button_effect"
             android:text="Spring"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
             android:id="@+id/signup_stack_developer_kotlin"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="50dp"
             android:layout_marginTop="250dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/radius_button_effect"
             android:text="Kotlin"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/signup_stack_developer_spring"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/signup_stack_developer_django"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="50dp"
             android:layout_marginTop="250dp"
-            android:layout_marginLeft="180dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/radius_button_effect"
             android:text="Django"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/signup_stack_developer_kotlin"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/signup_stack_developer_reactjs"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="50dp"
             android:layout_marginTop="375dp"
-            android:layout_marginRight="260dp"
             android:background="@drawable/radius_button_effect"
-            android:text="React.JS"
+            android:text="React_js"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
             android:id="@+id/signup_stack_developer_flask"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="50dp"
             android:layout_marginTop="375dp"
-            android:layout_marginRight="40dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/radius_button_effect"
             android:text="Flask"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/signup_stack_developer_reactjs"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1003,169 +992,152 @@
 
             <Button
                 android:id="@+id/signup_tool_designer_photoshop"
-                android:layout_width="150dp"
+                android:layout_width="120dp"
                 android:layout_height="50dp"
-                android:layout_marginRight="210dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="Adobe PhotoShop"
+                android:text="Photoshop"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
-                android:id="@+id/signup_tool_designer_illustrator"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="110dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Adobe Illustrator"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <Button
+            android:id="@+id/signup_tool_designer_illustrator"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Illustrator"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/signup_tool_designer_photoshop"
+            app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/signup_tool_designer_xd"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="125dp"
-                android:layout_marginRight="260dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="Adobe XD"
+                android:text="XD"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
-                android:id="@+id/signup_tool_designer_figma"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="125dp"
-                android:layout_marginRight="40dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Figma"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <Button
+            android:id="@+id/signup_tool_designer_figma"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Figma"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/signup_tool_designer_xd"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/signup_tool_designer_sketch"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="125dp"
-                android:layout_marginLeft="180dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Sketch"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <Button
+            android:id="@+id/signup_tool_designer_sketch"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Sketch"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/signup_tool_designer_figma"
+            app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/signup_tool_designer_principle"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="250dp"
-                android:layout_marginRight="260dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Principle"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
-                android:id="@+id/signup_stack_developer_Indesign"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="250dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Adobe Indesign"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <Button
+            android:id="@+id/signup_stack_developer_Indesign"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="250dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Indesign"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/signup_tool_designer_principle"
+            app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/signup_tool_designer_aftereffects"
-                android:layout_width="175dp"
+                android:layout_width="125dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="375dp"
-                android:layout_marginRight="190dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="Adobe After Effects"
+                android:text="After_Effects"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
-                android:id="@+id/signup_tool_designer_premiere"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="375dp"
-                android:layout_marginLeft="150dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Adobe Premiere"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <Button
+            android:id="@+id/signup_tool_designer_premiere"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="375dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Premiere"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/signup_tool_designer_aftereffects"
+            app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/signup_tool_designer_c4d"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="500dp"
-                android:layout_marginRight="260dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="C4D"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <Button
-                android:id="@+id/signup_tool_designer_protopie"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="500dp"
-                android:layout_marginRight="40dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Protopie"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <Button
+            android:id="@+id/signup_tool_designer_protopie"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="500dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Protopie"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/signup_tool_designer_c4d"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/signup_tool_designer_zeplin"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="500dp"
-                android:layout_marginLeft="180dp"
-                android:background="@drawable/radius_button_effect"
-                android:text="Zeplin"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <Button
+            android:id="@+id/signup_tool_designer_zeplin"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="500dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/radius_button_effect"
+            android:text="Zeplin"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/signup_tool_designer_protopie"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1213,9 +1185,10 @@
             android:layout_width="335dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
+            android:padding="10dp"
             android:textSize="14dp"
             android:hint="프로젝트에 임하는 각오,\n본인의 경력 등을 자유롭게 입력해 주세요."
-            android:lines="12"
+            android:lines="10"
             android:inputType="textMultiLine"
             android:background="@drawable/radius_background_transparent"
             android:theme="@style/EditTextTheme"

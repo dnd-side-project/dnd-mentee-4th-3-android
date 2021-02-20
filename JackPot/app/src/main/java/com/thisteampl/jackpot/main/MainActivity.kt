@@ -15,16 +15,20 @@ import com.thisteampl.jackpot.main.floating.ProjectCreation
 import com.thisteampl.jackpot.main.mainhome.AttentionMember
 import com.thisteampl.jackpot.main.mainhome.AttentionProject
 import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
+import com.thisteampl.jackpot.main.userController.CheckProfile
+import com.thisteampl.jackpot.main.userController.userAPI
 
-import com.thisteampl.jackpot.main.userpage.MyPage
+import com.thisteampl.jackpot.main.userpage.MyPageActivity
 import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_main.*
-
-
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var recentlyregister: RecentlyRegisterProject
+    private val userApi = userAPI.create()
 
     // projectAPI retrofit
 
@@ -34,11 +38,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mypageIntent = Intent(this, MyPage::class.java)
-        val mainintent = Intent(this, MainActivity::class.java)
+        val mypageIntent = Intent(this, MyPageActivity::class.java)
 
-
-
+        getProfile()
 
         // 검색
         main_search_imageview.setOnClickListener {
@@ -51,7 +53,6 @@ class MainActivity : AppCompatActivity() {
 
         // 나의 페이지
         main_mypage_imageview.setOnClickListener {
-            // 후에 401 에러 시 만료 에러 + 다시 로그인
             if (prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
                 Toast.makeText(
                     this, "로그인 정보가 없습니다." +
@@ -64,13 +65,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //
 
         // MainActivity 실행
         main_appname_textview.setOnClickListener {
-            val intentmainacitivty = Intent(this, MainActivity::class.java)
-            intentmainacitivty.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intentmainacitivty)
+            val mainintent = Intent(this, MainActivity::class.java)
+            startActivity(mainintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
 
 
@@ -158,6 +157,29 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // 유효기간 만료 체크
+    private fun getProfile(){
+        userApi?.getProfile()?.enqueue(
+            object : Callback<CheckProfile> {
+                override fun onFailure(call: Call<CheckProfile>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckProfile>,
+                    response: Response<CheckProfile>
+                ) {
+                    when {
+                        response.code().toString() == "401" -> {
+                            Toast.makeText(baseContext, "자동 로그인 유효기간이 만료됐습니다.\n로그인 정보가 사라졌습니다.", Toast.LENGTH_SHORT).show()
+                            prefs.setString("token", "NO_TOKEN")
+                        }
+                    }
+                }
+            })
+    }
+    
 }
 
 

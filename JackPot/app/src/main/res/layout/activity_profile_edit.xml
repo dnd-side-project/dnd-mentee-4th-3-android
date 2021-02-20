@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/colorWhite">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/profile_edit_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/profile_edit_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="프로필 수정"
+                android:textColor="@color/colorBlack"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/profile_edit_back_button"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/android_back" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/profile_edit_job_change_icon_layout_button"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/profile_edit_job_background_image"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center"
+                android:background="@drawable/background_developer"/>
+
+            <TextView
+                android:id="@+id/profile_edit_job_icon_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🤖"
+                android:textSize="36dp"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="right|bottom"
+                android:background="@drawable/circle_gray" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_gravity="right|bottom"
+                android:background="@drawable/android_setting_white" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="84dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/profile_edit_job_change_icon_layout_button"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/profile_edit_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="닉네임"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/profile_edit_profile_close_image"
+                    android:layout_width="17dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="5dp"
+                    app:srcCompat="@drawable/mypage_lock" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/profile_edit_job_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="직업"
+                android:textColor="@color/colorBlack"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:layout_marginLeft="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="닉네임"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="210dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/profile_edit_name_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:hint="닉네임(특수문자 제외, 8자 이내)"
+                android:singleLine="true"
+                android:textSize="14dp"
+                android:theme="@style/EditTextTheme"/>
+
+            <Button
+                android:id="@+id/profile_edit_name_check_button"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="중복확인"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/radius_background_purple" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="280dp"
+            android:layout_marginLeft="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="현재 상태"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/profile_edit_change_state_layout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="315dp"
+            android:layout_marginLeft="34dp"
+            android:layout_marginRight="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/profile_edit_job_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="직업"
+                android:textColor="@color/colorBlack"
+                android:textSize="14dp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="14dp"
+                android:layout_gravity="right|center"
+                android:src="@drawable/android_next"
+                android:alpha="0.5" />
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="340dp"
+            android:layout_marginLeft="34dp"
+            android:layout_marginRight="30dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_edit_stack_tool_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_edit_change_state_layout_button">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_edit_designer_tool_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="사용 가능한 툴"
+                android:textColor="@color/colorBlack"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_photoshop"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Photoshop"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_illustrator"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Illustrator"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_photoshop"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_xd"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="140dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="XD"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_figma"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="140dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Figma"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_xd"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_sketch"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="140dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Sketch"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_figma"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_principle"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="200dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Principle"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_Indesign"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="200dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Indesign"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_principle"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_aftereffects"
+                android:layout_width="125dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="260dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="After_Effects"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_premiere"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="260dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Premiere"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_aftereffects"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_c4d"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="320dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="C4D"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_protopie"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="320dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Protopie"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_c4d"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_tool_designer_zeplin"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="320dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Zeplin"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_protopie"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_edit_developer_stack_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="기술 스택"
+                android:textColor="@color/colorBlack"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_cpp"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Cplus"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_java"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="JAVA"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_cpp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_python"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Python"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_java"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_jsc"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="140dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Javascript"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_htmlcss"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="140dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Html_CSS"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_jsc"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_swift"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="140dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Swift"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_htmlcss"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_spring"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="200dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Spring"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_kotlin"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="200dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Kotlin"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_spring"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_django"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="200dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Django"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_kotlin"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_reactjs"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="260dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="React_js"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/profile_edit_stack_developer_flask"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="260dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="Flask"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_reactjs"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:text="포트폴리오"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_edit_stack_tool_layout" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+            <EditText
+                android:id="@+id/profile_edit_link_first_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:drawableLeft="@drawable/android_signup_github"
+                android:hint=" 첫번째 링크"
+                android:singleLine="true"
+                android:textSize="14dp"
+                android:theme="@style/EditTextTheme" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <EditText
+                android:id="@+id/profile_edit_link_second_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:drawableLeft="@drawable/android_signup_global"
+                android:hint=" 개인 웹사이트가 있다면 입력해 주세요."
+                android:singleLine="true"
+                android:textSize="14dp"
+                android:theme="@style/EditTextTheme" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:text="자기소개"
+            android:textColor="@color/colorBlack"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+
+        <EditText
+            android:id="@+id/profile_edit_introduce_text"
+            android:layout_width="335dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:background="@drawable/radius_background_transparent"
+            android:hint="프로젝트에 임하는 각오,\n본인의 경력 등을 자유롭게 입력해 주세요."
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:textSize="14dp"
+            android:theme="@style/EditTextTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <Button
+            android:id="@+id/profile_edit_confirm_button"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/radius_background_purple"
+            android:text="저장"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_edit_introduce_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

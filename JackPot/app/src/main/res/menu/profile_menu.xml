@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- https://copycoding.tistory.com/335 -->
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/profile_menu"
+        android:icon="@drawable/profile_menu"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/profile_edit_menu"
+                android:title="프로필 수정"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/profile_privacy_open_menu"
+                android:title="프로필 공개로 변경"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/profile_privacy_close_menu"
+                android:title="프로필 비공개로 변경"
+                android:visible="false"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/profile_edit_password_menu"
+                android:title="비밀번호 변경"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/profile_edit_logout_menu"
+                android:title="로그아웃"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/profile_edit_withdraw_menu"
+                android:title="회원탈퇴"
+                app:showAsAction="never"
+                />
+        </menu>
+    </item>
+
+</menu>

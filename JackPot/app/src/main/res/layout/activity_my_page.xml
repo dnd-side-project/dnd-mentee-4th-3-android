@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,12 +12,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorButtonSelect"
-    tools:context=".main.userpage.MyPage">
+    tools:context=".main.userpage.MyPageActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
         <TextView
@@ -39,7 +40,8 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_gravity="right"
-            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:layout_marginRight="20dp"
             android:background="@drawable/android_setting_white" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -49,17 +51,30 @@
         android:layout_width="match_parent"
         android:layout_height="120dp">
 
-        <ImageView
-            android:id="@+id/mypage_profile_image"
+        <FrameLayout
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginRight="300dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/mypage_profile_background" />
+            app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/mypage_job_background_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/background_developer" />
+
+            <TextView
+                android:id="@+id/mypage_job_icon_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🤖"
+                android:textSize="36dp"
+                android:layout_gravity="center"/>
+
+        </FrameLayout>
         <LinearLayout
             android:layout_width="200dp"
             android:layout_height="50dp"
@@ -108,7 +123,7 @@
             android:layout_width="72dp"
             android:layout_height="42dp"
             android:layout_marginLeft="280dp"
-            android:background="@drawable/radius_background"
+            android:background="@drawable/radius_background_light_purple"
             android:text="프로필 보기"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -357,32 +372,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/mypage_logout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
-            android:text="로그아웃"
-            android:textSize="25dp" />
-
-        <Button
-            android:id="@+id/mypage_withdraw_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:text="회원탈퇴"
-            android:textSize="25dp" />
-
-    </LinearLayout>
 
 </LinearLayout>
 

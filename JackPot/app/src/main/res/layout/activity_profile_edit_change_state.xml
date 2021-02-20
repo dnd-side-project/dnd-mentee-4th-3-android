@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/colorWhite">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="나의 상태 수정"
+            android:textColor="@color/colorBlack"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/profile_edit_change_state_back_button"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/android_back" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_edit_state_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="180dp"
+        android:paddingLeft="40dp"
+        android:background="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:text="현재\n어떤 상태인가요?"
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="48dp"
+            android:layout_marginBottom="110dp"
+            android:text="자신에게 해당하는 사항을 골라주세요."
+            android:textColor="#979797"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/profile_edit_state_student"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="10dp"
+                android:contentDescription="0"
+                android:background="@drawable/radius_button_effect"
+                android:text="학생"/>
+
+            <Button
+                android:id="@+id/profile_edit_state_jobfinder"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="1"
+                android:background="@drawable/radius_button_effect"
+                android:text="취업 준비생"/>
+
+            <Button
+                android:id="@+id/profile_edit_state_junior"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:contentDescription="2"
+                android:background="@drawable/radius_button_effect"
+                android:text="주니어"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_edit_state_grade_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:paddingLeft="40dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="220dp"
+            android:text="몇학년이신가요?"
+            android:textColor="#000000"
+            android:textSize="27dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/profile_edit_student_grade_one"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="1학년"
+                android:contentDescription="0"/>
+
+            <Button
+                android:id="@+id/profile_edit_student_grade_two"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="2학년"
+                android:contentDescription="1"/>
+
+            <Button
+                android:id="@+id/profile_edit_student_grade_three"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="3학년"
+                android:contentDescription="2"/>
+
+            <Button
+                android:id="@+id/profile_edit_student_grade_four"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/radius_button_effect"
+                android:text="4학년"
+                android:contentDescription="3"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/profile_edit_change_state_confirm_button"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="510dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/radius_background_purple"
+        android:text="확인"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

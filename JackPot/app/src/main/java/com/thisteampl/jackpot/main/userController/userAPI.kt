@@ -25,13 +25,20 @@ interface userAPI {
     fun getUserLogin(@Body signIn : SignIn) : Call<CheckResponse>
 
     @POST("/signup")
-    fun getUserSignUp(@Body user : User) : Call<CheckResponse>
+    fun getUserSignUp(@Body infoDto : User) : Call<CheckResponse>
 
     @PUT("/password-modify")
     fun getFindPW(@Query("email") email : String, @Query("password") password : String) : Call<CheckResponse>
 
     @GET("/myprofile")
     fun getProfile() : Call<CheckProfile>
+
+    @PUT("/update-profile")
+    fun getUpdateProfile(@Body infoDto : MyProfileEdit) : Call<CheckResponse>
+
+    @PUT("/password-change")
+    fun getPasswordChange(@Query("newpassword") newpassword : String, @Query("password") password : String) : Call<CheckResponse>
+
 
     @DELETE("/withdraw")
     fun getWithDraw() : Call<CheckResponse>

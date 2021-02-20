@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
 import com.thisteampl.jackpot.main.filtering.FilteringSearch
-import com.thisteampl.jackpot.main.userpage.MyPage
+import com.thisteampl.jackpot.main.userpage.MyPageActivity
 import kotlinx.android.synthetic.main.activity_project_view_detail.*
 
 class ProjectViewDetail : AppCompatActivity() {
@@ -26,7 +26,7 @@ class ProjectViewDetail : AppCompatActivity() {
             else projectview_favoritecount_textview.text = "0"
         }
 
-        val intent = Intent(this, MyPage::class.java)
+        val intent = Intent(this, MyPageActivity::class.java)
         val mainintent = Intent(this, MainActivity::class.java)
         val searchintent = Intent(this, FilteringSearch::class.java)
 
