@@ -4,38 +4,50 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.main.LoginActivity
 import com.thisteampl.jackpot.main.userController.CheckProfile
+import com.thisteampl.jackpot.main.userController.CheckResponse
+import com.thisteampl.jackpot.main.userController.Profile
 import com.thisteampl.jackpot.main.userController.userAPI
-import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.holder_mypage_anotherproject.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class ProfileActivity: AppCompatActivity() {
 
     private val userApi = userAPI.create()
+    lateinit var userprofile : Profile
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        setSupportActionBar(profile_toolbar) // 기본액션바로 지정
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 제목 없애기
+        setupView()
+        invalidateOptionsMenu()
+    }
+
+    override fun onResume() {
+        super.onResume()
         setupView()
     }
 
     private fun setupView(){
         profile_title_text.text = intent.getStringExtra("title").toString()
+        //프로필 텍스트를 Extra로 받음
 
         if(profile_title_text.text == "내 프로필") {
             getProfile()
@@ -45,6 +57,45 @@ class ProfileActivity: AppCompatActivity() {
 
         profile_back_button.setOnClickListener { super.onBackPressed() }
 
+    }
+
+    //내 프로필일 경우 메뉴바 생성
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        if(profile_title_text.text != "내 프로필") {
+            return false
+        }
+        val inflater = menuInflater
+        inflater.inflate(R.menu.profile_menu, menu)
+        return true
+    }
+
+    //다시 한번 호출해서 변경사항 반영
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        if(userprofile.privacy) {
+            menu.findItem(R.id.profile_privacy_open_menu).isVisible = false
+            menu.findItem(R.id.profile_privacy_close_menu).isVisible = true
+        }
+        return true
+    }
+
+    // 메뉴바 선택시
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(profile_title_text.text != "내 프로필") {
+            return false
+        }
+        when(item.itemId) {
+            R.id.profile_edit_menu -> {
+                val intent = Intent(baseContext, ProfileEditActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
+            R.id.profile_privacy_open_menu -> {
+                setProfile(true)
+            }
+            R.id.profile_privacy_close_menu -> {
+                setProfile(false)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     // 프로필을 가져오는 메서드.
@@ -62,7 +113,8 @@ class ProfileActivity: AppCompatActivity() {
                 ) {
                     when {
                         response.code().toString() == "200" -> {
-                            Log.e("getProfile ", "User : " + response.body()!!.result.toString())
+                            userprofile = response.body()!!.result
+                            Log.e("ProfileActivity_getProfile : ", "User : " + response.body()!!.result.toString())
                             profile_job_text.text = response.body()!!.result.job + " ・ " + response.body()!!.result.career
                             profile_name_text.text = response.body()!!.result.name
                             if(response.body()!!.result.privacy) {
@@ -112,6 +164,41 @@ class ProfileActivity: AppCompatActivity() {
                             val intent = Intent(baseContext, LoginActivity::class.java)
                             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                             finish()
+                        }
+                        else -> {
+                            Toast.makeText(
+                                baseContext, "에러가 발생했습니다. 에러코드 : " + response.code()
+                                , Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            })
+    }
+
+    // 프로필을 수정하는 메서드. 여기서는 프로필 공개 여부만 변경한다.
+    private fun setProfile(privacy_ : Boolean){
+        userprofile.privacy = privacy_
+        userApi?.getUpdateProfile(userprofile)?.enqueue(
+            object : Callback<CheckResponse> {
+                override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckResponse>,
+                    response: Response<CheckResponse>
+                ) {
+                    when {
+                        response.code().toString() == "200" -> {
+                            finish()
+                            val intent = Intent(baseContext, ProfileActivity::class.java).putExtra("title", "내 프로필")
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            Toast.makeText(
+                                baseContext, "회원님의 정보가 수정되었습니다."
+                                , Toast.LENGTH_SHORT
+                            ).show()
                         }
                         else -> {
                             Toast.makeText(

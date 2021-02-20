@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,9 +15,9 @@
         tools:context=".main.userpage.MyPage">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
             <TextView
@@ -34,14 +35,6 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="@drawable/android_back_white" />
-
-            <Button
-                android:id="@+id/profile_edit_button"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_gravity="right"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/profile_menu" />
 
         </androidx.appcompat.widget.Toolbar>
 

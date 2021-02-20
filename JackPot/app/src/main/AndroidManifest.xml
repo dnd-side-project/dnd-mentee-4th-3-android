@@ -29,6 +29,7 @@
         <activity android:name=".main.viewmore.RecentlyProjectViewMore" />
         <activity android:name=".main.userpage.MyPage" />
         <activity android:name=".main.userpage.ProfileActivity" />
+        <activity android:name=".main.userpage.ProfileEditActivity" />
         <activity android:name=".main.projectdetail.ProjectViewDetail" />
         <activity android:name=".main.LoginActivity">
 

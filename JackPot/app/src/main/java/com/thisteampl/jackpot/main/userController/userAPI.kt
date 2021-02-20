@@ -33,6 +33,10 @@ interface userAPI {
     @GET("/myprofile")
     fun getProfile() : Call<CheckProfile>
 
+    @PUT("/update-profile")
+    fun getUpdateProfile(@Body infoDto : Profile) : Call<CheckResponse>
+
+
     @DELETE("/withdraw")
     fun getWithDraw() : Call<CheckResponse>
 
