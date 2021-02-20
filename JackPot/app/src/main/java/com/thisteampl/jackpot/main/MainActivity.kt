@@ -19,6 +19,9 @@ import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
 import com.thisteampl.jackpot.main.userpage.MyPage
 import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_main.*
+import com.thisteampl.jackpot.main.projectController.projectAPI
+import retrofit2.Call
+import retrofit2.Response
 
 
 
