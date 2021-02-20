@@ -40,12 +40,12 @@ class AttentionMember : Fragment() {
                         Log.d("tag num : ", "${i}")
                         Log.d("tag, id : ", "${response.code()}")
                         Log.d("tag, 기간 : ", "${response.body()?.getduration()}")
-                        Log.d("tag, 관심 : ", "${response.body()?.getinterest()?.duration}")
-                        Log.d("tag, 지역 : ", "${response.body()?.getinterest()?.region}")
-                        Log.d("tag, 제목 : ", "${response.body()?.getinterest()?.title}")
-                        Log.d("tag, 포지션 : ", "${response.body()?.getinterest()?.position}")
-                        Log.d("tag, 스택 : ", "${response.body()?.getinterest()?.stacks}")
-
+//                        Log.d("tag, 관심 : ", "${response.body()?.getinterest()?.duration}")
+//                        Log.d("tag, 지역 : ", "${response.body()?.getinterest()?.region}")
+//                        Log.d("tag, 제목 : ", "${response.body()?.getinterest()?.title}")
+//                        Log.d("tag, 포지션 : ", "${response.body()?.getinterest()?.position}")
+//                        Log.d("tag, 스택 : ", "${response.body()?.getinterest()?.stacks}")
+//
 
                     }
 

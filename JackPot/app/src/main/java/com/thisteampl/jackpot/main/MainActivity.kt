@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         // 검색
         main_search_imageview.setOnClickListener {
+
             val searchintentpage = Intent(this, FilteringSearch::class.java)
             startActivity(searchintentpage)
         }
@@ -67,7 +68,9 @@ class MainActivity : AppCompatActivity() {
 
         // MainActivity 실행
         main_appname_textview.setOnClickListener {
-            startActivity(mainintent)
+            val intentmainacitivty = Intent(this, MainActivity::class.java)
+            intentmainacitivty.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intentmainacitivty)
         }
 
 
@@ -78,8 +81,8 @@ class MainActivity : AppCompatActivity() {
 
         main_projectattention_button.setOnClickListener {
             attentionlocation = 0
-            main_projectattention_button.setTextColor(Color.BLACK)
-            main_memberattention_button.setTextColor(Color.GRAY)
+            main_projectattention_button.setTextColor(ContextCompat.getColor(this@MainActivity,R.color.colorbrightly))
+            main_memberattention_button.setTextColor(ContextCompat.getColor(this@MainActivity,R.color.colordarkly))
             main_attentionprojectline_textview.background = ContextCompat.getDrawable(
                 this@MainActivity,
                 R.drawable.page_line_background_select
@@ -95,8 +98,9 @@ class MainActivity : AppCompatActivity() {
          //attentionlocation => 더보기 버튼 옵션 넣기 위해 사용
         main_memberattention_button.setOnClickListener {
             attentionlocation += 1
-            main_memberattention_button.setTextColor(Color.BLACK)
-            main_projectattention_button.setTextColor(Color.GRAY)
+            main_memberattention_button.setTextColor(ContextCompat.getColor(this@MainActivity,R.color.colorbrightly))
+            main_projectattention_button.setTextColor(ContextCompat.getColor(this@MainActivity,R.color.colordarkly))
+
             main_attentionprojectline_textview.background = ContextCompat.getDrawable(
                 this@MainActivity,
                 R.drawable.page_line_background_white
@@ -120,7 +124,7 @@ class MainActivity : AppCompatActivity() {
         // 최근에 등록된 프로젝트 더보기 버튼 (더보기 page에서 백엔드 연결할 예정)
         main_recentlyviewmore_textview.setOnClickListener {
             val intentrecentlyviewmore = Intent(this, RecentlyProjectViewMore::class.java)
-            intentrecentlyviewmore.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intentrecentlyviewmore.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intentrecentlyviewmore)
         }
 
@@ -129,7 +133,7 @@ class MainActivity : AppCompatActivity() {
         // 플로팅 버튼 눌렸을 때
         main_optionmenu_floatingactionbutton.setOnClickListener {
             var drawproject:Intent = Intent(this, ProjectCreation::class.java)
-            drawproject.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            drawproject.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(drawproject)
 
         }

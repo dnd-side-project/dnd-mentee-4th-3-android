@@ -6,10 +6,10 @@ import com.thisteampl.jackpot.main.floating.ProjectCreationElement
 // get 할 때 사용
 
 class ProjectElement (
-    @SerializedName("message")
+    @SerializedName("duration")
     var duration:String,
-    @SerializedName("result")
-    var result:ProjectCreationElement,
+    @SerializedName("interest")
+    var interest:String,
     @SerializedName("online")
     var online:String,
     @SerializedName("position")
@@ -18,7 +18,7 @@ class ProjectElement (
     var region:String,
     @SerializedName("shortDesc")
     var shortDesc:String,
-    @SerializedName("result/stacks")
+    @SerializedName("stacks")
     var stacks:List<String>,
     @SerializedName("title")
     var title:String
@@ -26,12 +26,7 @@ class ProjectElement (
     fun getduration():String{
         return duration
     }
-    fun getinterest():ProjectCreationElement{
-        return result
-    }
-    fun getregion():String{
-        return region
-    }
+
 
 
 }

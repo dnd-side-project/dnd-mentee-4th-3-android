@@ -49,9 +49,14 @@
 
     <!-- 잭팟 컬러 -->
     <color name="colorButtonSelect">#846DFF</color>
+    <color name="colorButtonNoSelect">#121212</color>       <!-- 버튼 터치 없을 시 색상-->
+
     <color name="colorDeveloper">#439AFF</color>
     <color name="colorDesigner">#FF739B</color>
     <color name="colorDirector">#5ED7AB</color>
     <color name="colorLightPurple">#B7A9FF</color>
 
+    <!-- 두 개의 버튼에서 한 쪽은 검은색, 한 쪽은 회색 -->
+    <color name="colordarkly">#CCCCCC</color>
+    <color name="colorbrightly">#000000</color>
 </resources>

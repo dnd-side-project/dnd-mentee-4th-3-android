@@ -9,69 +9,1577 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/projectcreate_title_constraintlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/filtersearch_title_constraintlayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="멤버찾기"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/createproject_longline_imageview" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/filtersearch_filteringfiltersearch_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="20dp"
+                android:text="필터링 검색하기"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/filtersearch_longline_imageview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/filtersearch_minusbutton_button"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="21dp"
+                android:layout_marginBottom="21dp"
+                android:background="@drawable/android_backbutton"
+                app:layout_constraintBottom_toBottomOf="@+id/filtersearch_longline_imageview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.46" />
+
+
+            <TextView
+                android:id="@+id/filtersearch_longline_imageview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/edit_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filtersearch_filteringfiltersearch_textview" />
+
+            <TextView
+                android:id="@+id/filtersearch_findproject_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="24dp"
+                android:text="프로젝트 찾기"
+                android:textColor="@color/colorbrightly"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filtersearch_longline_imageview" />
+
+            <TextView
+                android:id="@+id/filtersearch_findmember_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="24dp"
+                android:text="멤버찾기"
+                android:textColor="@color/colordarkly"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/filtersearch_findproject_textview"
+                app:layout_constraintTop_toBottomOf="@+id/filtersearch_longline_imageview" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/filtersearch_body_constraintlayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="프로젝트 찾기"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/createproject_longline_imageview" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filtersearch_title_constraintlayout">
 
-        <TextView
-        android:id="@+id/createproject_recruimentarticle_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="20dp"
-        android:text="필터링 검색하기"
-        android:textColor="#000000"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/createproject_longline_imageview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <!-- 1 page -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/filtersearch_write_recruitment_article_constraintlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
 
-    <Button
-        android:id="@+id/createproject_minusbutton_imageview"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/createproject_longline_imageview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/android_backbutton"
-        />
 
-    <ImageView
-        android:id="@+id/createproject_longline_imageview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/filtersearch_tool_constrainlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createproject_recruimentarticle_textview"
-        app:srcCompat="@drawable/android_createprojectlongline" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/filtersearch_projectstack_constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <TextView
+                            android:id="@+id/filtersearch_developertool_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:text="개발 툴"
+                            android:textColor="#000000"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/filtersearch_projectstackbutton_constraintLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/filtersearch_developertool_textview">
+
+                            <Button
+                                android:id="@+id/filtersearch_java_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Java"
+                                android:textSize="14dp"
+
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <Button
+                                android:id="@+id/filtersearch_cpluse_Button"
+                                android:layout_width="60dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+
+                                android:background="@drawable/radius_button_effect"
+                                android:text="C++"
+                                android:textAllCaps="false"
+
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_java_Button"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <Button
+                                android:id="@+id/filtersearch_python_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Python"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_cpluse_Button"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <Button
+                                android:id="@+id/filtersearch_javascript_Button"
+                                android:layout_width="110dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Javascript"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_java_Button" />
+
+
+                            <Button
+                                android:id="@+id/filtersearch_django_Button"
+                                android:layout_width="90dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Django"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_swift_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_html_css_Button"
+                                android:layout_width="100dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Html/CSS"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_javascript_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_cpluse_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_swift_Button"
+                                android:layout_width="70dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Swift"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_javascript_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_kotlin_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Kotlin"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_spring_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_html_css_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_spring_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Spring"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_swift_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_html_css_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_flask_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="FLASK"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_reactjs_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_kotlin_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_reactjs_Button"
+                                android:layout_width="100dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="React.JS"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_django_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_spring_Button" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/filtersearch_projectstackdesigner_constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <TextView
+                            android:id="@+id/filtersearch_tool_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:text="디자인 툴"
+                            android:textColor="#000000"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/filtersearch_projectstackdesignerbutton_constraintLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/filtersearch_tool_textview">
+
+                            <Button
+                                android:id="@+id/filtersearch_photoshop_Button"
+                                android:layout_width="110dp"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="25dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="PhotoShop"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <Button
+                                android:id="@+id/filtersearch_illustrator_Button"
+                                android:layout_width="110dp"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="12dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Illusrator"
+                                android:textAllCaps="false"
+
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_photoshop_Button"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <Button
+                                android:id="@+id/filtersearch_xd_Button"
+                                android:layout_width="60dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="XD"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_photoshop_Button" />
+
+
+                            <Button
+                                android:id="@+id/filtersearch_sketch_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Sketch"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_figma_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_illustrator_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_figma_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Figma"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_xd_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_illustrator_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_Principle_Button"
+                                android:layout_width="100dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Principle"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_xd_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_protopie_Button"
+                                android:layout_width="100dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Protopie"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_Principle_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_figma_Button" />
+
+
+                            <Button
+                                android:id="@+id/filtersearch_after_effects_Button"
+                                android:layout_width="120dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="After Effects"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_Principle_Button" />
+
+
+                            <Button
+                                android:id="@+id/filtersearch_premiere_Button"
+                                android:layout_width="110dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Premiere"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_after_effects_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_protopie_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_Indesign_Button"
+                                android:layout_width="120dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Indesign"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_after_effects_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_c4d_Button"
+                                android:layout_width="70dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="C4D"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_Indesign_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_premiere_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_Zeplin_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Zeplin"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_c4d_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_premiere_Button" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/filtersearch_projectway_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:text="프로젝트 방식"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_tool_constrainlayout"
+                    tools:ignore="MissingConstraints" />
+
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_projectonoff_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_projectway_textview">
+
+                    <Button
+                        android:id="@+id/filtersearch_offline_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="25dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="오프라인"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/filtersearch_online_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="온라인"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_offline_button" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/filtersearch_regions_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:text="지역"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_projectonoff_linearlayout"
+                    tools:ignore="MissingConstraints" />
+
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_regions_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_regions_textview">
+
+
+                    <com.skydoves.powerspinner.PowerSpinnerView
+                        android:id="@+id/filtersearch_regions_spinner"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:padding="10dp"
+                        android:text="지역을 선택해주세요"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/filtersearch_regions_linearlayout"
+                        app:spinner_arrow_gravity="end"
+                        app:spinner_arrow_padding="8dp"
+                        app:spinner_arrow_show="true"
+                        app:spinner_arrow_tint="#000000"
+                        app:spinner_divider_color="@color/colorWhite"
+                        app:spinner_divider_show="true"
+                        app:spinner_divider_size="0.5dp"
+                        app:spinner_popup_animation="normal"
+                        app:spinner_popup_background="#FFFFFF" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/filtersearch_projectestimatedtime_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:text="기간"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_regions_linearlayout"
+                    tools:ignore="MissingConstraints" />
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_month_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_projectestimatedtime_textview">
+
+                    <Button
+                        android:id="@+id/filtersearch_month_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="25dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="1개월 이하"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/filtersearch_month2_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="~3개월"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_month_button" />
+
+                    <Button
+                        android:id="@+id/filtersearch_month3_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="~6개월"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_month2_button" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/filtersearch_field_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="20dp"
+                    android:text="관심분야"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_month_linearlayout" />
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_field_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_field_textview">
+
+
+                    <Button
+                        android:id="@+id/filtersearch_selfdeveloper_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="25dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="자기계발"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/filtersearch_hobby_textview"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="취미"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_field_it_textview" />
+
+                    <Button
+                        android:id="@+id/filtersearch_economy_textview"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="경제"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_art_textview" />
+
+                    <Button
+                        android:id="@+id/filtersearch_cook_textview"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="요리"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_cook_textview" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_field2_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_field_linearlayout">
+
+                    <Button
+                        android:id="@+id/filtersearch_it_textview"
+                        android:layout_width="40dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="25dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="IT"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/filtersearch_rest_textview"
+                        android:layout_width="80dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="예술/창작"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_hobby_textview" />
+
+                    <Button
+                        android:id="@+id/filtersearch_health_textview"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="건강"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_rest_textview" />
+
+                    <Button
+                        android:id="@+id/filtersearch_holiday_textview"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="휴식"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_etc_textview" />
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 2 page -->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/filtersearch_page2_write_recruitment_article_constraintlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
+
+                <TextView
+                    android:id="@+id/filtersearch_page2_position_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="포지션"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_page2_position_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_position_textview">
+
+                    <Button
+                        android:id="@+id/filtersearch_page2_developer_Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="24dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="개발자"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page2_designer_Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="디자이너"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_developer_Button" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page2_planner_Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="기획자"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_designer_Button" />
+
+                </LinearLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/filtersearch_page2_tool_constrainlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_position_linearlayout">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/filtersearch_page2_projectstack_constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/filtersearch_page2_developertool_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:text="개발 툴"
+                            android:textColor="#000000"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/filtersearch_page2_projectstackbutton_constraintLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_developertool_textview">
+
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_java_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Java"
+                                android:textSize="14dp"
+
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_cpluse_Button"
+                                android:layout_width="60dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="C++"
+                                android:textAllCaps="false"
+
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_java_Button"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_python_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Python"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_cpluse_Button"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_javascript_Button"
+                                android:layout_width="110dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Javascript"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_java_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_django_Button"
+                                android:layout_width="90dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Django"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_swift_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_html_css_Button"
+                                android:layout_width="100dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Html/CSS"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_javascript_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_cpluse_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_swift_Button"
+                                android:layout_width="70dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Swift"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_javascript_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_kotlin_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Kotlin"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_spring_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_html_css_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_spring_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Spring"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_swift_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_html_css_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_flask_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="FLASK"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_reactjs_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_kotlin_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_reactjs_Button"
+                                android:layout_width="100dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="React.JS"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_django_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_spring_Button" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/filtersearch_page2_projectstackdesigner_constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <TextView
+                            android:id="@+id/filtersearch_page2_tool_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:text="디자인 툴"
+                            android:textColor="#000000"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/filtersearch_page2_projectstackdesignerbutton_constraintLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_tool_textview">
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_photoshop_Button"
+                                android:layout_width="110dp"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="25dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="PhotoShop"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_illustrator_Button"
+                                android:layout_width="110dp"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="12dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Illusrator"
+                                android:textAllCaps="false"
+
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_photoshop_Button"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_xd_Button"
+                                android:layout_width="60dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="XD"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_photoshop_Button" />
+
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_sketch_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Sketch"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_figma_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_illustrator_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_figma_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Figma"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_xd_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_illustrator_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_Principle_Button"
+                                android:layout_width="100dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Principle"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_xd_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_protopie_Button"
+                                android:layout_width="100dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Protopie"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_Principle_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_figma_Button" />
+
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_after_effects_Button"
+                                android:layout_width="120dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="After Effects"
+                                android:textAllCaps="false"
+                                android:textSize="14dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_Principle_Button" />
+
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_premiere_Button"
+                                android:layout_width="110dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Premiere"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_after_effects_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_protopie_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_Indesign_Button"
+                                android:layout_width="120dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="25dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Indesign"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_after_effects_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_c4d_Button"
+                                android:layout_width="70dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="C4D"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_Indesign_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_premiere_Button" />
+
+                            <Button
+                                android:id="@+id/filtersearch_page2_Zeplin_Button"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="14dp"
+                                android:background="@drawable/radius_button_effect"
+                                android:text="Zeplin"
+                                android:textAllCaps="false"
+                                app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_c4d_Button"
+                                app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_premiere_Button" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/filtersearch_page2_projectway_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:text="프로젝트 방식"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_tool_constrainlayout"
+                    tools:ignore="MissingConstraints" />
+
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_page2_projectonoff_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_projectway_textview">
+
+                    <Button
+                        android:id="@+id/filtersearch_page2_offduration_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="24dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="오프라인"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page2_onduration_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="온라인"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_offduration_button" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/filtersearch_page2_regions_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:text="지역"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_projectonoff_linearlayout"
+                    tools:ignore="MissingConstraints" />
+
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_page2_regions_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_regions_textview">
+
+
+                    <com.skydoves.powerspinner.PowerSpinnerView
+                        android:id="@+id/filtersearch_page2_regions_spinner"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:padding="10dp"
+                        android:text="지역을 선택해주세요"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_regions_linearlayout"
+                        app:spinner_arrow_gravity="end"
+                        app:spinner_arrow_padding="8dp"
+                        app:spinner_arrow_show="true"
+                        app:spinner_arrow_tint="#000000"
+                        app:spinner_divider_color="@color/colorWhite"
+                        app:spinner_divider_show="true"
+                        app:spinner_divider_size="0.5dp"
+                        app:spinner_popup_animation="normal"
+                        app:spinner_popup_background="#FFFFFF" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/filtersearch_page2_projectestimatedtime_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:text="프로젝트 예상 기간"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_regions_linearlayout"
+                    tools:ignore="MissingConstraints" />
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_page2_month_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_projectestimatedtime_textview">
+
+                    <Button
+                        android:id="@+id/filtersearch_page2_month_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="24dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="1개월 이하"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page2_month2_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="~3개월"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_month_button" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page2_month3_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="~6개월"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_month2_button" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/filtersearch_page2_field_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:text="관심분야"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_month_linearlayout" />
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_page2_field_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_field_textview">
+
+
+                    <Button
+                        android:id="@+id/filtersearch_page1_field_it_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="24dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="자기계발"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page1_hobby_textview"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="취미"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_field_it_textview" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page1_economy_textview"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="경제"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_art_textview" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page1_cook_textview"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="요리"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_cook_textview" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/filtersearch_page2_field2_linearlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_field_linearlayout">
+
+                    <Button
+                        android:id="@+id/filtersearch_page1_it_textview"
+                        android:layout_width="40dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="24dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="IT"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page1_rest_textview"
+                        android:layout_width="80dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="예술/창작"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_hobby_textview" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page1_health_textview"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="건강"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_rest_textview" />
+
+                    <Button
+                        android:id="@+id/filtersearch_page1_holiday_textview"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@drawable/radius_button_effect"
+                        android:text="휴식"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textSize="14dp"
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_etc_textview" />
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/filtersearch_applyfilter_button"
+            android:layout_width="144dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="32dp"
+
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="42dp"
+            android:background="@drawable/project_recruitment_button"
+            android:text="필터적용"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filtersearch_body_constraintlayout"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/filtersearch_reset_button"
+            android:layout_width="144dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="200dp"
+            android:layout_marginBottom="42dp"
+            android:background="@drawable/cancel_button_shape"
+            android:text="필터 초기화"
+            android:textColor="#FFFFFF"
+
+            app:layout_constraintBottom_toTopOf="@+id/filtersearch_applyfilter_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filtersearch_body_constraintlayout"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

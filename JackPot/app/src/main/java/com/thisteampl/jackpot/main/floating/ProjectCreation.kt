@@ -47,7 +47,6 @@ class ProjectCreation : AppCompatActivity() {
 
     private val stackToolAll = mutableListOf<String>()         // 개발자, 디자이너 스택 합치기
     private val selectpositionItems = mutableListOf<String>()    // 포지션
-    private val selectedfieldItems = mutableListOf<String>()     // 분야
 
     private var projectapi = projectAPI.projectRetrofitService()
     
@@ -92,6 +91,8 @@ class ProjectCreation : AppCompatActivity() {
             this@ProjectCreation,
             R.drawable.radius_background_transparent_select
         )
+        btn.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonSelect))
+
         developercheck_index++
         stackTooldeveloper.add(btn.text.toString())
     }
@@ -101,6 +102,8 @@ class ProjectCreation : AppCompatActivity() {
             this@ProjectCreation,
             R.drawable.radius_background_transparent
         )
+        btn.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
         developercheck_index--
         stackTooldeveloper.remove(btn.text.toString())
     }
@@ -225,6 +228,7 @@ class ProjectCreation : AppCompatActivity() {
             this@ProjectCreation,
             R.drawable.radius_background_transparent_select
         )
+        btn.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonSelect))
         designercheck_index++
         stackTooldesigner.add(btn.text.toString())
     }
@@ -234,6 +238,7 @@ class ProjectCreation : AppCompatActivity() {
             this@ProjectCreation,
             R.drawable.radius_background_transparent
         )
+        btn.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
         designercheck_index--
         stackTooldesigner.remove(btn.text.toString())
     }
@@ -370,6 +375,9 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_background_transparent
                 )
+                createproject_designer_Button.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
+
                 designer_btn = false
                 stackToolposition.remove(createproject_designer_Button.text.toString())
             }
@@ -380,6 +388,8 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_background_transparent_select
                 )
+                createproject_developer_Button.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonSelect))
+
                 createproject_projectstack_constraintLayout.visibility = View.VISIBLE
                 createproject_projectstackdesigner_constraintLayout.visibility = View.GONE
 
@@ -393,6 +403,8 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_background_transparent
                 )
+                createproject_developer_Button.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
                 stackToolposition.remove(createproject_developer_Button.text.toString())
                 developer_btn = false
                 createproject_projectstack_constraintLayout.visibility = View.GONE
@@ -412,6 +424,8 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_background_transparent
                 )
+                createproject_developer_Button.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
                 developer_btn = false
                 stackToolposition.remove(createproject_developer_Button.text.toString())
             }
@@ -423,6 +437,8 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_background_transparent_select
                 )
+                createproject_designer_Button.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonSelect))
+
                 createproject_projectstack_constraintLayout.visibility = View.GONE
                 createproject_projectstackdesigner_constraintLayout.visibility = View.VISIBLE
                 
@@ -436,6 +452,8 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_background_transparent
                 )
+                createproject_designer_Button.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
                 designer_btn = false
                 createproject_projectstack_constraintLayout.visibility = View.GONE
                 createproject_projectstackdesigner_constraintLayout.visibility = View.GONE
@@ -444,33 +462,39 @@ class ProjectCreation : AppCompatActivity() {
 
         }
         createproject_planner_Button.setOnClickListener{
+            createproject_projectstack_constraintLayout.visibility = View.GONE
+            createproject_projectstackdesigner_constraintLayout.visibility = View.GONE
 
-//
-//            // 개발자, 디자이너 툴 아무런 입력이 없을 때
-//            if(designercheck_index == 0 || developercheck_index == 0){
-//
-//                if(developercheck_index == 0){
-//                    createproject_developer_Button.background = ContextCompat.getDrawable(
-//                        this@ProjectCreation,
-//                        R.drawable.radius_background_transparent
-//                    )
-//                    developer_btn = false
-//                    stackToolposition.remove(createproject_developer_Button.text.toString())
-//                    createproject_projectstack_constraintLayout.visibility = View.GONE
-//
-//                }
-//
-//                if(designercheck_index == 0){
-//                    createproject_designer_Button.background = ContextCompat.getDrawable(
-//                        this@ProjectCreation,
-//                        R.drawable.radius_background_transparent
-//                    )
-//                    designer_btn = false
-//                    stackToolposition.remove(createproject_designer_Button.text.toString())
-//                    createproject_projectstackdesigner_constraintLayout.visibility = View.GONE
-//                }
-//
-//            }
+            // 개발자, 디자이너 툴 아무런 입력이 없을 때
+            if(designercheck_index == 0 || developercheck_index == 0){
+
+                if(developercheck_index == 0){
+                    createproject_developer_Button.background = ContextCompat.getDrawable(
+                        this@ProjectCreation,
+                        R.drawable.radius_background_transparent
+                    )
+                    createproject_developer_Button.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
+
+                    developer_btn = false
+                    stackToolposition.remove(createproject_developer_Button.text.toString())
+
+
+                }
+
+                if(designercheck_index == 0){
+                    createproject_designer_Button.background = ContextCompat.getDrawable(
+                        this@ProjectCreation,
+                        R.drawable.radius_background_transparent
+                    )
+                    createproject_designer_Button.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
+                    designer_btn = false
+                    stackToolposition.remove(createproject_designer_Button.text.toString())
+
+                }
+
+            }
 
 
             // 기획자 버튼 닫혀있을 때
@@ -479,6 +503,8 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_background_transparent_select
                 )
+                createproject_planner_Button.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonSelect))
+
                 planner_btn = true
                 stackToolposition.add(createproject_planner_Button.text.toString())
 
@@ -489,6 +515,7 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_background_transparent
                 )
+                createproject_planner_Button.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
 
                 planner_btn = false
                 stackToolposition.remove(createproject_planner_Button.text.toString())
@@ -512,8 +539,8 @@ class ProjectCreation : AppCompatActivity() {
 
         // 프로젝트 방식
 
-        onoffbtn[0] = findViewById(R.id.projectcreate_offduration_button)
-        onoffbtn[1] = findViewById(R.id.projectcreate_onduration_button)
+        onoffbtn[0] = findViewById(R.id.projectcreate_offproject_button)
+        onoffbtn[1] = findViewById(R.id.projectcreate_onproject_button)
         onoffbtn[0]?.setOnClickListener {
 
 
@@ -722,27 +749,26 @@ class ProjectCreation : AppCompatActivity() {
 
             
             // 수정
-            val listprojectfield = mutableListOf<String>()
-                listprojectfield.add(projectfieldtext)
+//            val listprojectfield = mutableListOf<String>()
+//                listprojectfield.add(projectfieldtext)
 
-            Log.d("예상 기간 : ","${durationtext}")
-            Log.d("분야 : ","${listprojectfield[0]}")
-            Log.d("프로젝트 방식 : ","${onofftext}")
+            Log.d("tag","예상 기간: ${durationtext}")
+            Log.d("tag","프로젝트 방식: ${onofftext}")
             for(i in 0..selectpositionItems.size-1){
-                Log.d("포지션 스택 : ","${selectpositionItems[i].toString()}")
+                Log.d("tag","포지션 스택: ${selectpositionItems[i].toString()}")
             }
-            Log.d("지역 : ","${regiontext}")
-            Log.d("글 내용: ","${createproject_projectdetail_edittext.text.toString()}")
+            Log.d("tag","지역: ${regiontext}")
+            Log.d("tag","글 내용: ${createproject_projectdetail_edittext.text.toString()}")
             for(i in 0..stackToolAll.size-1){
-                Log.d("포지션 스택 : ","${stackToolAll[i].toString()}")
+                Log.d("tag ","스택 : ${stackToolAll[i].toString()}")
             }
 
-            Log.d("제목 내용: ","${createproject_projecttitle_edittext.text.toString()}")
+            Log.d("tag","제목 내용:${createproject_projecttitle_edittext.text.toString()}")
 
 
             var recruitmentproject = ProjectCreationElement(
                 durationtext,
-                listprojectfield,
+                projectfieldtext,
                 onofftext,
                 selectpositionItems,
                 regiontext,
@@ -754,7 +780,7 @@ class ProjectCreation : AppCompatActivity() {
 
             // API 작성 DB에 넘김
             projectapi?.postRecruitmentProject(recruitmentproject)
-                ?.enqueue(object : retrofit2.Callback<ProjectElement> {
+                ?.enqueue(object : Callback<ProjectElement> {
                     override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
                         Log.d("tag : ", "error")
 
@@ -824,10 +850,11 @@ class ProjectCreation : AppCompatActivity() {
         var id = v.id
 
 
+
         var checkoff:Int = btnsize-1
 
         // 프로젝트 방식
-        if (id == R.id.projectcreate_offduration_button || id == R.id.projectcreate_onduration_button) {
+        if (id == R.id.projectcreate_onproject_button || id == R.id.projectcreate_offproject_button) {
 
 
             // 선택된 상태라면 체크 취소하기
@@ -844,6 +871,7 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_button_effect
                 )
+                onoffbtn[index]?.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
 
                 // 초기화
                 onofftext = "onoff"
@@ -866,10 +894,15 @@ class ProjectCreation : AppCompatActivity() {
                     this@ProjectCreation,
                     R.drawable.radius_background_transparent_select
                 )
+                onoffbtn[index]?.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonSelect))
+
+
                 onoffbtn[checkoff-index]?.background = ContextCompat.getDrawable(
                     this@ProjectCreation,
                     R.drawable.radius_button_effect
                 )
+                onoffbtn[checkoff-index]?.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
                 onofftext = onoffbtn[index]?.text.toString()
                 checkoffout = index
             }
@@ -891,12 +924,16 @@ class ProjectCreation : AppCompatActivity() {
                         this@ProjectCreation,
                         R.drawable.radius_button_effect
                     )
+                    durationbtn[i]?.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
                     checkexpectedduration = -1
                 } else if(i == index) {
                     durationbtn[i]?.background = ContextCompat.getDrawable(
                         this@ProjectCreation,
                         R.drawable.radius_background_transparent_select
                     )
+                    durationbtn[i]?.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonSelect))
+
                     checkexpectedduration = i
                     durationtext = durationbtn[i]?.text.toString()
                 } else {
@@ -904,6 +941,7 @@ class ProjectCreation : AppCompatActivity() {
                         this@ProjectCreation,
                         R.drawable.radius_button_effect
                     )
+                    durationbtn[i]?.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
                 }
             }
         }
@@ -925,12 +963,17 @@ class ProjectCreation : AppCompatActivity() {
                         this@ProjectCreation,
                         R.drawable.radius_button_effect
                     )
+                    projectfieldbtn[i]?.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
                     checkexpectedfield = -1
                 } else if(i == index) {
                     projectfieldbtn[i]?.background = ContextCompat.getDrawable(
                         this@ProjectCreation,
                         R.drawable.radius_background_transparent_select
                     )
+                    projectfieldbtn[i]?.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonSelect))
+
+
                     checkexpectedfield = i
                     projectfieldtext = projectfieldbtn[i]?.text.toString()
                 } else {
@@ -938,6 +981,8 @@ class ProjectCreation : AppCompatActivity() {
                         this@ProjectCreation,
                         R.drawable.radius_button_effect
                     )
+                    projectfieldbtn[i]?.setTextColor(ContextCompat.getColor(this@ProjectCreation,R.color.colorButtonNoSelect))
+
                 }
             }
         }
