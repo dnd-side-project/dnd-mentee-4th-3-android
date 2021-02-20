@@ -1,5 +1,6 @@
 package com.thisteampl.jackpot.main.userpage
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -29,6 +30,9 @@ class ProfileEditActivity: AppCompatActivity() {
     lateinit var userprofile : Profile
     private var stackTool = mutableListOf<String>()
     private var nameCheck: Boolean = false
+
+    private val EMOJI_REQUEST_CODE = 100
+    private val STATE_REQUEST_CODE = 200
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,6 +98,12 @@ class ProfileEditActivity: AppCompatActivity() {
             }
         })
 
+        //이모지 수정버튼
+        profile_edit_job_change_icon_layout_button.setOnClickListener {
+            val intent = Intent(baseContext, ProfileEditChangeEmojiActivity::class.java)
+            startActivityForResult(intent, EMOJI_REQUEST_CODE)
+        }
+
         //회원정보 수정 확인버튼
         profile_edit_confirm_button.setOnClickListener {
             if(!nameCheck && profile_edit_name_edittext.text.toString() != userprofile.name) {
@@ -104,6 +114,21 @@ class ProfileEditActivity: AppCompatActivity() {
                 userprofile.stacks = stackTool
                 setProfile(userprofile)
             }
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(resultCode != Activity.RESULT_OK) {
+            return
+        }
+        if(requestCode == EMOJI_REQUEST_CODE) {
+            profile_edit_job_icon_text.text = data?.extras?.getString("emoji")
+        } else if(requestCode == STATE_REQUEST_CODE) {
+            userprofile.career = data?.extras?.getString("state").toString()
+            profile_edit_job_text2.text = data?.extras?.getString("state").toString()
         }
     }
 

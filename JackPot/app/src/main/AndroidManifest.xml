@@ -27,8 +27,11 @@
         <activity android:name=".main.viewmore.RecentlyProjectViewMore" />
         <activity android:name=".main.userpage.MyPageActivity" />
         <activity android:name=".main.userpage.ProfileActivity" />
+        <activity android:name=".main.userpage.ProfileChangePasswordActivity" />
         <activity android:name=".main.filtering.FilteringSearch"/>
         <activity android:name=".main.userpage.ProfileEditActivity" />
+        <activity android:name=".main.userpage.ProfileEditChangeEmojiActivity" />
+        <activity android:name=".main.userpage.ProfileEditChangeStateActivity" />
         <activity android:name=".main.projectdetail.ProjectViewDetail" />
         <activity android:name=".main.LoginActivity">
 
