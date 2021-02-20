@@ -657,12 +657,44 @@
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="1220dp"
+        android:background="@color/transparent"
+        android:text="🤖"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="1220dp"
+        android:background="@color/transparent"
+        android:text="🧐"
+        android:textSize="32dp"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="1220dp"
+        android:background="@color/transparent"
+        android:text="🧙"
+        android:textSize="32dp"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/profile_edit_change_state_confirm_button"
         android:layout_width="320dp"
         android:layout_height="40dp"
-        android:layout_marginTop="1220dp"
+        android:layout_marginTop="1300dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/radius_background_purple"
         android:text="저장"

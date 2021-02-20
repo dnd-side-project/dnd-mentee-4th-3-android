@@ -17,7 +17,6 @@ import com.thisteampl.jackpot.main.userController.CheckResponse
 import com.thisteampl.jackpot.main.userController.Profile
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_profile_edit.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -104,6 +103,11 @@ class ProfileEditActivity: AppCompatActivity() {
             startActivityForResult(intent, EMOJI_REQUEST_CODE)
         }
 
+        profile_edit_change_state_layout_button.setOnClickListener {
+            val intent = Intent(baseContext, ProfileEditChangeStateActivity::class.java)
+            startActivityForResult(intent, STATE_REQUEST_CODE)
+        }
+
         //회원정보 수정 확인버튼
         profile_edit_confirm_button.setOnClickListener {
             if(!nameCheck && profile_edit_name_edittext.text.toString() != userprofile.name) {
@@ -128,7 +132,7 @@ class ProfileEditActivity: AppCompatActivity() {
             profile_edit_job_icon_text.text = data?.extras?.getString("emoji")
         } else if(requestCode == STATE_REQUEST_CODE) {
             userprofile.career = data?.extras?.getString("state").toString()
-            profile_edit_job_text2.text = data?.extras?.getString("state").toString()
+            profile_edit_job_text2.text = userprofile.job + " ・ " + userprofile.career
         }
     }
 
