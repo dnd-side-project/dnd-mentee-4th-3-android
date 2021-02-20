@@ -29,6 +29,7 @@ class ProfileActivity: AppCompatActivity() {
 
     private val userApi = userAPI.create()
     lateinit var userprofile : Profile
+    private var mMenu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,17 +65,9 @@ class ProfileActivity: AppCompatActivity() {
         if(profile_title_text.text != "내 프로필") {
             return false
         }
+        mMenu = menu
         val inflater = menuInflater
         inflater.inflate(R.menu.profile_menu, menu)
-        return true
-    }
-
-    //다시 한번 호출해서 변경사항 반영
-    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        if(userprofile.privacy) {
-            menu.findItem(R.id.profile_privacy_open_menu).isVisible = false
-            menu.findItem(R.id.profile_privacy_close_menu).isVisible = true
-        }
         return true
     }
 
@@ -84,6 +77,12 @@ class ProfileActivity: AppCompatActivity() {
             return false
         }
         when(item.itemId) {
+            R.id.profile_menu -> {
+                if(userprofile.privacy) {
+                    mMenu?.findItem(R.id.profile_privacy_open_menu)?.isVisible = false
+                    mMenu?.findItem(R.id.profile_privacy_close_menu)?.isVisible = true
+                }
+            }
             R.id.profile_edit_menu -> {
                 val intent = Intent(baseContext, ProfileEditActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
