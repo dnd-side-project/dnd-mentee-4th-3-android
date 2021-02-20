@@ -103,6 +103,7 @@ class ProfileEditActivity: AppCompatActivity() {
             startActivityForResult(intent, EMOJI_REQUEST_CODE)
         }
 
+        //상태 수정버튼
         profile_edit_change_state_layout_button.setOnClickListener {
             val intent = Intent(baseContext, ProfileEditChangeStateActivity::class.java)
             startActivityForResult(intent, STATE_REQUEST_CODE)

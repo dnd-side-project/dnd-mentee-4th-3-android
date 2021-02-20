@@ -36,6 +36,9 @@ interface userAPI {
     @PUT("/update-profile")
     fun getUpdateProfile(@Body infoDto : Profile) : Call<CheckResponse>
 
+    @PUT("/password-change")
+    fun getPasswordChange(@Query("newpassword") newpassword : String, @Query("password") password : String) : Call<CheckResponse>
+
 
     @DELETE("/withdraw")
     fun getWithDraw() : Call<CheckResponse>

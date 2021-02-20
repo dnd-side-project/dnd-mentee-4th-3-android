@@ -93,7 +93,8 @@ class ProfileActivity: AppCompatActivity() {
                 setProfile(false)
             }
             R.id.profile_edit_password_menu -> {
-
+                val intent = Intent(baseContext, ProfileChangePasswordActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
         }
         return super.onOptionsItemSelected(item)
