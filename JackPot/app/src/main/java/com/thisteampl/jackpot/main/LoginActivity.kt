@@ -180,6 +180,7 @@ class LoginActivity : AppCompatActivity() {
                         ) {
                             if (response.code().toString() == "200") {
                                 response.body()?.token?.let { prefs.setString("token", it) }
+                                prefs.setString("loginType", "normal")
                                 Toast.makeText(baseContext, "로그인에 성공했습니다.", Toast.LENGTH_SHORT)
                                     .show()
                                 val intent = Intent(baseContext, MainActivity::class.java)
@@ -439,6 +440,7 @@ class LoginActivity : AppCompatActivity() {
                             //가입된 회원. 토큰을 받아온다. 후에 서버에서 주는 토큰을 sharedPreferences에 저장
                             response.code().toString() == "200" -> {
                                 response.body()?.token?.let { prefs.setString("token", it) }
+                                prefs.setString("loginType", "kakao")
                                 Toast.makeText(baseContext, "카카오 로그인에 성공하였습니다.", Toast.LENGTH_SHORT)
                                     .show()
                                 val intent = Intent(baseContext, MainActivity::class.java)
@@ -483,6 +485,7 @@ class LoginActivity : AppCompatActivity() {
                             //가입된 회원. 토큰을 받아온다. 후에 서버에서 주는 토큰을 sharedPreferences에 저장
                             response.code().toString() == "200" -> {
                                 response.body()?.token?.let { prefs.setString("token", it) }
+                                prefs.setString("loginType", "naver")
                                 Toast.makeText(
                                     baseContext,
                                     "네이버 로그인에 성공하였습니다.",
@@ -527,6 +530,7 @@ class LoginActivity : AppCompatActivity() {
                             //가입된 회원. 토큰을 받아온다. 후에 서버에서 주는 토큰을 sharedPreferences에 저장
                             response.code().toString() == "200" -> {
                                 response.body()?.token?.let { prefs.setString("token", it) }
+                                prefs.setString("loginType", "google")
                                 Toast.makeText(baseContext, "구글 로그인에 성공하였습니다.", Toast.LENGTH_SHORT)
                                     .show()
                                 val intent = Intent(baseContext, MainActivity::class.java)

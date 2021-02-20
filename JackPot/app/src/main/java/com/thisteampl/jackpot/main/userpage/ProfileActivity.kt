@@ -1,12 +1,14 @@
 package com.thisteampl.jackpot.main.userpage
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.webkit.URLUtil
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -15,10 +17,7 @@ import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.main.LoginActivity
-import com.thisteampl.jackpot.main.userController.CheckProfile
-import com.thisteampl.jackpot.main.userController.CheckResponse
-import com.thisteampl.jackpot.main.userController.Profile
-import com.thisteampl.jackpot.main.userController.userAPI
+import com.thisteampl.jackpot.main.userController.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,7 +27,8 @@ import retrofit2.Response
 class ProfileActivity: AppCompatActivity() {
 
     private val userApi = userAPI.create()
-    lateinit var userprofile : Profile
+    lateinit var userprofile : MyProfile
+    lateinit var updateprofile : MyProfileEdit
     private var mMenu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +54,42 @@ class ProfileActivity: AppCompatActivity() {
 
         profile_back_button.setOnClickListener { super.onBackPressed() }
 
+        profile_portfolio_github_button.setOnClickListener {
+            if(URLUtil.isValidUrl(userprofile.portfolioLink1)) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(userprofile.portfolioLink1))
+                startActivity(intent)
+            } else {
+                Toast.makeText(baseContext, userprofile.portfolioLink1 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        profile_portfolio_behance_button.setOnClickListener {
+            if(URLUtil.isValidUrl(userprofile.portfolioLink1)) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(userprofile.portfolioLink1))
+                startActivity(intent)
+            } else {
+                Toast.makeText(baseContext, userprofile.portfolioLink1 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        profile_portfolio_global_button.setOnClickListener {
+            val intent: Intent
+            if(userprofile.position == "기획자") {
+                if(URLUtil.isValidUrl(userprofile.portfolioLink1)) {
+                    intent = Intent(Intent.ACTION_VIEW, Uri.parse(userprofile.portfolioLink1))
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(baseContext, userprofile.portfolioLink1 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                if(URLUtil.isValidUrl(userprofile.portfolioLink2)) {
+                    intent = Intent(Intent.ACTION_VIEW, Uri.parse(userprofile.portfolioLink2))
+                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                } else {
+                    Toast.makeText(baseContext, userprofile.portfolioLink1 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     //내 프로필일 경우 메뉴바 생성
@@ -96,6 +132,43 @@ class ProfileActivity: AppCompatActivity() {
                 val intent = Intent(baseContext, ProfileChangePasswordActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
+            R.id.profile_edit_logout_menu -> {
+                GlobalApplication.prefs.setString("token", "NO_TOKEN")
+                Toast.makeText(baseContext, "정상적으로 로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            R.id.profile_edit_withdraw_menu -> {
+                userApi?.getWithDraw()?.enqueue(
+                object : Callback<CheckResponse> {
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure" + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        if (response.code().toString() == "200") {
+                            Toast.makeText(
+                                baseContext,
+                                "회원탈퇴가 완료되었습니다.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            GlobalApplication.prefs.setString("token", "NO_TOKEN")
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                baseContext,
+                                "회원탈퇴에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
+                                    .toString(),
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    }
+                })
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -116,23 +189,49 @@ class ProfileActivity: AppCompatActivity() {
                     when {
                         response.code().toString() == "200" -> {
                             userprofile = response.body()!!.result
+                            initialize()
                             Log.e("ProfileActivity_getProfile : ", "User : " + response.body()!!.result.toString())
-                            profile_job_text.text = response.body()!!.result.job + " ・ " + response.body()!!.result.career
+                            profile_job_text.text = response.body()!!.result.position + " ・ " + response.body()!!.result.career
                             profile_name_text.text = response.body()!!.result.name
+                            profile_job_icon_text.text = response.body()!!.result.emoticon
+                            profile_introduce_text.text = response.body()!!.result.introduction
+
                             if(response.body()!!.result.privacy) {
                                 profile_profile_close_image.visibility = View.GONE
                             }
 
-                            when (response.body()!!.result.job) {
+                            when (response.body()!!.result.position) {
                                 "개발자" -> {
+                                    profile_portfolio_behance_button.visibility = View.GONE
+                                    if(response.body()!!.result.portfolioLink1 == "") {
+                                        profile_portfolio_github_button.visibility = View.GONE
+                                    }
+                                    if(response.body()!!.result.portfolioLink2 == "") {
+                                        profile_portfolio_global_button.visibility = View.GONE
+                                    }
+
                                     profile_availablestackTool_text.text = "기술 스택"
                                     profile_job_background_image.setImageResource(R.drawable.background_developer)
                                 }
                                 "디자이너" -> {
+                                    profile_portfolio_github_button.visibility = View.GONE
+                                    if(response.body()!!.result.portfolioLink1 == "") {
+                                        profile_portfolio_behance_button.visibility = View.GONE
+                                    }
+                                    if(response.body()!!.result.portfolioLink2 == "") {
+                                        profile_portfolio_global_button.visibility = View.GONE
+                                    }
+
                                     profile_availablestackTool_text.text = "사용 가능 툴"
                                     profile_job_background_image.setImageResource(R.drawable.background_designer)
                                 }
                                 else -> {
+                                    profile_portfolio_behance_button.visibility = View.GONE
+                                    profile_portfolio_github_button.visibility = View.GONE
+                                    if(response.body()!!.result.portfolioLink1 == "") {
+                                        profile_portfolio_global_button.visibility = View.GONE
+                                    }
+
                                     profile_availablestackTool_layout.visibility = View.GONE
                                     profile_job_background_image.setImageResource(R.drawable.background_director)
                                 }
@@ -183,8 +282,8 @@ class ProfileActivity: AppCompatActivity() {
 
     // 프로필을 수정하는 메서드. 여기서는 프로필 공개 여부만 변경한다.
     private fun setProfile(privacy_ : Boolean){
-        userprofile.privacy = privacy_
-        userApi?.getUpdateProfile(userprofile)?.enqueue(
+        updateprofile.privacy = privacy_
+        userApi?.getUpdateProfile(updateprofile)?.enqueue(
             object : Callback<CheckResponse> {
                 override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
                     // userAPI에서 타입이나 이름 안맞췄을때
@@ -216,5 +315,11 @@ class ProfileActivity: AppCompatActivity() {
                     }
                 }
             })
+    }
+
+    private fun initialize(){
+        updateprofile = MyProfileEdit(userprofile.career, userprofile.emoticon, userprofile.introduction,
+            userprofile.name, userprofile.portfolioLink1, userprofile.portfolioLink2, userprofile.position,
+            userprofile.privacy, userprofile.region, userprofile.stacks)
     }
 }

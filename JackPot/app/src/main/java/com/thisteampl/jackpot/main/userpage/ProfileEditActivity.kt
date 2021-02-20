@@ -12,10 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.main.userController.CheckProfile
-import com.thisteampl.jackpot.main.userController.CheckResponse
-import com.thisteampl.jackpot.main.userController.Profile
-import com.thisteampl.jackpot.main.userController.userAPI
+import com.thisteampl.jackpot.main.userController.*
 import kotlinx.android.synthetic.main.activity_profile_edit.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,7 +23,8 @@ import retrofit2.Response
 class ProfileEditActivity: AppCompatActivity() {
 
     private val userApi = userAPI.create()
-    lateinit var userprofile : Profile
+    lateinit var userprofile : MyProfile
+    lateinit var updateprofile : MyProfileEdit
     private var stackTool = mutableListOf<String>()
     private var nameCheck: Boolean = false
 
@@ -114,10 +112,12 @@ class ProfileEditActivity: AppCompatActivity() {
             if(!nameCheck && profile_edit_name_edittext.text.toString() != userprofile.name) {
                 Toast.makeText(this, "닉네임 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show()
             } else {
-                //자기소개, 포트폴리오 추가해야함.
-                userprofile.name = profile_edit_name_edittext.text.toString()
-                userprofile.stacks = stackTool
-                setProfile(userprofile)
+                updateprofile.introduction = profile_edit_introduce_text.text.toString()
+                updateprofile.portfolioLink1 = profile_edit_link_first_edittext.text.toString()
+                updateprofile.portfolioLink2 = profile_edit_link_second_edittext.text.toString()
+                updateprofile.name = profile_edit_name_edittext.text.toString()
+                updateprofile.stacks = stackTool
+                setProfile(updateprofile)
             }
         }
 
@@ -130,10 +130,11 @@ class ProfileEditActivity: AppCompatActivity() {
             return
         }
         if(requestCode == EMOJI_REQUEST_CODE) {
-            profile_edit_job_icon_text.text = data?.extras?.getString("emoji")
+            updateprofile.emoticon = data?.extras?.getString("emoji").toString()
+            profile_edit_job_icon_text.text = updateprofile.emoticon
         } else if(requestCode == STATE_REQUEST_CODE) {
-            userprofile.career = data?.extras?.getString("state").toString()
-            profile_edit_job_text2.text = userprofile.job + " ・ " + userprofile.career
+            updateprofile.career = data?.extras?.getString("state").toString()
+            profile_edit_job_text2.text = updateprofile.position + " ・ " + updateprofile.career
         }
     }
 
@@ -162,8 +163,15 @@ class ProfileEditActivity: AppCompatActivity() {
                         response.code().toString() == "200" -> {
                             userprofile = response.body()!!.result
                             stackTool = response.body()!!.result.stacks.toMutableList()
-                            profile_edit_job_text.text = response.body()!!.result.job + " ・ " + response.body()!!.result.career
-                            profile_edit_job_text2.text = response.body()!!.result.job + " ・ " + response.body()!!.result.career
+                            initialize()
+
+                            profile_edit_job_text.text = response.body()!!.result.position + " ・ " + response.body()!!.result.career
+                            profile_edit_job_text2.text = response.body()!!.result.position + " ・ " + response.body()!!.result.career
+                            profile_edit_job_icon_text.text = response.body()!!.result.emoticon
+
+                            profile_edit_link_first_edittext.setText(response.body()!!.result.portfolioLink1)
+                            profile_edit_link_second_edittext.setText(response.body()!!.result.portfolioLink2)
+                            profile_edit_introduce_text.setText(response.body()!!.result.introduction)
 
                             profile_edit_name_text.text = response.body()!!.result.name
                             profile_edit_name_edittext.setText(response.body()!!.result.name)
@@ -171,7 +179,7 @@ class ProfileEditActivity: AppCompatActivity() {
                                 profile_edit_profile_close_image.visibility = View.GONE
                             }
 
-                            when (response.body()!!.result.job) {
+                            when (response.body()!!.result.position) {
                                 "개발자" -> {
                                     profile_edit_developer_stack_layout.visibility = View.VISIBLE
                                     // 기술스택 버튼 눌리게하기.
@@ -237,8 +245,8 @@ class ProfileEditActivity: AppCompatActivity() {
     }
 
     // 프로필을 수정하는 메서드. 여기서는 프로필 공개 여부만 변경한다.
-    private fun setProfile(profile: Profile){
-        userApi?.getUpdateProfile(profile)?.enqueue(
+    private fun setProfile(updateProfile: MyProfileEdit){
+        userApi?.getUpdateProfile(updateprofile)?.enqueue(
             object : Callback<CheckResponse> {
                 override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
                     // userAPI에서 타입이나 이름 안맞췄을때
@@ -308,4 +316,9 @@ class ProfileEditActivity: AppCompatActivity() {
         }
     }
 
+    private fun initialize(){
+        updateprofile = MyProfileEdit(userprofile.career, userprofile.emoticon, userprofile.introduction,
+            userprofile.name, userprofile.portfolioLink1, userprofile.portfolioLink2, userprofile.position,
+            userprofile.privacy, userprofile.region, userprofile.stacks)
+    }
 }

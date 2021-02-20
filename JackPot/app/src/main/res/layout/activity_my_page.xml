@@ -40,6 +40,7 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_gravity="right"
+            android:visibility="gone"
             android:layout_marginRight="20dp"
             android:background="@drawable/android_setting_white" />
 
@@ -66,7 +67,7 @@
             app:srcCompat="@drawable/background_developer" />
 
             <TextView
-                android:id="@+id/profile_edit_job_icon_text"
+                android:id="@+id/mypage_job_icon_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="🤖"
@@ -371,32 +372,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/mypage_logout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
-            android:text="로그아웃"
-            android:textSize="25dp" />
-
-        <Button
-            android:id="@+id/mypage_withdraw_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:text="회원탈퇴"
-            android:textSize="25dp" />
-
-    </LinearLayout>
 
 </LinearLayout>
 

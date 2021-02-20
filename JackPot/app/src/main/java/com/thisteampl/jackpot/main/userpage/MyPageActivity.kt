@@ -30,6 +30,9 @@ class MyPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
+        if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+            finish()
+        }
 
         getProfile()
         setUpRecyclerView()
@@ -38,6 +41,9 @@ class MyPageActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+            finish()
+        }
         getProfile()
         setupView()
     }
@@ -60,44 +66,6 @@ class MyPageActivity : AppCompatActivity() {
 
             mypage_back_button.setOnClickListener { super.onBackPressed() }
 
-            mypage_logout_button.setOnClickListener {
-                prefs.setString("token", "NO_TOKEN")
-                Toast.makeText(baseContext, "정상적으로 로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
-                finish()
-            }
-
-            mypage_withdraw_button.setOnClickListener {
-                userApi?.getWithDraw()?.enqueue(
-                    object : Callback<CheckResponse> {
-                        override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
-                            // userAPI에서 타입이나 이름 안맞췄을때
-                            Log.e("tag ", "onFailure" + t.localizedMessage)
-                        }
-
-                        override fun onResponse(
-                            call: Call<CheckResponse>,
-                            response: Response<CheckResponse>
-                        ) {
-                            if (response.code().toString() == "200") {
-                                Toast.makeText(
-                                    baseContext,
-                                    "회원탈퇴가 완료되었습니다.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                prefs.setString("token", "NO_TOKEN")
-                                finish()
-                            } else {
-                                Toast.makeText(
-                                    baseContext,
-                                    "회원탈퇴에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
-                                        .toString(),
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                            }
-                        }
-                    })
-            }
 
             mypage_mycomment_button.setOnClickListener {
                 mypage_myscrapcomment_recyclerview.adapter = myCommentProjectAdapter
@@ -151,12 +119,13 @@ class MyPageActivity : AppCompatActivity() {
                     when {
                         response.code().toString() == "200" -> {
                             Log.e("getProfile ", "User : " + response.body()!!.result.toString())
-                            mypage_job_text.text = response.body()!!.result.job + " ・ " + response.body()!!.result.career
+                            mypage_job_text.text = response.body()!!.result.position + " ・ " + response.body()!!.result.career
                             mypage_name_text.text = response.body()!!.result.name
+                            mypage_job_icon_text.text = response.body()!!.result.emoticon
                             if(response.body()!!.result.privacy) {
                                 mypage_profile_close_image.visibility = View.GONE
                             }
-                            when (response.body()!!.result.job) {
+                            when (response.body()!!.result.position) {
                                 "개발자" -> {
                                     mypage_job_background_image.setImageResource(R.drawable.background_developer)
                                 }

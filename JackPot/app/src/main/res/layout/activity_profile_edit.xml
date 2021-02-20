@@ -259,7 +259,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="80dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="PhotoShop"
+                android:text="Photoshop"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -340,7 +340,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="260dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="After Effects"
+                android:text="After_Effects"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -420,7 +420,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="80dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="C++"
+                android:text="Cplus"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -431,7 +431,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="80dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="Java"
+                android:text="JAVA"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_cpp"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -454,7 +454,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="140dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="Java Script"
+                android:text="Javascript"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -466,7 +466,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="140dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="HTML/CSS"
+                android:text="Html_CSS"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_jsc"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -524,7 +524,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="260dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="React.JS"
+                android:text="React_js"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -626,10 +626,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
+            android:padding="10dp"
             android:background="@drawable/radius_background_transparent"
             android:hint="프로젝트에 임하는 각오,\n본인의 경력 등을 자유롭게 입력해 주세요."
             android:inputType="textMultiLine"
-            android:lines="12"
+            android:lines="10"
             android:textSize="14dp"
             android:theme="@style/EditTextTheme"
             app:layout_constraintStart_toStartOf="parent"

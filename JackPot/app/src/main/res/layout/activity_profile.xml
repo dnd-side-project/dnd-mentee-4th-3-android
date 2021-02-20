@@ -168,39 +168,53 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_availablestackTool_layout" />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView2"
-        android:layout_width="350dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8">
-
         <LinearLayout
             android:id="@+id/profile_portfolio_layout"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:orientation="horizontal">
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+            <Button
+                android:id="@+id/profile_portfolio_github_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/android_signup_github"
+                />
+            <Button
+                android:id="@+id/profile_portfolio_behance_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/android_signup_behance"
+                />
+            <Button
+                android:id="@+id/profile_portfolio_global_button"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/android_signup_global"
+                />
 
         </LinearLayout>
 
-    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginRight="150dp"
+        android:layout_marginTop="20dp"
         android:text="자기소개"
         android:textColor="@color/colorBlack"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_portfolio_layout" />
 
     <TextView
         android:id="@+id/profile_introduce_text"
@@ -208,10 +222,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/radius_background_transparent"
-        android:padding="5dp"
+        android:padding="10dp"
         android:text="자기소개가 없습니다."
         android:textColor="@color/colorBlack"
-        android:textSize="12dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />

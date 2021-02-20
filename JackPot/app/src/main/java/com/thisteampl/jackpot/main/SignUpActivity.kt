@@ -57,6 +57,7 @@ class SignUpActivity : AppCompatActivity() {
     private var position = "직군" // 직군 : 기획자, 개발자, 디자이너
     private var state = "상태" // 상태 : 학생, 취업 준비생, 주니어
     private var signUpType = ""
+    private var emoticon = ""
     // 회원가입 상태, normal : 일반 로그인, kakao, naver, google : 서드파티 로그인
 
     //이메일 정규식 확인, https://blog.codejun.space/49
@@ -238,9 +239,11 @@ class SignUpActivity : AppCompatActivity() {
                         }
                         "학생" -> {
                             Toast.makeText(this, "학년을 선택해주세요.", Toast.LENGTH_SHORT).show()
+
                         }
                         else -> {
                             signup_progressbar.progress = 5
+                            signup_writenexttime_button.visibility = View.VISIBLE
                             signup_state_layout.visibility = View.GONE
                             if(state[0] == '학' && state[1] == '생') {
                                 signup_state_grade_layout.visibility = View.GONE // 학생일때 가리기
@@ -248,11 +251,14 @@ class SignUpActivity : AppCompatActivity() {
                             when (position) {
                                 "개발자" -> {
                                     signup_developer_stack_layout.visibility = View.VISIBLE
+                                    emoticon = "🤖"
                                 }
                                 "디자이너" -> {
                                     signup_designer_tool_layout.visibility = View.VISIBLE
+                                    emoticon = "🧙"
                                 }
                                 else -> {
+                                    emoticon = "🧐"
                                     signup_progressbar.progress = 6
                                     signup_introduce_layout.visibility = View.VISIBLE
                                     signup_introduce_firstlink_text.hint = " 개인 웹사이트가 있다면 입력해주세요."
@@ -265,7 +271,6 @@ class SignUpActivity : AppCompatActivity() {
                             }
                         }
                     }
-                    signup_writenexttime_button.visibility = View.VISIBLE
                     signup_page_viewer.text = signup_progressbar.progress.toString() + " / 7"
                 }
                 5 -> {
@@ -742,9 +747,10 @@ class SignUpActivity : AppCompatActivity() {
 
     //회원가입 완료 메서드. 매개변수로 프로필 공개 여부를 넣어준다.
     private fun signUp(profileOpen: Boolean) {
-        var signUp = User("ROLE_USER", state, signup_id_text.text.toString(),
-            position, signUpType, signup_name_text.text.toString(), signup_password_text.text.toString(), profileOpen,
-            region, stackTool)
+        var signUp = User("ROLE_USER", state, signup_id_text.text.toString(), emoticon,
+            signup_introduce_text.text.toString(), signUpType, signup_name_text.text.toString(), signup_password_text.text.toString(),
+            signup_introduce_firstlink_text.text.toString(), signup_introduce_secondlink_text.text.toString(), position,
+            profileOpen, region, stackTool)
 
         userApi?.getUserSignUp(signUp)
             ?.enqueue(object : Callback<CheckResponse>{
