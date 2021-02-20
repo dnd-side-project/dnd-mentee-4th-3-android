@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
 
         // 나의 페이지
         main_mypage_imageview.setOnClickListener {
-            // 후에 401 에러 시 만료 에러 + 다시 로그인
             if (prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
                 Toast.makeText(
                     this, "로그인 정보가 없습니다." +
@@ -69,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
         // MainActivity 실행
         main_appname_textview.setOnClickListener {
-            startActivity(mainintent)
+            startActivity(mainintent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         }
 
 
