@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
@@ -34,9 +35,13 @@ class ProfileEditChangeEmojiActivity: AppCompatActivity() {
         }
 
         profile_edit_change_state_confirm_button.setOnClickListener {
-            val intent = Intent().putExtra("emoji", emoji)
-            setResult(Activity.RESULT_OK, intent)
-            finish()
+            if(emoji == "result") {
+                Toast.makeText(this, "이모티콘을 골라주세요.", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent().putExtra("emoji", emoji)
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
         }
     }
 
