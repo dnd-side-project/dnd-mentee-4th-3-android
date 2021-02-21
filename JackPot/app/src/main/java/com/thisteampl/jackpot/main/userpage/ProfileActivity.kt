@@ -86,7 +86,7 @@ class ProfileActivity: AppCompatActivity() {
                     intent = Intent(Intent.ACTION_VIEW, Uri.parse(userprofile.portfolioLink2))
                     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 } else {
-                    Toast.makeText(baseContext, userprofile.portfolioLink1 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, userprofile.portfolioLink2 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
