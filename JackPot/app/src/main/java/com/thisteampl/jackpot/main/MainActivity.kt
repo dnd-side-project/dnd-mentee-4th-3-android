@@ -131,10 +131,18 @@ class MainActivity : AppCompatActivity() {
 
         // 플로팅 버튼 눌렸을 때
         main_optionmenu_floatingactionbutton.setOnClickListener {
-            var drawproject:Intent = Intent(this, ProjectCreation::class.java)
-            drawproject.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(drawproject)
-
+            if (prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+                Toast.makeText(
+                    this, "로그인 정보가 없습니다." +
+                            "\n로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT
+                ).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            } else {
+                var drawproject: Intent = Intent(this, ProjectCreation::class.java)
+                drawproject.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(drawproject)
+            }
         }
 
 
