@@ -6,6 +6,8 @@ import com.thisteampl.jackpot.main.floating.ProjectCreationElement
 // get 할 때 사용
 
 class ProjectElement (
+    @SerializedName("contents")
+    var contents:List<String>,
     @SerializedName("duration")
     var duration:String,
     @SerializedName("interest")

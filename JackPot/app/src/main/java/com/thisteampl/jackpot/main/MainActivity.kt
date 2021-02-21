@@ -15,11 +15,14 @@ import com.thisteampl.jackpot.main.floating.ProjectCreation
 import com.thisteampl.jackpot.main.mainhome.AttentionMember
 import com.thisteampl.jackpot.main.mainhome.AttentionProject
 import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
+import com.thisteampl.jackpot.main.projectController.ProjectElement
+import com.thisteampl.jackpot.main.projectController.ProjectGetElement
+import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
+import com.thisteampl.jackpot.main.projectController.projectAPI
 import com.thisteampl.jackpot.main.userController.CheckProfile
 import com.thisteampl.jackpot.main.userController.userAPI
 
 import com.thisteampl.jackpot.main.userpage.MyPageActivity
-import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,14 +32,48 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var recentlyregister: RecentlyRegisterProject
     private val userApi = userAPI.create()
-
     // projectAPI retrofit
 
     private val selectAllItems = mutableListOf<String>()
+    var file_empty2 = mutableListOf<String>()
+    var file_empty = String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+//        file_empty2.add("")
+//        file_empty = ""
+//        var zero = 0
+//        var projectapi = projectAPI.create()
+//
+//        var recruitmentproject = ProjectPostLatest(
+//            file_empty2,file_empty2,0,10,file_empty,"최신순",file_empty2
+//        )
+//        Log.e("tag ", "Main onFailure, ")
+//        // 백엔드 호출
+//        projectapi?.getprojectcontents(recruitmentproject)
+//            ?.enqueue(object : Callback<ProjectGetElement> {
+//                override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
+//                    Log.e("tag ", "Main onFailure, " + t.localizedMessage)
+//                }
+//
+//                override fun onResponse(
+//                    call: Call<ProjectGetElement>,
+//                    response: Response<ProjectGetElement>
+//                ) {
+//                    if(response.isSuccessful){
+//                        Log.i("tag","Main 성공")
+//                        Log.i("tag","결과 : ${response.code()}\n\n")
+//                        Log.d("tag","--------------------")
+//                    }
+//                }
+//
+//            })
+//
+//
+
 
         val mypageIntent = Intent(this, MyPageActivity::class.java)
 
@@ -117,15 +154,14 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister).commit()
 
 
-
         // 참고 자료 : https://medium.com/@logishudson0218/intent-flag%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4-d8c91ddd3bfc
         // addFlags() : 새로운 flag를 기존 flag에 붙임
         // 최근에 등록된 프로젝트 더보기 버튼 (더보기 page에서 백엔드 연결할 예정)
-        main_recentlyviewmore_textview.setOnClickListener {
-            val intentrecentlyviewmore = Intent(this, RecentlyProjectViewMore::class.java)
-            intentrecentlyviewmore.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intentrecentlyviewmore)
-        }
+//        main_recentlyviewmore_textview.setOnClickListener {
+//            val intentrecentlyviewmore = Intent(this, RecentlyProjectViewMore::class.java)
+//            intentrecentlyviewmore.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            startActivity(intentrecentlyviewmore)
+//        }
 
 
 

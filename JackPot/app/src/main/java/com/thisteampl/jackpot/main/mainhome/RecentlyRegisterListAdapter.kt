@@ -1,27 +1,28 @@
 package com.thisteampl.jackpot.main.mainhome
 
 import android.content.Intent
-import android.util.TypedValue
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
-import kotlinx.android.synthetic.main.activity_login.view.*
-import kotlinx.android.synthetic.main.holder_mypage_myproject.view.*
 import kotlinx.android.synthetic.main.main_recentlyregisterproject_list.view.*
 
 
-
 // 최근 등록된 프로젝트 어댑터(연결 구간)
-class RecentlyRegisterListAdapter (val recentlyregisterlist: MutableList<RecentlyRegisterList> = mutableListOf()
+class RecentlyRegisterListAdapter(
+    val recentlyregisterlist: MutableList<RecentlyRegisterList> = mutableListOf(), loid: Long?
 ): RecyclerView.Adapter<RecentlyRegisterListAdapter.RecentlyRegisterListRecyclerViewHolder>() {
 
     class RecentlyRegisterListRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+    var project_id : Long? = loid
+
+
 
     // onCreateViewHolder : ViewHolder와 Layout 파일을 연결해주는 역할
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentlyRegisterListRecyclerViewHolder {
@@ -46,17 +47,20 @@ class RecentlyRegisterListAdapter (val recentlyregisterlist: MutableList<Recentl
         val item = recentlyregisterlist[position]
 
         with(holder.itemView) {
-            main_recentlyregister_health_image.setImageResource(item.recentlyiamge)
+            item.recentlyiamge?.let { main_recentlyregister_health_image.setImageResource(it) }
             main_recentlytitle_textview.text = item.recentlyregister_project_name
-            main_inputrecentlyproject_position_textview.text = item.recentlyregister_recruitment_position
+            main_inputrecentlyproject_position_textview.text = "b"
+
 
 
 
 
             with(holder.itemView) {
-                main_recentlyregister_health_image.setImageResource(item.recentlyiamge)
+                item.recentlyiamge?.let { main_recentlyregister_health_image.setImageResource(it) }
                 main_recentlytitle_textview.text = item.recentlyregister_project_name
-                main_inputrecentlyproject_position_textview.text = item.recentlyregister_recruitment_position
+                main_inputrecentlyproject_position_textview.text = "A"
+
+
                 main_recentlytime_textview.text = item.update_date
                 val stack_size = item.technology_stack?.size
                 for(i in 0..stack_size!!) {
@@ -83,7 +87,9 @@ class RecentlyRegisterListAdapter (val recentlyregisterlist: MutableList<Recentl
         }
 
         holder.itemView.setOnClickListener {
+            Log.d("tag","recently id : ${project_id}")
             val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
+            intent.putExtra("stack3",project_id)
             holder.itemView.context.startActivity(intent)
 
         }

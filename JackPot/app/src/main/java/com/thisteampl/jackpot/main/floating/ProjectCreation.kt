@@ -71,6 +71,7 @@ class ProjectCreation : AppCompatActivity() {
     var developer_btn:Boolean = false
     var designer_btn:Boolean = false
     var planner_btn:Boolean = false
+
     // 가독성 떨어짐
     // 개발자 툴 name
     var java:Boolean = false ; var cplus:Boolean = false ; var python:Boolean = false ; var js:Boolean = false ; var html:Boolean = false
@@ -722,7 +723,7 @@ class ProjectCreation : AppCompatActivity() {
                 projectfieldtext = "예술_창작"
             }
 
-            ToastmakeTextPrint("실행중입니다.")
+
             // 사용 예정 스택, 모집 포지션, 분야
             stackToolAll.addAll(stackTooldeveloper)
             stackToolAll.addAll(stackTooldesigner)
@@ -750,18 +751,18 @@ class ProjectCreation : AppCompatActivity() {
 
 
 
-            Log.d("tag","예상 기간: ${durationtext}")
-            Log.d("tag","프로젝트 방식: ${onofftext}")
-            for(i in 0..selectpositionItems.size-1){
-                Log.d("tag","포지션 스택: ${selectpositionItems[i].toString()}")
-            }
-            Log.d("tag","지역: ${regiontext}")
-            Log.d("tag","글 내용: ${createproject_projectdetail_edittext.text.toString()}")
-            for(i in 0..stackToolAll.size-1){
-                Log.d("tag ","스택 : ${stackToolAll[i].toString()}")
-            }
-
-            Log.d("tag","제목 내용:${createproject_projecttitle_edittext.text.toString()}")
+//            Log.d("tag","예상 기간: ${durationtext}")
+//            Log.d("tag","프로젝트 방식: ${onofftext}")
+//            for(i in 0..selectpositionItems.size-1){
+//                Log.d("tag","포지션 스택: ${selectpositionItems[i].toString()}")
+//            }
+//            Log.d("tag","지역: ${regiontext}")
+//            Log.d("tag","글 내용: ${createproject_projectdetail_edittext.text.toString()}")
+//            for(i in 0..stackToolAll.size-1){
+//                Log.d("tag ","스택 : ${stackToolAll[i].toString()}")
+//            }
+//
+//            Log.d("tag","제목 내용:${createproject_projecttitle_edittext.text.toString()}")
 
 
             var recruitmentproject = ProjectCreationElement(
@@ -790,13 +791,12 @@ class ProjectCreation : AppCompatActivity() {
                     ) {
 
                         // 데이터 전달하지 못했다면
-                        if(!response.isSuccessful){
-                            Log.d("tag : ","실패")
-                            Log.d("tag : ", "${response.code().toString()}")
+                        if(response.isSuccessful){
+                            ToastmakeTextPrint("프로젝트 모집글 작성 완료 되었습니다.")
                         }else{
-                            Log.d("tag : ","성공")
-                            Log.d("tag : ", "${response.code().toString()}")
-                            ToastmakeTextPrint("프로젝트 모집글 작성 완료되었습니다.")
+                            ToastmakeTextPrint("프로젝트 모집글 작성 완료되지 않았습니다.")
+                            Log.d("tag","${response.code().toString()}")
+                            Log.e("tag","onFailure" + response.message())
                         }
                     }
                 })

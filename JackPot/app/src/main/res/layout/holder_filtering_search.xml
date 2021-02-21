@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp">
+
+    <ImageView
+        android:id="@+id/holder_filtering_search_imageview"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="280dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/anotherprj_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/holder_filtering_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="40dp"
+        android:text="제목"
+        android:textColor="@color/colorBlack"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/holder_filtering_search_imageview"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/holder_filtering_search_recruitmentposition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="4dp"
+        android:text="모집 포지션 "
+        android:textColor="#979797"
+        android:textSize="12dp"
+        app:layout_constraintStart_toEndOf="@+id/holder_filtering_search_imageview"
+        app:layout_constraintTop_toBottomOf="@+id/holder_filtering_title_textview" />
+
+    <TextView
+        android:id="@+id/holder_mypage_anotherprj_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:text="포지션"
+        android:textColor="@color/colorBlack"
+        android:textSize="11dp"
+        app:layout_constraintStart_toEndOf="@+id/holder_filtering_search_recruitmentposition"
+        app:layout_constraintTop_toBottomOf="@+id/holder_filtering_title_textview" />
+
+    <HorizontalScrollView
+        android:layout_width="210dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="20dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/holder_filtering_search_imageview"
+        app:layout_constraintTop_toBottomOf="@+id/holder_filtering_search_recruitmentposition">
+
+        <LinearLayout
+            android:id="@+id/holder_filtering_search_stackTool_layout"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <Button
+        android:layout_width="12dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="320dp"
+        android:background="@drawable/android_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

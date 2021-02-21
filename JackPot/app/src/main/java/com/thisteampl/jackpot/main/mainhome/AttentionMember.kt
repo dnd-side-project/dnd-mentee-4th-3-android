@@ -26,7 +26,7 @@ class AttentionMember : Fragment() {
     init{
         
         // 백엔드 호출
-        for (i in 1..10) {
+        for (i in 1..5) {
             projectapi?.getprojectsID(i)
                 ?.enqueue(object : retrofit2.Callback<ProjectElement> {
                     override fun onFailure(call: Call<ProjectElement>, t: Throwable) {

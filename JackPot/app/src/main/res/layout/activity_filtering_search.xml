@@ -162,7 +162,7 @@
                                 android:layout_height="35dp"
                                 android:layout_marginStart="25dp"
                                 android:background="@drawable/radius_button_effect"
-                                android:text="Java"
+                                android:text="JAVA"
                                 android:textSize="14dp"
 
                                 app:layout_constraintStart_toStartOf="parent"
@@ -307,7 +307,6 @@
                         android:id="@+id/filtersearch_projectstackdesigner_constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -512,7 +511,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/filtersearch_projectway_textview">
@@ -680,7 +678,7 @@
 
                     <Button
                         android:id="@+id/filtersearch_selfdeveloper_textview"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="25dp"
                         android:background="@drawable/radius_button_effect"
@@ -878,7 +876,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -902,10 +900,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
+
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_developertool_textview">
-
 
                             <Button
                                 android:id="@+id/filtersearch_page2_java_Button"
@@ -913,7 +911,7 @@
                                 android:layout_height="35dp"
                                 android:layout_marginStart="25dp"
                                 android:background="@drawable/radius_button_effect"
-                                android:text="Java"
+                                android:text="JAVA"
                                 android:textSize="14dp"
 
                                 app:layout_constraintStart_toStartOf="parent"
@@ -1056,8 +1054,8 @@
                         android:id="@+id/filtersearch_page2_projectstackdesigner_constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:visibility="gone"
+                        android:layout_marginTop="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -1068,7 +1066,7 @@
                             android:id="@+id/filtersearch_page2_tool_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
+                            android:layout_marginStart="24dp"
                             android:text="디자인 툴"
                             android:textColor="#000000"
                             android:textSize="16dp"
@@ -1208,6 +1206,7 @@
                                 android:background="@drawable/radius_button_effect"
                                 android:text="Indesign"
                                 android:textAllCaps="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_after_effects_Button" />
 
@@ -1270,7 +1269,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_projectway_textview">
 
                     <Button
-                        android:id="@+id/filtersearch_page2_offduration_button"
+                        android:id="@+id/filtersearch_page2_offline_button"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_marginStart="24dp"
@@ -1282,7 +1281,7 @@
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <Button
-                        android:id="@+id/filtersearch_page2_onduration_button"
+                        android:id="@+id/filtersearch_page2_online_button"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_marginStart="15dp"
@@ -1291,7 +1290,7 @@
                         android:textAllCaps="false"
                         android:textColor="#000000"
                         android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_offduration_button" />
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_offline_button" />
                 </LinearLayout>
 
                 <TextView
@@ -1345,66 +1344,6 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/filtersearch_page2_projectestimatedtime_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="20dp"
-                    android:text="프로젝트 예상 기간"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_regions_linearlayout"
-                    tools:ignore="MissingConstraints" />
-
-                <LinearLayout
-                    android:id="@+id/filtersearch_page2_month_linearlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_projectestimatedtime_textview">
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_month_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="24dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="1개월 이하"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_month2_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="15dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="~3개월"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_month_button" />
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_month3_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="15dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="~6개월"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_month2_button" />
-                </LinearLayout>
 
                 <TextView
                     android:id="@+id/filtersearch_page2_field_textview"
@@ -1417,7 +1356,7 @@
                     android:textSize="16dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_month_linearlayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_regions_linearlayout" />
 
                 <LinearLayout
                     android:id="@+id/filtersearch_page2_field_linearlayout"
@@ -1431,8 +1370,8 @@
 
 
                     <Button
-                        android:id="@+id/filtersearch_page1_field_it_textview"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/filtersearch_page2_myappeal_textview"
+                        android:layout_width="80dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="24dp"
                         android:background="@drawable/radius_button_effect"
@@ -1443,7 +1382,7 @@
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <Button
-                        android:id="@+id/filtersearch_page1_hobby_textview"
+                        android:id="@+id/filtersearch_page2_hobby_textview"
                         android:layout_width="50dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="10dp"
@@ -1452,10 +1391,11 @@
                         android:textAllCaps="false"
                         android:textColor="#000000"
                         android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_field_it_textview" />
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_myappeal_textview" />
+
 
                     <Button
-                        android:id="@+id/filtersearch_page1_economy_textview"
+                        android:id="@+id/filtersearch_page2_economy_textview"
                         android:layout_width="50dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="10dp"
@@ -1464,10 +1404,10 @@
                         android:textAllCaps="false"
                         android:textColor="#000000"
                         android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_art_textview" />
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_art_textview" />
 
                     <Button
-                        android:id="@+id/filtersearch_page1_cook_textview"
+                        android:id="@+id/filtersearch_page2_cook_textview"
                         android:layout_width="50dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="10dp"
@@ -1476,7 +1416,7 @@
                         android:textAllCaps="false"
                         android:textColor="#000000"
                         android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_cook_textview" />
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_cook_textview" />
 
                 </LinearLayout>
 
@@ -1490,7 +1430,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_field_linearlayout">
 
                     <Button
-                        android:id="@+id/filtersearch_page1_it_textview"
+                        android:id="@+id/filtersearch_page2_it_textview"
                         android:layout_width="40dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="24dp"
@@ -1502,7 +1442,7 @@
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <Button
-                        android:id="@+id/filtersearch_page1_rest_textview"
+                        android:id="@+id/filtersearch_page2_rest_textview"
                         android:layout_width="80dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="10dp"
@@ -1511,10 +1451,10 @@
                         android:textAllCaps="false"
                         android:textColor="#000000"
                         android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_hobby_textview" />
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_hobby_textview" />
 
                     <Button
-                        android:id="@+id/filtersearch_page1_health_textview"
+                        android:id="@+id/filtersearch_page2_health_textview"
                         android:layout_width="50dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="10dp"
@@ -1523,10 +1463,10 @@
                         android:textAllCaps="false"
                         android:textColor="#000000"
                         android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_rest_textview" />
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_rest_textview" />
 
                     <Button
-                        android:id="@+id/filtersearch_page1_holiday_textview"
+                        android:id="@+id/filtersearch_page2_holiday_textview"
                         android:layout_width="50dp"
                         android:layout_height="35dp"
                         android:layout_marginStart="10dp"
@@ -1535,7 +1475,7 @@
                         android:textAllCaps="false"
                         android:textColor="#000000"
                         android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page1_etc_textview" />
+                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_etc_textview" />
 
                 </LinearLayout>
 
