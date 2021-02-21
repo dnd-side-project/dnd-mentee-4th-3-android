@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- https://copycoding.tistory.com/335 -->
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/project_detail_menu"
+        android:icon="@drawable/profile_menu"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/project_detail_edit_menu"
+                android:title="프로젝트 수정"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/project_detail_delete_menu"
+                android:title="프로젝트 삭제"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/project_detail_change_recruit_menu"
+                android:title="모집중으로 변경"
+                android:visible="false"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/project_detail_change_progress_menu"
+                android:title="진행중으로 변경"
+                app:showAsAction="never"
+                />
+            <item
+                android:id="@+id/project_detail_change_complete_menu"
+                android:title="완료로 변경"
+                android:visible="false"
+                app:showAsAction="never"
+                />
+        </menu>
+    </item>
+
+</menu>
