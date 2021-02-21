@@ -180,7 +180,6 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     when {
                         response.code().toString() == "401" -> {
-                            Toast.makeText(baseContext, "자동 로그인 유효기간이 만료됐습니다.\n로그인 정보가 사라졌습니다.", Toast.LENGTH_SHORT).show()
                             prefs.setString("token", "NO_TOKEN")
                         }
                     }
