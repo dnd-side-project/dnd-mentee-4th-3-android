@@ -79,7 +79,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_email_login_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:visibility="gone"
@@ -188,7 +188,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_findPW_emailcheck_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
         android:visibility="gone"
@@ -213,7 +213,7 @@
             android:id="@+id/login_findPW_email_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="20dp"
             android:hint="이메일"
             android:inputType="textEmailAddress"
             android:singleLine="true"
@@ -228,7 +228,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
-            android:layout_marginRight="72dp"
+            android:layout_marginRight="20dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -252,7 +252,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_findPW_PWchange_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
         android:visibility="gone"

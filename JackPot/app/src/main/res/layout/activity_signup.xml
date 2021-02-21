@@ -52,7 +52,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_email_signup_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:visibility="gone"
@@ -98,6 +98,7 @@
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:text="중복확인"
+                android:textSize="10dp"
                 android:textColor="@color/colorWhite"
                 android:background="@drawable/radius_background_purple"
                 android:layout_marginBottom="10dp" />
@@ -132,8 +133,9 @@
             <Button
                 android:id="@+id/signup_auth_check_button"
                 android:layout_width="80dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:text="인증번호\n확인"
+                android:textSize="10dp"
                 android:textColor="@color/colorWhite"
                 android:background="@drawable/radius_background_purple"
                 android:layout_marginBottom="10dp"
@@ -180,7 +182,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_nickname_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="165dp"
         android:visibility="gone"
@@ -212,10 +214,9 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginRight="72dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -245,10 +246,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_region_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:visibility="gone"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -506,7 +507,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_position_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:visibility="gone"
@@ -581,7 +582,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_state_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:visibility="gone"
@@ -653,7 +654,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_state_grade_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="420dp"
         android:visibility="gone"
@@ -723,7 +724,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_developer_stack_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:visibility="gone"
@@ -893,7 +894,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_designer_tool_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:visibility="gone"
@@ -1079,7 +1080,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_introduce_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:visibility="gone"
@@ -1160,9 +1161,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/signup_open_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="180dp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
