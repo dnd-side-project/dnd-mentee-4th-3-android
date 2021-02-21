@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
@@ -263,7 +262,7 @@ class SignUpActivity : AppCompatActivity() {
                                     signup_introduce_layout.visibility = View.VISIBLE
                                     signup_introduce_firstlink_text.hint = " 개인 웹사이트가 있다면 입력해주세요."
                                     var drawble = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_global)
-                                    drawble?.setBounds(0,0, 120, 120)
+                                    drawble?.setBounds(0,0, 72, 72)
                                     signup_introduce_firstlink_text.setCompoundDrawables(drawble,
                                         null, null, null)
                                     signup_introduce_secondlink_text.visibility = View.GONE
@@ -279,13 +278,13 @@ class SignUpActivity : AppCompatActivity() {
                         signup_developer_stack_layout.visibility = View.GONE
                         signup_introduce_firstlink_text.hint = " 깃허브 링크를 입력해주세요."
                         var drawble = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_github)
-                        drawble?.setBounds(0,0, 120, 120)
+                        drawble?.setBounds(0,0, 72, 72)
                         signup_introduce_firstlink_text.setCompoundDrawables(drawble,
                             null, null, null)
                     } else {
                         signup_introduce_firstlink_text.hint = " 비핸스 링크를 입력해주세요."
                         var drawble = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_behance)
-                        drawble?.setBounds(0,0, 120, 120)
+                        drawble?.setBounds(0,0, 72, 72)
                         signup_introduce_firstlink_text.setCompoundDrawables(drawble,
                             null, null, null)
                         signup_designer_tool_layout.visibility = View.GONE
@@ -293,7 +292,7 @@ class SignUpActivity : AppCompatActivity() {
                     signup_introduce_secondlink_text.visibility = View.VISIBLE
                     signup_introduce_secondlink_text.hint = "기타 개인 웹사이트가 있다면 입력해주세요."
                     var drawble = ContextCompat.getDrawable(this@SignUpActivity,R.drawable.android_signup_global)
-                    drawble?.setBounds(0,0, 120, 120)
+                    drawble?.setBounds(0,0, 72, 72)
                     signup_introduce_secondlink_text.setCompoundDrawables(drawble,
                         null, null, null)
                     signup_introduce_layout.visibility = View.VISIBLE

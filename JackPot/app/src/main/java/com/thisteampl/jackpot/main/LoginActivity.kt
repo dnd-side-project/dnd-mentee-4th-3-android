@@ -31,7 +31,6 @@ import com.thisteampl.jackpot.main.userController.SNSSignIn
 import com.thisteampl.jackpot.main.userController.SignIn
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_signup.*
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call

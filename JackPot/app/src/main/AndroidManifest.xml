@@ -23,21 +23,22 @@
                 <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
-        <activity android:name=".main.floating.ProjectCreation" />
-        <activity android:name=".main.viewmore.RecentlyProjectViewMore" />
-        <activity android:name=".main.userpage.MyPageActivity" />
-        <activity android:name=".main.userpage.ProfileActivity" />
-        <activity android:name=".main.userpage.ProfileChangePasswordActivity" />
-        <activity android:name=".main.filtering.FilteringSearch"/>
-        <activity android:name=".main.userpage.ProfileEditActivity" />
-        <activity android:name=".main.userpage.ProfileEditChangeEmojiActivity" />
-        <activity android:name=".main.userpage.ProfileEditChangeStateActivity" />
-        <activity android:name=".main.projectdetail.ProjectViewDetail" />
-        <activity android:name=".main.LoginActivity">
+        <activity android:name=".main.floating.ProjectCreation" android:screenOrientation="portrait"/>
+        <activity android:name=".main.viewmore.RecentlyProjectViewMore" android:screenOrientation="portrait"/>
+        <activity android:name=".main.userpage.MyPageActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".main.userpage.ProfileActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".main.userpage.ProfileChangePasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".main.filtering.FilteringSearch" android:screenOrientation="portrait"/>
+        <activity android:name=".main.userpage.ProfileEditActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".main.userpage.ProfileEditChangeEmojiActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".main.userpage.ProfileEditChangeStateActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".main.projectdetail.ProjectViewDetail" android:screenOrientation="portrait"/>
+        <activity android:name=".main.LoginActivity" android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
 
-        </activity>
-        <activity android:name=".main.SignUpActivity" />
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.SignUpActivity" android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".main.MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
