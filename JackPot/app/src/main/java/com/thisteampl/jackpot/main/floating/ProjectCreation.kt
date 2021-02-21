@@ -742,15 +742,13 @@ class ProjectCreation : AppCompatActivity() {
                 if(stackToolAll[i] == "C++"){
                     stackToolAll[i] = "Cplus"
                 }
+                if(stackToolAll[i] == "FLASK") stackToolAll[i] = "Flask"
 
 
             }
             selectpositionItems.addAll(stackToolposition)
 
-            
-            // 수정
-//            val listprojectfield = mutableListOf<String>()
-//                listprojectfield.add(projectfieldtext)
+
 
             Log.d("tag","예상 기간: ${durationtext}")
             Log.d("tag","프로젝트 방식: ${onofftext}")

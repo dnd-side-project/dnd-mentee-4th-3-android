@@ -34,7 +34,7 @@ class FilteringSearch : AppCompatActivity() {
     private var projectfind_durationtext = "duration"
 
     // 5) 관심분야
-    private var projectfind_projectfind_projectfieldbtn = arrayOfNulls<Button>(8)
+    private var projectfind_projectfieldbtn = arrayOfNulls<Button>(8)
     private var projectfind_projectfieldtext = "field"
 
     // 멤버찾기
@@ -57,7 +57,7 @@ class FilteringSearch : AppCompatActivity() {
     private var memberfind_durationtext = "duration"
 
     // 6) 관심분야
-    private var memberfind_projectfind_projectfieldbtn = arrayOfNulls<Button>(8)
+    private var memberfind_projectfieldbtn = arrayOfNulls<Button>(8)
     private var memberfind_projectfieldtext = "field"
 
 
@@ -197,72 +197,72 @@ class FilteringSearch : AppCompatActivity() {
         }
 
         // 분야
-        projectfind_projectfind_projectfieldbtn[0] =
+        projectfind_projectfieldbtn[0] =
             findViewById(R.id.filtersearch_selfdeveloper_textview)
-        projectfind_projectfind_projectfieldbtn[1] = findViewById(R.id.filtersearch_hobby_textview)
-        projectfind_projectfind_projectfieldbtn[2] =
+        projectfind_projectfieldbtn[1] = findViewById(R.id.filtersearch_hobby_textview)
+        projectfind_projectfieldbtn[2] =
             findViewById(R.id.filtersearch_economy_textview)
-        projectfind_projectfind_projectfieldbtn[3] = findViewById(R.id.filtersearch_cook_textview)
-        projectfind_projectfind_projectfieldbtn[4] = findViewById(R.id.filtersearch_it_textview)
-        projectfind_projectfind_projectfieldbtn[5] = findViewById(R.id.filtersearch_rest_textview)
-        projectfind_projectfind_projectfieldbtn[6] = findViewById(R.id.filtersearch_health_textview)
-        projectfind_projectfind_projectfieldbtn[7] =
+        projectfind_projectfieldbtn[3] = findViewById(R.id.filtersearch_cook_textview)
+        projectfind_projectfieldbtn[4] = findViewById(R.id.filtersearch_it_textview)
+        projectfind_projectfieldbtn[5] = findViewById(R.id.filtersearch_rest_textview)
+        projectfind_projectfieldbtn[6] = findViewById(R.id.filtersearch_health_textview)
+        projectfind_projectfieldbtn[7] =
             findViewById(R.id.filtersearch_holiday_textview)
 
 
-        projectfind_projectfind_projectfieldbtn[0]?.setOnClickListener {
-            projectfind_projectfind_projectfieldbtn[0]?.let { it1 ->
+        projectfind_projectfieldbtn[0]?.setOnClickListener {
+            projectfind_projectfieldbtn[0]?.let { it1 ->
                 this.onClickBtn(
                     it1, 0, 8
                 )
             }
         }
 
-        projectfind_projectfind_projectfieldbtn[1]?.setOnClickListener {
-            projectfind_projectfind_projectfieldbtn[1]?.let { it1 ->
+        projectfind_projectfieldbtn[1]?.setOnClickListener {
+            projectfind_projectfieldbtn[1]?.let { it1 ->
                 this.onClickBtn(
                     it1, 1, 8
                 )
             }
         }
 
-        projectfind_projectfind_projectfieldbtn[2]?.setOnClickListener {
-            projectfind_projectfind_projectfieldbtn[2]?.let { it1 ->
+        projectfind_projectfieldbtn[2]?.setOnClickListener {
+            projectfind_projectfieldbtn[2]?.let { it1 ->
                 this.onClickBtn(
                     it1, 2, 8
                 )
             }
         }
-        projectfind_projectfind_projectfieldbtn[3]?.setOnClickListener {
-            projectfind_projectfind_projectfieldbtn[3]?.let { it1 ->
+        projectfind_projectfieldbtn[3]?.setOnClickListener {
+            projectfind_projectfieldbtn[3]?.let { it1 ->
                 this.onClickBtn(
                     it1, 3, 8
                 )
             }
         }
-        projectfind_projectfind_projectfieldbtn[4]?.setOnClickListener {
-            projectfind_projectfind_projectfieldbtn[4]?.let { it1 ->
+        projectfind_projectfieldbtn[4]?.setOnClickListener {
+            projectfind_projectfieldbtn[4]?.let { it1 ->
                 this.onClickBtn(
                     it1, 4, 8
                 )
             }
         }
-        projectfind_projectfind_projectfieldbtn[5]?.setOnClickListener {
-            projectfind_projectfind_projectfieldbtn[5]?.let { it1 ->
+        projectfind_projectfieldbtn[5]?.setOnClickListener {
+            projectfind_projectfieldbtn[5]?.let { it1 ->
                 this.onClickBtn(
                     it1, 5, 8
                 )
             }
         }
-        projectfind_projectfind_projectfieldbtn[6]?.setOnClickListener {
-            projectfind_projectfind_projectfieldbtn[6]?.let { it1 ->
+        projectfind_projectfieldbtn[6]?.setOnClickListener {
+            projectfind_projectfieldbtn[6]?.let { it1 ->
                 this.onClickBtn(
                     it1, 6, 8
                 )
             }
         }
-        projectfind_projectfind_projectfieldbtn[7]?.setOnClickListener {
-            projectfind_projectfind_projectfieldbtn[7]?.let { it1 ->
+        projectfind_projectfieldbtn[7]?.setOnClickListener {
+            projectfind_projectfieldbtn[7]?.let { it1 ->
                 this.onClickBtn(
                     it1, 7, 8
                 )
@@ -523,12 +523,12 @@ class FilteringSearch : AppCompatActivity() {
                 // 3. 이외의 버튼(버튼 적용되는 곳 이외) off
 
                 if (checkexpectedfield == i) {
-                    projectfind_projectfind_projectfieldbtn[i]?.background =
+                    projectfind_projectfieldbtn[i]?.background =
                         ContextCompat.getDrawable(
                             this@FilteringSearch,
                             R.drawable.radius_button_effect
                         )
-                    projectfind_projectfind_projectfieldbtn[i]?.setTextColor(
+                    projectfind_projectfieldbtn[i]?.setTextColor(
                         ContextCompat.getColor(
                             this@FilteringSearch,
                             R.color.colorButtonNoSelect
@@ -537,12 +537,12 @@ class FilteringSearch : AppCompatActivity() {
 
                     checkexpectedfield = -1
                 } else if (i == index) {
-                    projectfind_projectfind_projectfieldbtn[i]?.background =
+                    projectfind_projectfieldbtn[i]?.background =
                         ContextCompat.getDrawable(
                             this@FilteringSearch,
                             R.drawable.radius_background_transparent_select
                         )
-                    projectfind_projectfind_projectfieldbtn[i]?.setTextColor(
+                    projectfind_projectfieldbtn[i]?.setTextColor(
                         ContextCompat.getColor(
                             this@FilteringSearch,
                             R.color.colorButtonSelect
@@ -552,14 +552,14 @@ class FilteringSearch : AppCompatActivity() {
 
                     checkexpectedfield = i
                     projectfind_projectfieldtext =
-                        projectfind_projectfind_projectfieldbtn[i]?.text.toString()
+                        projectfind_projectfieldbtn[i]?.text.toString()
                 } else {
-                    projectfind_projectfind_projectfieldbtn[i]?.background =
+                    projectfind_projectfieldbtn[i]?.background =
                         ContextCompat.getDrawable(
                             this@FilteringSearch,
                             R.drawable.radius_button_effect
                         )
-                    projectfind_projectfind_projectfieldbtn[i]?.setTextColor(
+                    projectfind_projectfieldbtn[i]?.setTextColor(
                         ContextCompat.getColor(
                             this@FilteringSearch,
                             R.color.colorButtonNoSelect
