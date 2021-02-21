@@ -20,12 +20,13 @@
         android:layout_gravity="center">
 
         <ImageView
-            android:id="@+id/holder_project_detail_image"
+            android:id="@+id/holder_project_detail_position_background"
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:src="@drawable/circle_developer" />
 
         <TextView
+            android:id="@+id/holder_project_icon_text"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_gravity="center"
@@ -87,6 +88,7 @@
         android:layout_width="60dp"
         android:layout_height="20dp"
         android:text="답글쓰기"
+        android:visibility="gone"
         android:textColor="@color/colorGray"
         android:textSize="12dp"
         android:background="@color/transparent"
