@@ -377,6 +377,7 @@
                 app:layout_constraintTop_toBottomOf="@id/project_detail_comment_recyclerview">
 
                 <EditText
+                    android:id="@+id/project_detail_comment_edittext"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -388,6 +389,7 @@
                     android:textSize="12dp"/>
 
                 <Button
+                    android:id="@+id/project_detail_comment_input_button"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"

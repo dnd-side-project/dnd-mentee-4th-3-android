@@ -805,8 +805,6 @@ class ProjectCreation : AppCompatActivity() {
 
 
         }
-
-
     }
 
     // 모집 포지션, 사용 예정 스택, 프로젝트 방식 지역, 프로젝트 예상기간, 분야 선택 안되었을 때
