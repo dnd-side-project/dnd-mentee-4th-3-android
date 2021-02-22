@@ -38,6 +38,7 @@ class ProjectViewDetail : AppCompatActivity() {
     private var projectID = 0
     private val userApi = userAPI.create()
     private var checkMyProject = false
+    private var watcherName = "NO_NAME_NEED_INITIALIZE"
     lateinit var mPrjCommentAdapter: ProjectCommentAdapter
     private var mMenu: Menu? = null
 
@@ -201,7 +202,7 @@ class ProjectViewDetail : AppCompatActivity() {
                     //댓글 리사이클러뷰에 추가
                     for(comment in response.body()!!.result.comments) {
                         mPrjCommentAdapter.items.add(ProjectDetailComment
-                            ("projectOwner", comment.id ,comment.authorPosition, comment.authorName, comment.body, comment.date, comment.emoticon, comment.privacy))
+                            (projectID.toLong(), checkMyProject, comment.id ,comment.authorPosition, comment.authorName, watcherName, comment.body, comment.date, comment.emoticon, comment.privacy))
                     }
                     mPrjCommentAdapter.notifyDataSetChanged()
 
@@ -296,7 +297,11 @@ class ProjectViewDetail : AppCompatActivity() {
 
                         textView.setOnClickListener {
                             val intent = Intent(baseContext, ProfileActivity::class.java)
-                                .putExtra("title", "멤버 프로필").putExtra("id", i.userIndex)
+                            if(i.name == watcherName) {
+                                intent.putExtra("title", "내 프로필")
+                            }else {
+                                intent.putExtra("title", "멤버 프로필").putExtra("id", i.userIndex)
+                            }
                             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         }
 
@@ -349,6 +354,7 @@ class ProjectViewDetail : AppCompatActivity() {
                 ) {
                     when {
                         response.code().toString() == "200" -> {
+                            watcherName = response.body()?.result!!.name
                             for(i in response.body()?.result!!.myprojects) {
                                 if(i.id == projectID.toLong()) {
                                     checkMyProject = true
