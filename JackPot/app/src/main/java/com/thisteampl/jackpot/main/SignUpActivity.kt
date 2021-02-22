@@ -265,7 +265,7 @@ class SignUpActivity : AppCompatActivity() {
                                     drawble?.setBounds(0,0, 72, 72)
                                     signup_introduce_firstlink_text.setCompoundDrawables(drawble,
                                         null, null, null)
-                                    signup_introduce_secondlink_text.visibility = View.GONE
+                                    signup_introduce_secondlink_text.visibility = View.INVISIBLE
                                 }
                             }
                         }
