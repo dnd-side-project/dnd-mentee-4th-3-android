@@ -1,6 +1,6 @@
 package com.thisteampl.jackpot.main.projectdetail
 
-data class ProjectComment (
+data class ProjectDetailComment (
     var position: String,
     var name: String,
     var comment: String,

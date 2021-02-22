@@ -149,15 +149,15 @@ class ProfileEditActivity: AppCompatActivity() {
     // 프로필을 가져오는 메서드.
     private fun getProfile(){
         userApi?.getProfile()?.enqueue(
-            object : Callback<CheckProfile> {
-                override fun onFailure(call: Call<CheckProfile>, t: Throwable) {
+            object : Callback<CheckMyProfile> {
+                override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
                     // userAPI에서 타입이나 이름 안맞췄을때
                     Log.e("tag ", "onFailure, " + t.localizedMessage)
                 }
 
                 override fun onResponse(
-                    call: Call<CheckProfile>,
-                    response: Response<CheckProfile>
+                    call: Call<CheckMyProfile>,
+                    response: Response<CheckMyProfile>
                 ) {
                     when {
                         response.code().toString() == "200" -> {
@@ -196,7 +196,7 @@ class ProfileEditActivity: AppCompatActivity() {
                                     }
                                     profile_edit_link_first_edittext.hint = " 깃허브 링크를 입력해주세요."
                                     var drawble = ContextCompat.getDrawable(baseContext,R.drawable.android_signup_github)
-                                    drawble?.setBounds(0,0, 120, 120)
+                                    drawble?.setBounds(0,0, 72, 72)
                                     profile_edit_link_first_edittext.setCompoundDrawables(drawble,
                                         null, null, null)
                                     profile_edit_job_background_image.setImageResource(R.drawable.background_developer)
@@ -216,7 +216,7 @@ class ProfileEditActivity: AppCompatActivity() {
                                     }
                                     profile_edit_link_first_edittext.hint = " 비핸스 링크를 입력해주세요."
                                     var drawble = ContextCompat.getDrawable(baseContext,R.drawable.android_signup_behance)
-                                    drawble?.setBounds(0,0, 120, 120)
+                                    drawble?.setBounds(0,0, 72, 72)
                                     profile_edit_link_first_edittext.setCompoundDrawables(drawble,
                                         null, null, null)
                                     profile_edit_job_background_image.setImageResource(R.drawable.background_designer)
@@ -226,13 +226,18 @@ class ProfileEditActivity: AppCompatActivity() {
 
                                     profile_edit_link_first_edittext.hint = " 개인 웹사이트가 있다면 입력해주세요."
                                     var drawble = ContextCompat.getDrawable(baseContext,R.drawable.android_signup_global)
-                                    drawble?.setBounds(0,0, 120, 120)
+                                    drawble?.setBounds(0,0, 72, 72)
                                     profile_edit_link_first_edittext.setCompoundDrawables(drawble,
                                         null, null, null)
                                     profile_edit_link_second_edittext.visibility = View.GONE
                                 }
                             }
-                            //포트폴리오, 자기소개 추가해야 함.
+
+                            profile_edit_link_second_edittext.hint = " 개인 웹사이트가 있다면 입력해주세요."
+                            var drawble2 = ContextCompat.getDrawable(baseContext,R.drawable.android_signup_global)
+                            drawble2?.setBounds(0,0, 72, 72)
+                            profile_edit_link_second_edittext.setCompoundDrawables(drawble2,
+                                null, null, null)
                         }
                         else -> {
                             Toast.makeText(

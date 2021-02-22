@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.LoginActivity
+import com.thisteampl.jackpot.main.userController.CheckMyProfile
 import com.thisteampl.jackpot.main.userController.CheckProfile
 import com.thisteampl.jackpot.main.userController.CheckResponse
 import com.thisteampl.jackpot.main.userController.userAPI
@@ -34,9 +35,8 @@ class MyPageActivity : AppCompatActivity() {
             finish()
         }
 
-        getProfile()
         setUpRecyclerView()
-        setupView()
+        getProfile()
     }
 
     override fun onResume() {
@@ -44,9 +44,9 @@ class MyPageActivity : AppCompatActivity() {
         if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
             finish()
         }
-        getProfile()
-        setupView()
     }
+
+
         // 마이페이지 뷰 셋팅하는 메서드. 로그인 돼 있을 경우와 로그아웃 돼 있을 경우를 분리한다.
         private fun setupView(){
             mypage_project_num_text.text = myProjectAdapter.items.size.toString() + "개"
@@ -106,15 +106,15 @@ class MyPageActivity : AppCompatActivity() {
     // 프로필을 가져오는 메서드.
     private fun getProfile(){
         userApi?.getProfile()?.enqueue(
-            object : Callback<CheckProfile> {
-                override fun onFailure(call: Call<CheckProfile>, t: Throwable) {
+            object : Callback<CheckMyProfile> {
+                override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
                     // userAPI에서 타입이나 이름 안맞췄을때
                     Log.e("tag ", "onFailure, " + t.localizedMessage)
                 }
 
                 override fun onResponse(
-                    call: Call<CheckProfile>,
-                    response: Response<CheckProfile>
+                    call: Call<CheckMyProfile>,
+                    response: Response<CheckMyProfile>
                 ) {
                     when {
                         response.code().toString() == "200" -> {
@@ -125,6 +125,34 @@ class MyPageActivity : AppCompatActivity() {
                             if(response.body()!!.result.privacy) {
                                 mypage_profile_close_image.visibility = View.GONE
                             }
+
+                            for(myprj in response.body()!!.result.myprojects) {
+                                var list = mutableListOf<String>()
+                                for(j in myprj.participants) {
+                                    list.add(j.position)
+                                }
+                                myProjectAdapter.items.add(MyProject(myprj.id, myprj.interest, myprj.title, list))
+                            }
+                            myProjectAdapter.notifyDataSetChanged()
+
+                            for(parprj in response.body()!!.result.participantProject) {
+                                myRegisterProjectAdapter.items.add(AnotherProject(parprj.id, parprj.title,
+                                    parprj.interest, parprj.position, parprj.stacks))
+                            }
+                            myRegisterProjectAdapter.notifyDataSetChanged()
+
+                            for(scrprj in response.body()!!.result.scrapProjects) {
+                                myScrapProjectAdapter.items.add(AnotherProject(scrprj.id, scrprj.title,
+                                    scrprj.interest, scrprj.position, scrprj.stacks))
+                            }
+                            myScrapProjectAdapter.notifyDataSetChanged()
+
+                            for(comprj in response.body()!!.result.commentProjects) {
+                                myCommentProjectAdapter.items.add(AnotherProject(comprj.id, comprj.title,
+                                    comprj.interest, comprj.position, comprj.stacks))
+                            }
+                            myCommentProjectAdapter.notifyDataSetChanged()
+
                             when (response.body()!!.result.position) {
                                 "개발자" -> {
                                     mypage_job_background_image.setImageResource(R.drawable.background_developer)
@@ -136,6 +164,8 @@ class MyPageActivity : AppCompatActivity() {
                                     mypage_job_background_image.setImageResource(R.drawable.background_director)
                                 }
                             }
+
+                            setupView() // 정보 불러오고 난 후 뷰 셋업
                         }
                         response.code().toString() == "401" -> {
                             Toast.makeText(

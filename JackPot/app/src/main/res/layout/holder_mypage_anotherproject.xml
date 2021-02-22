@@ -6,19 +6,32 @@
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp">
 
-    <ImageView
-        android:id="@+id/holder_mypage_anotherprj_image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+    <FrameLayout
+        android:id="@+id/holder_mypage_anotherprj_image_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginRight="280dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:src="@drawable/anotherprj_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/holder_mypage_anotherprj_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/anotherprj_background" />
+
+        <ImageView
+            android:id="@+id/holder_mypage_anotherprj_icon_image"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:src="@drawable/field_hobby" />
+
+    </FrameLayout>
     <TextView
         android:id="@+id/holder_mypage_anotherprj_name"
         android:layout_width="wrap_content"
@@ -30,7 +43,7 @@
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/holder_mypage_anotherprj_image"
+        app:layout_constraintStart_toStartOf="@+id/holder_mypage_anotherprj_image_layout"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -41,20 +54,20 @@
         android:textColor="@color/colorLightGray"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/holder_mypage_anotherprj_image"
+        app:layout_constraintStart_toStartOf="@+id/holder_mypage_anotherprj_image_layout"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/holder_mypage_anotherprj_position"
+    <LinearLayout
+        android:id="@+id/holder_mypage_anotherprj_position_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginLeft="150dp"
-        android:text="포지션"
-        android:textColor="@color/colorBlack"
-        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/holder_mypage_anotherprj_image"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/holder_mypage_anotherprj_image_layout"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
 
     <HorizontalScrollView
         android:layout_width="210dp"
@@ -63,7 +76,7 @@
         android:layout_marginLeft="80dp"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/holder_mypage_anotherprj_image"
+        app:layout_constraintStart_toStartOf="@+id/holder_mypage_anotherprj_image_layout"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout

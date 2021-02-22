@@ -18,11 +18,15 @@ import kotlinx.android.synthetic.main.fragment_attention_project.*
 class AttentionProject : Fragment() {
     var attentionprojectlist : List<ProjectComponent> = listOf()
 
+
     companion object {
         fun newInstance(): AttentionProject{
             return AttentionProject()
         }
     }
+
+    // init 초기화할 때, list를 삽입한다.
+
 
     fun connectprojectbackend(list : List<ProjectComponent>){
         attentionprojectlist=list
