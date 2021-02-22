@@ -2,7 +2,6 @@ package com.thisteampl.jackpot.main
 
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -15,11 +14,10 @@ import com.thisteampl.jackpot.main.floating.ProjectCreation
 import com.thisteampl.jackpot.main.mainhome.AttentionMember
 import com.thisteampl.jackpot.main.mainhome.AttentionProject
 import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
-import com.thisteampl.jackpot.main.projectController.ProjectElement
 import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
 import com.thisteampl.jackpot.main.projectController.projectAPI
-import com.thisteampl.jackpot.main.userController.CheckProfile
+import com.thisteampl.jackpot.main.userController.CheckMyProfile
 import com.thisteampl.jackpot.main.userController.userAPI
 
 import com.thisteampl.jackpot.main.userpage.MyPageActivity
@@ -233,15 +231,15 @@ class MainActivity : AppCompatActivity() {
     // 유효기간 만료 체크
     private fun getProfile(){
         userApi?.getProfile()?.enqueue(
-            object : Callback<CheckProfile> {
-                override fun onFailure(call: Call<CheckProfile>, t: Throwable) {
+            object : Callback<CheckMyProfile> {
+                override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
                     // userAPI에서 타입이나 이름 안맞췄을때
                     Log.e("tag ", "onFailure, " + t.localizedMessage)
                 }
 
                 override fun onResponse(
-                    call: Call<CheckProfile>,
-                    response: Response<CheckProfile>
+                    call: Call<CheckMyProfile>,
+                    response: Response<CheckMyProfile>
                 ) {
                     when {
                         response.code().toString() == "401" -> {

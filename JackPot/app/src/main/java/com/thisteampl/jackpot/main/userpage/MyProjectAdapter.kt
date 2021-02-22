@@ -47,7 +47,17 @@ class MyProjectAdapter(var items: MutableList<MyProject> = mutableListOf()
                     val image = ImageView(context)
                     image.layoutParams = layoutParams
 
-                    image.setImageResource(R.drawable.circle_developer)
+                    when (i) {
+                        "개발자" -> {
+                            image.setImageResource(R.drawable.circle_developer)
+                        }
+                        "디자이너" -> {
+                            image.setImageResource(R.drawable.circle_designer)
+                        }
+                        else -> {
+                            image.setImageResource(R.drawable.circle_director)
+                        }
+                    }
 
                     holder_mypage_myprj_joinmember_layout.addView(image)
                 }

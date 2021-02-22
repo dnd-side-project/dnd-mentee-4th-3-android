@@ -84,6 +84,15 @@
         app:layout_constraintStart_toEndOf="@+id/holder_project_detail_image_frame_layout"
         app:layout_constraintTop_toBottomOf="@+id/holder_project_detail_comment_text" />
 
+    <CheckBox
+        android:id="@+id/holder_project_detail_comment_privacy_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="비밀글로 작성"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <Button
         android:layout_width="60dp"
         android:layout_height="20dp"

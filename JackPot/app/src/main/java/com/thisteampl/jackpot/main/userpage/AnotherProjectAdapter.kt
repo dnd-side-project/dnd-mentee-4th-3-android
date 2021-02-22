@@ -35,7 +35,7 @@ class AnotherProjectAdapter(var items: MutableList<AnotherProject> = mutableList
 
         with(holder.itemView) {
             holder_mypage_anotherprj_name.text = item.name
-            holder_mypage_anotherprj_position.text = item.position
+            //포지션 동적 추가 필요
 
             // 기술스택 동적 추가
             for (i in item.stack) {

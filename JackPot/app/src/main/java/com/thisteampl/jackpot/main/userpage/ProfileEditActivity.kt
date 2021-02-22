@@ -149,15 +149,15 @@ class ProfileEditActivity: AppCompatActivity() {
     // 프로필을 가져오는 메서드.
     private fun getProfile(){
         userApi?.getProfile()?.enqueue(
-            object : Callback<CheckProfile> {
-                override fun onFailure(call: Call<CheckProfile>, t: Throwable) {
+            object : Callback<CheckMyProfile> {
+                override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
                     // userAPI에서 타입이나 이름 안맞췄을때
                     Log.e("tag ", "onFailure, " + t.localizedMessage)
                 }
 
                 override fun onResponse(
-                    call: Call<CheckProfile>,
-                    response: Response<CheckProfile>
+                    call: Call<CheckMyProfile>,
+                    response: Response<CheckMyProfile>
                 ) {
                     when {
                         response.code().toString() == "200" -> {

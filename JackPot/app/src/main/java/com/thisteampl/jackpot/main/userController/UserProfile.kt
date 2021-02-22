@@ -1,9 +1,8 @@
 package com.thisteampl.jackpot.main.userController
 
 import com.google.gson.annotations.SerializedName
-import com.thisteampl.jackpot.main.projectController.ProjectComponent
 
-class MyProfile (
+class UserProfile (
     @SerializedName("career")
     var career : String,
     @SerializedName("emoticon")
@@ -26,12 +25,8 @@ class MyProfile (
     var region : String,
     @SerializedName("stacks")
     var stacks : List<String>,
-    @SerializedName("myprojects")
-    var myprojects : List<ProjectComponent>,
-    @SerializedName("participantProject")
-    var participantProject : List<ProjectComponent>,
-    @SerializedName("commentProjects")
-    var commentProjects : List<ProjectComponent>
+    @SerializedName("auth")
+    var auth : String
 ) {
     override fun toString(): String {
         var stack = ""

@@ -28,7 +28,4 @@ class ProjectElement (
     fun getduration():String{
         return duration
     }
-
-
-
 }

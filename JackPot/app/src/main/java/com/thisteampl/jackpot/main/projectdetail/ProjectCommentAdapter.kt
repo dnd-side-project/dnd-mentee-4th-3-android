@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
 
 
-class ProjectCommentAdapter(var items: MutableList<ProjectComment> = mutableListOf()
+class ProjectCommentAdapter(var items: MutableList<ProjectDetailComment> = mutableListOf()
 ) : RecyclerView.Adapter<ProjectCommentAdapter.ProjectCommentRecyclerViewHolder>() {
 
     class ProjectCommentRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view)

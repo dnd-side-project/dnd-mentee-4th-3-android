@@ -26,7 +26,7 @@ class AttentionMember : Fragment() {
     init{
         
         // 백엔드 호출
-        for (i in 1..5) {
+/*        for (i in 1..5) {
             projectapi?.getprojectsID(i)
                 ?.enqueue(object : retrofit2.Callback<ProjectElement> {
                     override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
@@ -41,7 +41,7 @@ class AttentionMember : Fragment() {
                     }
 
                 })
-        }
+        }*/
 
          attention = arrayListOf(
             AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
