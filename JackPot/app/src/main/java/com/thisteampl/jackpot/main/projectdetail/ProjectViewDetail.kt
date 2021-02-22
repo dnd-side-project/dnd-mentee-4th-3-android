@@ -39,6 +39,7 @@ class ProjectViewDetail : AppCompatActivity() {
     private val userApi = userAPI.create()
     private var checkMyProject = false
     lateinit var mPrjCommentAdapter: ProjectCommentAdapter
+    private var mMenu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMyProject() // 내 프로젝트인지 확인
@@ -101,7 +102,7 @@ class ProjectViewDetail : AppCompatActivity() {
                             Toast.makeText(baseContext, "댓글이 작성되었습니다.", Toast.LENGTH_SHORT)
                                 .show()
                             finish()
-                            val intent = Intent(baseContext, ProjectViewDetail::class.java)
+                            val intent = Intent(baseContext, ProjectViewDetail::class.java).putExtra("id", projectID.toLong())
                             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         } else {
                             Toast.makeText(baseContext, "댓글 작성에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
@@ -118,6 +119,7 @@ class ProjectViewDetail : AppCompatActivity() {
         if(!checkMyProject) {return false}
         val inflater = menuInflater
         inflater.inflate(R.menu.project_menu, menu)
+        mMenu = menu
         return true
     }
 
@@ -126,9 +128,45 @@ class ProjectViewDetail : AppCompatActivity() {
         if(!checkMyProject) {return false}
         when(item.itemId) {
             R.id.project_detail_menu -> {
+                //누를 때 프로젝트가 어떤 상태인지에 따라 나오는 버튼이 달라짐
+                when (project_detail_status_text.text) {
+                    "모집중" -> {
+                        mMenu?.findItem(R.id.project_detail_change_recruit_menu)?.isVisible = false
+                        mMenu?.findItem(R.id.project_detail_change_complete_menu)?.isVisible = false
+                        mMenu?.findItem(R.id.project_detail_change_progress_menu)?.isVisible = true
+                    }
+                    "진행중" -> {
+                        mMenu?.findItem(R.id.project_detail_change_recruit_menu)?.isVisible = true
+                        mMenu?.findItem(R.id.project_detail_change_complete_menu)?.isVisible = true
+                        mMenu?.findItem(R.id.project_detail_change_progress_menu)?.isVisible = false
+                    }
+                    else -> { // 완료 상태
+                        mMenu?.findItem(R.id.project_detail_change_recruit_menu)?.isVisible = false
+                        mMenu?.findItem(R.id.project_detail_change_complete_menu)?.isVisible = false
+                        mMenu?.findItem(R.id.project_detail_change_progress_menu)?.isVisible = false
+                        mMenu?.findItem(R.id.project_detail_delete_menu)?.isVisible = false
+                        mMenu?.findItem(R.id.project_detail_edit_menu)?.isVisible = false
+                    }
+                }
             }
             R.id.project_detail_delete_menu -> {
+                //프로젝트 삭제버튼
                 deleteProject(projectID.toLong())
+            }
+            R.id.project_detail_edit_menu -> {
+                //프로젝트 수정버튼
+            }
+            R.id.project_detail_change_recruit_menu -> {
+                //프로젝트 모집 중 버튼
+                projectStatusChange(projectID.toLong(), "모집중")
+            }
+            R.id.project_detail_change_progress_menu -> {
+                //프로젝트 진행 중 버튼
+                projectStatusChange(projectID.toLong(), "진행중")
+            }
+            R.id.project_detail_change_complete_menu -> {
+                //프로젝트 완료버튼
+                projectStatusChange(projectID.toLong(), "완료")
             }
         }
         return super.onOptionsItemSelected(item)
@@ -163,7 +201,7 @@ class ProjectViewDetail : AppCompatActivity() {
                     //댓글 리사이클러뷰에 추가
                     for(comment in response.body()!!.result.comments) {
                         mPrjCommentAdapter.items.add(ProjectDetailComment
-                            (comment.authorPosition, comment.authorName, comment.body, comment.date))
+                            ("projectOwner", comment.id ,comment.authorPosition, comment.authorName, comment.body, comment.date, comment.emoticon, comment.privacy))
                     }
                     mPrjCommentAdapter.notifyDataSetChanged()
 
@@ -272,6 +310,7 @@ class ProjectViewDetail : AppCompatActivity() {
         })
     }
 
+    //프로젝트 삭제
     private fun deleteProject(id: Long) {
         projectApi?.getProjectDelete(id)?.enqueue(object : Callback<CheckResponse> {
             override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
@@ -351,5 +390,30 @@ class ProjectViewDetail : AppCompatActivity() {
                     }
                 }
             })
+    }
+
+    private fun projectStatusChange(id: Long, status: String) {
+        projectApi?.getProjectStatusChange(id, status)?.enqueue(object : Callback<CheckResponse> {
+            override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                // userAPI에서 타입이나 이름 안맞췄을때
+                Log.e("tag ", "onFailure" + t.localizedMessage)
+            }
+
+            override fun onResponse(
+                call: Call<CheckResponse>,
+                response: Response<CheckResponse>
+            ) {
+                if(response.code().toString() == "200") {
+                    Toast.makeText(baseContext, "프로젝트 상태가 $status(으)로 변경되었습니다.", Toast.LENGTH_SHORT)
+                        .show()
+                    finish()
+                    val intent = Intent(baseContext, ProjectViewDetail::class.java).putExtra("id", projectID.toLong())
+                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                } else {
+                    Toast.makeText(baseContext, "프로젝트 상태 변경에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
     }
 }

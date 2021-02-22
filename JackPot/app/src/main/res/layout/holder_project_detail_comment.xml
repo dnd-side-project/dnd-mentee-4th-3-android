@@ -98,6 +98,7 @@
 
 
     <Button
+        android:id="@+id/holder_project_detail_comment_delete_button"
         android:layout_width="60dp"
         android:layout_height="20dp"
         android:text="삭제"

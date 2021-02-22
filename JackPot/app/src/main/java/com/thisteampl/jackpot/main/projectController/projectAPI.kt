@@ -34,4 +34,10 @@ interface projectAPI {
     @POST("/comment")
     fun postComment(@Body commentDto: PostComment) : Call<CheckResponse>
 
+    @POST("/api/projects/change/{id}")
+    fun getProjectStatusChange(@Path("id") id: Long, @Query("status") status : String) : Call<CheckResponse>
+
+    @DELETE("/comment/delete/{id}")
+    fun deleteComment(@Path("id") id: Long) : Call<CheckResponse>
+
 }
