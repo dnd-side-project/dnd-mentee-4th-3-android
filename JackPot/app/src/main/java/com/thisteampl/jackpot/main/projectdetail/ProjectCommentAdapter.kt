@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
@@ -59,12 +61,15 @@ class ProjectCommentAdapter(var items: MutableList<ProjectDetailComment> = mutab
                 when (item.position) {
                     "개발자" -> {
                         holder_project_detail_comment_position_background.setImageResource(R.drawable.background_developer)
+                        holder_project_detail_comment_position_text.setTextColor(getColor(context, R.color.colorDeveloper))
                     }
                     "디자이너" -> {
                         holder_project_detail_comment_position_background.setImageResource(R.drawable.background_designer)
+                        holder_project_detail_comment_position_text.setTextColor(getColor(context, R.color.colorDesigner))
                     }
                     else -> {
                         holder_project_detail_comment_position_background.setImageResource(R.drawable.background_director)
+                        holder_project_detail_comment_position_text.setTextColor(getColor(context, R.color.colorDirector))
                     }
                 }
                 holder_project_detail_comment_date_text.text = item.date
