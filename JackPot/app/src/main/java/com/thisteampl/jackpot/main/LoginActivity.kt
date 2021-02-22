@@ -63,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
     private val userApi = userAPI.create()
     private var sendAuth = false
     private var authCode = makeCode()
+    private var fcmToken = "NO_FCM_TOKEN"
 
     // 화면전환 애니메이션, fillAfter : 옮긴 후 원상복구, duration : 지속시간
     private val anim: Animation = AlphaAnimation(0f, 1f).apply {
@@ -75,6 +76,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        makeFCMToken()
         setupView()
     }
 
@@ -165,7 +167,7 @@ class LoginActivity : AppCompatActivity() {
             if(page == 0) {
                 var signIn = SignIn(
                     login_id_text.text.toString(), "normal",
-                    login_password_text.text.toString(), makeFCMToken()
+                    login_password_text.text.toString(), fcmToken
                 )
                 userApi?.getUserLogin(signIn)
                     ?.enqueue(object : Callback<CheckResponse> {
@@ -303,9 +305,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun makeFCMToken(): String {
+    private fun makeFCMToken() {
         //파이어베이스 알림을 위한 토큰 받아오기.
-        var fcmToken = "NO_TOKEN"
         FirebaseMessaging.getInstance().token
             .addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
@@ -324,7 +325,6 @@ class LoginActivity : AppCompatActivity() {
                 val msg = "토큰 : $fcmToken"
                 Log.d("log_FCM", msg)
             })
-        return fcmToken
     }
 
     // 구글 로그인을 위한 오버라이딩. requestcode == 9001은 구글 로그인을 의미한다.
@@ -411,7 +411,7 @@ class LoginActivity : AppCompatActivity() {
 
     // 서드파티에서 받아온 토큰을 확인
     private fun checkThirdPartyToken(token: String, type: String, id: String) {
-        var signIn = SNSSignIn(makeFCMToken(), token)
+        var signIn = SNSSignIn(fcmToken, token)
         when (type) {
             "kakao" -> {
                 userApi?.getCheckKakaoToken(signIn)?.enqueue(object : Callback<CheckResponse>{

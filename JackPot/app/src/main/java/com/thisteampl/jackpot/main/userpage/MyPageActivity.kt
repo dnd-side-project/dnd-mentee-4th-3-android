@@ -126,14 +126,33 @@ class MyPageActivity : AppCompatActivity() {
                                 mypage_profile_close_image.visibility = View.GONE
                             }
 
-                            for(i in response.body()!!.result.myprojects) {
+                            for(myprj in response.body()!!.result.myprojects) {
                                 var list = mutableListOf<String>()
-                                for(j in i.participants) {
+                                for(j in myprj.participants) {
                                     list.add(j.position)
                                 }
-                                myProjectAdapter.items.add(MyProject(i.id, i.interest, i.title, list))
+                                myProjectAdapter.items.add(MyProject(myprj.id, myprj.interest, myprj.title, list))
                             }
-                                myProjectAdapter.notifyDataSetChanged()
+                            myProjectAdapter.notifyDataSetChanged()
+
+                            for(parprj in response.body()!!.result.participantProject) {
+                                myRegisterProjectAdapter.items.add(AnotherProject(parprj.id, parprj.title,
+                                    parprj.interest, parprj.position, parprj.stacks))
+                            }
+                            myRegisterProjectAdapter.notifyDataSetChanged()
+
+                            for(scrprj in response.body()!!.result.scrapProjects) {
+                                myScrapProjectAdapter.items.add(AnotherProject(scrprj.id, scrprj.title,
+                                    scrprj.interest, scrprj.position, scrprj.stacks))
+                            }
+                            myScrapProjectAdapter.notifyDataSetChanged()
+
+                            for(comprj in response.body()!!.result.commentProjects) {
+                                myCommentProjectAdapter.items.add(AnotherProject(comprj.id, comprj.title,
+                                    comprj.interest, comprj.position, comprj.stacks))
+                            }
+                            myCommentProjectAdapter.notifyDataSetChanged()
+
                             when (response.body()!!.result.position) {
                                 "개발자" -> {
                                     mypage_job_background_image.setImageResource(R.drawable.background_developer)

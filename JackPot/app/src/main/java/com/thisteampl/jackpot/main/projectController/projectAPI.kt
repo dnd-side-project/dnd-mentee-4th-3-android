@@ -31,4 +31,7 @@ interface projectAPI {
     @DELETE("/api/projects/delete/{id}")
     fun getProjectDelete(@Path("id") id: Long) : Call<CheckResponse>
 
+    @POST("/comment")
+    fun postComment(@Body commentDto: PostComment) : Call<CheckResponse>
+
 }

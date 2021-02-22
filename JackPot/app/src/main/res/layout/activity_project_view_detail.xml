@@ -363,23 +363,31 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/project_detail_comment_recyclerview"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView4" />
 
+            <CheckBox
+                android:id="@+id/project_detail_comment_privacy_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="비밀글로 작성"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/project_detail_comment_recyclerview"/>
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
                 android:gravity="center_horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/project_detail_comment_recyclerview">
+                app:layout_constraintTop_toBottomOf="@id/project_detail_comment_privacy_checkbox">
 
                 <EditText
                     android:id="@+id/project_detail_comment_edittext"

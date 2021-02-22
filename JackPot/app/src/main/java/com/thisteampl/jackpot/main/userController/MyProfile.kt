@@ -31,7 +31,9 @@ class MyProfile (
     @SerializedName("participantProject")
     var participantProject : List<ProjectComponent>,
     @SerializedName("commentProjects")
-    var commentProjects : List<ProjectComponent>
+    var commentProjects : List<ProjectComponent>,
+    @SerializedName("scrapProjects")
+    var scrapProjects : List<ProjectComponent>
 ) {
     override fun toString(): String {
         var stack = ""

@@ -9,24 +9,25 @@ import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
-import com.thisteampl.jackpot.main.LoginActivity
 import com.thisteampl.jackpot.main.projectController.CheckProject
+import com.thisteampl.jackpot.main.projectController.PostComment
 import com.thisteampl.jackpot.main.projectController.projectAPI
 import com.thisteampl.jackpot.main.userController.CheckMyProfile
 import com.thisteampl.jackpot.main.userController.CheckProfile
 import com.thisteampl.jackpot.main.userController.CheckResponse
 import com.thisteampl.jackpot.main.userController.userAPI
+import com.thisteampl.jackpot.main.userpage.MyPageActivity
+import com.thisteampl.jackpot.main.userpage.MyProject
 import com.thisteampl.jackpot.main.userpage.ProfileActivity
-import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_my_page.*
 import kotlinx.android.synthetic.main.activity_project_view_detail.*
-import kotlinx.android.synthetic.main.holder_mypage_myproject.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,6 +38,7 @@ class ProjectViewDetail : AppCompatActivity() {
     private var projectID = 0
     private val userApi = userAPI.create()
     private var checkMyProject = false
+    lateinit var mPrjCommentAdapter: ProjectCommentAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMyProject() // 내 프로젝트인지 확인
@@ -47,6 +49,12 @@ class ProjectViewDetail : AppCompatActivity() {
         if(projectID == 0) {
             finish()
         }
+
+        //댓글 리사이클러뷰 어댑터 설정
+        mPrjCommentAdapter = ProjectCommentAdapter()
+        project_detail_comment_recyclerview.adapter = mPrjCommentAdapter
+        project_detail_comment_recyclerview.layoutManager = LinearLayoutManager(this)
+
         getProject(projectID)
 
         setSupportActionBar(project_detail_toolbar) // 기본액션바로 지정
@@ -69,6 +77,40 @@ class ProjectViewDetail : AppCompatActivity() {
         }
 
         project_detail_back_button.setOnClickListener { super.onBackPressed() }
+
+        //댓글 입력 완료 버튼
+        project_detail_comment_input_button.setOnClickListener {
+            if(project_detail_comment_edittext.text.toString().trim().length < 5) {
+                Toast.makeText(this, "댓글은 최소 5자 이상 적어주세요.", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                var body = project_detail_comment_edittext.text.toString()
+                val privacy = !project_detail_comment_privacy_checkbox.isChecked
+                //비밀글로 작성이므로 체크 안돼야 true(open) 체크 시 false(close)
+                projectApi?.postComment(PostComment(body, privacy, projectID.toLong()))?.enqueue(object : Callback<CheckResponse> {
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure" + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        if(response.code().toString() == "200") {
+                            Toast.makeText(baseContext, "댓글이 작성되었습니다.", Toast.LENGTH_SHORT)
+                                .show()
+                            finish()
+                            val intent = Intent(baseContext, ProjectViewDetail::class.java)
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        } else {
+                            Toast.makeText(baseContext, "댓글 작성에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+                })
+            }
+        }
     }
 
     //내 프로젝트일 경우 메뉴바 생성
@@ -117,6 +159,13 @@ class ProjectViewDetail : AppCompatActivity() {
                     var dateText = response.body()?.result?.
                     createdDateTime?.substring(0, 10)
                     project_detail_date_text.text = dateText
+
+                    //댓글 리사이클러뷰에 추가
+                    for(comment in response.body()!!.result.comments) {
+                        mPrjCommentAdapter.items.add(ProjectDetailComment
+                            (comment.authorPosition, comment.authorName, comment.body, comment.date))
+                    }
+                    mPrjCommentAdapter.notifyDataSetChanged()
 
                     //분야에 따른 대표이미지 설정
                     when (response.body()?.result?.interest) {
