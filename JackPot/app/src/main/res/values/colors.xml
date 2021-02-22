@@ -59,4 +59,12 @@
     <!-- 두 개의 버튼에서 한 쪽은 검은색, 한 쪽은 회색 -->
     <color name="colordarkly">#CCCCCC</color>
     <color name="colorbrightly">#000000</color>
+
+
+    <!-- 메인 화면 버튼 상자 배경색 -->
+    <color name="buttoncolorpink">#FFC3D4</color>
+    <color name="buttoncolorgreen">#B0F8DD</color>
+    <color name="buttoncolorblue">#D8EAFF</color>
+
+    <color name="visibletext">#979797</color>
 </resources>

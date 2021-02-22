@@ -6,20 +6,20 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/main_recentlyproject_image"
+        android:id="@+id/holder_filter_project_image"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="280dp"
         android:background="@drawable/attentionimagepinkview"
-        app:layout_constraintBottom_toBottomOf="@+id/main_recentlytime_textview"
+        app:layout_constraintBottom_toBottomOf="@+id/holder_starview_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
-        android:id="@+id/main_recentlytitle_textview"
+        android:id="@+id/holder_title_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -29,11 +29,11 @@
         android:textColor="@color/colorBlack"
         android:textSize="16dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/main_recentlyproject_image"
+        app:layout_constraintStart_toEndOf="@+id/holder_filter_project_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/main_recruitment_position_textview"
+        android:id="@+id/holder_filter_positionname_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -41,11 +41,11 @@
         android:layout_marginTop="5dp"
         android:text="모집 포지션"
         android:textSize="10dp"
-        app:layout_constraintStart_toEndOf="@+id/main_recentlyproject_image"
-        app:layout_constraintTop_toBottomOf="@+id/main_recentlytitle_textview" />
+        app:layout_constraintStart_toEndOf="@+id/holder_filter_project_image"
+        app:layout_constraintTop_toBottomOf="@+id/holder_title_textview" />
 
     <TextView
-        android:id="@+id/main_inputrecentlyproject_position_textview"
+        android:id="@+id/holder_filter_inputposition_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -54,8 +54,8 @@
         android:textColor="@color/colorBlack"
         android:textSize="10dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/main_recruitment_position_textview"
-        app:layout_constraintTop_toBottomOf="@+id/main_recentlytitle_textview" />
+        app:layout_constraintStart_toEndOf="@+id/holder_filter_positionname_textview"
+        app:layout_constraintTop_toBottomOf="@+id/holder_title_textview" />
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
@@ -64,12 +64,12 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
         android:scrollbars="none"
-        app:layout_constraintStart_toEndOf="@+id/main_recentlyproject_image"
-        app:layout_constraintTop_toBottomOf="@+id/main_recruitment_position_textview">
+        app:layout_constraintStart_toEndOf="@+id/holder_filter_project_image"
+        app:layout_constraintTop_toBottomOf="@+id/holder_filter_positionname_textview">
 
 
         <LinearLayout
-            android:id="@+id/main_recentlyregister_scrollview_textview"
+            android:id="@+id/holder_filtering_project_linearlayout"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             android:layout_marginRight="10dp"
@@ -78,26 +78,25 @@
 
     </HorizontalScrollView>
 
-    <TextView
-        android:id="@+id/main_recentlytime_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <Button
+        android:id="@+id/holder_starview_button"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="10분전"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/select_star"
         android:textSize="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/horizontalScrollView"
-        app:layout_constraintTop_toBottomOf="@+id/main_inputrecentlyproject_position_textview" />
+        app:layout_constraintEnd_toStartOf="@+id/holder_filter_starcount"
+        app:layout_constraintTop_toBottomOf="@+id/holder_filter_inputposition_textview" />
 
     <ImageView
-        android:id="@+id/main_recentlyregister_field_image"
+        android:id="@+id/holder_filter_field_image"
         android:layout_width="24dp"
         android:layout_height="23dp"
-        app:layout_constraintBottom_toBottomOf="@+id/main_recentlyproject_image"
-        app:layout_constraintEnd_toEndOf="@+id/main_recentlyproject_image"
-        app:layout_constraintStart_toStartOf="@+id/main_recentlyproject_image"
-        app:layout_constraintTop_toTopOf="@+id/main_recentlyproject_image"
+        app:layout_constraintBottom_toBottomOf="@+id/holder_filter_project_image"
+        app:layout_constraintEnd_toEndOf="@+id/holder_filter_project_image"
+        app:layout_constraintStart_toStartOf="@+id/holder_filter_project_image"
+        app:layout_constraintTop_toTopOf="@+id/holder_filter_project_image"
         app:srcCompat="@drawable/field_health" />
 
     <TextView
@@ -109,6 +108,16 @@
         android:gravity="bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_recentlytime_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/holder_starview_button" />
+
+    <TextView
+        android:id="@+id/holder_filter_starcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/holder_filter_inputposition_textview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

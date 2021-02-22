@@ -876,7 +876,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -893,7 +893,6 @@
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
-
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/filtersearch_page2_projectstackbutton_constraintLayout"
@@ -1314,6 +1313,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -1341,141 +1341,6 @@
                         app:spinner_divider_size="0.5dp"
                         app:spinner_popup_animation="normal"
                         app:spinner_popup_background="#FFFFFF" />
-
-                </LinearLayout>
-
-
-                <TextView
-                    android:id="@+id/filtersearch_page2_field_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="20dp"
-                    android:text="관심분야"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_regions_linearlayout" />
-
-                <LinearLayout
-                    android:id="@+id/filtersearch_page2_field_linearlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_field_textview">
-
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_myappeal_textview"
-                        android:layout_width="80dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="24dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="자기계발"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_hobby_textview"
-                        android:layout_width="50dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="취미"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_myappeal_textview" />
-
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_economy_textview"
-                        android:layout_width="50dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="경제"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_art_textview" />
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_cook_textview"
-                        android:layout_width="50dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="요리"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_cook_textview" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/filtersearch_page2_field2_linearlayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_field_linearlayout">
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_it_textview"
-                        android:layout_width="40dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="24dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="IT"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_rest_textview"
-                        android:layout_width="80dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="예술/창작"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_hobby_textview" />
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_health_textview"
-                        android:layout_width="50dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="건강"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_rest_textview" />
-
-                    <Button
-                        android:id="@+id/filtersearch_page2_holiday_textview"
-                        android:layout_width="50dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/radius_button_effect"
-                        android:text="휴식"
-                        android:textAllCaps="false"
-                        android:textColor="#000000"
-                        android:textSize="14dp"
-                        app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_etc_textview" />
 
                 </LinearLayout>
 

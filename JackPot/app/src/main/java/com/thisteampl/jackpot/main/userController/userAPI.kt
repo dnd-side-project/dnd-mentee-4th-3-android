@@ -43,12 +43,15 @@ interface userAPI {
     @DELETE("/withdraw")
     fun getWithDraw() : Call<CheckResponse>
 
-
+    //필터 컨트롤 getUsers
+    @POST("/api/filters/projects")
+    fun getUserPosition(@Body userfilter:UserRelatedFilteringPost):Call<UserRelatedFilteringGet>
 
     companion object {
         fun create() : userAPI? {
             return getBuilder()?.create()
         }
+
     }
 
 }

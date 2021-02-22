@@ -1,18 +1,14 @@
 package com.thisteampl.jackpot.main.floating
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
-import androidx.core.view.marginTop
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.main.projectController.ProjectElement
+import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.projectAPI
 import kotlinx.android.synthetic.main.activity_project_creation.*
 import retrofit2.Call
@@ -49,7 +45,6 @@ class ProjectCreation : AppCompatActivity() {
     private val selectpositionItems = mutableListOf<String>()    // 포지션
 
     private var projectapi = projectAPI.projectRetrofitService()
-    
 
 
 
@@ -67,7 +62,8 @@ class ProjectCreation : AppCompatActivity() {
 
 
     // 개발자 (시간 없어 기초로 만들었습니다.)
-
+    // 시간 되면 FilteringSearch에서 사용했던 것처럼 바꿀 예정 (300줄 차이날듯)
+    
     var developer_btn:Boolean = false
     var designer_btn:Boolean = false
     var planner_btn:Boolean = false
@@ -779,15 +775,15 @@ class ProjectCreation : AppCompatActivity() {
 
             // API 작성 DB에 넘김
             projectapi?.postRecruitmentProject(recruitmentproject)
-                ?.enqueue(object : Callback<ProjectElement> {
-                    override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
+                ?.enqueue(object : Callback<ProjectGetElement> {
+                    override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
                         Log.d("tag : ", "error")
 
                     }
 
                     override fun onResponse(
-                        call: Call<ProjectElement>,
-                        response: Response<ProjectElement>
+                        call: Call<ProjectGetElement>,
+                        response: Response<ProjectGetElement>
                     ) {
 
                         // 데이터 전달하지 못했다면
@@ -802,7 +798,6 @@ class ProjectCreation : AppCompatActivity() {
                 })
 
             finish()
-
 
         }
     }

@@ -1,5 +1,6 @@
 package com.thisteampl.jackpot.main.filtering
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,11 +12,21 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.projectController.ProjectGetElement
+import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
 import com.thisteampl.jackpot.main.projectController.projectAPI
+import com.thisteampl.jackpot.main.userController.CheckProfile
+import com.thisteampl.jackpot.main.userController.UserRelatedFilteringGet
+import com.thisteampl.jackpot.main.userController.UserRelatedFilteringPost
+import com.thisteampl.jackpot.main.userController.userAPI
+import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewMore
 import kotlinx.android.synthetic.main.activity_filtering_search.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_profile_edit_change_emoji.view.*
 import kotlinx.android.synthetic.main.activity_project_creation.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FilteringSearch : AppCompatActivity() {
 
@@ -33,11 +44,9 @@ class FilteringSearch : AppCompatActivity() {
 
     // 4) 기간
     private var projectfind_durationbtn = mutableListOf<String>()
-    private var projectfind_durationtext = "duration"
 
     // 5) 관심분야
     private var projectfind_projectfieldbtn =mutableListOf<String>()
-    private var projectfind_projectfieldtext = "field"
 
 
     // 멤버찾기
@@ -45,7 +54,7 @@ class FilteringSearch : AppCompatActivity() {
     private val memberfind_selectpositionItems = mutableListOf<String>()    // 포지션
 
     // 2) 개발언어
-    private val memberfind_stackToolTechnologyStack = mutableListOf<String>()
+    private val memberfind_stackToolTechnologyStack = mutableListOf<String>() // 개발자, 디자이너 스택 통합
     private val stackTooldeveloper = mutableListOf<String>() // 개발자 스택
     private val stackTooldesigner = mutableListOf<String>()  // 디자이너 스택
 
@@ -56,10 +65,6 @@ class FilteringSearch : AppCompatActivity() {
     // 4) 지역
     private var memberfind_regiontext = "지역" // 지역 list 저장용
 
-    // 5) 관심분야
-    private var memberfind_projectfieldbtn = mutableListOf<String>()
-    private var memberfind_projectfieldtext = "field"
-
 
     private var page: Int = 1
     var regions = listOf(
@@ -69,8 +74,10 @@ class FilteringSearch : AppCompatActivity() {
     )
 
 
+    private var userapi = userAPI.create()
     private var projectapi = projectAPI.projectRetrofitService()
 
+    // 사용자 포지션
     var user = String()
 
 
@@ -80,290 +87,10 @@ class FilteringSearch : AppCompatActivity() {
 
     // 가독성 떨어짐
     // 개발자 툴 name
-    var java:Boolean = false ; var cplus:Boolean = false ; var python:Boolean = false ; var js:Boolean = false ; var html:Boolean = false
-    var swift:Boolean = false ; var spring:Boolean = false ; var kotlin:Boolean = false ; var django:Boolean = false
-    var reactjs:Boolean = false; var flask:Boolean = false
     var developercheck_index:Int = 0
-
     // 디자이너 툴 name
-    var photoshop = false ; var illusrator = false ; var xd = false; var figma = false; var sketch = false; var principle= false;
-    var protopie = false ; var after_effects = false; var premiere = false; var indesign = false; var c4d = false; var zeplin = false;
     var designercheck_index:Int = 0
-
-
-    // 개발자 툴 관련 소스
-    // selectbtn : 선택, selectoutbtn : 선택하지 않았을 때
-    private fun selectinbtn(btn: Button){
-        btn.background = ContextCompat.getDrawable(
-            this@FilteringSearch,
-            R.drawable.radius_background_transparent_select
-        )
-        btn.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonSelect))
-
-        developercheck_index++
-        stackTooldeveloper.add(btn.text.toString())
-    }
-
-    private fun selectoutbtn(btn: Button){
-        btn.background = ContextCompat.getDrawable(
-            this@FilteringSearch,
-            R.drawable.radius_background_transparent
-        )
-        btn.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
-
-        developercheck_index--
-        stackTooldeveloper.remove(btn.text.toString())
-    }
-
-
-    // 개발자 툴
-    private fun developertool(){
-        filtersearch_page2_java_Button.setOnClickListener {
-            if(java == false){
-                selectinbtn(filtersearch_page2_java_Button)
-                java = true
-            }else{
-                java = false
-                selectoutbtn(filtersearch_page2_java_Button)
-            }
-
-        }
-
-        filtersearch_page2_cpluse_Button.setOnClickListener {
-            if(cplus == false){
-                selectinbtn(filtersearch_page2_cpluse_Button)
-                cplus = true
-            }else{
-                cplus = false
-                selectoutbtn(filtersearch_page2_cpluse_Button)
-            }
-
-        }
-
-        filtersearch_page2_python_Button.setOnClickListener {
-            if(python == false){
-                selectinbtn(filtersearch_page2_python_Button)
-                python = true
-            }else{
-                python = false
-                selectoutbtn(filtersearch_page2_python_Button)
-            }
-        }
-
-        filtersearch_page2_javascript_Button.setOnClickListener {
-            if(js == false){
-                selectinbtn(filtersearch_page2_javascript_Button)
-                js = true
-            }else{
-                js = false
-                selectoutbtn(filtersearch_page2_javascript_Button)
-            }
-        }
-
-        filtersearch_page2_html_css_Button.setOnClickListener {
-            if(html == false){
-                selectinbtn(filtersearch_page2_html_css_Button)
-                html = true
-            }else{
-                html = false
-                selectoutbtn(filtersearch_page2_html_css_Button)
-            }
-        }
-
-        filtersearch_page2_swift_Button.setOnClickListener {
-            if(swift == false){
-                selectinbtn(filtersearch_page2_swift_Button)
-                swift = true
-            }else{
-                swift = false
-                selectoutbtn(filtersearch_page2_swift_Button)
-            }
-        }
-
-        filtersearch_page2_spring_Button.setOnClickListener {
-            if(spring == false){
-                selectinbtn(filtersearch_page2_spring_Button)
-                spring = true
-            }else{
-                spring = false
-                selectoutbtn(filtersearch_page2_spring_Button)
-            }
-        }
-        filtersearch_page2_kotlin_Button.setOnClickListener {
-            if(kotlin == false){
-                selectinbtn(filtersearch_page2_kotlin_Button)
-                kotlin = true
-            }else{
-                kotlin = false
-                selectoutbtn(filtersearch_page2_kotlin_Button)
-            }
-        }
-        filtersearch_page2_django_Button.setOnClickListener {
-            if(django == false){
-                selectinbtn(filtersearch_page2_django_Button)
-                django = true
-            }else{
-                django = false
-                selectoutbtn(filtersearch_page2_django_Button)
-            }
-        }
-        filtersearch_page2_reactjs_Button.setOnClickListener {
-            if(reactjs == false){
-                selectinbtn(filtersearch_page2_reactjs_Button)
-                reactjs = true
-            }else{
-                reactjs = false
-                selectoutbtn(filtersearch_page2_reactjs_Button)
-            }
-        }
-        filtersearch_page2_flask_Button.setOnClickListener {
-            if(flask == false){
-                selectinbtn(filtersearch_page2_flask_Button)
-                flask = true
-            }else{
-                flask = false
-                selectoutbtn(filtersearch_page2_flask_Button)
-            }
-        }
-
-    }
-
-    // 디자이너 툴 관련 소스
-    // selectindesignerbtn : 선택, selectoutdesignerbtn : 선택하지 않았을 때
-    private fun selectindesignerbtn(btn: Button){
-        btn.background = ContextCompat.getDrawable(
-            this@FilteringSearch,
-            R.drawable.radius_background_transparent_select
-        )
-        btn.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonSelect))
-        designercheck_index++
-        stackTooldesigner.add(btn.text.toString())
-    }
-
-    private fun selectoutdesignerbtn(btn: Button){
-        btn.background = ContextCompat.getDrawable(
-            this@FilteringSearch,
-            R.drawable.radius_background_transparent
-        )
-        btn.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
-        designercheck_index--
-        stackTooldesigner.remove(btn.text.toString())
-    }
-
-    private fun designertool(){
-        filtersearch_page2_photoshop_Button.setOnClickListener {
-            if(photoshop == false){
-                selectindesignerbtn(filtersearch_page2_photoshop_Button)
-                photoshop = true
-            }else{
-                photoshop = false
-                selectoutdesignerbtn(filtersearch_page2_photoshop_Button)
-            }
-        }
-        filtersearch_page2_illustrator_Button.setOnClickListener {
-            if(illusrator == false){
-                selectindesignerbtn(filtersearch_page2_illustrator_Button)
-                illusrator = true
-            }else{
-                illusrator = false
-                selectoutdesignerbtn(filtersearch_page2_illustrator_Button)
-            }
-        }
-        filtersearch_page2_xd_Button.setOnClickListener {
-            if(xd == false){
-                selectindesignerbtn(filtersearch_page2_xd_Button)
-                xd = true
-            }else{
-                xd = false
-                selectoutdesignerbtn(filtersearch_page2_xd_Button)
-            }
-        }
-
-        filtersearch_page2_figma_Button.setOnClickListener {
-            if(figma == false){
-                selectindesignerbtn(filtersearch_page2_figma_Button)
-                figma = true
-            }else{
-                figma = false
-                selectoutdesignerbtn(filtersearch_page2_figma_Button)
-            }
-        }
-
-        filtersearch_page2_sketch_Button.setOnClickListener {
-            if(sketch == false){
-                selectindesignerbtn(filtersearch_page2_sketch_Button)
-                sketch = true
-            }else{
-                sketch = false
-                selectoutdesignerbtn(filtersearch_page2_sketch_Button)
-            }
-        }
-
-        filtersearch_page2_Principle_Button.setOnClickListener {
-            if(principle == false){
-                selectindesignerbtn(filtersearch_page2_Principle_Button)
-                principle = true
-            }else{
-                principle = false
-                selectoutdesignerbtn(filtersearch_page2_Principle_Button)
-            }
-        }
-        filtersearch_page2_protopie_Button.setOnClickListener {
-            if(protopie == false){
-                selectindesignerbtn(filtersearch_page2_protopie_Button)
-                protopie = true
-            }else{
-                protopie = false
-                selectoutdesignerbtn(filtersearch_page2_protopie_Button)
-            }
-        }
-        filtersearch_page2_after_effects_Button.setOnClickListener {
-            if(after_effects == false){
-                selectindesignerbtn(filtersearch_page2_after_effects_Button)
-                after_effects = true
-            }else{
-                after_effects = false
-                selectoutdesignerbtn(filtersearch_page2_after_effects_Button)
-            }
-        }
-        filtersearch_page2_premiere_Button.setOnClickListener {
-            if(premiere == false){
-                selectindesignerbtn(filtersearch_page2_premiere_Button)
-                premiere = true
-            }else{
-                premiere = false
-                selectoutdesignerbtn(filtersearch_page2_premiere_Button)
-            }
-        }
-        filtersearch_page2_Indesign_Button.setOnClickListener {
-            if(indesign== false){
-                selectindesignerbtn(filtersearch_page2_Indesign_Button)
-                indesign = true
-            }else{
-                indesign = false
-                selectoutdesignerbtn(filtersearch_page2_Indesign_Button)
-            }
-        }
-        filtersearch_page2_c4d_Button.setOnClickListener {
-            if(c4d == false){
-                selectindesignerbtn(filtersearch_page2_c4d_Button)
-                c4d = true
-            }else{
-                c4d = false
-                selectoutdesignerbtn(filtersearch_page2_c4d_Button)
-            }
-        }
-        filtersearch_page2_Zeplin_Button.setOnClickListener {
-            if(zeplin == false){
-                selectindesignerbtn(filtersearch_page2_Zeplin_Button)
-                zeplin = true
-            }else{
-                zeplin = false
-                selectoutdesignerbtn(filtersearch_page2_Zeplin_Button)
-            }
-        }
-
-    }
+    
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -374,21 +101,19 @@ class FilteringSearch : AppCompatActivity() {
             finish()
         }
 
-        // 개인정보를 통해 개발자, 디자이너 얻어옴
-        user = "개발자"
 
+        // user가 개발자일 때, 디자이너일 때 (추 후 코드 변경되었으면)
+        user = intent.getStringExtra("position")!!
         
+        Log.d("tag","포지션 : ${user}")
+
         // 개발자일 때 개발자 툴만, 디자이너 일 때 디자이너 툴만
-        if(user.equals("개발자")){
+        if(user == "개발자"){
             filtersearch_projectstack_constraintLayout.visibility = View.VISIBLE
             filtersearch_projectstackdesigner_constraintLayout.visibility = View.GONE
-            filtersearch_page2_projectstack_constraintLayout.visibility = View.VISIBLE
-            filtersearch_page2_projectstackdesigner_constraintLayout.visibility = View.GONE
         }else{
             filtersearch_projectstack_constraintLayout.visibility = View.GONE
             filtersearch_projectstackdesigner_constraintLayout.visibility = View.VISIBLE
-            filtersearch_page2_projectstack_constraintLayout.visibility = View.GONE
-            filtersearch_page2_projectstackdesigner_constraintLayout.visibility = View.VISIBLE
         }
 
         // 첫 시작할 때
@@ -396,6 +121,81 @@ class FilteringSearch : AppCompatActivity() {
         searchfindbtn()
 
     }
+
+    // API 작성 DB에 넘긴다.
+    // 필터적용
+    private fun projectConnectionBackend(current_page:Int){
+        if(current_page == 1){
+            val filteringproject = ProjectPostLatest(
+                projectfind_durationbtn,projectfind_projectfieldbtn,
+                0,100,projectfind_regiontext,
+                "최신순",projectfind_stackToolTechnologyStack
+            )
+
+
+            projectapi?.getprojectcontents(filteringproject)
+                ?.enqueue(object : Callback<ProjectGetElement> {
+                    override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
+                        Log.d("tag : ", "onFailure "+t.localizedMessage)
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<ProjectGetElement>,
+                        response: Response<ProjectGetElement>
+                    ) {
+
+                        // 데이터 전달하지 못했다면
+                        if(response.isSuccessful){
+                            ToastmakeTextPrint("필터링 적용 완료")
+
+
+
+
+                        }else{
+                            ToastmakeTextPrint("필터링 적용 완료되지 않았습니다.")
+                            Log.d("tag","${response.code().toString()}")
+                            Log.e("tag","onFailure" + response.message())
+                        }
+                    }
+                })
+
+
+
+        }else if(current_page == 2){
+            val filteringmember = UserRelatedFilteringPost(
+                0,100,memberfind_selectpositionItems,
+                memberfind_regiontext,"최신순",
+                memberfind_stackToolTechnologyStack
+            )
+
+
+            userapi?.getUserPosition(filteringmember)
+                ?.enqueue(object : Callback<UserRelatedFilteringGet> {
+                    override fun onFailure(call: Call<UserRelatedFilteringGet>, t: Throwable) {
+                        Log.d("tag : ", "onFailure"+t.localizedMessage)
+
+                    }
+
+                    override fun onResponse(
+                        call: Call<UserRelatedFilteringGet>,
+                        response: Response<UserRelatedFilteringGet>
+                    ) {
+
+                        if(response.isSuccessful){
+                            ToastmakeTextPrint("필터링 적용 완료")
+                        }else{
+                            ToastmakeTextPrint("필터링 적용 완료되지 않았습니다.")
+                            Log.d("tag","${response.code().toString()}")
+                            Log.e("tag","onFailure" + response.message())
+                        }
+                    }
+                })
+        }
+    }
+
+
+
 
     // 프로젝트 찾기, 멤버 찾기 버튼
     private fun searchfindbtn() {
@@ -414,9 +214,6 @@ class FilteringSearch : AppCompatActivity() {
 
             filtersearch_write_recruitment_article_constraintlayout.visibility = View.GONE
             filtersearch_page2_write_recruitment_article_constraintlayout.visibility = View.VISIBLE
-
-            filtersearch_findmember_textview
-
             filtersearch_findproject_textview.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colordarkly))
             filtersearch_findmember_textview.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorbrightly))
 
@@ -440,8 +237,6 @@ class FilteringSearch : AppCompatActivity() {
                 onClearConstraintLayout(filtersearch_page2_projectstackdesignerbutton_constraintLayout)
                 onClearLinearLayout(filtersearch_page2_position_linearlayout)
                 onClearLinearLayout(filtersearch_page2_projectonoff_linearlayout)
-                onClearLinearLayout(filtersearch_page2_field_linearlayout)
-                onClearLinearLayout(filtersearch_page2_field2_linearlayout)
 
             }
 
@@ -449,42 +244,66 @@ class FilteringSearch : AppCompatActivity() {
         }
         filtersearch_applyfilter_button.setOnClickListener {
 
-            if(page == 1){
+            // page 1
+//            if(page == 1){
+//                Log.d("tag","1 페이지")
+//
+//                Log.d("tag","기술스택 : ")
+//                for(num in 0..projectfind_stackToolTechnologyStack.size-1){
+//                    Log.d("=> ","${projectfind_stackToolTechnologyStack[num]}")
+//                }
+//
+//                Log.d("tag","프로젝트방식 : ${projectfind_onofftext}")
+//                Log.d("tag","지역 : ${projectfind_regiontext}")
+//                Log.d("tag","기간: ")
+//                for(num in 0..projectfind_durationbtn.size-1){
+//                    Log.d("=> ","${projectfind_durationbtn[num]}")
+//                }
+//
+//                Log.d("tag","관심분야 : ")
+//                for(num in 0..projectfind_projectfieldbtn.size-1){
+//                    Log.d("=> ","${projectfind_projectfieldbtn[num]}")
+//                }
+//
+//            }else if(page == 2){
+//                Log.d("tag","2 페이지")
+//                // page 2 : 멤버찾기, 포지션 및 개발 툴, 디자인 툴
+//
+//                Log.d("tag","선택된 : 포지션")
+//                for(num in 0..memberfind_selectpositionItems.size-1){
+//                    Log.d("tag : ","${memberfind_selectpositionItems[num]}")
+//                }
+//
+//                memberfind_stackToolTechnologyStack.addAll(stackTooldeveloper)
+//                memberfind_stackToolTechnologyStack.addAll(stackTooldesigner)
+//
+//                Log.d("tag","기술 툴 : ")
+//                Log.d("tag","사이즈 : ${memberfind_stackToolTechnologyStack.size}")
+//                for(num in 0..memberfind_stackToolTechnologyStack.size-1){
+//                    Log.d("", "결과 : ${memberfind_stackToolTechnologyStack[num]}")
+//                }
+//
+//                Log.d("tag","프로젝트 방식${memberfind_onofftext}")
+//
+//                Log.d("tag","지역 : ${memberfind_regiontext}")
+//
+//
+//            }
 
-            }else if(page == 2){
-                
-                // page 2 : 멤버찾기, 포지션 및 개발 툴, 디자인 툴
-                Log.d("tag","멤버 찾기 페이지")
 
-                Log.d("","선택된 : 포지션")
-                for(num in 1..memberfind_selectpositionItems.size-1){
-                    Log.d("tag : ","${memberfind_selectpositionItems[num]}")
-                }
+            projectConnectionBackend(page)
 
-                memberfind_stackToolTechnologyStack.addAll(stackTooldeveloper)
-                memberfind_stackToolTechnologyStack.addAll(stackTooldesigner)
-
-                Log.d("","기술 툴")
-                for(n in 1..memberfind_stackToolTechnologyStack.size-1){
-                    Log.d("", "${memberfind_stackToolTechnologyStack[n]}")
-                }
-
-                Log.d("","프로젝트 방식")
-                Log.d("","${memberfind_onofftext}")
-                
-                Log.d("","지역")
-                Log.d("","${memberfind_regiontext}")
-
-                Log.d("","관심분야")
-                Log.d("","${memberfind_projectfieldtext}")
-
-
-            }
+            val intent = Intent(this, FilteringSearchResults::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("page",page)
+            startActivity(intent)
 
 
         }
 
     }
+
+
 
     // 필터초기화, ConstraintLayout
     private fun onClearConstraintLayout(constraintlayout: ConstraintLayout) {
@@ -553,25 +372,28 @@ class FilteringSearch : AppCompatActivity() {
             projectfind_onofftext = "onoff"
         }// 기간
         else if(linearlayout==filtersearch_month_linearlayout){
-            projectfind_durationtext = "duration"
             projectfind_durationbtn.clear()
         }// 지역
         else if(linearlayout==filtersearch_field_linearlayout
             || linearlayout == filtersearch_field2_linearlayout
         ){
-            projectfind_projectfieldtext = "field"
             projectfind_projectfieldbtn.clear()
         }else if(linearlayout == filtersearch_page2_position_linearlayout){
             memberfind_selectpositionItems.clear()
+            filtersearch_page2_projectstack_constraintLayout.visibility = View.GONE
+            filtersearch_page2_projectstackdesigner_constraintLayout.visibility = View.GONE
+            developercheck_index = 0
+            designercheck_index = 0
+            stackTooldeveloper.clear()
+            stackTooldesigner.clear()
+
+            for(idx in 0..10)developerbool[idx]=false
+            for(idx in 0..11)designerbool[idx]=false
+
         }else if(linearlayout == filtersearch_page2_projectonoff_linearlayout){
             memberfind_onofftext = "onoff"
         }else if(linearlayout == filtersearch_page2_regions_linearlayout){
             memberfind_regiontext = "지역"
-        }else if(linearlayout == filtersearch_page2_field_linearlayout
-            || linearlayout == filtersearch_page2_field2_linearlayout
-        ){
-            memberfind_projectfieldbtn.clear()
-            memberfind_projectfieldtext = "field"
         }
 
     }
@@ -701,12 +523,12 @@ class FilteringSearch : AppCompatActivity() {
                     filtersearch_field_linearlayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent_select)
                     intentionbtn[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonSelect))
                     checkbool[i] = true
-                    projectfind_projectfieldbtn.add(filtersearch_field_linearlayout[i].toString())
+                    projectfind_projectfieldbtn.add(intentionbtn[i]?.text.toString())
                 }else{
                     filtersearch_field_linearlayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent)
                     intentionbtn[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
                     checkbool[i] = false
-                    projectfind_projectfieldbtn.remove(filtersearch_field_linearlayout[i].toString())
+                    projectfind_projectfieldbtn.remove(intentionbtn[i]?.text.toString())
                 }
             }
 
@@ -718,12 +540,12 @@ class FilteringSearch : AppCompatActivity() {
                     filtersearch_field2_linearlayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent_select)
                     intentionbtn2[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonSelect))
                     checkbool2[i] = true
-                    projectfind_projectfieldbtn.add(filtersearch_field_linearlayout[i].toString())
+                    projectfind_projectfieldbtn.add(intentionbtn2[i]?.text.toString())
                 }else{
                     filtersearch_field2_linearlayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent)
                     intentionbtn2[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
                     checkbool2[i] = false
-                    projectfind_projectfieldbtn.remove(filtersearch_field_linearlayout[i].toString())
+                    projectfind_projectfieldbtn.remove(intentionbtn2[i]?.text.toString())
                 }
             }
 
@@ -733,14 +555,15 @@ class FilteringSearch : AppCompatActivity() {
 
     // 멤버 찾기 화면
     private fun findmember() {
-
         projectfind_stackToolTechnologyStack.clear()
-
-        // 툴
-        stackLanguage(user,2)
         membercontents()
-
     }
+
+
+    var developerbool = Array(11){i->false}
+    var designerbool = Array(12){i->false}
+    var memberdevelpoer = arrayOfNulls<Button>(11)
+    var memberdesigner = arrayOfNulls<Button>(12)
 
 
     var membercheckbool = Array(4){i->false}
@@ -755,19 +578,36 @@ class FilteringSearch : AppCompatActivity() {
     private fun membercontents() {
 
         if(memberintentioncheck  == false){
-            memberintentionbtn[0] =filtersearch_page2_myappeal_textview
-            memberintentionbtn[1] =filtersearch_page2_hobby_textview
-            memberintentionbtn[2] =filtersearch_page2_economy_textview
-            memberintentionbtn[3] =filtersearch_page2_cook_textview
 
-            memberintentionbtn2[0] =filtersearch_page2_it_textview
-            memberintentionbtn2[1] =filtersearch_page2_rest_textview
-            memberintentionbtn2[2] =filtersearch_page2_health_textview
-            memberintentionbtn2[3] =filtersearch_page2_holiday_textview
-            check = true
 
+
+            memberdevelpoer[0] =filtersearch_page2_java_Button
+            memberdevelpoer[1] =filtersearch_page2_cpluse_Button
+            memberdevelpoer[2] =filtersearch_page2_python_Button
+            memberdevelpoer[3] =filtersearch_page2_javascript_Button
+            memberdevelpoer[4] =filtersearch_page2_django_Button
+            memberdevelpoer[5] =filtersearch_page2_html_css_Button
+            memberdevelpoer[6] =filtersearch_page2_swift_Button
+            memberdevelpoer[7] =filtersearch_page2_kotlin_Button
+            memberdevelpoer[8] =filtersearch_page2_spring_Button
+            memberdevelpoer[9] =filtersearch_page2_flask_Button
+            memberdevelpoer[10] =filtersearch_page2_reactjs_Button
+
+            memberdesigner[0] = filtersearch_page2_photoshop_Button
+            memberdesigner[1] = filtersearch_page2_illustrator_Button
+            memberdesigner[2] = filtersearch_page2_xd_Button
+            memberdesigner[3] = filtersearch_page2_sketch_Button
+            memberdesigner[4] = filtersearch_page2_figma_Button
+            memberdesigner[5] = filtersearch_page2_Principle_Button
+            memberdesigner[6] = filtersearch_page2_protopie_Button
+            memberdesigner[7] = filtersearch_page2_after_effects_Button
+            memberdesigner[8] = filtersearch_page2_premiere_Button
+            memberdesigner[9] = filtersearch_page2_Indesign_Button
+            memberdesigner[10] = filtersearch_page2_c4d_Button
+            memberdesigner[11] = filtersearch_page2_Zeplin_Button
+
+            memberintentioncheck = true
         }
-
 
 
         // 포지션, 개발, 디자이너 툴
@@ -801,7 +641,26 @@ class FilteringSearch : AppCompatActivity() {
                 filtersearch_page2_projectstackdesigner_constraintLayout.visibility = View.GONE
 
                 // 개발자 툴 오픈
-                developertool()
+                for (i in 0 until filtersearch_page2_projectstackbutton_constraintLayout.childCount) {
+                    filtersearch_page2_projectstackbutton_constraintLayout[i].setOnClickListener {
+                        if(developerbool[i] == false){
+                            filtersearch_page2_projectstackbutton_constraintLayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent_select)
+                            memberdevelpoer[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonSelect))
+                            developerbool[i] = true
+                            developercheck_index++
+                            Log.d("tag","확인 버튼 클릭")
+                            stackTooldeveloper.add(memberdevelpoer[i]?.text.toString())
+                        }else{
+                            filtersearch_page2_projectstackbutton_constraintLayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent)
+                            memberdevelpoer[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
+                            developerbool[i] = false
+                            developercheck_index--
+                            Log.d("tag","취소 버튼 클릭")
+                            stackTooldeveloper.remove(memberdevelpoer[i]?.text.toString())
+                        }
+                    }
+
+                }
                 memberfind_selectpositionItems.add(filtersearch_page2_developer_Button.text.toString())
                 developer_btn = true
             }else if(developer_btn && developercheck_index == 0){
@@ -810,6 +669,7 @@ class FilteringSearch : AppCompatActivity() {
                     this@FilteringSearch,
                     R.drawable.radius_background_transparent
                 )
+                Log.d("tag","개발자 버튼 빼기")
                 filtersearch_page2_developer_Button.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
 
                 memberfind_selectpositionItems.remove(filtersearch_page2_developer_Button.text.toString())
@@ -825,7 +685,7 @@ class FilteringSearch : AppCompatActivity() {
         filtersearch_page2_designer_Button.setOnClickListener {
             filtersearch_page2_projectstack_constraintLayout.visibility = View.GONE
             filtersearch_page2_projectstackdesigner_constraintLayout.visibility = View.VISIBLE
-
+            Log.d("tag","디자이너 버튼 클릭")
             if (developercheck_index == 0) {
                 filtersearch_page2_developer_Button.background = ContextCompat.getDrawable(
                     this@FilteringSearch,
@@ -850,7 +710,28 @@ class FilteringSearch : AppCompatActivity() {
                 filtersearch_page2_projectstackdesigner_constraintLayout.visibility = View.VISIBLE
 
                 // 디자이너 툴 오픈
-                designertool()
+
+                for (i in 0 until filtersearch_page2_projectstackdesignerbutton_constraintLayout.childCount) {
+                    filtersearch_page2_projectstackdesignerbutton_constraintLayout[i].setOnClickListener {
+                        if(designerbool[i] == false){
+                            filtersearch_page2_projectstackdesignerbutton_constraintLayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent_select)
+                            memberdesigner[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonSelect))
+                            designerbool[i] = true
+                            designercheck_index++
+                            Log.d("tag","확인 버튼 클릭")
+                            stackTooldesigner.add(memberdesigner[i]?.text.toString())
+                        }else{
+                            filtersearch_page2_projectstackdesignerbutton_constraintLayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent)
+                            memberdesigner[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
+                            designerbool[i] = false
+                            designercheck_index--
+                            Log.d("tag","취소 버튼 클릭")
+                            stackTooldesigner.remove(memberdesigner[i]?.text.toString())
+                        }
+                    }
+
+                }
+
                 designer_btn = true
                 memberfind_selectpositionItems.add( filtersearch_page2_designer_Button.text.toString())
             }else if(designer_btn && designercheck_index == 0){
@@ -964,41 +845,6 @@ class FilteringSearch : AppCompatActivity() {
 
 
 
-        // 관심 분야
-        for (i in 0 until filtersearch_page2_field_linearlayout.childCount) {
-            filtersearch_page2_field_linearlayout[i].setOnClickListener {
-                if(membercheckbool[i] == false){
-                    filtersearch_page2_field_linearlayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent_select)
-                    memberintentionbtn[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonSelect))
-                    membercheckbool[i] = true
-                    memberfind_projectfieldbtn.add(filtersearch_page2_field_linearlayout[i].toString())
-                }else{
-                    filtersearch_page2_field_linearlayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent)
-                    memberintentionbtn[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
-                    membercheckbool[i] = false
-                    memberfind_projectfieldbtn.remove(filtersearch_page2_field_linearlayout[i].toString())
-                }
-            }
-
-        }
-
-        for (i in 0 until filtersearch_page2_field2_linearlayout.childCount) {
-            filtersearch_page2_field2_linearlayout[i].setOnClickListener {
-                if(membercheckbool2[i] == false){
-                    filtersearch_page2_field2_linearlayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent_select)
-                    memberintentionbtn2[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonSelect))
-                    membercheckbool2[i] = true
-                    memberfind_projectfieldbtn.add(filtersearch_page2_field_linearlayout[i].toString())
-                }else{
-                    filtersearch_page2_field2_linearlayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent)
-                    memberintentionbtn2[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
-                    membercheckbool2[i] = false
-                    memberfind_projectfieldbtn.remove(filtersearch_page2_field_linearlayout[i].toString())
-                }
-            }
-
-        }
-
     }
 
     private fun ToastmakeTextPrint(word: String) {
@@ -1006,6 +852,7 @@ class FilteringSearch : AppCompatActivity() {
     }
 
     private fun stackLanguage(location: String, page_position: Int) {
+        Log.d("tag","user 포지션 : ${location}")
         if (page_position == 1) {
             if (location.equals("개발자")) {
 
@@ -1031,7 +878,7 @@ class FilteringSearch : AppCompatActivity() {
                                         R.color.colorButtonSelect
                                     )
                                 )
-                                memberfind_stackToolTechnologyStack.add(child.text.toString())
+                                projectfind_stackToolTechnologyStack.add(child.text.toString())
                             } else {
                                 child.background = ContextCompat.getDrawable(
                                     this@FilteringSearch,
@@ -1090,98 +937,6 @@ class FilteringSearch : AppCompatActivity() {
                                     )
                                 )
                                 projectfind_stackToolTechnologyStack.remove(child.text.toString())
-                            }
-
-                        }
-
-                    }
-
-
-                }
-            }
-        }else if(page == 2){
-            if (location.equals("개발자")) {
-
-                for (i in 0 until filtersearch_page2_projectstackbutton_constraintLayout.childCount) {
-                    val child: View = filtersearch_page2_projectstackbutton_constraintLayout.getChildAt(i)
-                    // 해당 버튼에 효과 주기
-                    if (child is Button) {
-                        child.background = ContextCompat.getDrawable(
-                            this@FilteringSearch,
-                            R.drawable.radius_button_effect
-                        )
-
-                        child.setOnClickListener {
-
-                            if (!memberfind_stackToolTechnologyStack.contains(child.text.toString())) {
-                                child.background = ContextCompat.getDrawable(
-                                    this@FilteringSearch,
-                                    R.drawable.radius_background_transparent_select
-                                )
-                                child.setTextColor(
-                                    ContextCompat.getColor(
-                                        this@FilteringSearch,
-                                        R.color.colorButtonSelect
-                                    )
-                                )
-                                memberfind_stackToolTechnologyStack.add(child.text.toString())
-                            } else {
-                                child.background = ContextCompat.getDrawable(
-                                    this@FilteringSearch,
-                                    R.drawable.radius_button_effect
-                                )
-                                child.setTextColor(
-                                    ContextCompat.getColor(
-                                        this@FilteringSearch,
-                                        R.color.colorButtonNoSelect
-                                    )
-                                )
-                                memberfind_stackToolTechnologyStack.remove(child.text.toString())
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            } else if (location.equals("디자이너")) {
-                for (i in 0 until filtersearch_page2_projectstackdesigner_constraintLayout.childCount) {
-                    val child: View =
-                        filtersearch_page2_projectstackdesigner_constraintLayout.getChildAt(i)
-                    // 해당 버튼에 효과 주기
-                    if (child is Button) {
-                        child.background = ContextCompat.getDrawable(
-                            this@FilteringSearch,
-                            R.drawable.radius_button_effect
-                        )
-
-                        child.setOnClickListener {
-
-                            if (!memberfind_stackToolTechnologyStack.contains(child.text.toString())) {
-                                child.background = ContextCompat.getDrawable(
-                                    this@FilteringSearch,
-                                    R.drawable.radius_background_transparent_select
-                                )
-                                child.setTextColor(
-                                    ContextCompat.getColor(
-                                        this@FilteringSearch,
-                                        R.color.colorButtonSelect
-                                    )
-                                )
-                                memberfind_stackToolTechnologyStack.add(child.text.toString())
-                            } else {
-                                child.background = ContextCompat.getDrawable(
-                                    this@FilteringSearch,
-                                    R.drawable.radius_button_effect
-                                )
-                                child.setTextColor(
-                                    ContextCompat.getColor(
-                                        this@FilteringSearch,
-                                        R.color.colorButtonNoSelect
-                                    )
-                                )
-                                memberfind_stackToolTechnologyStack.remove(child.text.toString())
                             }
 
                         }
@@ -1281,7 +1036,6 @@ class FilteringSearch : AppCompatActivity() {
 
     // FilteringSearch에서 사용된 코드 이용
     var membercheckoffout: Int = -1
-    var membercheckexpectedfield: Int = -1
     var membercheckoff:Int = -1
 
 
@@ -1358,8 +1112,6 @@ class FilteringSearch : AppCompatActivity() {
             }
 
         }
-
-
 
     }
 }

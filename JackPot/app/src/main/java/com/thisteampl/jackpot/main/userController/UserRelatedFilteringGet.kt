@@ -1,13 +1,11 @@
-package com.thisteampl.jackpot.main.projectController
+package com.thisteampl.jackpot.main.userController
 
 import com.google.gson.annotations.SerializedName
+import com.thisteampl.jackpot.main.projectController.ProjectComponent
 
-
-// 프로젝트 이름 바꾸기
-
-class ProjectGetElement(
+class UserRelatedFilteringGet(
     @SerializedName("contents")
-    var contents:List<ProjectComponent>,
+    var contents:List<UserRelatedFilteringcontents>,
     @SerializedName("pageNumber")
     var pageNumber:Int,
     @SerializedName("pageSize")

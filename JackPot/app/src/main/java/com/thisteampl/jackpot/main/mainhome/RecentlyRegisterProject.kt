@@ -20,7 +20,6 @@ import retrofit2.Response
 // 참고 자료 : https://youtu.be/BT206iXW9bk
 // 최근 등록된 프로젝트
 class RecentlyRegisterProject : Fragment() {
-//    var recentlyregister: MutableList<RecentlyRegisterList> = mutableListOf()
 
     // 백엔드에서 List<클래스> 선언하였기에 사용
     var recentlylist : List<ProjectComponent> = listOf()
@@ -34,6 +33,9 @@ class RecentlyRegisterProject : Fragment() {
 
     fun connectprojectbackend(list : List<ProjectComponent>){
         recentlylist=list
+        for(num in 0..recentlylist.size-1){
+            Log.d("tag","recentlylist size : ${recentlylist.get(num).title}")
+        }
     }
 
 

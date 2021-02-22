@@ -161,6 +161,7 @@ class ProfileEditActivity: AppCompatActivity() {
                 ) {
                     when {
                         response.code().toString() == "200" -> {
+
                             userprofile = response.body()!!.result
                             stackTool = response.body()!!.result.stacks.toMutableList()
                             initialize()

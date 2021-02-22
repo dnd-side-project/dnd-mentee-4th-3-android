@@ -22,12 +22,10 @@ interface projectAPI {
 
 
     @POST("/api/projects")
-    fun postRecruitmentProject(@Body project: ProjectCreationElement) : Call<ProjectElement>
-
-    @GET("/api/projects/get/{id}")
-    fun getprojectsID(@Path("id") id:Int) : Call<ProjectElement>
+    fun postRecruitmentProject(@Body project: ProjectCreationElement) : Call<ProjectGetElement>
 
     @POST("/api/filters/projects")
     fun getprojectcontents(@Body projectgetlatest:ProjectPostLatest):Call<ProjectGetElement>
+
 
 }

@@ -8,9 +8,10 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterList
+import com.thisteampl.jackpot.main.projectController.ProjectComponent
 
-class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: ArrayList<RecentlyRegisterList>?= null): BaseAdapter() {
+
+class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: ArrayList<ProjectComponent>?= null): BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view : View = LayoutInflater.from(context).inflate(R.layout.main_projectviewmore_list,null)
 
@@ -20,9 +21,7 @@ class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: Arra
         val inputprojectviewdetail_update = view.findViewById<TextView>(R.id.main_inputprojectviewdetail_update_textview)
 
         var list = ProjectList!![position]
-        project_name.text = list.recentlyregister_project_name
-        inputprojectviewdetail_position.text = list.recentlyregister_recruitment_position?.get(0)
-        inputprojectviewdetail_update.text = list.update_date
+
 
         return view
     }

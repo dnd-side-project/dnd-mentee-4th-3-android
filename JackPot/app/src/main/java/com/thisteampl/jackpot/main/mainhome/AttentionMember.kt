@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
-import com.thisteampl.jackpot.main.projectController.ProjectElement
 import com.thisteampl.jackpot.main.projectController.projectAPI
 import kotlinx.android.synthetic.main.fragment_attention_project.*
 import retrofit2.Call
@@ -23,35 +22,7 @@ class AttentionMember : Fragment() {
     var attention : MutableList<AttentionMemberList> = mutableListOf()
     private var projectapi = projectAPI.projectRetrofitService()
     // init 초기화할 때, list를 삽입한다.
-    init{
-        
-        // 백엔드 호출
-        for (i in 1..5) {
-            projectapi?.getprojectsID(i)
-                ?.enqueue(object : retrofit2.Callback<ProjectElement> {
-                    override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
-                        Log.d("tag : ", "Not found id")
-                    }
 
-                    override fun onResponse(
-                        call: Call<ProjectElement>,
-                        response: Response<ProjectElement>
-                    ) {
-
-                    }
-
-                })
-        }
-
-         attention = arrayListOf(
-            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자")
-
-        )
-    }
 
     // View가 만들어진 후, onViewCreated() 콜백된다.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

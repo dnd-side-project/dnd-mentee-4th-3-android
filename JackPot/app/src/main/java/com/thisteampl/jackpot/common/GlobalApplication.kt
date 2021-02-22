@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 class GlobalApplication : Application() {
 
     companion object {
-        var BASE_URL = "http://3.36.62.198:8080/"
+        var BASE_URL = "http://18.223.111.182:8080/"
 
         lateinit var prefs: mySharedPreferences
 

@@ -10,55 +10,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
-import com.thisteampl.jackpot.main.projectController.ProjectElement
-import com.thisteampl.jackpot.main.projectController.projectAPI
+import com.thisteampl.jackpot.main.projectController.ProjectComponent
 import kotlinx.android.synthetic.main.fragment_attention_project.*
-import retrofit2.Call
-import retrofit2.Response
-import java.util.ArrayList
 
 // 참고 자료 : https://youtu.be/BT206iXW9bk
 // 주목받는 프로젝트
 class AttentionProject : Fragment() {
-    var attention: MutableList<AttentionProjectList> = mutableListOf()
-    private var projectapi = projectAPI.projectRetrofitService()
+    var attentionprojectlist : List<ProjectComponent> = listOf()
 
-    // init 초기화할 때, list를 삽입한다.
-    init{
-
-        // 백엔드 호출
-        for (i in 1..10) {
-            projectapi?.getprojectsID(i)
-                ?.enqueue(object : retrofit2.Callback<ProjectElement> {
-                    override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
-                        Log.d("tag : ", "Not found id")
-                    }
-
-                    override fun onResponse(
-                        call: Call<ProjectElement>,
-                        response: Response<ProjectElement>
-                    ) {
-//                        Log.d("tag, 관심 : ", "${response.body()?.getinterest()?.duration}")
-//                        Log.d("tag, 지역 : ", "${response.body()?.getinterest()?.region}")
-//                        Log.d("tag, 제목 : ", "${response.body()?.getinterest()?.title}")
-//                        Log.d("tag, 포지션 : ", "${response.body()?.getinterest()?.position}")
-//                        Log.d("tag, 스택 : ", "${response.body()?.getinterest()?.stacks}")
-
-
-                    }
-
-                })
+    companion object {
+        fun newInstance(): AttentionProject{
+            return AttentionProject()
         }
+    }
 
-
-
-        attention = arrayListOf(
-            AttentionProjectList(R.drawable.field_art,"프로젝트 체크","개발자"),
-            AttentionProjectList(R.drawable.field_cook,"프로젝트 체크","개발자"),
-            AttentionProjectList(R.drawable.field_health,"프로젝트 체크","개발자"),
-            AttentionProjectList(R.drawable.field_economy,"프로젝트 체크","개발자"),
-            AttentionProjectList(R.drawable.field_it,"프로젝트 체크","개발자")
-        )
+    fun connectprojectbackend(list : List<ProjectComponent>){
+        attentionprojectlist=list
+        for(num in 0..attentionprojectlist.size-1){
+            Log.d("tag","recentlylist size : ${attentionprojectlist.get(num).title}")
+        }
     }
 
     // View가 만들어진 후, onViewCreated() 콜백된다.
@@ -66,7 +36,7 @@ class AttentionProject : Fragment() {
 
         main_attentionprojectlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),LinearLayoutManager.HORIZONTAL,false)
         main_attentionprojectlist_recyclerview.setHasFixedSize(true) // RecyclerView 크기 유지 (변경 x)
-        main_attentionprojectlist_recyclerview.adapter = AttentionProjectListAdapter(attention)
+        main_attentionprojectlist_recyclerview.adapter = AttentionProjectListAdapter(attentionprojectlist)
     }
 
     // 액티비티 프래그먼트 연결될 때 onAttach
