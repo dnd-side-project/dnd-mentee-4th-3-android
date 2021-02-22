@@ -9,18 +9,16 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.projectController.ProjectComponent
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import kotlinx.android.synthetic.main.main_recentlyregisterproject_list.view.*
 
 
 // 최근 등록된 프로젝트 어댑터(연결 구간)
 class RecentlyRegisterListAdapter(
-    val recentlyregisterlist: MutableList<RecentlyRegisterList> = mutableListOf(), loid: Long?
-): RecyclerView.Adapter<RecentlyRegisterListAdapter.RecentlyRegisterListRecyclerViewHolder>() {
+    val recentlyregisterlist: List<ProjectComponent> = mutableListOf()): RecyclerView.Adapter<RecentlyRegisterListAdapter.RecentlyRegisterListRecyclerViewHolder>() {
 
     class RecentlyRegisterListRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view)
-
-    var project_id : Long? = loid
 
 
 
@@ -47,49 +45,56 @@ class RecentlyRegisterListAdapter(
         val item = recentlyregisterlist[position]
 
         with(holder.itemView) {
-            item.recentlyiamge?.let { main_recentlyregister_health_image.setImageResource(it) }
-            main_recentlytitle_textview.text = item.recentlyregister_project_name
-            main_inputrecentlyproject_position_textview.text = "b"
+            if(item.interest.equals("자기계발")) {
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_selfdeveloper)
+            }else if(item.interest.equals("취미")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_hobby)
+            }else if(item.interest.equals("경제")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_economy)
+            }else if(item.interest.equals("요리")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_cook)
+            }else if(item.interest.equals("IT")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_it)
+            }else if(item.interest.equals("예술/장착")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_art)
+            }else if(item.interest.equals("건강")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_health)
+            }else if(item.interest.equals("휴식")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_repose)
+            }
+
+            main_recentlytitle_textview.text = item.title
+            main_inputrecentlyproject_position_textview.text = item.position.toString()
+
+            main_recentlytime_textview.text = "30분"
 
 
+            val stack_size = item.stacks.size
+            for(i in 0..stack_size!!) {
 
 
+                var layoutParams = LinearLayout.LayoutParams(100,LinearLayout.LayoutParams.MATCH_PARENT )
+                layoutParams.setMargins(0, 0, 10, 0) // 오른쪽 자리
 
-            with(holder.itemView) {
-                item.recentlyiamge?.let { main_recentlyregister_health_image.setImageResource(it) }
-                main_recentlytitle_textview.text = item.recentlyregister_project_name
-                main_inputrecentlyproject_position_textview.text = "A"
-
-
-                main_recentlytime_textview.text = item.update_date
-                val stack_size = item.technology_stack?.size
-                for(i in 0..stack_size!!) {
+                var image = ImageView(context)
+                image.layoutParams = layoutParams
 
 
-                    var layoutParams = LinearLayout.LayoutParams(100,LinearLayout.LayoutParams.MATCH_PARENT )
-                    layoutParams.setMargins(0, 0, 10, 0) // 오른쪽 자리
-
-                    var image = ImageView(context)
-                    image.layoutParams = layoutParams
-
-
-                    // 글자 어떻게 넣는건지 알아야 함 일단 imageview는 만들어짐
+                // 글자 어떻게 넣는건지 알아야 함 일단 imageview는 만들어짐
 //                    var text = TextView(context)
 //                    examtext.text = item.technology_stack!![0]
 
 
-                    image.setImageResource(R.drawable.radius_background_transparent)
+                image.setImageResource(R.drawable.radius_background_transparent)
 
-                    main_recentlyregister_scrollview_textview.addView(image)
-                }
-
+                main_recentlyregister_scrollview_textview.addView(image)
             }
+
         }
 
         holder.itemView.setOnClickListener {
-            Log.d("tag","recently id : ${project_id}")
             val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
-            intent.putExtra("stack3",project_id)
+            intent.putExtra("id",item.id)
             holder.itemView.context.startActivity(intent)
 
         }

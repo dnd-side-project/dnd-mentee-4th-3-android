@@ -28,51 +28,31 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+//  RESTAPI , Main pageNumber 0번
+
 class MainActivity : AppCompatActivity() {
 
+
+    
+    
     private lateinit var recentlyregister: RecentlyRegisterProject
     private val userApi = userAPI.create()
-    // projectAPI retrofit
 
-    private val selectAllItems = mutableListOf<String>()
-    var file_empty2 = mutableListOf<String>()
-    var file_empty = String()
+    // projectAPI retrofit
+    var projectapi = projectAPI.projectRetrofitService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-//        file_empty2.add("")
-//        file_empty = ""
-//        var zero = 0
-//        var projectapi = projectAPI.create()
-//
-//        var recruitmentproject = ProjectPostLatest(
-//            file_empty2,file_empty2,0,10,file_empty,"최신순",file_empty2
-//        )
-//        Log.e("tag ", "Main onFailure, ")
-//        // 백엔드 호출
-//        projectapi?.getprojectcontents(recruitmentproject)
-//            ?.enqueue(object : Callback<ProjectGetElement> {
-//                override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
-//                    Log.e("tag ", "Main onFailure, " + t.localizedMessage)
-//                }
-//
-//                override fun onResponse(
-//                    call: Call<ProjectGetElement>,
-//                    response: Response<ProjectGetElement>
-//                ) {
-//                    if(response.isSuccessful){
-//                        Log.i("tag","Main 성공")
-//                        Log.i("tag","결과 : ${response.code()}\n\n")
-//                        Log.d("tag","--------------------")
-//                    }
-//                }
-//
-//            })
-//
-//
+
+
+        // 어댑터에 api작성시 : Fragment, 어댑터 실행 후 api 소스 실행 됨
+        // 그럼에 main에서 RESETAPI 소스 호출하여 실행한 후, onResponse 안에서 Fragment, 어댑터 호출
+
+        // 주목받는 프로젝트, 주목받는 멤버, 최근 등록된 프로젝트 관련 메소드
+        adapters_fragments_in_main()
 
 
         val mypageIntent = Intent(this, MyPageActivity::class.java)
@@ -149,9 +129,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
-        recentlyregister = RecentlyRegisterProject.newInstance()
-        supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister).commit()
 
 
         // 참고 자료 : https://medium.com/@logishudson0218/intent-flag%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4-d8c91ddd3bfc
@@ -182,6 +159,58 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun adapters_fragments_in_main() {
+
+        // 주목 받는 프로젝트, 주목 받는 멤버 5개, 최근 등록된 파일에서는 10개 아래로
+        // RESTAPI , Main pageNumber 0번, pageSize 10개
+        // Main에서는 duration, interestFilter, stackFilter : 빈칸 처리,
+        //pageNumber 보여줄 page,
+        // pageSize: 페이지 크기
+        //regionFilter : 지역필터(빈칸)
+        var file_empty2 = mutableListOf<String>()
+        var file_empty = String()
+        Log.d("tag","Main에서 fragment 호출")
+        file_empty2.add("")
+        file_empty = ""
+        
+        // 3. 최근에 등록된 프로젝트
+        var recruitmentproject = ProjectPostLatest(
+            file_empty2,file_empty2,0,10,file_empty,"최신순",file_empty2
+        )
+        // 백엔드 호출
+        projectapi?.getprojectcontents(recruitmentproject)
+            ?.enqueue(object : Callback<ProjectGetElement> {
+                override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<ProjectGetElement>,
+                    response: Response<ProjectGetElement>
+                ) {
+
+                    if (response.isSuccessful) {
+//                        Log.d("tag", "-------------------")
+//                        Log.d("tag","Main")
+//                        Log.i("tag", "성공")
+//                        Log.i("tag", "${response.code().toString()}")
+//                        Log.i("tag", "ID 호출 ${response.body()?.contents}")
+//                        Log.i("tag", "ID 호출 ${response.body()?.contents?.get(1)?.id}")
+//                        Log.d("tag", "recently 호출 ${response.body()?.pageSize}")
+
+                        val recentlylist = response.body()?.contents
+                        // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
+                        recentlyregister = RecentlyRegisterProject.newInstance()
+                        if (recentlylist != null) {
+                            recentlyregister.connectprojectbackend(recentlylist)
+                        }
+                        supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister).commit()
+
+                    }
+                }
+            })
     }
 
 

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#514D4D"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewdetail"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/main_projectviewdetail_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imageViewdetail"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/main_projectviewdetail_recruitment_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="7dp"
+            android:text="모집 포지션"
+            android:textSize="10dp"
+            app:layout_constraintStart_toEndOf="@+id/imageViewdetail"
+            app:layout_constraintTop_toBottomOf="@+id/main_projectviewdetail_textview" />
+
+        <TextView
+            android:id="@+id/main_inputprojectviewdetail_position_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:text="TextView"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/main_projectviewdetail_recruitment_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_projectviewdetail_textview" />
+
+        <TextView
+            android:id="@+id/main_inputprojectviewdetail_update_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:text="TextView"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/main_projectviewdetail_update_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_projectviewdetail_textview" />
+
+        <TextView
+            android:id="@+id/main_projectviewdetail_update_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="7dp"
+            android:text="갱신일"
+            android:textSize="10dp"
+            app:layout_constraintStart_toEndOf="@+id/main_inputprojectviewdetail_position_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_projectviewdetail_textview" />
+
+        <TextView
+            android:id="@+id/main_projectviewdetailstack_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_textview"
+            android:text="stack"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewdetail"
+            app:layout_constraintTop_toBottomOf="@+id/main_projectviewdetail_recruitment_textview" />
+
+        <TextView
+            android:id="@+id/main_projectviewdetailstack2_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_textview"
+            android:text="stack"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_projectviewdetailstack_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_projectviewdetail_recruitment_textview"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/main_projectviewdetailstack3_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_textview"
+            android:text="stack"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_projectviewdetailstack2_textview"
+            app:layout_constraintTop_toBottomOf="@+id/main_projectviewdetail_recruitment_textview"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

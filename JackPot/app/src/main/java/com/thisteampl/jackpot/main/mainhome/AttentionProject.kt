@@ -38,9 +38,6 @@ class AttentionProject : Fragment() {
                         call: Call<ProjectElement>,
                         response: Response<ProjectElement>
                     ) {
-                        Log.d("tag num : ", "${i}")
-                        Log.d("tag, id : ", "${response.code()}")
-                        Log.d("tag, 기간 : ", "${response.body()?.getduration()}")
 //                        Log.d("tag, 관심 : ", "${response.body()?.getinterest()?.duration}")
 //                        Log.d("tag, 지역 : ", "${response.body()?.getinterest()?.region}")
 //                        Log.d("tag, 제목 : ", "${response.body()?.getinterest()?.title}")
