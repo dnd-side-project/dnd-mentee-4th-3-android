@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:text="작성자"
                     android:textStyle="bold"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="13dp" />
                 <TextView
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:text="지역"
                     android:textStyle="bold"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="13dp" />
                 <TextView
@@ -128,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:text="작성일"
                     android:textStyle="bold"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="13dp" />
                 <TextView

@@ -32,6 +32,8 @@ class MyProfile (
     var participantProject : List<ProjectComponent>,
     @SerializedName("commentProjects")
     var commentProjects : List<ProjectComponent>,
+    @SerializedName("participantRequest")
+    var participantRequest : List<ProjectComponent>,
     @SerializedName("scrapProjects")
     var scrapProjects : List<ProjectComponent>
 ) {

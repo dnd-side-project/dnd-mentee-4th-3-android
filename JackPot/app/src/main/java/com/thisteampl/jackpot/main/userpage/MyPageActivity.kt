@@ -126,7 +126,7 @@ class MyPageActivity : AppCompatActivity() {
                                 mypage_profile_close_image.visibility = View.GONE
                             }
 
-                            for(myprj in response.body()!!.result.myprojects) {
+                            for(myprj in response.body()!!.result.participantProject) {
                                 var list = mutableListOf<String>()
                                 for(j in myprj.participants) {
                                     list.add(j.position)
@@ -135,7 +135,7 @@ class MyPageActivity : AppCompatActivity() {
                             }
                             myProjectAdapter.notifyDataSetChanged()
 
-                            for(parprj in response.body()!!.result.participantProject) {
+                            for(parprj in response.body()!!.result.participantRequest) {
                                 myRegisterProjectAdapter.items.add(AnotherProject(parprj.id, parprj.title,
                                     parprj.interest, parprj.position, parprj.stacks))
                             }
