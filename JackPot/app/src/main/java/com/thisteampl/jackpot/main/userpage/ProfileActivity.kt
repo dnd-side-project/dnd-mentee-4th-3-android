@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.main.LoginActivity
+import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import com.thisteampl.jackpot.main.userController.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import retrofit2.Call
@@ -142,36 +143,54 @@ class ProfileActivity: AppCompatActivity() {
                 finish()
             }
             R.id.profile_edit_withdraw_menu -> {
-                userApi?.getWithDraw()?.enqueue(
-                object : Callback<CheckResponse> {
-                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
-                        // userAPI에서 타입이나 이름 안맞췄을때
-                        Log.e("tag ", "onFailure" + t.localizedMessage)
-                    }
+                val dialog = AlertDialog.Builder(this)
+                dialog.setTitle("회원 탈퇴")
+                dialog.setMessage("정말 회원탈퇴 하시겠습니까?\n회원님의 정보는 복구가 불가능합니다.")
 
-                    override fun onResponse(
-                        call: Call<CheckResponse>,
-                        response: Response<CheckResponse>
-                    ) {
-                        if (response.code().toString() == "200") {
-                            Toast.makeText(
-                                baseContext,
-                                "회원탈퇴가 완료되었습니다.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            GlobalApplication.prefs.setString("token", "NO_TOKEN")
-                            finish()
-                        } else {
-                            Toast.makeText(
-                                baseContext,
-                                "회원탈퇴에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
-                                    .toString(),
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
+                var dialog_listener =
+                    DialogInterface.OnClickListener { _, which ->
+                        when (which) {
+                            DialogInterface.BUTTON_POSITIVE -> {
+                                userApi?.getWithDraw()?.enqueue(
+                                    object : Callback<CheckResponse> {
+                                        override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                                            // userAPI에서 타입이나 이름 안맞췄을때
+                                            Log.e("tag ", "onFailure" + t.localizedMessage)
+                                        }
+
+                                        override fun onResponse(
+                                            call: Call<CheckResponse>,
+                                            response: Response<CheckResponse>
+                                        ) {
+                                            if (response.code().toString() == "200") {
+                                                Toast.makeText(
+                                                    baseContext,
+                                                    "회원탈퇴가 완료되었습니다.",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                                GlobalApplication.prefs.setString("token", "NO_TOKEN")
+                                                finish()
+                                            } else {
+                                                Toast.makeText(
+                                                    baseContext,
+                                                    "회원탈퇴에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
+                                                        .toString(),
+                                                    Toast.LENGTH_SHORT
+                                                )
+                                                    .show()
+                                            }
+                                        }
+                                    })
+                            }
+                            DialogInterface.BUTTON_NEGATIVE -> {
+
+                            }
                         }
                     }
-                })
+                dialog.setPositiveButton("확인", dialog_listener)
+                dialog.setNegativeButton("취소", dialog_listener)
+                dialog.show()
+
             }
         }
         return super.onOptionsItemSelected(item)
