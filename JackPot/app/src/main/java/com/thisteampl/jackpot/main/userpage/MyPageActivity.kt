@@ -34,9 +34,11 @@ class MyPageActivity : AppCompatActivity() {
         if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
             finish()
         }
-        getProfile()
+
         setUpRecyclerView()
+        getProfile()
     }
+
 
         // 마이페이지 뷰 셋팅하는 메서드. 로그인 돼 있을 경우와 로그아웃 돼 있을 경우를 분리한다.
         private fun setupView(){
@@ -122,7 +124,7 @@ class MyPageActivity : AppCompatActivity() {
                                 for(j in i.participants) {
                                     list.add(j.position)
                                 }
-                                myProjectAdapter.items.add(MyProject(i.id, i.title, list))
+                                myProjectAdapter.items.add(MyProject(i.id, i.interest, i.title, list))
                             }
                                 myProjectAdapter.notifyDataSetChanged()
                             when (response.body()!!.result.position) {

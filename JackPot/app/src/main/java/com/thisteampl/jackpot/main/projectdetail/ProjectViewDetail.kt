@@ -6,6 +6,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -15,6 +16,7 @@ import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.main.projectController.CheckProject
 import com.thisteampl.jackpot.main.projectController.projectAPI
+import com.thisteampl.jackpot.main.userController.CheckMyProfile
 import com.thisteampl.jackpot.main.userController.CheckResponse
 import com.thisteampl.jackpot.main.userController.userAPI
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -29,6 +31,7 @@ class ProjectViewDetail : AppCompatActivity() {
     private val projectApi = projectAPI.create()
     private var projectID = 0
     private val userApi = userAPI.create()
+    private var checkMyProject = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +45,10 @@ class ProjectViewDetail : AppCompatActivity() {
 
         setSupportActionBar(project_detail_toolbar) // 기본액션바로 지정
         supportActionBar?.setDisplayShowTitleEnabled(false) // 제목 없애기
-        setUpView()
     }
 
     private fun setUpView() {
+        isMyProject()
         if (GlobalApplication.prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
             project_detail_comment_edittext.hint = "로그인한 유저만 댓글을 달 수 있습니다."
             project_detail_comment_input_button.isEnabled = false
@@ -54,12 +57,18 @@ class ProjectViewDetail : AppCompatActivity() {
             project_detail_project_register_button.isEnabled = false
         }
 
+        if(checkMyProject) {
+            project_detail_project_scrap_button.visibility = View.GONE
+            project_detail_project_register_button.visibility = View.GONE
+            project_detail_watch_applicant_button.visibility = View.VISIBLE
+        }
+
         project_detail_back_button.setOnClickListener { super.onBackPressed() }
     }
 
     //내 프로젝트일 경우 메뉴바 생성
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        //if, 내프로젝트 아닐경우 return false
+        if(!checkMyProject) {return false}
         val inflater = menuInflater
         inflater.inflate(R.menu.project_menu, menu)
         return true
@@ -67,7 +76,7 @@ class ProjectViewDetail : AppCompatActivity() {
 
     // 메뉴바 선택시
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        //if, 내프로젝트 아닐경우 return false
+        if(!checkMyProject) {return false}
         when(item.itemId) {
             R.id.project_detail_menu -> {
             }
@@ -102,6 +111,19 @@ class ProjectViewDetail : AppCompatActivity() {
                     var dateText = response.body()?.result?.
                     createdDateTime?.substring(0, 10)
                     project_detail_date_text.text = dateText
+
+                    //분야에 따른 대표이미지 설정
+                    when (response.body()?.result?.interest) {
+                        "IT" -> {project_detail_kind_icon.setImageResource(R.drawable.field_it)}
+                        "예술_창작" -> {project_detail_kind_icon.setImageResource(R.drawable.field_art)}
+                        "건강" -> {project_detail_kind_icon.setImageResource(R.drawable.field_health)}
+                        "요리" -> {project_detail_kind_icon.setImageResource(R.drawable.field_cook)}
+                        "취미" -> {project_detail_kind_icon.setImageResource(R.drawable.field_hobby)}
+                        "휴식" -> {project_detail_kind_icon.setImageResource(R.drawable.field_repose)}
+                        "자기계발" -> {project_detail_kind_icon.setImageResource(R.drawable.field_selfdeveloper)}
+                        else -> {project_detail_kind_icon.setImageResource(R.drawable.field_economy)} // 경제
+                    }
+
                     // 모집 포지션 동적 추가
                     for (i in response.body()?.result!!.position) {
                         var layoutParams = LinearLayout.LayoutParams(
@@ -142,6 +164,8 @@ class ProjectViewDetail : AppCompatActivity() {
                         textView.isSingleLine = true
 
                         project_detail_using_program_layout.addView(textView)
+                        
+                        setUpView() // 프로젝트 가져오고 난 후 뷰 셋업
                     }
 
                     //유저 동적 추가 직군에 따라 들어가는 그림 다르게하기 추후에 배경 크기 수정
@@ -207,7 +231,32 @@ class ProjectViewDetail : AppCompatActivity() {
     }
 
     //내 프로젝트 인지 확인.
-    private fun isMyProject(id: Long) : Boolean {
-        return false
+    private fun isMyProject() {
+        userApi?.getProfile()?.enqueue(
+            object : Callback<CheckMyProfile> {
+                override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckMyProfile>,
+                    response: Response<CheckMyProfile>
+                ) {
+                    when {
+                        response.code().toString() == "200" -> {
+                            for(i in response.body()?.result!!.myprojects) {
+                                if(i.id == projectID.toLong()) {
+                                    checkMyProject = true
+                                    break
+                                }
+                            }
+                    }
+                        response.code().toString() == "401" -> {
+                            GlobalApplication.prefs.setString("token", "NO_TOKEN")
+                        }
+                    }
+                }
+            })
     }
 }
