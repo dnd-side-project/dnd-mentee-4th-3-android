@@ -1,5 +1,7 @@
 package com.thisteampl.jackpot.main.userpage
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +15,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
@@ -49,7 +52,8 @@ class ProfileActivity: AppCompatActivity() {
             getProfile()
             profile_memberscrap_button.visibility = View.GONE
         } else {
-
+            var userId = intent.getLongExtra("id", -1)
+            getUserProfile(userId)
         }
 
         profile_back_button.setOnClickListener { super.onBackPressed() }
@@ -237,6 +241,127 @@ class ProfileActivity: AppCompatActivity() {
                                 }
                             }
                                 // 기술스택 동적 추가
+                            for (i in response.body()!!.result.stacks) {
+                                var layoutParams = LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT
+                                )
+                                layoutParams.setMargins(0, 0, 20, 0)
+                                val textView = TextView(baseContext)
+                                textView.text = i
+                                textView.setPadding(40, 10, 40, 10)
+                                textView.layoutParams = layoutParams
+
+                                textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14F)
+                                textView.setTextColor(ContextCompat.getColor(baseContext, R.color.colorBlack))
+                                textView.background =
+                                    ContextCompat.getDrawable(baseContext, R.drawable.radius_background_transparent)
+                                textView.isSingleLine = true
+
+                                profile_stackTool_layout.addView(textView)
+                            }
+                            //포트폴리오, 자기소개 추가해야 함.
+                        }
+                        response.code().toString() == "401" -> {
+                            Toast.makeText(
+                                baseContext,
+                                "토큰 유효기간이 만료됐습니다.\n 로그인 페이지로 이동합니다.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            GlobalApplication.prefs.setString("token", "NO_TOKEN")
+                            val intent = Intent(baseContext, LoginActivity::class.java)
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            finish()
+                        }
+                        else -> {
+                            Toast.makeText(
+                                baseContext, "에러가 발생했습니다. 에러코드 : " + response.code()
+                                , Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            })
+    }
+
+    // 멤버의 프로필을 가져오는 메서드.
+    private fun getUserProfile(id: Long){
+        userApi?.getUserProfile(id)?.enqueue(
+            object : Callback<CheckProfile> {
+                override fun onFailure(call: Call<CheckProfile>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckProfile>,
+                    response: Response<CheckProfile>
+                ) {
+                    when {
+                        response.code().toString() == "200" -> {
+                            if(!response.body()!!.result.privacy) {
+                                profile_total_layout.alpha = 0f
+                                val dialog = AlertDialog.Builder(this@ProfileActivity)
+                                dialog.setTitle("프로필 비공개")
+                                dialog.setMessage(response.body()?.result?.name +" 님은\n프로필 비공개 상태입니다.")
+
+                                var dialog_listener =
+                                    DialogInterface.OnClickListener { _, which ->
+                                        when(which) {
+                                            DialogInterface.BUTTON_POSITIVE->{
+                                                finish()
+                                            }
+                                        }
+                                    }
+                                dialog.setPositiveButton("확인", dialog_listener)
+                                dialog.show()
+                            }
+
+                            profile_profile_close_image.visibility = View.GONE
+
+                            Log.e("ProfileActivity_getProfile : ", "User : " + response.body()!!.result.toString())
+                            profile_job_text.text = response.body()!!.result.position + " ・ " + response.body()!!.result.career
+                            profile_name_text.text = response.body()!!.result.name
+                            profile_job_icon_text.text = response.body()!!.result.emoticon
+                            profile_introduce_text.text = response.body()!!.result.introduction
+
+                            when (response.body()!!.result.position) {
+                                "개발자" -> {
+                                    profile_portfolio_behance_button.visibility = View.GONE
+                                    if(response.body()!!.result.portfolioLink1 == "") {
+                                        profile_portfolio_github_button.visibility = View.GONE
+                                    }
+                                    if(response.body()!!.result.portfolioLink2 == "") {
+                                        profile_portfolio_global_button.visibility = View.GONE
+                                    }
+
+                                    profile_availablestackTool_text.text = "기술 스택"
+                                    profile_job_background_image.setImageResource(R.drawable.background_developer)
+                                }
+                                "디자이너" -> {
+                                    profile_portfolio_github_button.visibility = View.GONE
+                                    if(response.body()!!.result.portfolioLink1 == "") {
+                                        profile_portfolio_behance_button.visibility = View.GONE
+                                    }
+                                    if(response.body()!!.result.portfolioLink2 == "") {
+                                        profile_portfolio_global_button.visibility = View.GONE
+                                    }
+
+                                    profile_availablestackTool_text.text = "사용 가능 툴"
+                                    profile_job_background_image.setImageResource(R.drawable.background_designer)
+                                }
+                                else -> {
+                                    profile_portfolio_behance_button.visibility = View.GONE
+                                    profile_portfolio_github_button.visibility = View.GONE
+                                    if(response.body()!!.result.portfolioLink1 == "") {
+                                        profile_portfolio_global_button.visibility = View.GONE
+                                    }
+
+                                    profile_availablestackTool_layout.visibility = View.GONE
+                                    profile_job_background_image.setImageResource(R.drawable.background_director)
+                                }
+                            }
+                            // 기술스택 동적 추가
                             for (i in response.body()!!.result.stacks) {
                                 var layoutParams = LinearLayout.LayoutParams(
                                     LinearLayout.LayoutParams.WRAP_CONTENT,

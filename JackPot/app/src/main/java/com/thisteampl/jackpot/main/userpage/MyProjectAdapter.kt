@@ -58,7 +58,7 @@ class MyProjectAdapter(var items: MutableList<MyProject> = mutableListOf()
                 
                 //유저 동적 추가 직군에 따라 들어가는 그림 다르게하기
                 for(i in item.users) {
-                    var layoutParams = LinearLayout.LayoutParams(120, 120)
+                    var layoutParams = LinearLayout.LayoutParams(98, 98)
                     if(i == item.users[0]) {
                         layoutParams.setMargins(0, 0, 0, 0)
                     } else {
