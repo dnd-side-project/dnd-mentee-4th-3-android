@@ -41,13 +41,11 @@ class ProjectCommentAdapter(var items: MutableList<ProjectDetailComment> = mutab
     }
 
     override fun onBindViewHolder(holder: ProjectCommentRecyclerViewHolder, position: Int) {
-        getName()
         val item = items[position]
 
         with(holder.itemView) {
-            //댓글이 비공개일 경우
-            Log.e("tag ", getName() + ", " + item.name + ", " + item.projectOwnerName)
-            if(!item.privacy && getName() != item.name && getName() != item.projectOwnerName) {
+            //댓글이 비공개일 경우 - 보는사람이 글쓴이가 아니고, 보는 사람 이름과 쓴 사람 이름이 같지 않다면 비공개
+            if(!item.privacy && !item.isOwner && item.name != item.watcherName) {
                 holder_project_detail_comment_position_background.visibility = View.GONE
                 holder_project_detail_comment_date_text.visibility = View.GONE
                 holder_project_detail_comment_name_text.visibility = View.GONE
@@ -75,7 +73,7 @@ class ProjectCommentAdapter(var items: MutableList<ProjectDetailComment> = mutab
             holder_project_detail_comment_text.text = item.comment
             holder_project_detail_comment_icon_text.text = item.emoticon
 
-            if(getName() == item.name) {
+            if(item.watcherName == item.name) {
                 holder_project_detail_comment_delete_button.visibility = View.VISIBLE
             }
 
@@ -94,7 +92,7 @@ class ProjectCommentAdapter(var items: MutableList<ProjectDetailComment> = mutab
                         if(response.code().toString() == "200") {
                             Toast.makeText(context, "댓글이 삭제되었습니다.", Toast.LENGTH_SHORT)
                                 .show()
-                            val intent = Intent(context, ProjectViewDetail::class.java)
+                            val intent = Intent(context, ProjectViewDetail::class.java).putExtra("id", item.projectID)
                             context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         } else {
                             Toast.makeText(context, "댓글 삭제에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
@@ -106,32 +104,4 @@ class ProjectCommentAdapter(var items: MutableList<ProjectDetailComment> = mutab
 
         }
     }
-
-    //유저 이름 가져오기
-    private fun getName(): String {
-        var userName = "USER_NAME_NEED_INITIALIZE"
-        userApi?.getProfile()?.enqueue(
-            object : Callback<CheckMyProfile> {
-                override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
-                    // userAPI에서 타입이나 이름 안맞췄을때
-                    Log.e("tag ", "onFailure, " + t.localizedMessage)
-                }
-
-                override fun onResponse(
-                    call: Call<CheckMyProfile>,
-                    response: Response<CheckMyProfile>
-                ) {
-                    when {
-                        response.code().toString() == "200" -> {
-                            userName = response.body()?.result!!.name
-                        }
-                        response.code().toString() == "401" -> {
-                            GlobalApplication.prefs.setString("token", "NO_TOKEN")
-                        }
-                    }
-                }
-            })
-        return userName
-    }
-
 }
