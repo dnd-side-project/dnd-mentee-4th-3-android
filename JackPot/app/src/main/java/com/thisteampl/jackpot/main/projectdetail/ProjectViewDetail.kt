@@ -34,6 +34,7 @@ class ProjectViewDetail : AppCompatActivity() {
     private var checkMyProject = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        isMyProject() // 내 프로젝트인지 확인
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_view_detail)
 
@@ -48,7 +49,6 @@ class ProjectViewDetail : AppCompatActivity() {
     }
 
     private fun setUpView() {
-        isMyProject()
         if (GlobalApplication.prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
             project_detail_comment_edittext.hint = "로그인한 유저만 댓글을 달 수 있습니다."
             project_detail_comment_input_button.isEnabled = false
@@ -164,8 +164,6 @@ class ProjectViewDetail : AppCompatActivity() {
                         textView.isSingleLine = true
 
                         project_detail_using_program_layout.addView(textView)
-                        
-                        setUpView() // 프로젝트 가져오고 난 후 뷰 셋업
                     }
 
                     //유저 동적 추가 직군에 따라 들어가는 그림 다르게하기 추후에 배경 크기 수정
@@ -199,7 +197,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         textView.isSingleLine = true
                         project_detail_member_layout.addView(textView)
                     }
-
+                    setUpView() // 뷰 셋업
                 } else {
                     finish()
                 }

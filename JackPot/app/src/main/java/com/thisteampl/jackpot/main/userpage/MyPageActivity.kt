@@ -39,6 +39,13 @@ class MyPageActivity : AppCompatActivity() {
         getProfile()
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+            finish()
+        }
+    }
+
 
         // 마이페이지 뷰 셋팅하는 메서드. 로그인 돼 있을 경우와 로그아웃 돼 있을 경우를 분리한다.
         private fun setupView(){

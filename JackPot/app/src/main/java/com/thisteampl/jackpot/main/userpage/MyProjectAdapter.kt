@@ -1,5 +1,6 @@
 package com.thisteampl.jackpot.main.userpage
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import kotlinx.android.synthetic.main.holder_mypage_myproject.view.*
 
 class MyProjectAdapter(var items: MutableList<MyProject> = mutableListOf()
@@ -27,6 +29,12 @@ class MyProjectAdapter(var items: MutableList<MyProject> = mutableListOf()
 
     override fun onBindViewHolder(holder: MyProjectRecyclerViewHolder, position: Int) {
         val item = items[position]
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
+            intent.putExtra("id",item.id)
+            holder.itemView.context.startActivity(intent)
+        }
 
         with(holder.itemView) {
             holder_mypage_myprj_name.text = item.name
