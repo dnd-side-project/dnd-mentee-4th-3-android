@@ -44,7 +44,7 @@ interface userAPI {
 
 
     //필터 컨트롤 getUsers
-    @POST("/api/filters/projects")
+    @POST("/api/filters/users")
     fun getUserPosition(@Body userfilter:UserRelatedFilteringPost):Call<UserRelatedFilteringGet>
 
     @POST("/userscrap/{id}")

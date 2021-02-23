@@ -245,7 +245,7 @@ class MainActivity : AppCompatActivity() {
         when(fragNum){
             0 -> {
                 var attentionproject = ProjectPostLatest(
-                    file_empty2,file_empty2,0,5,file_empty,"인기순",file_empty2
+                    file_empty2,file_empty2,0,10,file_empty,"인기순",file_empty2
                 )
                 projectapi?.getprojectcontents(attentionproject)
                     ?.enqueue(object : Callback<ProjectGetElement> {

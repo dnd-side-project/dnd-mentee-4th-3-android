@@ -814,7 +814,7 @@ class ProjectCreation : AppCompatActivity() {
             ToastmakeTextPrint("프로젝트 방식을 선택해주세요."); return false
         }
         if (regiontext.equals("지역")&&onofftext.equals("오프라인")) {
-            ToastmakeTextPrint("$regiontext 지역을 입력해주세요."); return false
+            ToastmakeTextPrint("지역을 입력해주세요."); return false
         }
         if (durationtext.equals("duration")) {
             ToastmakeTextPrint("프로젝트 예상 기간을 선택해주세요."); return false

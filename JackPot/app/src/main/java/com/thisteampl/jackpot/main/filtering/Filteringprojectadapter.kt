@@ -25,6 +25,8 @@ class Filteringprojectadapter(val context: Context, val ProjectList: List<Projec
         val stacks = view.findViewById<LinearLayout>(R.id.holder_filtering_project_linearlayout)
 
 
+
+
         var list = ProjectList!![position]
 
         if(list.interest.equals("자기계발")){
@@ -70,8 +72,9 @@ class Filteringprojectadapter(val context: Context, val ProjectList: List<Projec
             stacktext.background= ContextCompat.getDrawable(context, R.drawable.radius_background_transparent)
 
             stacktext.isSingleLine = true
-//            holder_filtering_project_linearlayout
-//            main_recentlyregister_scrollview_textview.addView(stacktext)
+            
+            // 기술스택에 넣기
+            stacks.addView(stacktext)
         }
 
         return view

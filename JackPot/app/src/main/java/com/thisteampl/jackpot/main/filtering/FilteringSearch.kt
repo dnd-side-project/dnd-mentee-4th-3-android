@@ -33,7 +33,7 @@ class FilteringSearch : AppCompatActivity() {
 
     // 프로젝트 찾기
     // 1) 기술 스택
-    private val projectfind_stackToolTechnologyStack = mutableListOf<String>()
+    private val projectfind_stackToolTechnologyStack = ArrayList<String>()
 
     // 2) 프로젝트 방식
     private var projectfind_onoffbtn = arrayOfNulls<Button>(2)
@@ -43,20 +43,20 @@ class FilteringSearch : AppCompatActivity() {
     private var projectfind_regiontext = "지역" // 지역 list 저장용
 
     // 4) 기간
-    private var projectfind_durationbtn = mutableListOf<String>()
+    private var projectfind_durationbtn = ArrayList<String>()
 
     // 5) 관심분야
-    private var projectfind_projectfieldbtn =mutableListOf<String>()
+    private var projectfind_projectfieldbtn =ArrayList<String>()
 
 
     // 멤버찾기
     // 1) 포지션
-    private val memberfind_selectpositionItems = mutableListOf<String>()    // 포지션
+    private val memberfind_selectpositionItems = ArrayList<String>()    // 포지션
 
     // 2) 개발언어
-    private val memberfind_stackToolTechnologyStack = mutableListOf<String>() // 개발자, 디자이너 스택 통합
-    private val stackTooldeveloper = mutableListOf<String>() // 개발자 스택
-    private val stackTooldesigner = mutableListOf<String>()  // 디자이너 스택
+
+    private val stackTooldeveloper = ArrayList<String>() // 개발자 스택
+    private val stackTooldesigner = ArrayList<String>()  // 디자이너 스택
 
     // 3) 프로젝트 방식
     private var memberfind_onoffbtn = arrayOfNulls<Button>(2)
@@ -108,12 +108,15 @@ class FilteringSearch : AppCompatActivity() {
         Log.d("tag","포지션 : ${user}")
 
         // 개발자일 때 개발자 툴만, 디자이너 일 때 디자이너 툴만
-        if(user == "개발자"){
+        if(user == "개발자" || user == "기획자"){
             filtersearch_projectstack_constraintLayout.visibility = View.VISIBLE
             filtersearch_projectstackdesigner_constraintLayout.visibility = View.GONE
-        }else{
+        }else if(user == "디자이너"){
             filtersearch_projectstack_constraintLayout.visibility = View.GONE
             filtersearch_projectstackdesigner_constraintLayout.visibility = View.VISIBLE
+        }else {
+            ToastmakeTextPrint("포지션 입력이 안되어 있어 실행할 수 없습니다.")
+            finish()
         }
 
         // 첫 시작할 때
@@ -121,81 +124,6 @@ class FilteringSearch : AppCompatActivity() {
         searchfindbtn()
 
     }
-
-    // API 작성 DB에 넘긴다.
-    // 필터적용
-    private fun projectConnectionBackend(current_page:Int){
-        if(current_page == 1){
-            val filteringproject = ProjectPostLatest(
-                projectfind_durationbtn,projectfind_projectfieldbtn,
-                0,100,projectfind_regiontext,
-                "최신순",projectfind_stackToolTechnologyStack
-            )
-
-
-            projectapi?.getprojectcontents(filteringproject)
-                ?.enqueue(object : Callback<ProjectGetElement> {
-                    override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
-                        Log.d("tag : ", "onFailure "+t.localizedMessage)
-
-                    }
-
-                    override fun onResponse(
-                        call: Call<ProjectGetElement>,
-                        response: Response<ProjectGetElement>
-                    ) {
-
-                        // 데이터 전달하지 못했다면
-                        if(response.isSuccessful){
-                            ToastmakeTextPrint("필터링 적용 완료")
-
-
-
-
-                        }else{
-                            ToastmakeTextPrint("필터링 적용 완료되지 않았습니다.")
-                            Log.d("tag","${response.code().toString()}")
-                            Log.e("tag","onFailure" + response.message())
-                        }
-                    }
-                })
-
-
-
-        }else if(current_page == 2){
-            val filteringmember = UserRelatedFilteringPost(
-                0,100,memberfind_selectpositionItems,
-                memberfind_regiontext,"최신순",
-                memberfind_stackToolTechnologyStack
-            )
-
-
-            userapi?.getUserPosition(filteringmember)
-                ?.enqueue(object : Callback<UserRelatedFilteringGet> {
-                    override fun onFailure(call: Call<UserRelatedFilteringGet>, t: Throwable) {
-                        Log.d("tag : ", "onFailure"+t.localizedMessage)
-
-                    }
-
-                    override fun onResponse(
-                        call: Call<UserRelatedFilteringGet>,
-                        response: Response<UserRelatedFilteringGet>
-                    ) {
-
-                        if(response.isSuccessful){
-                            ToastmakeTextPrint("필터링 적용 완료")
-                        }else{
-                            ToastmakeTextPrint("필터링 적용 완료되지 않았습니다.")
-                            Log.d("tag","${response.code().toString()}")
-                            Log.e("tag","onFailure" + response.message())
-                        }
-                    }
-                })
-        }
-    }
-
-
-
 
     // 프로젝트 찾기, 멤버 찾기 버튼
     private fun searchfindbtn() {
@@ -242,67 +170,202 @@ class FilteringSearch : AppCompatActivity() {
 
 
         }
+
         filtersearch_applyfilter_button.setOnClickListener {
-
-            // page 1
-//            if(page == 1){
-//                Log.d("tag","1 페이지")
+            if (checkPageButton()) {
+                val memberfind_stackToolTechnologyStack = ArrayList<String>() // 개발자, 디자이너 스택 통합
+                // page 1
+//                if (page == 1) {
+//                    Log.d("tag", "1 페이지")
 //
-//                Log.d("tag","기술스택 : ")
-//                for(num in 0..projectfind_stackToolTechnologyStack.size-1){
-//                    Log.d("=> ","${projectfind_stackToolTechnologyStack[num]}")
+//                    for (num in 0..projectfind_stackToolTechnologyStack.size - 1) {
+//                        Log.d("=> ", "${projectfind_stackToolTechnologyStack[num]}")
+//                    }
+//
+//                    Log.d("tag", "프로젝트방식 : ${projectfind_onofftext}")
+//                    Log.d("tag", "지역 : ${projectfind_regiontext}")
+//                    Log.d("tag", "기간: ")
+//                    for (num in 0..projectfind_durationbtn.size - 1) {
+//                        Log.d("=> ", "${projectfind_durationbtn[num]}")
+//                    }
+//
+//                    Log.d("tag", "관심분야 : ")
+//                    for (num in 0..projectfind_projectfieldbtn.size - 1) {
+//                        Log.d("=> ", "${projectfind_projectfieldbtn[num]}")
+//                    }
+//
+//                } else if (page == 2) {
+//
+//                    Log.d("tag", "2 페이지")
+//                    // page 2 : 멤버찾기, 포지션 및 개발 툴, 디자인 툴
+//
+//                    Log.d("tag", "선택된 : 포지션")
+//                    for (num in 0..memberfind_selectpositionItems.size - 1) {
+//                        Log.d("tag : ", "${memberfind_selectpositionItems[num]}")
+//                    }
+//
+//
+//                    Log.d("tag", "기술 툴 : ")
+//                    Log.d("tag", "사이즈 : ${memberfind_stackToolTechnologyStack.size}")
+//                    for (num in 0..memberfind_stackToolTechnologyStack.size - 1) {
+//                        Log.d("", "결과 : ${memberfind_stackToolTechnologyStack[num]}")
+//                    }
+//
+//                    Log.d("tag", "프로젝트 방식${memberfind_onofftext}")
+//
+//                    Log.d("tag", "지역 : ${memberfind_regiontext}")
+//
+//
 //                }
-//
-//                Log.d("tag","프로젝트방식 : ${projectfind_onofftext}")
-//                Log.d("tag","지역 : ${projectfind_regiontext}")
-//                Log.d("tag","기간: ")
-//                for(num in 0..projectfind_durationbtn.size-1){
-//                    Log.d("=> ","${projectfind_durationbtn[num]}")
-//                }
-//
-//                Log.d("tag","관심분야 : ")
-//                for(num in 0..projectfind_projectfieldbtn.size-1){
-//                    Log.d("=> ","${projectfind_projectfieldbtn[num]}")
-//                }
-//
-//            }else if(page == 2){
-//                Log.d("tag","2 페이지")
-//                // page 2 : 멤버찾기, 포지션 및 개발 툴, 디자인 툴
-//
-//                Log.d("tag","선택된 : 포지션")
-//                for(num in 0..memberfind_selectpositionItems.size-1){
-//                    Log.d("tag : ","${memberfind_selectpositionItems[num]}")
-//                }
-//
-//                memberfind_stackToolTechnologyStack.addAll(stackTooldeveloper)
-//                memberfind_stackToolTechnologyStack.addAll(stackTooldesigner)
-//
-//                Log.d("tag","기술 툴 : ")
-//                Log.d("tag","사이즈 : ${memberfind_stackToolTechnologyStack.size}")
-//                for(num in 0..memberfind_stackToolTechnologyStack.size-1){
-//                    Log.d("", "결과 : ${memberfind_stackToolTechnologyStack[num]}")
-//                }
-//
-//                Log.d("tag","프로젝트 방식${memberfind_onofftext}")
-//
-//                Log.d("tag","지역 : ${memberfind_regiontext}")
-//
-//
-//            }
+
+//            Log.d("tag","확인하기")
+//            Log.d("","-------테스트 결과 입니다.--------")
+//            var array = ArrayList<String>()
+//            Log.d("","projectfind_stackToolTechnologyStack를 toList로 변환 : ${projectfind_stackToolTechnologyStack}")
+//            Log.d("","projectfind_stackToolTechnologyStack를 toList로 변환 : ${projectfind_stackToolTechnologyStack.toList()}")
+//            projectfind_stackToolTechnologyStack.toList()
+//            array = ArrayList(projectfind_stackToolTechnologyStack)
+//            Log.d("","projectfind_stackToolTechnologyStack를 arraylist로 변경 ${array}")
+//            var array2 = mutableListOf<String>()
+//            array2 = array.toMutableList()
+//            Log.d("","projectfind_stackToolTechnologyStack를 arraylist에서 mutablelist로 변경 ${array2}")
 
 
-            projectConnectionBackend(page)
 
-            val intent = Intent(this, FilteringSearchResults::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            intent.putExtra("page",page)
-            startActivity(intent)
 
+
+
+
+                val intent = Intent(this, FilteringSearchResults::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+                if(page == 1){
+
+                    for(i in 0..projectfind_stackToolTechnologyStack.size-1){
+                        if(projectfind_stackToolTechnologyStack[i] == "Html/CSS"){
+                            projectfind_stackToolTechnologyStack[i] = "Html_CSS"
+                        }
+
+                        if(projectfind_stackToolTechnologyStack[i] == "React.JS"){
+                            projectfind_stackToolTechnologyStack[i] = "React_js"
+                        }
+                        if(projectfind_stackToolTechnologyStack[i] == "After Effects"){
+                            projectfind_stackToolTechnologyStack[i] = "After_Effects"
+                        }
+                        if(projectfind_stackToolTechnologyStack[i] == "C++"){
+                            projectfind_stackToolTechnologyStack[i] = "Cplus"
+                        }
+                        if(projectfind_stackToolTechnologyStack[i] == "FLASK") projectfind_stackToolTechnologyStack[i] = "Flask"
+
+
+                    }
+
+                    // 2page를 위한 포지션
+                    intent.putExtra("position",ArrayList<String>())
+
+                    // 프로젝트 찾기
+                    // 개발 툴
+                    intent.putExtra("stackTool",projectfind_stackToolTechnologyStack)
+                    // 프로젝트 방식
+                    intent.putExtra("onoff",projectfind_onofftext)
+                    // 지역
+                    intent.putExtra("region",projectfind_regiontext)
+                    // 기간
+                    intent.putExtra("duration",projectfind_durationbtn)
+                    // 관심분야
+                    intent.putExtra("interest",projectfind_projectfieldbtn)
+                }
+                else if(page == 2){
+
+                    memberfind_stackToolTechnologyStack.addAll(stackTooldeveloper)
+                    memberfind_stackToolTechnologyStack.addAll(stackTooldesigner)
+
+
+                    for(i in 0..memberfind_stackToolTechnologyStack.size-1){
+                        if(memberfind_stackToolTechnologyStack[i] == "Html/CSS"){
+                            memberfind_stackToolTechnologyStack[i] = "Html_CSS"
+                        }
+
+                        if(memberfind_stackToolTechnologyStack[i] == "React.JS"){
+                            memberfind_stackToolTechnologyStack[i] = "React_js"
+                        }
+                        if(memberfind_stackToolTechnologyStack[i] == "After Effects"){
+                            memberfind_stackToolTechnologyStack[i] = "After_Effects"
+                        }
+                        if(memberfind_stackToolTechnologyStack[i] == "C++"){
+                            memberfind_stackToolTechnologyStack[i] = "Cplus"
+                        }
+                        if(memberfind_stackToolTechnologyStack[i] == "FLASK") memberfind_stackToolTechnologyStack[i] = "Flask"
+
+
+                    }
+
+
+                    // 1page를 위한 기간
+                    // 기간
+                    intent.putExtra("duration",ArrayList<String>())
+                    // 관심분야
+                    intent.putExtra("interest",ArrayList<String>())
+                    // 포지션
+                    intent.putExtra("position",memberfind_selectpositionItems)
+                    // 개발 툴
+                    intent.putExtra("stackTool",memberfind_stackToolTechnologyStack)
+                    // 프로젝트 방식
+                    intent.putExtra("onoff",memberfind_onofftext)
+                    // 지역
+                    intent.putExtra("region",memberfind_regiontext)
+                }
+
+                intent.putExtra("page",page.toString())
+                startActivity(intent)
+
+                Log.d("tag","기술 툴 : ")
+                Log.d("tag","사이즈 : ${memberfind_stackToolTechnologyStack.size}")
+                for(num in 0..memberfind_stackToolTechnologyStack.size-1){
+                    Log.d("", "결과 : ${memberfind_stackToolTechnologyStack[num]}")
+                }
+
+            }
 
         }
 
     }
 
+
+    private fun checkPageButton(): Boolean {
+        if(page ==1){
+            if (projectfind_stackToolTechnologyStack.size == 0) {
+                ToastmakeTextPrint("툴 선택해주세요."); return false
+            }
+            if (projectfind_onofftext.equals("onoff")) {
+                ToastmakeTextPrint("프로젝트 방식을 선택해주세요."); return false
+            }
+            if (projectfind_regiontext.equals("지역")&&projectfind_onofftext.equals("오프라인")) {
+                ToastmakeTextPrint("지역을 입력해주세요."); return false
+            }
+            if (projectfind_durationbtn.size ==0) {
+                ToastmakeTextPrint("프로젝트 예상 기간을 선택해주세요."); return false
+            }
+            if (projectfind_projectfieldbtn.size == 0) {
+                ToastmakeTextPrint("분야를 선택해주세요."); return false
+            }
+        }else{
+            if (memberfind_selectpositionItems.size == 0) {
+                ToastmakeTextPrint("포지션을 선택해주세요."); return false
+            }
+            if (stackTooldeveloper.size ==0 && stackTooldesigner.size ==0 && memberfind_selectpositionItems.size != 0 ) {
+                ToastmakeTextPrint("툴 선택해주세요."); return false
+            }
+            if (memberfind_onofftext.equals("onoff")){
+                ToastmakeTextPrint("프로젝트 방식을 입력해주세요."); return false
+            }
+            if (memberfind_regiontext.equals("지역")&&memberfind_onofftext.equals("오프라인")) {
+                ToastmakeTextPrint("지역을 입력해주세요."); return false
+            }
+        }
+
+        return true
+    }
 
 
     // 필터초기화, ConstraintLayout
@@ -339,7 +402,6 @@ class FilteringSearch : AppCompatActivity() {
             // 멤버찾기 기술 스택
             stackTooldeveloper.clear()
             stackTooldesigner.clear()
-            memberfind_stackToolTechnologyStack.clear()
         }
     }
 
@@ -402,7 +464,102 @@ class FilteringSearch : AppCompatActivity() {
     // 프로젝트 찾기 화면
     private fun findproject() {
 
-        projectfind_stackToolTechnologyStack.clear()
+        if (user.equals("개발자")) {
+            Log.d("tag","개발자 클릭")
+            for (i in 0 until filtersearch_projectstackbutton_constraintLayout.childCount) {
+                val child: View = filtersearch_projectstackbutton_constraintLayout.getChildAt(i)
+                // 해당 버튼에 효과 주기
+                if (child is Button) {
+                    Log.d("버튼",": ${child}")
+                    child.background = ContextCompat.getDrawable(
+                        this@FilteringSearch,
+                        R.drawable.radius_button_effect
+                    )
+
+                    child.setOnClickListener {
+                        if (!projectfind_stackToolTechnologyStack.contains(child.text.toString())) {
+                            Log.d("선택버튼",": ${child.text.toString()}")
+                            child.background = ContextCompat.getDrawable(
+                                this@FilteringSearch,
+                                R.drawable.radius_background_transparent_select
+                            )
+                            child.setTextColor(
+                                ContextCompat.getColor(
+                                    this@FilteringSearch,
+                                    R.color.colorButtonSelect
+                                )
+                            )
+                            projectfind_stackToolTechnologyStack.add(child.text.toString())
+                        } else {
+                            Log.d("취소버튼",": ${child.text.toString()}")
+                            child.background = ContextCompat.getDrawable(
+                                this@FilteringSearch,
+                                R.drawable.radius_button_effect
+                            )
+                            child.setTextColor(
+                                ContextCompat.getColor(
+                                    this@FilteringSearch,
+                                    R.color.colorButtonNoSelect
+                                )
+                            )
+                            projectfind_stackToolTechnologyStack.remove(child.text.toString())
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+        }else if(user.equals("디자이너")) {
+            for (i in 0 until filtersearch_projectstackdesignerbutton_constraintLayout.childCount) {
+                val child: View =
+                    filtersearch_projectstackdesignerbutton_constraintLayout.getChildAt(i)
+                // 해당 버튼에 효과 주기
+                if (child is Button) {
+                    child.background = ContextCompat.getDrawable(
+                        this@FilteringSearch,
+                        R.drawable.radius_button_effect
+                    )
+
+                    child.setOnClickListener {
+
+                        if (!projectfind_stackToolTechnologyStack.contains(child.text.toString())) {
+                            child.background = ContextCompat.getDrawable(
+                                this@FilteringSearch,
+                                R.drawable.radius_background_transparent_select
+                            )
+                            child.setTextColor(
+                                ContextCompat.getColor(
+                                    this@FilteringSearch,
+                                    R.color.colorButtonSelect
+                                )
+                            )
+                            projectfind_stackToolTechnologyStack.add(child.text.toString())
+                        } else {
+                            child.background = ContextCompat.getDrawable(
+                                this@FilteringSearch,
+                                R.drawable.radius_button_effect
+                            )
+                            child.setTextColor(
+                                ContextCompat.getColor(
+                                    this@FilteringSearch,
+                                    R.color.colorButtonNoSelect
+                                )
+                            )
+                            projectfind_stackToolTechnologyStack.remove(child.text.toString())
+                        }
+
+                    }
+
+                }
+
+
+            }
+        }
+
+
 
         stackLanguage(user, 1)
         contentofproject()
@@ -555,7 +712,6 @@ class FilteringSearch : AppCompatActivity() {
 
     // 멤버 찾기 화면
     private fun findmember() {
-        projectfind_stackToolTechnologyStack.clear()
         membercontents()
     }
 
@@ -852,101 +1008,12 @@ class FilteringSearch : AppCompatActivity() {
     }
 
     private fun stackLanguage(location: String, page_position: Int) {
-        Log.d("tag","user 포지션 : ${location}")
-        if (page_position == 1) {
-            if (location.equals("개발자")) {
-
-                for (i in 0 until filtersearch_projectstackbutton_constraintLayout.childCount) {
-                    val child: View = filtersearch_projectstackbutton_constraintLayout.getChildAt(i)
-                    // 해당 버튼에 효과 주기
-                    if (child is Button) {
-                        child.background = ContextCompat.getDrawable(
-                            this@FilteringSearch,
-                            R.drawable.radius_button_effect
-                        )
-
-                        child.setOnClickListener {
-
-                            if (!projectfind_stackToolTechnologyStack.contains(child.text.toString())) {
-                                child.background = ContextCompat.getDrawable(
-                                    this@FilteringSearch,
-                                    R.drawable.radius_background_transparent_select
-                                )
-                                child.setTextColor(
-                                    ContextCompat.getColor(
-                                        this@FilteringSearch,
-                                        R.color.colorButtonSelect
-                                    )
-                                )
-                                projectfind_stackToolTechnologyStack.add(child.text.toString())
-                            } else {
-                                child.background = ContextCompat.getDrawable(
-                                    this@FilteringSearch,
-                                    R.drawable.radius_button_effect
-                                )
-                                child.setTextColor(
-                                    ContextCompat.getColor(
-                                        this@FilteringSearch,
-                                        R.color.colorButtonNoSelect
-                                    )
-                                )
-                                projectfind_stackToolTechnologyStack.remove(child.text.toString())
-                            }
-
-                        }
-
-                    }
-
-
-                }
-
-            } else if (location.equals("디자이너")) {
-                for (i in 0 until filtersearch_projectstackdesignerbutton_constraintLayout.childCount) {
-                    val child: View =
-                        filtersearch_projectstackdesignerbutton_constraintLayout.getChildAt(i)
-                    // 해당 버튼에 효과 주기
-                    if (child is Button) {
-                        child.background = ContextCompat.getDrawable(
-                            this@FilteringSearch,
-                            R.drawable.radius_button_effect
-                        )
-
-                        child.setOnClickListener {
-
-                            if (!projectfind_stackToolTechnologyStack.contains(child.text.toString())) {
-                                child.background = ContextCompat.getDrawable(
-                                    this@FilteringSearch,
-                                    R.drawable.radius_background_transparent_select
-                                )
-                                child.setTextColor(
-                                    ContextCompat.getColor(
-                                        this@FilteringSearch,
-                                        R.color.colorButtonSelect
-                                    )
-                                )
-                                projectfind_stackToolTechnologyStack.add(child.text.toString())
-                            } else {
-                                child.background = ContextCompat.getDrawable(
-                                    this@FilteringSearch,
-                                    R.drawable.radius_button_effect
-                                )
-                                child.setTextColor(
-                                    ContextCompat.getColor(
-                                        this@FilteringSearch,
-                                        R.color.colorButtonNoSelect
-                                    )
-                                )
-                                projectfind_stackToolTechnologyStack.remove(child.text.toString())
-                            }
-
-                        }
-
-                    }
-
-
-                }
-            }
-        }
+//        Log.d("tag","user 포지션 : ${location}")
+//        if (page_position == 1) {
+//            else if (location.equals("디자이너")) {
+//
+//            }
+//        }
     }
 
     // FilteringSearch에서 사용된 코드 이용
