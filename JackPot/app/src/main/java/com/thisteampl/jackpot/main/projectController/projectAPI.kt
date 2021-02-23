@@ -42,13 +42,4 @@ interface projectAPI {
     @DELETE("/comment/delete/{id}")
     fun deleteComment(@Path("id") id: Long) : Call<CheckResponse>
 
-    @POST("/scrap/{projectindex}")
-    fun getProjectScrap(@Path("projectindex") id: Long) : Call<CheckResponse>
-
-    @POST("/participant/{projectid}")
-    fun getProjectParticipant(@Path("projectid") id: Long) : Call<CheckResponse>
-
-    @POST("/participant/accept")
-    fun getProjectAccept(@Body accept : ParticipantAccept) : Call<CheckResponse>
-
 }
