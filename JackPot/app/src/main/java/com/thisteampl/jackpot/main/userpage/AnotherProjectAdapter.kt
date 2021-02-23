@@ -66,11 +66,11 @@ class AnotherProjectAdapter(var items: MutableList<AnotherProject> = mutableList
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
-                layoutParams.setMargins(0, 0, 20, 0)
+                layoutParams.setMargins(0, 0, 5, 0)
                 val textView = TextView(context)
                 textView.text = i
                 textView.typeface = resources.getFont(R.font.roboto_font)
-                textView.setPadding(30, 5, 30, 5)
+                textView.setPadding(5, 5, 5, 5)
                 textView.layoutParams = layoutParams
 
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12F)

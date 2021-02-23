@@ -46,6 +46,7 @@ class ProjectViewDetail : AppCompatActivity() {
     private var mMenu: Menu? = null
     private var checkAlreadyScrap = false // 이미 스크랩 했는지
     private var checkAlreadyParticipantRequest = false // 이미 참여한적 있는지
+    private var checkAlreadyParticipant = false // 이미 참여하고 있는지
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMyProject() // 내 프로젝트인지 확인
@@ -77,6 +78,13 @@ class ProjectViewDetail : AppCompatActivity() {
             project_detail_project_register_button.alpha = 0.5f
         }
 
+        //이미 참여했다면 참여버튼 숨김
+        if(checkAlreadyParticipant) {
+            project_detail_project_scrap_button.visibility = View.GONE
+            project_detail_project_register_button.visibility = View.GONE
+        }
+
+        //내 프로젝트라면 신청자 보기 버튼
         if(checkMyProject) {
             project_detail_project_scrap_button.visibility = View.GONE
             project_detail_project_register_button.visibility = View.GONE
@@ -401,6 +409,13 @@ class ProjectViewDetail : AppCompatActivity() {
                             for(i in response.body()?.result!!.participantRequest) {
                                 if(i.id == projectID.toLong()) {
                                     checkAlreadyParticipantRequest = true
+                                    break
+                                }
+                            }
+
+                            for(i in response.body()?.result!!.participantProject) {
+                                if(i.id == projectID.toLong()) {
+                                    checkAlreadyParticipant = true
                                     break
                                 }
                             }

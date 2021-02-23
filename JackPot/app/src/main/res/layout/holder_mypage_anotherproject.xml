@@ -47,6 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/holder_mypage_anotherprj_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
@@ -62,9 +63,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/holder_mypage_anotherprj_image_layout"
+        app:layout_constraintStart_toEndOf="@+id/holder_mypage_anotherprj_textview"
         app:layout_constraintTop_toTopOf="parent">
 
     </LinearLayout>
