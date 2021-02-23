@@ -17,12 +17,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.main.LoginActivity
-import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import com.thisteampl.jackpot.main.userController.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import retrofit2.Call
@@ -35,7 +33,7 @@ class ProfileActivity: AppCompatActivity() {
     private val userApi = userAPI.create()
     lateinit var userprofile : MyProfile
     lateinit var updateprofile : MyProfileEdit
-    private var alredyScrap = false
+    private var alreadyScrap = false
     private var userId = 0
     private var mMenu: Menu? = null
 
@@ -58,6 +56,7 @@ class ProfileActivity: AppCompatActivity() {
             profile_memberscrap_button.visibility = View.GONE
         } else {
             userId = intent.getLongExtra("id", -1).toInt()
+            checkUserScrap()
             getUserProfile(userId.toLong())
         }
 
@@ -98,6 +97,11 @@ class ProfileActivity: AppCompatActivity() {
                     Toast.makeText(baseContext, userprofile.portfolioLink2 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        //멤버 스크랩 버튼
+        profile_memberscrap_button.setOnClickListener {
+            scrap(alreadyScrap)
         }
     }
 
@@ -470,27 +474,108 @@ class ProfileActivity: AppCompatActivity() {
     }
 
     //이 유저를 이미 스크랩 했는지 확인한다.
-    private fun checkUserScrap(id: Long){
+    private fun checkUserScrap() {
         userApi?.getMyScrapUsers()?.enqueue(
-            object : Callback<CheckProfile> {
-                override fun onFailure(call: Call<CheckProfile>, t: Throwable) {
+            object : Callback<CheckMyScrapUser> {
+                override fun onFailure(call: Call<CheckMyScrapUser>, t: Throwable) {
                     // userAPI에서 타입이나 이름 안맞췄을때
                     Log.e("tag ", "onFailure, " + t.localizedMessage)
                 }
 
                 override fun onResponse(
-                    call: Call<CheckProfile>,
-                    response: Response<CheckProfile>
+                    call: Call<CheckMyScrapUser>,
+                    response: Response<CheckMyScrapUser>
                 ) {
                     when {
                         response.code().toString() == "200" -> {
-                        }
-                        response.code().toString() == "401" -> {
-                            GlobalApplication.prefs.setString("token", "NO_TOKEN")
+                            for(i in response.body()!!.result) {
+                                if(i.userIndex == userId.toLong()) {
+                                    alreadyScrap = true
+                                    break
+                                }
+                            }
                         }
                     }
                 }
             })
+    }
+
+    //멤버 스크랩 기능. 이미 했으면 취소하고 안돼있으면 스크랩한다.
+    private fun scrap(alreadyScrap: Boolean){
+        //이미 스크랩 했다면 취소한다.
+        if(alreadyScrap) {
+            userApi?.deleteUserScrap(userId.toLong())?.enqueue(
+                object : Callback<CheckResponse> {
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure, " + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        when {
+                            response.code().toString() == "200" -> {
+                                Toast.makeText(
+                                    baseContext,
+                                    "멤버 스크랩이 취소됐습니다.",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                                finish()
+                                val intent = Intent(baseContext, ProfileActivity::class.java).putExtra("title", "멤버 프로필").putExtra("id", userId.toLong())
+                                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            }
+                            else -> {
+                                Toast.makeText(
+                                    baseContext,
+                                    "멤버 스크랩 취소에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()?.message,
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                            }
+                        }
+                    }
+                })
+            //스크랩 하지 않았다면 스크랩한다.
+        } else {
+            userApi?.getUserScrap(userId.toLong())?.enqueue(
+                object : Callback<CheckResponse> {
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure, " + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        when {
+                            response.code().toString() == "200" -> {                            
+                                Toast.makeText(
+                                baseContext,
+                                "멤버 스크랩이 완료됐습니다.\n마이 페이지에서 확인하실 수 있습니다.",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                                finish()
+                                val intent = Intent(baseContext, ProfileActivity::class.java).putExtra("title", "멤버 프로필").putExtra("id", userId.toLong())
+                                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            }
+                            else -> {
+                                Log.e("tag ", alreadyScrap.toString())
+                                Toast.makeText(
+                                    baseContext,
+                                    "멤버 스크랩에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()?.message,
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                            }
+                        }
+                    }
+                })
+        }
     }
 
     private fun initialize(){

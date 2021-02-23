@@ -112,7 +112,8 @@ class ProjectViewDetail : AppCompatActivity() {
                             val intent = Intent(baseContext, ProjectViewDetail::class.java).putExtra("id", projectID.toLong())
                             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         } else {
-                            Toast.makeText(baseContext, "댓글 작성에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                            Toast.makeText(baseContext, "댓글 작성에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
+                                ?.message, Toast.LENGTH_SHORT)
                                 .show()
                         }
                     }
@@ -350,7 +351,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         .show()
                     finish()
                 } else {
-                    Toast.makeText(baseContext, "게시물 삭제에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(baseContext, "게시물 삭제에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()?.message, Toast.LENGTH_SHORT)
                     .show()
                 }
             }
@@ -451,7 +452,7 @@ class ProjectViewDetail : AppCompatActivity() {
                     val intent = Intent(baseContext, ProjectViewDetail::class.java).putExtra("id", projectID.toLong())
                     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 } else {
-                    Toast.makeText(baseContext, "프로젝트 상태 변경에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(baseContext, "프로젝트 상태 변경에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()?.message, Toast.LENGTH_SHORT)
                         .show()
                 }
             }
@@ -490,8 +491,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         } else {
                             Toast.makeText(
                                 baseContext,
-                                "프로젝트 참가신청 취소에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
-                                    .toString(),
+                                "프로젝트 참가신청 취소에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()?.message,
                                 Toast.LENGTH_SHORT
                             )
                                 .show()
@@ -529,7 +529,7 @@ class ProjectViewDetail : AppCompatActivity() {
                             Toast.makeText(
                                 baseContext,
                                 "프로젝트 참가신청에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
-                                    .toString(),
+                                    ?.message,
                                 Toast.LENGTH_SHORT
                             )
                                 .show()
@@ -572,7 +572,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         Toast.makeText(
                             baseContext,
                             "스크랩 취소에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
-                                .toString(),
+                                ?.message,
                             Toast.LENGTH_SHORT
                         )
                             .show()
@@ -611,7 +611,7 @@ class ProjectViewDetail : AppCompatActivity() {
                             Toast.makeText(
                                 baseContext,
                                 "스크랩에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
-                                    .toString(),
+                                    ?.message,
                                 Toast.LENGTH_SHORT
                             )
                                 .show()

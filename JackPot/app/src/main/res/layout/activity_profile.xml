@@ -98,15 +98,13 @@
 
             <Button
                 android:id="@+id/profile_memberscrap_button"
-                android:layout_width="110dp"
-                android:layout_height="30dp"
+                android:layout_width="140dp"
+                android:layout_height="39dp"
                 android:layout_marginTop="10dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:text="☆ 멤버 스크랩"
                 android:textSize="11dp"
-                android:textColor="@color/colorButtonSelect"
-                android:background="@drawable/radius_background_transparent_noline"/>
+                android:background="@drawable/button_scrap_member"/>
 
         </LinearLayout>
 

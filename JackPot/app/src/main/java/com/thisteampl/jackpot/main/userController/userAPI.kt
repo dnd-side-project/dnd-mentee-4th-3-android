@@ -45,8 +45,11 @@ interface userAPI {
     @PUT("/update-push")
     fun getUpdatePush(@Body pushSet : PushEdit) : Call<CheckResponse>
 
-    @GET("/myprojectscrap")
-    fun getMyScrapUsers() : Call<CheckProfile>
+    @GET("/myuserscrap")
+    fun getMyScrapUsers() : Call<CheckMyScrapUser>
+
+    @DELETE("/deleteuserscrap/{id}")
+    fun deleteUserScrap(@Path("id") id: Long) : Call<CheckResponse>
 
     //필터 컨트롤 getUsers
     @POST("/api/filters/users")
