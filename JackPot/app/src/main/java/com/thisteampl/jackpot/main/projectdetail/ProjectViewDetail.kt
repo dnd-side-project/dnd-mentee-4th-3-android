@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
+import com.thisteampl.jackpot.main.MainActivity
 import com.thisteampl.jackpot.main.projectController.CheckProject
 import com.thisteampl.jackpot.main.projectController.PostComment
 import com.thisteampl.jackpot.main.projectController.projectAPI
@@ -356,6 +357,8 @@ class ProjectViewDetail : AppCompatActivity() {
                     Toast.makeText(baseContext, "게시물이 삭제되었습니다.", Toast.LENGTH_SHORT)
                         .show()
                     finish()
+                    val intent = Intent(baseContext, MainActivity::class.java)
+                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 } else {
                     Toast.makeText(baseContext, "게시물 삭제에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()?.message, Toast.LENGTH_SHORT)
                     .show()
