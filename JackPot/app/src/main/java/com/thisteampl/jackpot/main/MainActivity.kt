@@ -18,7 +18,6 @@ import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
 import com.thisteampl.jackpot.main.projectController.projectAPI
 import com.thisteampl.jackpot.main.userController.CheckMyProfile
-import com.thisteampl.jackpot.main.userController.CheckProfile
 import com.thisteampl.jackpot.main.userController.userAPI
 
 import com.thisteampl.jackpot.main.userpage.MyPageActivity
@@ -200,7 +199,7 @@ class MainActivity : AppCompatActivity() {
             file_empty2,file_empty2,0,10,file_empty,"최신순",file_empty2
         )
 
-        projectapi?.getprojectcontents(recruitmentproject)
+        projectapi?.getProjectContents(recruitmentproject)
             ?.enqueue(object : Callback<ProjectGetElement> {
                 override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
                     Log.e("tag ", "onFailure, " + t.localizedMessage)
@@ -221,6 +220,9 @@ class MainActivity : AppCompatActivity() {
                         Log.d("tag","Main에서 recentlyregister 호출")
                         supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister).commit()
 
+                    }else{
+                        Log.e("tag","Main에서 ${response.message()}")
+                        Log.e("tag","Main에서 ${response.code().toString()}")
                     }
                 }
             })
@@ -245,9 +247,9 @@ class MainActivity : AppCompatActivity() {
         when(fragNum){
             0 -> {
                 var attentionproject = ProjectPostLatest(
-                    file_empty2,file_empty2,0,10,file_empty,"인기순",file_empty2
+                    file_empty2,file_empty2,0,5,file_empty,"인기순",file_empty2
                 )
-                projectapi?.getprojectcontents(attentionproject)
+                projectapi?.getProjectContents(attentionproject)
                     ?.enqueue(object : Callback<ProjectGetElement> {
                         override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
                             Log.e("tag ", "onFailure, " + t.localizedMessage)
@@ -268,7 +270,7 @@ class MainActivity : AppCompatActivity() {
                                 Log.d("tag","Main에서 attentionproject 호출")
                                 ft.replace(R.id.main_projectview_framelayout, attentionproject_backend).commit()
                             }else{
-                                Log.d("tag","Main에서 attentionproject 결과 : ${response.code().toString()}")
+                                Log.e("tag","Main에서 attentionproject 결과 : ${response.code().toString()}")
                             }
                         }
                     })
@@ -281,7 +283,7 @@ class MainActivity : AppCompatActivity() {
                 var attentionproject = ProjectPostLatest(
                     file_empty2,file_empty2,0,5,file_empty,"멤버순",file_empty2
                 )
-                projectapi?.getprojectcontents(attentionproject)
+                projectapi?.getProjectContents(attentionproject)
                     ?.enqueue(object : Callback<ProjectGetElement> {
                         override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
                             Log.e("tag ", "onFailure, " + t.localizedMessage)
@@ -302,7 +304,7 @@ class MainActivity : AppCompatActivity() {
                                 Log.d("tag","Main에서 attentionproject 호출")
                                 ft.replace(R.id.main_projectview_framelayout, attentionproject_backend).commit()
                             }else{
-                                Log.d("tag","Main에서 attentionproject 결과 : ${response.code().toString()}")
+                                Log.e("tag","Main에서 attentionproject 결과 : ${response.code().toString()}")
                             }
                         }
                     })

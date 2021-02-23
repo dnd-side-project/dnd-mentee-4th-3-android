@@ -10,7 +10,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
+import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectController.projectAPI
+import com.thisteampl.jackpot.main.userController.UserRelatedFilteringcontents
 import kotlinx.android.synthetic.main.fragment_attention_project.*
 import retrofit2.Call
 import retrofit2.Response
@@ -19,38 +21,14 @@ import retrofit2.Response
 // 주목 받는 멤버 class
 class AttentionMember : Fragment() {
 
-    var attention : MutableList<AttentionMemberList> = mutableListOf()
+    var attentionmember : List<UserRelatedFilteringcontents> = listOf()
     private var projectapi = projectAPI.projectRetrofitService()
-    // init 초기화할 때, list를 삽입한다.
 
-    init{
-        
-        // 백엔드 호출
-/*        for (i in 1..5) {
-            projectapi?.getprojectsID(i)
-                ?.enqueue(object : retrofit2.Callback<ProjectElement> {
-                    override fun onFailure(call: Call<ProjectElement>, t: Throwable) {
-                        Log.d("tag : ", "Not found id")
-                    }
-
-                    override fun onResponse(
-                        call: Call<ProjectElement>,
-                        response: Response<ProjectElement>
-                    ) {
-
-                    }
-
-                })
-        }*/
-
-         attention = arrayListOf(
-            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자"),
-            AttentionMemberList(R.drawable.field_art,"멤버 체크","개발자")
-
-        )
+    fun connectprojectbackend(list : List<UserRelatedFilteringcontents>){
+        attentionmember=list
+        for(num in 0..attentionmember.size-1){
+            Log.d("tag","recentlylist size : ${attentionmember.get(num).emoticon}")
+        }
     }
 
 
@@ -60,7 +38,7 @@ class AttentionMember : Fragment() {
         main_attentionprojectlist_recyclerview.layoutManager = LinearLayoutManager((activity as MainActivity),
             LinearLayoutManager.HORIZONTAL,false)
         main_attentionprojectlist_recyclerview.setHasFixedSize(true)  // RecyclerView 크기 유지 (변경 x)
-        main_attentionprojectlist_recyclerview.adapter = AttentionMemberListAdapter(attention)
+        main_attentionprojectlist_recyclerview.adapter = AttentionMemberListAdapter(attentionmember)
     }
 
     // 액티비티 프래그먼트 연결될 때 onAttach

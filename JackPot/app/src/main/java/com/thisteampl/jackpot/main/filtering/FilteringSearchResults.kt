@@ -68,16 +68,19 @@ class FilteringSearchResults : AppCompatActivity() {
 //        Log.d("tag","--------------끝")
 
 
+        filterresult_backbutton_button.setOnClickListener {
+            finish()
+        }
 
 
-        var rankinglist = listOf("최신순","인기순")
+        var rankinglist = listOf("최신순", "인기순")
         filterresult_powerspinner.setItems(rankinglist)
-        filterresult_powerspinner.setOnSpinnerItemSelectedListener<String>{ oldIndex, oldItem, newIndex, newItem ->
+        filterresult_powerspinner.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newItem ->
             selection_result = newItem
 
-            if(page.equals("1")){
+            if (page.equals("1")) {
                 setprojectListView()
-            }else if(page.equals("2")){
+            } else if (page.equals("2")) {
                 setuserListView()
             }
 
@@ -85,11 +88,11 @@ class FilteringSearchResults : AppCompatActivity() {
 
 
 
-        if (page.equals("1")){
+        if (page.equals("1")) {
             filterresult_filteringsearch_textview.visibility = View.VISIBLE
             filterresult_filteringsearch2_textview.visibility = View.GONE
             setprojectListView()
-        }else if(page.equals("2")){
+        } else if (page.equals("2")) {
             filterresult_filteringsearch_textview.visibility = View.GONE
             filterresult_filteringsearch2_textview.visibility = View.VISIBLE
             setuserListView()
@@ -101,7 +104,7 @@ class FilteringSearchResults : AppCompatActivity() {
     private fun setuserListView() {
 
         var filteringuser = UserRelatedFilteringPost(
-            1,100,position,region,"",stackTool
+            0, 100, position, region, "", stackTool
         )
 
         if (selection_result.equals("최신순")) {
@@ -109,7 +112,15 @@ class FilteringSearchResults : AppCompatActivity() {
         } else if (selection_result.equals("인기순")) {
             filteringuser.sortType = "인기순"
         }
-        Log.d("tag","최신순, 인기순 : ${filteringuser.sortType}")
+        Log.d("tag", "최신순, 인기순 : ${filteringuser.sortType}")
+
+        Log.d("tag", "pageNumber : ${filteringuser.pageNumber}")
+        Log.d("tag", "pageSize: ${filteringuser.pageSize}")
+        Log.d("tag", "포지션 : ${filteringuser.position}")
+        Log.d("tag", "지역 : ${filteringuser.regionFilter}")
+        Log.d("tag", "정렬 : ${filteringuser.sortType}")
+        Log.d("tag", "스택 : ${filteringuser.stackFilter}")
+
 
         userapi?.getUserPosition(filteringuser)
             ?.enqueue(object : Callback<UserRelatedFilteringGet> {
@@ -125,7 +136,7 @@ class FilteringSearchResults : AppCompatActivity() {
 
                     // 데이터 전달하지 못했다면
                     if (response.isSuccessful) {
-                        ToastmakeTextPrint("프로젝트 모집글 작성 완료 되었습니다.")
+                        ToastmakeTextPrint("유저 모집글 작성 완료 되었습니다.")
                         Log.d("tag", "검색페이지 완료")
                         Log.d("tag", "결과 : ${response.code().toString()}")
                         ToastmakeTextPrint("검색페이지 완료")
@@ -135,29 +146,44 @@ class FilteringSearchResults : AppCompatActivity() {
                         filterresult_listview.adapter = adapter
 
                     } else {
-                        ToastmakeTextPrint("프로젝트 모집글 작성 완료되지 않았습니다.")
+                        ToastmakeTextPrint("유저 모집글 작성 완료 되지 않았습니다.")
                         Log.d("tag", "${response.code().toString()}")
                     }
                 }
             })
 
 
-
     }
 
     private fun setprojectListView() {
+
+
         var filteringproject = ProjectPostLatest(
             duration, interestfilter, 0, 10, region, "", stackTool
         )
+
 
         if (selection_result.equals("최신순")) {
             filteringproject.sortType = "최신순"
         } else if (selection_result.equals("인기순")) {
             filteringproject.sortType = "인기순"
         }
-        Log.d("tag","최신순, 인기순 : ${filteringproject.sortType}")
 
-        projectapi?.getprojectcontents(filteringproject)
+        Log.d("tag", "최신순, 인기순 : ${filteringproject.sortType}")
+
+        Log.d("tag", "pageNumber : ${filteringproject.pageNumber}")
+        Log.d("tag", "pageSize: ${filteringproject.pageSize}")
+        Log.d("tag", "포지션 : ${filteringproject.duration}")
+        Log.d("tag", "지역 : ${filteringproject.regionFilter}")
+        Log.d("tag", "정렬 : ${filteringproject.sortType}")
+        Log.d("tag", "스택 : ${filteringproject.stackFilter}")
+
+
+
+
+        Log.d("tag", "최신순, 인기순 : ${filteringproject.sortType}")
+
+        projectapi?.getProjectContents(filteringproject)
             ?.enqueue(object : Callback<ProjectGetElement> {
                 override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
                     Log.d("tag : ", "onFailure" + t.localizedMessage)
@@ -168,25 +194,28 @@ class FilteringSearchResults : AppCompatActivity() {
                     call: Call<ProjectGetElement>,
                     response: Response<ProjectGetElement>
                 ) {
-
                     // 데이터 전달하지 못했다면
                     if (response.isSuccessful) {
-                        ToastmakeTextPrint("프로젝트 모집글 작성 완료 되었습니다.")
+                        ToastmakeTextPrint("프로젝트 검색 완료 되었습니다.")
                         Log.d("tag", "검색페이지 완료")
-                        Log.d("tag", "결과 : ${response.code().toString()}")
-                        ToastmakeTextPrint("검색페이지 완료")
-                        val adapter = Filteringprojectadapter(
+                        filtersearch_projectcount_textview.text = "${response.body()!!.contents.size}개의 프로젝트"
+
+
+
+                        val adapter = FilteringProjectAdapter(
                             getApplicationContext(), response.body()!!.contents
                         )
                         filterresult_listview.adapter = adapter
 
+                        Log.d("tag","크기 : ${adapter.getCount()}")
                     } else {
-                        ToastmakeTextPrint("프로젝트 모집글 작성 완료되지 않았습니다.")
+                        ToastmakeTextPrint("프로젝트 검색 완료되지 않았습니다.")
                         Log.d("tag", "${response.code().toString()}")
                     }
                 }
             })
     }
+
 
     private fun ToastmakeTextPrint(word: String) {
         Toast.makeText(this, word, Toast.LENGTH_SHORT).show()

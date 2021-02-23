@@ -164,7 +164,7 @@
                                 android:background="@drawable/radius_button_effect"
                                 android:text="JAVA"
                                 android:textSize="14dp"
-
+                                android:textAllCaps="false"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -173,11 +173,9 @@
                                 android:layout_width="60dp"
                                 android:layout_height="35dp"
                                 android:layout_marginStart="12dp"
-
                                 android:background="@drawable/radius_button_effect"
                                 android:text="C++"
                                 android:textAllCaps="false"
-
                                 android:textSize="14dp"
                                 app:layout_constraintStart_toEndOf="@+id/filtersearch_java_Button"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -342,6 +340,7 @@
                                 android:layout_marginLeft="25dp"
                                 android:background="@drawable/radius_button_effect"
                                 android:text="PhotoShop"
+                                android:textAllCaps="false"
                                 android:textSize="14dp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -352,9 +351,8 @@
                                 android:layout_height="35dp"
                                 android:layout_marginLeft="12dp"
                                 android:background="@drawable/radius_button_effect"
-                                android:text="Illusrator"
+                                android:text="Illustrator"
                                 android:textAllCaps="false"
-
                                 android:textSize="14dp"
                                 app:layout_constraintStart_toEndOf="@+id/filtersearch_photoshop_Button"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -899,7 +897,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/filtersearch_page2_developertool_textview">
@@ -912,7 +909,6 @@
                                 android:background="@drawable/radius_button_effect"
                                 android:text="JAVA"
                                 android:textSize="14dp"
-
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -924,7 +920,6 @@
                                 android:background="@drawable/radius_button_effect"
                                 android:text="C++"
                                 android:textAllCaps="false"
-
                                 android:textSize="14dp"
                                 app:layout_constraintStart_toEndOf="@+id/filtersearch_page2_java_Button"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -1091,6 +1086,7 @@
                                 android:background="@drawable/radius_button_effect"
                                 android:text="PhotoShop"
                                 android:textSize="14dp"
+                                android:textAllCaps="false"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -1100,7 +1096,7 @@
                                 android:layout_height="35dp"
                                 android:layout_marginLeft="12dp"
                                 android:background="@drawable/radius_button_effect"
-                                android:text="Illusrator"
+                                android:text="Illustrator"
                                 android:textAllCaps="false"
 
                                 android:textSize="14dp"

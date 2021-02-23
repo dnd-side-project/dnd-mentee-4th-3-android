@@ -22,7 +22,7 @@ import retrofit2.Response
 class RecentlyRegisterProject : Fragment() {
 
     // 백엔드에서 List<클래스> 선언하였기에 사용
-    var recentlylist : List<ProjectComponent> = listOf()
+    var recentlylist : List<ProjectElementMaterial> = listOf()
 
     companion object {
         fun newInstance(): RecentlyRegisterProject{
@@ -31,7 +31,7 @@ class RecentlyRegisterProject : Fragment() {
 
     }
 
-    fun connectprojectbackend(list : List<ProjectComponent>){
+    fun connectprojectbackend(list : List<ProjectElementMaterial>){
         recentlylist=list
         for(num in 0..recentlylist.size-1){
             Log.d("tag","recentlylist size : ${recentlylist.get(num).title}")

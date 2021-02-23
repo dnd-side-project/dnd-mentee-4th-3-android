@@ -1,5 +1,6 @@
 package com.thisteampl.jackpot.main.floating
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.MainActivity
 import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.projectAPI
 import kotlinx.android.synthetic.main.activity_project_creation.*
@@ -789,6 +791,7 @@ class ProjectCreation : AppCompatActivity() {
                         // 데이터 전달하지 못했다면
                         if(response.isSuccessful){
                             ToastmakeTextPrint("프로젝트 모집글 작성 완료 되었습니다.")
+                            Log.d("tag","결과 : ${response.code().toString()}")
                         }else{
                             ToastmakeTextPrint("프로젝트 모집글 작성 완료되지 않았습니다.")
                             Log.d("tag","${response.code().toString()}")
@@ -797,8 +800,9 @@ class ProjectCreation : AppCompatActivity() {
                     }
                 })
 
+            val intent = Intent(baseContext, MainActivity::class.java)
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             finish()
-
         }
     }
 

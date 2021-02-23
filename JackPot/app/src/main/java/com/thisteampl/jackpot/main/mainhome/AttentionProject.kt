@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
 import com.thisteampl.jackpot.main.projectController.ProjectComponent
+import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import kotlinx.android.synthetic.main.fragment_attention_project.*
 
 // 참고 자료 : https://youtu.be/BT206iXW9bk
 // 주목받는 프로젝트
 class AttentionProject : Fragment() {
-    var attentionprojectlist : List<ProjectComponent> = listOf()
+    var attentionprojectlist : List<ProjectElementMaterial> = listOf()
 
 
     companion object {
@@ -28,7 +29,7 @@ class AttentionProject : Fragment() {
     // init 초기화할 때, list를 삽입한다.
 
 
-    fun connectprojectbackend(list : List<ProjectComponent>){
+    fun connectprojectbackend(list : List<ProjectElementMaterial>){
         attentionprojectlist=list
         for(num in 0..attentionprojectlist.size-1){
             Log.d("tag","recentlylist size : ${attentionprojectlist.get(num).title}")

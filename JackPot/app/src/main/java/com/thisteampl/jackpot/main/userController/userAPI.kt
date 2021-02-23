@@ -45,7 +45,7 @@ interface userAPI {
 
     //필터 컨트롤 getUsers
     @POST("/api/filters/users")
-    fun getUserPosition(@Body userfilter:UserRelatedFilteringPost):Call<UserRelatedFilteringGet>
+    fun getUserPosition(@Body userfil:UserRelatedFilteringPost):Call<UserRelatedFilteringGet>
 
     @POST("/userscrap/{id}")
     fun getUserScrap(@Path("id") id : Long) : Call<CheckResponse>

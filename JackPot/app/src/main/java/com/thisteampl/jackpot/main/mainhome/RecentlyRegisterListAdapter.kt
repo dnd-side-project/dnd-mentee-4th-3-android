@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.projectController.ProjectComponent
+import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_recentlyregisterproject_list.view.*
@@ -23,7 +24,7 @@ import java.util.*
 
 // 최근 등록된 프로젝트 어댑터(연결 구간)
 class RecentlyRegisterListAdapter(
-    val recentlyregisterlist: List<ProjectComponent> = mutableListOf()): RecyclerView.Adapter<RecentlyRegisterListAdapter.RecentlyRegisterListRecyclerViewHolder>() {
+    val recentlyregisterlist: List<ProjectElementMaterial> = mutableListOf()): RecyclerView.Adapter<RecentlyRegisterListAdapter.RecentlyRegisterListRecyclerViewHolder>() {
 
     class RecentlyRegisterListRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -55,19 +56,15 @@ class RecentlyRegisterListAdapter(
 
             val randomindex = Random().nextInt(3)
             
-            // 배경색 변경 방법 알아보기
-//            if(randomindex==0){
-//                main_recentlyproject_image.setBackgroundColor(R.color.buttoncolorpink)
-//            }else if(randomindex == 1){
-//                main_recentlyproject_image.setBackgroundColor(R.color.buttoncolorgreen)
-//            }else{
-//                main_recentlyproject_image.setBackgroundColor(R.color.buttoncolorblue)
-//            }
-//            main_recentlyproject_image.setBackground(R.drawable.attentionimagebluenview)
-//            main_recentlyproject_image.background = ContextCompat.getDrawable(
-//                this@RecentlyRegisterListAdapter,
-//                R.drawable.page_line_background_white
-//            )
+            // 배경색 변경
+            if(randomindex==0){
+                main_recentlyproject_image.background = ContextCompat.getDrawable(context, R.drawable.attentionimagebluenview)
+            }else if(randomindex ==1){
+                main_recentlyproject_image.background = ContextCompat.getDrawable(context, R.drawable.attentionimagegreenview)
+            }else{
+                main_recentlyproject_image.background = ContextCompat.getDrawable(context, R.drawable.attentionimagepinkview)
+            }
+
 
             if(item.interest.equals("자기계발")) {
                 main_recentlyregister_field_image.setImageResource(R.drawable.field_selfdeveloper)

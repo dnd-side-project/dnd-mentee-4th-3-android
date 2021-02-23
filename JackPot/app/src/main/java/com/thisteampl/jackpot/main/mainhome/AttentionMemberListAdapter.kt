@@ -9,13 +9,15 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
+import com.thisteampl.jackpot.main.userController.UserRelatedFilteringcontents
 import kotlinx.android.synthetic.main.main_attentionmember_list.view.*
 import java.util.*
 
 
 // 주목받는 멤버 어댑터(연결 구간)
-class AttentionMemberListAdapter(val attentionmemberlist: MutableList<AttentionMemberList> = mutableListOf()): RecyclerView.Adapter<AttentionMemberListAdapter.AttentionMemberListRecyclerViewHolder>() {
+class AttentionMemberListAdapter(val attentionmemberlist: List<UserRelatedFilteringcontents> = mutableListOf()): RecyclerView.Adapter<AttentionMemberListAdapter.AttentionMemberListRecyclerViewHolder>() {
 
     class AttentionMemberListRecyclerViewHolder(view:View):RecyclerView.ViewHolder(view)
 
@@ -41,15 +43,20 @@ class AttentionMemberListAdapter(val attentionmemberlist: MutableList<AttentionM
         val item = attentionmemberlist[position]
 
         with(holder.itemView) {
-            main_attentionmemberitem_image.setImageResource(item.memberimage)
-            main_attentionmember_title_textview.text = item.attention_member_title
-            main_attentionproject_content_textview.text = item.attentionmember_recruitment_position
+//            main_attentionmemberitem_image.setImageResource(item.emoticon)
+            main_attentionmember_title_textview.text = item.name
+
+
+            main_attentionproject_content_textview.text = "${item.position} ・${item.career}"
+
 
         }
 
 
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
+            // 유저쪽 멤버라 id 없음
+            intent.putExtra("id",item.name)
             holder.itemView.context.startActivity(intent)
 
         }

@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.projectController.ProjectComponent
+import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import kotlinx.android.synthetic.main.main_attentionproject_list.view.*
 import kotlinx.android.synthetic.main.main_recentlyregisterproject_list.view.*
@@ -19,7 +20,7 @@ import kotlinx.coroutines.flow.combine
 import java.util.*
 
 // 주목받는 프로젝트 어댑터(연결 구간)
-class AttentionProjectListAdapter(val attentionlist: List<ProjectComponent> = mutableListOf()) :
+class AttentionProjectListAdapter(val attentionlist: List<ProjectElementMaterial> = mutableListOf()) :
     RecyclerView.Adapter<AttentionProjectListAdapter.AttentionProjectListAdapterRecyclerViewHolder>() {
 
     class AttentionProjectListAdapterRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -53,6 +54,18 @@ class AttentionProjectListAdapter(val attentionlist: List<ProjectComponent> = mu
         val item = attentionlist[position]
 
         with(holder.itemView) {
+
+            val randomindex = Random().nextInt(3)
+
+            // 배경색 변경
+            if(randomindex==0){
+                main_attention_imageview.background = ContextCompat.getDrawable(context, R.drawable.attentionimagebluenview)
+            }else if(randomindex ==1){
+                main_attention_imageview.background = ContextCompat.getDrawable(context, R.drawable.attentionimagegreenview)
+            }else{
+                main_attention_imageview.background = ContextCompat.getDrawable(context, R.drawable.attentionimagepinkview)
+            }
+
 
             if(item.interest.equals("자기계발")) {
                 main_attentionitem_image.setImageResource(R.drawable.field_selfdeveloper)
@@ -110,6 +123,7 @@ class AttentionProjectListAdapter(val attentionlist: List<ProjectComponent> = mu
 
             holder.itemView.setOnClickListener {
                 val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
+                intent.putExtra("id",item.id)
                 holder.itemView.context.startActivity(intent)
             }
         }

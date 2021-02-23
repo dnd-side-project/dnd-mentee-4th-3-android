@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".main.filtering.FilteringSearchResults"></activity>
+        <activity android:name=".main.projectController.ProjectModification"></activity>
+        <activity android:name=".main.filtering.FilteringSearchResults" />
         <activity
             android:name=".main.viewmore.RecentlyProjectViewMore"
             android:screenOrientation="portrait" />

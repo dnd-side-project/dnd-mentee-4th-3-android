@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 
 class ProjectGetElement(
     @SerializedName("contents")
-    var contents:List<ProjectComponent>,
+    var contents:List<ProjectElementMaterial>,
     @SerializedName("pageNumber")
     var pageNumber:Int,
     @SerializedName("pageSize")

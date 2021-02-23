@@ -18,6 +18,7 @@ import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.main.projectController.CheckProject
 import com.thisteampl.jackpot.main.projectController.PostComment
+import com.thisteampl.jackpot.main.projectController.ProjectModification
 import com.thisteampl.jackpot.main.projectController.projectAPI
 import com.thisteampl.jackpot.main.userController.CheckMyProfile
 import com.thisteampl.jackpot.main.userController.CheckProfile
@@ -33,6 +34,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ProjectViewDetail : AppCompatActivity() {
+
 
     private val projectApi = projectAPI.create()
     private var projectID = 0
@@ -51,6 +53,9 @@ class ProjectViewDetail : AppCompatActivity() {
         if(projectID == 0) {
             finish()
         }
+
+
+
 
         //댓글 리사이클러뷰 어댑터 설정
         mPrjCommentAdapter = ProjectCommentAdapter()
@@ -156,6 +161,8 @@ class ProjectViewDetail : AppCompatActivity() {
             }
             R.id.project_detail_edit_menu -> {
                 //프로젝트 수정버튼
+                val intent = Intent(baseContext, ProjectModification::class.java).putExtra("id",projectID.toLong())
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
             R.id.project_detail_change_recruit_menu -> {
                 //프로젝트 모집 중 버튼

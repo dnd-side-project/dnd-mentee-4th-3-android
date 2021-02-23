@@ -78,7 +78,7 @@ class FilteringSearch : AppCompatActivity() {
     private var projectapi = projectAPI.projectRetrofitService()
 
     // 사용자 포지션
-    var user = String()
+    var user = ""
 
 
     var developer_btn:Boolean = false
@@ -115,7 +115,7 @@ class FilteringSearch : AppCompatActivity() {
             filtersearch_projectstack_constraintLayout.visibility = View.GONE
             filtersearch_projectstackdesigner_constraintLayout.visibility = View.VISIBLE
         }else {
-            ToastmakeTextPrint("포지션 입력이 안되어 있어 실행할 수 없습니다.")
+            ToastmakeTextPrint("로그인 정보가 없습니다.")
             finish()
         }
 
@@ -218,23 +218,6 @@ class FilteringSearch : AppCompatActivity() {
 //
 //                }
 
-//            Log.d("tag","확인하기")
-//            Log.d("","-------테스트 결과 입니다.--------")
-//            var array = ArrayList<String>()
-//            Log.d("","projectfind_stackToolTechnologyStack를 toList로 변환 : ${projectfind_stackToolTechnologyStack}")
-//            Log.d("","projectfind_stackToolTechnologyStack를 toList로 변환 : ${projectfind_stackToolTechnologyStack.toList()}")
-//            projectfind_stackToolTechnologyStack.toList()
-//            array = ArrayList(projectfind_stackToolTechnologyStack)
-//            Log.d("","projectfind_stackToolTechnologyStack를 arraylist로 변경 ${array}")
-//            var array2 = mutableListOf<String>()
-//            array2 = array.toMutableList()
-//            Log.d("","projectfind_stackToolTechnologyStack를 arraylist에서 mutablelist로 변경 ${array2}")
-
-
-
-
-
-
 
                 val intent = Intent(this, FilteringSearchResults::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -245,7 +228,6 @@ class FilteringSearch : AppCompatActivity() {
                         if(projectfind_stackToolTechnologyStack[i] == "Html/CSS"){
                             projectfind_stackToolTechnologyStack[i] = "Html_CSS"
                         }
-
                         if(projectfind_stackToolTechnologyStack[i] == "React.JS"){
                             projectfind_stackToolTechnologyStack[i] = "React_js"
                         }
@@ -256,7 +238,7 @@ class FilteringSearch : AppCompatActivity() {
                             projectfind_stackToolTechnologyStack[i] = "Cplus"
                         }
                         if(projectfind_stackToolTechnologyStack[i] == "FLASK") projectfind_stackToolTechnologyStack[i] = "Flask"
-
+                        if(projectfind_stackToolTechnologyStack[i] == "PhotoShop") projectfind_stackToolTechnologyStack[i] = "Photoshop"
 
                     }
 

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".main.floating.ProjectCreation">
+    android:orientation="vertical"
+    tools:context=".main.projectController.ProjectModification">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/projectcreate_title_constraintlayout"
+            android:id="@+id/projectmodification_title_constraintlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -21,28 +21,28 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/createproject_recruimentarticle_textview"
+                android:id="@+id/projectmodification_recruimentarticle_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
-                android:text="프로젝트 모집글 작성"
+                android:text="프로젝트 모집글 수정"
                 android:textColor="#000000"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/createproject_longline_imageview"
+                app:layout_constraintBottom_toBottomOf="@+id/projectmodification_longline_imageview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/createproject_minusbutton_button"
+                android:id="@+id/projectmodification_minusbutton_button"
                 android:layout_width="13dp"
                 android:layout_height="13dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="15dp"
-                app:layout_constraintBottom_toBottomOf="@+id/createproject_longline_imageview"
+                app:layout_constraintBottom_toBottomOf="@+id/projectmodification_longline_imageview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:visibility="visible"
@@ -50,53 +50,53 @@
                 />
 
             <Button
-                android:id="@+id/createproject_beforebutton_button"
+                android:id="@+id/projectmodification_beforebutton_button"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="15dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/createproject_longline_imageview"
+                app:layout_constraintBottom_toBottomOf="@+id/projectmodification_longline_imageview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:background="@drawable/android_back"
                 />
 
             <TextView
-                android:id="@+id/createproject_longline_imageview"
+                android:id="@+id/projectmodification_longline_imageview"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/edit_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createproject_recruimentarticle_textview" />
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_recruimentarticle_textview" />
 
 
             <TextView
-                android:id="@+id/projectcreate_page_textview"
+                android:id="@+id/projectmodification_page_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="30dp"
                 android:text="1  /  2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createproject_longline_imageview" />
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_longline_imageview" />
 
 
             <LinearLayout
-                android:id="@+id/createproject_imageline_linerlayout"
+                android:id="@+id/projectmodification_imageline_linerlayout"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:weightSum="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/projectcreate_page_textview">
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_page_textview">
 
 
                 <Button
-                    android:id="@+id/createproject_line1_button"
+                    android:id="@+id/projectmodification_line1_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -106,12 +106,12 @@
                     />
 
                 <Button
-                    android:id="@+id/createproject_line2_button"
+                    android:id="@+id/projectmodification_line2_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginRight="30dp"
-                    app:layout_constraintTop_toBottomOf="@+id/projectcreate_page_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/projectmodification_page_textview"
                     android:background="@drawable/page_line_background"
                     />
 
@@ -122,46 +122,45 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/projectcreate_write_recruitment_article_constraintlayout"
+            android:id="@+id/projectmodification_write_recruitment_article_constraintlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/projectmodification_title_constraintlayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/projectcreate_title_constraintlayout"
             app:layout_constraintVertical_bias="1.0">
 
             <TextView
-                android:id="@+id/createproject_recruitmentposition_textview"
+                android:id="@+id/projectmodification_position_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
-                android:text="모집 포지션"
+                android:layout_marginStart="24dp"
+                android:text="포지션"
                 android:textColor="#000000"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
 
 
             <LinearLayout
-                android:id="@+id/projectcreate_position_linearlayout"
+                android:id="@+id/projectmodification_position_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createproject_recruitmentposition_textview">
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_position_textview">
 
                 <Button
-                    android:id="@+id/createproject_developer_Button"
+                    android:id="@+id/projectmodification_developer_Button"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="24dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="개발자"
                     android:textColor="#000000"
@@ -169,7 +168,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
-                    android:id="@+id/createproject_designer_Button"
+                    android:id="@+id/projectmodification_designer_Button"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginLeft="15dp"
@@ -177,10 +176,10 @@
                     android:text="디자이너"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/createproject_developer_Button" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_developer_Button" />
 
                 <Button
-                    android:id="@+id/createproject_planner_Button"
+                    android:id="@+id/projectmodification_planner_Button"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginLeft="15dp"
@@ -188,35 +187,33 @@
                     android:text="기획자"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/createproject_designer_Button" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_designer_Button" />
 
             </LinearLayout>
 
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/projectcreate_tool_constrainlayout"
-                android:layout_height="wrap_content"
+                android:id="@+id/projectmodification_tool_constrainlayout"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/projectcreate_position_linearlayout"
-                >
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_position_linearlayout">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/createproject_projectstack_constraintLayout"
+                    android:id="@+id/projectmodification_projectstack_constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_marginTop="20dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/createproject_developertool_textview"
+                        android:id="@+id/projectmodification_developertool_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -227,197 +224,167 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-
-                    <LinearLayout
-                        android:id="@+id/createproject_projectstack_linearlayout"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/projectmodification_projectstackbutton_constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="8dp"
+
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/createproject_developertool_textview">
+                        app:layout_constraintTop_toBottomOf="@+id/projectmodification_developertool_textview">
 
                         <Button
-                            android:id="@+id/createproject_java_Button"
+                            android:id="@+id/projectmodification_java_Button"
                             android:layout_width="80dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="25dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="JAVA"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
                             android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <Button
-                            android:id="@+id/createproject_cpluse_Button"
+                            android:id="@+id/projectmodification_cpluse_Button"
                             android:layout_width="60dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="C++"
-                            android:textColor="#000000"
+                            android:textAllCaps="false"
+
                             android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_java_Button"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <Button
-                            android:id="@+id/createproject_python_Button"
+                            android:id="@+id/projectmodification_python_Button"
                             android:layout_width="80dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="Python"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
                             android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/createproject_projectstack2_linearlayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/createproject_projectstack_linearlayout">
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_cpluse_Button"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <Button
-                            android:id="@+id/createproject_javascript_Button"
+                            android:id="@+id/projectmodification_javascript_Button"
                             android:layout_width="110dp"
                             android:layout_height="35dp"
-
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="Javascript"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
                             android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_java_Button" />
 
                         <Button
-                            android:id="@+id/createproject_html_css_Button"
-                            android:layout_width="90dp"
-                            android:layout_height="30dp"
-                            android:layout_marginLeft="12dp"
-                            android:background="@drawable/radius_button_effect"
-                            android:text="Html/CSS"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/createproject_projectstack3_linearlayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/createproject_projectstack2_linearlayout">
-
-                        <Button
-                            android:id="@+id/createproject_swift_Button"
-                            android:layout_width="70dp"
-                            android:layout_height="35dp"
-                            android:layout_marginLeft="30dp"
-                            android:background="@drawable/radius_button_effect"
-                            android:text="Swift"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <Button
-                            android:id="@+id/createproject_spring_Button"
-                            android:layout_width="80dp"
-                            android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
-                            android:background="@drawable/radius_button_effect"
-                            android:text="Spring"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <Button
-                            android:id="@+id/createproject_kotlin_Button"
-                            android:layout_width="80dp"
-                            android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
-                            android:background="@drawable/radius_button_effect"
-                            android:text="Kotlin"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/createproject_projectstack4_linearlayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/createproject_projectstack3_linearlayout">
-
-                        <Button
-                            android:id="@+id/createproject_django_Button"
+                            android:id="@+id/projectmodification_django_Button"
                             android:layout_width="90dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="Django"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
                             android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_swift_Button" />
 
                         <Button
-                            android:id="@+id/createproject_reactjs_Button"
+                            android:id="@+id/projectmodification_html_css_Button"
                             android:layout_width="100dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
-                            android:text="React.JS"
+                            android:text="Html/CSS"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
                             android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_javascript_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_cpluse_Button" />
 
                         <Button
-                            android:id="@+id/createproject_flask_Button"
+                            android:id="@+id/projectmodification_swift_Button"
+                            android:layout_width="70dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="14dp"
+                            android:background="@drawable/radius_button_effect"
+                            android:text="Swift"
+                            android:textAllCaps="false"
+                            android:textSize="14dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_javascript_Button" />
+
+                        <Button
+                            android:id="@+id/projectmodification_kotlin_Button"
                             android:layout_width="80dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
+                            android:background="@drawable/radius_button_effect"
+                            android:text="Kotlin"
+                            android:textAllCaps="false"
+                            android:textSize="14dp"
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_spring_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_html_css_Button" />
+
+                        <Button
+                            android:id="@+id/projectmodification_spring_Button"
+                            android:layout_width="80dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
+                            android:background="@drawable/radius_button_effect"
+                            android:text="Spring"
+                            android:textAllCaps="false"
+                            android:textSize="14dp"
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_swift_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_html_css_Button" />
+
+                        <Button
+                            android:id="@+id/projectmodification_flask_Button"
+                            android:layout_width="80dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="FLASK"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_reactjs_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_kotlin_Button" />
+
+                        <Button
+                            android:id="@+id/projectmodification_reactjs_Button"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
+                            android:background="@drawable/radius_button_effect"
+                            android:text="React.JS"
+                            android:textAllCaps="false"
                             android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_django_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_spring_Button" />
 
 
-                    </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/createproject_projectstackdesigner_constraintLayout"
+                    android:id="@+id/projectmodification_projectstackdesigner_constraintLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     android:layout_marginTop="20dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -425,10 +392,10 @@
 
 
                     <TextView
-                        android:id="@+id/createproject_tool_textview"
+                        android:id="@+id/projectmodification_tool_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
+                        android:layout_marginStart="24dp"
                         android:text="디자인 툴"
                         android:textColor="#000000"
                         android:textSize="16dp"
@@ -436,247 +403,206 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <LinearLayout
-                        android:id="@+id/createproject_projectstackdesigner_linearlayout"
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/projectmodification_projectstackdesignerbutton_constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/createproject_tool_textview">
+                        app:layout_constraintTop_toBottomOf="@+id/projectmodification_tool_textview">
 
                         <Button
-                            android:id="@+id/createproject_photoshop_Button"
+                            android:id="@+id/projectmodification_photoshop_Button"
                             android:layout_width="110dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginLeft="25dp"
                             android:background="@drawable/radius_button_effect"
-                            android:text="Photoshop"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
+                            android:text="PhotoShop"
                             android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            android:textAllCaps="false"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <Button
-                            android:id="@+id/createproject_illustrator_Button"
+                            android:id="@+id/projectmodification_illustrator_Button"
                             android:layout_width="110dp"
                             android:layout_height="35dp"
                             android:layout_marginLeft="12dp"
                             android:background="@drawable/radius_button_effect"
-                            android:text="Illustrator"
+                            android:text="Illusrator"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
+
                             android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_photoshop_Button"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/createproject_projectstackdesigner2_linearlayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/createproject_projectstackdesigner_linearlayout">
 
                         <Button
-                            android:id="@+id/createproject_xd_Button"
+                            android:id="@+id/projectmodification_xd_Button"
                             android:layout_width="60dp"
                             android:layout_height="35dp"
-
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="XD"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <Button
-                            android:id="@+id/createproject_figma_Button"
-                            android:layout_width="80dp"
-                            android:layout_height="30dp"
-                            android:layout_marginLeft="12dp"
-                            android:background="@drawable/radius_button_effect"
-                            android:text="Figma"
-                            android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_photoshop_Button" />
 
 
                         <Button
-                            android:id="@+id/createproject_sketch_Button"
+                            android:id="@+id/projectmodification_sketch_Button"
                             android:layout_width="80dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="Sketch"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/createproject_projectstackdesigner3_linearlayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/createproject_projectstackdesigner2_linearlayout">
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_figma_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_illustrator_Button" />
 
                         <Button
-                            android:id="@+id/createproject_principle_Button"
+                            android:id="@+id/projectmodification_figma_Button"
+                            android:layout_width="80dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
+                            android:background="@drawable/radius_button_effect"
+                            android:text="Figma"
+                            android:textAllCaps="false"
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_xd_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_illustrator_Button" />
+
+                        <Button
+                            android:id="@+id/projectmodification_Principle_Button"
                             android:layout_width="100dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="Principle"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_xd_Button" />
 
                         <Button
-                            android:id="@+id/createproject_protopie_Button"
+                            android:id="@+id/projectmodification_protopie_Button"
                             android:layout_width="100dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="Protopie"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_Principle_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_figma_Button" />
 
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/createproject_projectstackdesigner4_linearlayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/createproject_projectstackdesigner3_linearlayout">
 
                         <Button
-                            android:id="@+id/createproject_after_effects_Button"
+                            android:id="@+id/projectmodification_after_effects_Button"
                             android:layout_width="120dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="After Effects"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
                             android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_Principle_Button" />
+
 
                         <Button
-                            android:id="@+id/createproject_premiere_Button"
+                            android:id="@+id/projectmodification_premiere_Button"
                             android:layout_width="110dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="Premiere"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/createproject_projectstackdesigner5_linearlayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/createproject_projectstackdesigner4_linearlayout">
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_after_effects_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_protopie_Button" />
 
                         <Button
-                            android:id="@+id/createproject_indesign_Button"
+                            android:id="@+id/projectmodification_Indesign_Button"
                             android:layout_width="120dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="30dp"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="Indesign"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_after_effects_Button" />
 
                         <Button
-                            android:id="@+id/createproject_c4d_Button"
+                            android:id="@+id/projectmodification_c4d_Button"
                             android:layout_width="70dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="C4D"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_Indesign_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_premiere_Button" />
 
                         <Button
-                            android:id="@+id/createproject_zeplin_Button"
+                            android:id="@+id/projectmodification_Zeplin_Button"
                             android:layout_width="80dp"
                             android:layout_height="35dp"
-                            android:layout_marginLeft="12dp"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginTop="14dp"
                             android:background="@drawable/radius_button_effect"
                             android:text="Zeplin"
                             android:textAllCaps="false"
-                            android:textColor="#000000"
-                            android:textSize="14dp"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toEndOf="@+id/projectmodification_c4d_Button"
+                            app:layout_constraintTop_toBottomOf="@+id/projectmodification_premiere_Button" />
 
-                    </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <TextView
-                android:id="@+id/createproject_projectway_textview"
+                android:id="@+id/projectmodification_projectway_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
                 android:text="프로젝트 방식"
                 android:textColor="#000000"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/projectcreate_tool_constrainlayout"
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_tool_constrainlayout"
                 tools:ignore="MissingConstraints" />
 
 
             <LinearLayout
-                android:id="@+id/projectcreate_projectonoff_linearlayout"
+                android:id="@+id/projectmodification_projectonoff_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createproject_projectway_textview">
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_projectway_textview">
 
                 <Button
-                    android:id="@+id/projectcreate_offproject_button"
+                    android:id="@+id/projectmodification_offline_button"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="24dp"
                     android:background="@drawable/radius_button_effect"
                     android:text="오프라인"
                     android:textAllCaps="false"
@@ -685,7 +611,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
-                    android:id="@+id/projectcreate_onproject_button"
+                    android:id="@+id/projectmodification_online_button"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginStart="15dp"
@@ -694,14 +620,14 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/projectcreate_offproject_button" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_offline_button" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/createproject_regions_textview"
+                android:id="@+id/projectmodification_regions_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
                 android:text="지역"
                 android:textColor="#000000"
@@ -709,33 +635,34 @@
                 android:textStyle="bold"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/projectcreate_projectonoff_linearlayout"
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_projectonoff_linearlayout"
                 tools:ignore="MissingConstraints" />
 
 
             <LinearLayout
-                android:id="@+id/projectcreate_regions_linearlayout"
+                android:id="@+id/projectmodification_regions_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createproject_regions_textview">
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_regions_textview">
 
 
                 <com.skydoves.powerspinner.PowerSpinnerView
-                    android:id="@+id/createproject_regions_spinner"
+                    android:id="@+id/projectmodification_regions_spinner"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="24dp"
                     android:background="@drawable/radius_button_effect"
                     android:padding="10dp"
                     android:text="지역을 선택해주세요"
                     android:textColor="#000000"
                     android:textSize="14dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/projectcreate_regions_linearlayout"
+                    app:layout_constraintTop_toBottomOf="@+id/projectmodification_regions_linearlayout"
                     app:spinner_arrow_gravity="end"
                     app:spinner_arrow_padding="8dp"
                     app:spinner_arrow_show="true"
@@ -748,8 +675,9 @@
 
             </LinearLayout>
 
+
             <TextView
-                android:id="@+id/createproject_projectestimatedtime_textview"
+                android:id="@+id/projectmodification_projectestimatedtime_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -759,21 +687,21 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/projectcreate_regions_linearlayout"
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_regions_linearlayout"
                 tools:ignore="MissingConstraints" />
 
             <LinearLayout
-                android:id="@+id/projectcreate_month_linearlayout"
+                android:id="@+id/projectmodification_month_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createproject_projectestimatedtime_textview">
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_projectestimatedtime_textview">
 
                 <Button
-                    android:id="@+id/projectcreate_month_button"
+                    android:id="@+id/projectmodification_month_button"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginStart="40dp"
@@ -785,7 +713,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
-                    android:id="@+id/projectcreate_month2_button"
+                    android:id="@+id/projectmodification_month2_button"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginStart="15dp"
@@ -794,10 +722,10 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/projectcreate_month_button" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_month_button" />
 
                 <Button
-                    android:id="@+id/projectcreate_month3_button"
+                    android:id="@+id/projectmodification_month3_button"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginStart="15dp"
@@ -806,11 +734,11 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/projectcreate_month2_button" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_month2_button" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/createproject_field_textview"
+                android:id="@+id/projectmodification_field_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -820,22 +748,21 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/projectcreate_month_linearlayout"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_month_linearlayout" />
 
             <LinearLayout
-                android:id="@+id/projectcreate_field_linearlayout"
+                android:id="@+id/projectmodification_field_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/createproject_field_textview">
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_field_textview">
 
 
                 <Button
-                    android:id="@+id/create_field_it_textview"
+                    android:id="@+id/projectmodification_selfdeveploer_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginStart="40dp"
@@ -847,7 +774,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
-                    android:id="@+id/create_hobby_textview"
+                    android:id="@+id/projectmodification_hobby_textview"
                     android:layout_width="50dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="10dp"
@@ -856,10 +783,10 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/create_field_it_textview" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_field_it_textview" />
 
                 <Button
-                    android:id="@+id/create_economy_textview"
+                    android:id="@+id/projectmodification_economy_textview"
                     android:layout_width="50dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="10dp"
@@ -868,10 +795,10 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/create_art_textview" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_art_textview" />
 
                 <Button
-                    android:id="@+id/create_cook_textview"
+                    android:id="@+id/projectmodification_cook_textview"
                     android:layout_width="50dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="10dp"
@@ -880,21 +807,21 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/create_cook_textview" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_cook_textview" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/projectcreate_field2_linearlayout"
+                android:id="@+id/projectmodification_field2_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/projectcreate_field_linearlayout">
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_field_linearlayout">
 
                 <Button
-                    android:id="@+id/create_it_textview"
+                    android:id="@+id/projectmodification_it_textview"
                     android:layout_width="40dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="40dp"
@@ -906,7 +833,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
-                    android:id="@+id/create_rest_textview"
+                    android:id="@+id/projectmodification_rest_textview"
                     android:layout_width="80dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="10dp"
@@ -915,10 +842,10 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/create_hobby_textview" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_hobby_textview" />
 
                 <Button
-                    android:id="@+id/create_health_textview"
+                    android:id="@+id/projectmodification_health_textview"
                     android:layout_width="50dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="10dp"
@@ -927,10 +854,10 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/create_rest_textview" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_rest_textview" />
 
                 <Button
-                    android:id="@+id/create_holiday_textview"
+                    android:id="@+id/projectmodification_holiday_textview"
                     android:layout_width="50dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="10dp"
@@ -939,12 +866,14 @@
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     android:textSize="14dp"
-                    app:layout_constraintStart_toEndOf="@+id/create_etc_textview" />
+                    app:layout_constraintStart_toEndOf="@+id/projectmodification_etc_textview" />
 
             </LinearLayout>
 
+
+
             <Button
-                android:id="@+id/createproject_writerecruitment_button"
+                android:id="@+id/projectmodification_writerecruitment_button"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -960,22 +889,22 @@
                 app:layout_constraintHorizontal_bias="0.666"
                 app:layout_constraintStart_toStartOf="parent"
 
-                app:layout_constraintTop_toBottomOf="@+id/projectcreate_field2_linearlayout"
+                app:layout_constraintTop_toBottomOf="@+id/projectmodification_field2_linearlayout"
                 app:layout_constraintVertical_bias="1.0" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <!-- 2 page -->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/projectcreate_write_recruitment_article2_constraintlayout"
+            android:id="@+id/projectmodification_write_recruitment_article2_constraintlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/projectcreate_title_constraintlayout">
+            app:layout_constraintTop_toBottomOf="@+id/projectmodification_title_constraintlayout">
 
 
             <LinearLayout
@@ -989,7 +918,7 @@
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/createproject_projecttitle_textview"
+                    android:id="@+id/projectmodification_projecttitle_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -1003,7 +932,7 @@
 
 
                 <EditText
-                    android:id="@+id/createproject_projecttitle_edittext"
+                    android:id="@+id/projectmodification_projecttitle_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginStart="30dp"
@@ -1021,7 +950,7 @@
                     android:textSize="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/createproject_projecttitle_textview" />
+                    app:layout_constraintTop_toBottomOf="@+id/projectmodification_projecttitle_textview" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -1032,7 +961,7 @@
 
 
                 <TextView
-                    android:id="@+id/createproject_projectdetail_textview"
+                    android:id="@+id/projectmodification_projectdetail_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -1042,11 +971,11 @@
                     android:textSize="16dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/createproject_projecttitle_edittext"
+                    app:layout_constraintTop_toBottomOf="@+id/projectmodification_projecttitle_edittext"
                     tools:ignore="MissingConstraints" />
 
                 <EditText
-                    android:id="@+id/createproject_projectdetail_edittext"
+                    android:id="@+id/projectmodification_projectdetail_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="358dp"
                     android:layout_gravity="center"
@@ -1064,10 +993,10 @@
                     android:textSize="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/createproject_projectdetail_textview" />
+                    app:layout_constraintTop_toBottomOf="@+id/projectmodification_projectdetail_textview" />
 
                 <Button
-                    android:id="@+id/createproject_submitrecruitment_button"
+                    android:id="@+id/projectmodification_submitrecruitment_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -1076,7 +1005,7 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/project_recruitment_button"
-                    android:text="게시물 등록"
+                    android:text="게시물 수정"
                     android:textColor="#FFFFFF"
                     android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -1089,8 +1018,5 @@
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.core.widget.NestedScrollView>
