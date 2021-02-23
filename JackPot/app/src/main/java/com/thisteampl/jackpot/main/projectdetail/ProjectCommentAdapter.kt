@@ -54,7 +54,7 @@ class ProjectCommentAdapter(var items: MutableList<ProjectDetailComment> = mutab
                 holder_project_detail_comment_date_text.text = item.date
                 holder_project_detail_comment_name_text.text = "비공개 댓글입니다"
                 holder_project_detail_comment_position_text.visibility = View.GONE
-                holder_project_detail_comment_text.visibility = View.GONE
+                holder_project_detail_comment_text.text = ""
             } else {
                 when (item.position) {
                     "개발자" -> {

@@ -268,6 +268,7 @@ class ProfileActivity: AppCompatActivity() {
                                 layoutParams.setMargins(0, 0, 20, 0)
                                 val textView = TextView(baseContext)
                                 textView.text = i
+                                textView.typeface = resources.getFont(R.font.roboto_font)
                                 textView.setPadding(40, 10, 40, 10)
                                 textView.layoutParams = layoutParams
 

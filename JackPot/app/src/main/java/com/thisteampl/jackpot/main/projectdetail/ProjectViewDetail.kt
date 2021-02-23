@@ -1,6 +1,7 @@
 package com.thisteampl.jackpot.main.projectdetail
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
@@ -232,6 +234,7 @@ class ProjectViewDetail : AppCompatActivity() {
                 Log.e("tag ", "onFailure" + t.localizedMessage)
             }
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(
                 call: Call<CheckProject>,
                 response: Response<CheckProject>
@@ -278,6 +281,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         layoutParams.setMargins(0, 0, 20, 0)
                         val textView = TextView(baseContext)
                         textView.text = i
+                        textView.typeface = resources.getFont(R.font.roboto_font)
                         textView.setPadding(40, 10, 40, 10)
                         textView.layoutParams = layoutParams
 
@@ -299,6 +303,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         layoutParams.setMargins(0, 0, 20, 0)
                         val textView = TextView(baseContext)
                         textView.text = i
+                        textView.typeface = resources.getFont(R.font.roboto_font)
                         textView.setPadding(40, 10, 40, 10)
                         textView.layoutParams = layoutParams
 
@@ -318,6 +323,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         val textView = TextView(baseContext)
                         textView.text = i.emoticon
                         textView.gravity = Gravity.CENTER
+                        textView.typeface = resources.getFont(R.font.roboto_font)
                         //textView.setPadding(20, 20, 20, 20)
                         textView.layoutParams = layoutParams
 
