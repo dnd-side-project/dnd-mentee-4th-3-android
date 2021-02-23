@@ -47,7 +47,6 @@ class ProjectCommentAdapter(var items: MutableList<ProjectDetailComment> = mutab
         val item = items[position]
 
         with(holder.itemView) {
-            Log.e("tag ", item.isOwner.toString() + ", " + item.watcherName)
             //댓글이 비공개일 경우 - 보는사람이 글쓴이가 아니고, 보는 사람 이름과 쓴 사람 이름이 같지 않다면 비공개
             if(!item.privacy && !item.isOwner && item.name != item.watcherName) {
                 holder_project_detail_comment_position_background.visibility = View.GONE

@@ -57,8 +57,6 @@ class ProjectViewDetail : AppCompatActivity() {
         project_detail_comment_recyclerview.adapter = mPrjCommentAdapter
         project_detail_comment_recyclerview.layoutManager = LinearLayoutManager(this)
 
-        getProject(projectID)
-
         setSupportActionBar(project_detail_toolbar) // 기본액션바로 지정
         supportActionBar?.setDisplayShowTitleEnabled(false) // 제목 없애기
     }
@@ -76,6 +74,8 @@ class ProjectViewDetail : AppCompatActivity() {
             project_detail_project_scrap_button.visibility = View.GONE
             project_detail_project_register_button.visibility = View.GONE
             project_detail_watch_applicant_button.visibility = View.VISIBLE
+        } else {
+            mMenu?.findItem(R.id.project_detail_menu)?.isVisible = false
         }
 
         project_detail_back_button.setOnClickListener { super.onBackPressed() }
@@ -113,11 +113,62 @@ class ProjectViewDetail : AppCompatActivity() {
                 })
             }
         }
+
+        //프로젝트 스크랩 버튼
+        project_detail_project_scrap_button.setOnClickListener {
+            projectApi?.getProjectScrap(projectID.toLong())?.enqueue(object : Callback<CheckResponse> {
+                override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure" + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckResponse>,
+                    response: Response<CheckResponse>
+                ) {
+                    if(response.code().toString() == "200") {
+                        Toast.makeText(baseContext, "프로젝트 스크랩이 완료됐습니다.\n마이 페이지에서 확인하실 수 있습니다.", Toast.LENGTH_SHORT)
+                            .show()
+                        finish()
+                        val intent = Intent(baseContext, ProjectViewDetail::class.java).putExtra("id", projectID.toLong())
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    } else {
+                        Toast.makeText(baseContext, "스크랩에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            })
+        }
+
+        //프로젝트 참가신청 버튼
+        project_detail_project_scrap_button.setOnClickListener {
+            projectApi?.getProjectParticipant(projectID.toLong())?.enqueue(object : Callback<CheckResponse> {
+                override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure" + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckResponse>,
+                    response: Response<CheckResponse>
+                ) {
+                    if(response.code().toString() == "200") {
+                        Toast.makeText(baseContext, "프로젝트 참가신청이 완료됐습니다.\n마이 페이지에서 확인하실 수 있습니다.", Toast.LENGTH_SHORT)
+                            .show()
+                        finish()
+                        val intent = Intent(baseContext, ProjectViewDetail::class.java).putExtra("id", projectID.toLong())
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    } else {
+                        Toast.makeText(baseContext, "프로젝트 참가신청에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            })
+        }
     }
 
     //내 프로젝트일 경우 메뉴바 생성
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if(!checkMyProject) {return false}
         val inflater = menuInflater
         inflater.inflate(R.menu.project_menu, menu)
         mMenu = menu
@@ -126,7 +177,6 @@ class ProjectViewDetail : AppCompatActivity() {
 
     // 메뉴바 선택시
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(!checkMyProject) {return false}
         when(item.itemId) {
             R.id.project_detail_menu -> {
                 //누를 때 프로젝트가 어떤 상태인지에 따라 나오는 버튼이 달라짐
@@ -361,9 +411,11 @@ class ProjectViewDetail : AppCompatActivity() {
                                     break
                                 }
                             }
+                            getProject(projectID)
                     }
-                        response.code().toString() == "401" -> {
+                        else -> {
                             GlobalApplication.prefs.setString("token", "NO_TOKEN")
+                            getProject(projectID)
                         }
                     }
                 }
