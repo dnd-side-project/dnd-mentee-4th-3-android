@@ -3,6 +3,8 @@ package com.thisteampl.jackpot.main.userController
 import com.google.gson.annotations.SerializedName
 
 class UserProfile (
+    @SerializedName("id")
+    var id : String,
     @SerializedName("career")
     var career : String,
     @SerializedName("emoticon")

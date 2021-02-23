@@ -51,6 +51,9 @@ interface projectAPI {
     @POST("/participant/{projectid}")
     fun getProjectParticipant(@Path("projectid") id: Long) : Call<CheckResponse>
 
+    @DELETE("/participant/{projectid}")
+    fun deleteProjectParticipant(@Path("projectid") id: Long) : Call<CheckResponse>
+
     @POST("/participant/accept")
     fun getProjectAccept(@Body accept : ParticipantAccept) : Call<CheckResponse>
 

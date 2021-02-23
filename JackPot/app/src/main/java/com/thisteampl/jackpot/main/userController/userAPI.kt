@@ -42,6 +42,11 @@ interface userAPI {
     @DELETE("/withdraw")
     fun getWithDraw() : Call<CheckResponse>
 
+    @PUT("/update-push")
+    fun getUpdatePush(@Body pushSet : PushEdit) : Call<CheckResponse>
+
+    @GET("/myprojectscrap")
+    fun getMyScrapUsers() : Call<CheckProfile>
 
     //필터 컨트롤 getUsers
     @POST("/api/filters/users")

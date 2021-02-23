@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -14,6 +15,7 @@ import android.webkit.URLUtil
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
@@ -33,6 +35,8 @@ class ProfileActivity: AppCompatActivity() {
     private val userApi = userAPI.create()
     lateinit var userprofile : MyProfile
     lateinit var updateprofile : MyProfileEdit
+    private var alredyScrap = false
+    private var userId = 0
     private var mMenu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,8 +57,8 @@ class ProfileActivity: AppCompatActivity() {
             getProfile()
             profile_memberscrap_button.visibility = View.GONE
         } else {
-            var userId = intent.getLongExtra("id", -1)
-            getUserProfile(userId)
+            userId = intent.getLongExtra("id", -1).toInt()
+            getUserProfile(userId.toLong())
         }
 
         profile_back_button.setOnClickListener { super.onBackPressed() }
@@ -205,6 +209,7 @@ class ProfileActivity: AppCompatActivity() {
                     Log.e("tag ", "onFailure, " + t.localizedMessage)
                 }
 
+                @RequiresApi(Build.VERSION_CODES.O)
                 override fun onResponse(
                     call: Call<CheckMyProfile>,
                     response: Response<CheckMyProfile>
@@ -313,6 +318,7 @@ class ProfileActivity: AppCompatActivity() {
                     Log.e("tag ", "onFailure, " + t.localizedMessage)
                 }
 
+                @RequiresApi(Build.VERSION_CODES.O)
                 override fun onResponse(
                     call: Call<CheckProfile>,
                     response: Response<CheckProfile>
@@ -390,6 +396,7 @@ class ProfileActivity: AppCompatActivity() {
                                 layoutParams.setMargins(0, 0, 20, 0)
                                 val textView = TextView(baseContext)
                                 textView.text = i
+                                textView.typeface = resources.getFont(R.font.roboto_font)
                                 textView.setPadding(40, 10, 40, 10)
                                 textView.layoutParams = layoutParams
 
@@ -456,6 +463,30 @@ class ProfileActivity: AppCompatActivity() {
                                 baseContext, "에러가 발생했습니다. 에러코드 : " + response.code()
                                 , Toast.LENGTH_SHORT
                             ).show()
+                        }
+                    }
+                }
+            })
+    }
+
+    //이 유저를 이미 스크랩 했는지 확인한다.
+    private fun checkUserScrap(id: Long){
+        userApi?.getMyScrapUsers()?.enqueue(
+            object : Callback<CheckProfile> {
+                override fun onFailure(call: Call<CheckProfile>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckProfile>,
+                    response: Response<CheckProfile>
+                ) {
+                    when {
+                        response.code().toString() == "200" -> {
+                        }
+                        response.code().toString() == "401" -> {
+                            GlobalApplication.prefs.setString("token", "NO_TOKEN")
                         }
                     }
                 }

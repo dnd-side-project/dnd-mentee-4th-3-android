@@ -49,7 +49,7 @@ class ProjectCommentAdapter(var items: MutableList<ProjectDetailComment> = mutab
         with(holder.itemView) {
             //댓글이 비공개일 경우 - 보는사람이 글쓴이가 아니고, 보는 사람 이름과 쓴 사람 이름이 같지 않다면 비공개
             if(!item.privacy && !item.isOwner && item.name != item.watcherName) {
-                holder_project_detail_comment_position_background.setImageResource(R.drawable.circle_hide)
+                holder_project_detail_comment_position_background.setImageResource(R.drawable.background_hide)
                 holder_project_detail_comment_icon_text.text = "🔒"
                 holder_project_detail_comment_date_text.text = item.date
                 holder_project_detail_comment_name_text.text = "비공개 댓글입니다"
