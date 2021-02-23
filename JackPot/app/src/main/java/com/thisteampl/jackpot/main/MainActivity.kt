@@ -218,7 +218,8 @@ class MainActivity : AppCompatActivity() {
                             recentlyregister.connectprojectbackend(recentlylist)
                         }
                         Log.d("tag","Main에서 recentlyregister 호출")
-                        supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister).commit()
+                        supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister)
+                            .commitAllowingStateLoss()
 
                     }else{
                         Log.e("tag","Main에서 ${response.message()}")

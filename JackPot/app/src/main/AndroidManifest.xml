@@ -51,6 +51,9 @@
             android:name=".main.userpage.ProfileActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".main.setting.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".main.userpage.ProfileChangePasswordActivity"
             android:screenOrientation="portrait" />
         <activity
