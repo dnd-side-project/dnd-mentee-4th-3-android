@@ -82,10 +82,18 @@ class ProjectRequestAdapter(var items: MutableList<ProjectRequestMember> = mutab
                         response: Response<CheckResponse>
                     ) {
                         if(response.code().toString() == "200") {
-
-                            val intent = Intent(context, ProjectRequestActivity::class.java)
+                            Toast.makeText(
+                                context,
+                                item.name + "님이 프로젝트에 추가됐습니다!",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            val intent1 = Intent(context, ProjectViewDetail::class.java)
                                 .putExtra("id", item.projectId)
-                            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            context.startActivity(intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            val intent2 = Intent(context, ProjectRequestActivity::class.java)
+                                .putExtra("id", item.projectId)
+                            context.startActivity(intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         } else {
                             Toast.makeText(
                                 context,
