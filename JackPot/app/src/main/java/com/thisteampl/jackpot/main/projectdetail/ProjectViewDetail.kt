@@ -1,6 +1,7 @@
 package com.thisteampl.jackpot.main.projectdetail
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,10 +13,12 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
+import com.thisteampl.jackpot.main.MainActivity
 import com.thisteampl.jackpot.main.projectController.CheckProject
 import com.thisteampl.jackpot.main.projectController.PostComment
 import com.thisteampl.jackpot.main.projectController.ProjectModification
@@ -37,12 +40,15 @@ class ProjectViewDetail : AppCompatActivity() {
 
 
     private val projectApi = projectAPI.create()
-    private var projectID = 0
+    private var projectID = 0 // 프로젝트 게시물의 id
     private val userApi = userAPI.create()
-    private var checkMyProject = false
-    private var watcherName = "NO_NAME_NEED_INITIALIZE"
+    private var checkMyProject = false // 나의 프로젝트인지 확인
+    private var watcherName = "NO_NAME_NEED_INITIALIZE" // 보는 사람의 닉네임
     lateinit var mPrjCommentAdapter: ProjectCommentAdapter
     private var mMenu: Menu? = null
+    private var checkAlreadyScrap = false // 이미 스크랩 했는지
+    private var checkAlreadyParticipantRequest = false // 이미 참여한적 있는지
+    private var checkAlreadyParticipant = false // 이미 참여하고 있는지
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMyProject() // 내 프로젝트인지 확인
@@ -62,8 +68,6 @@ class ProjectViewDetail : AppCompatActivity() {
         project_detail_comment_recyclerview.adapter = mPrjCommentAdapter
         project_detail_comment_recyclerview.layoutManager = LinearLayoutManager(this)
 
-        getProject(projectID)
-
         setSupportActionBar(project_detail_toolbar) // 기본액션바로 지정
         supportActionBar?.setDisplayShowTitleEnabled(false) // 제목 없애기
     }
@@ -75,12 +79,23 @@ class ProjectViewDetail : AppCompatActivity() {
             project_detail_comment_edittext.isEnabled = false
             project_detail_project_scrap_button.isEnabled = false
             project_detail_project_register_button.isEnabled = false
+            project_detail_project_scrap_button.alpha = 0.5f
+            project_detail_project_register_button.alpha = 0.5f
         }
 
+        //이미 참여했다면 참여버튼 숨김
+        if(checkAlreadyParticipant) {
+            project_detail_project_scrap_button.visibility = View.GONE
+            project_detail_project_register_button.visibility = View.GONE
+        }
+
+        //내 프로젝트라면 신청자 보기 버튼
         if(checkMyProject) {
             project_detail_project_scrap_button.visibility = View.GONE
             project_detail_project_register_button.visibility = View.GONE
             project_detail_watch_applicant_button.visibility = View.VISIBLE
+        } else {
+            mMenu?.findItem(R.id.project_detail_menu)?.isVisible = false
         }
 
         project_detail_back_button.setOnClickListener { super.onBackPressed() }
@@ -111,18 +126,34 @@ class ProjectViewDetail : AppCompatActivity() {
                             val intent = Intent(baseContext, ProjectViewDetail::class.java).putExtra("id", projectID.toLong())
                             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         } else {
-                            Toast.makeText(baseContext, "댓글 작성에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                            Toast.makeText(baseContext, "댓글 작성에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
+                                ?.message, Toast.LENGTH_SHORT)
                                 .show()
                         }
                     }
                 })
             }
         }
+
+        //프로젝트 스크랩 버튼
+        project_detail_project_scrap_button.setOnClickListener {
+            scrap(checkAlreadyScrap)
+        }
+
+        //프로젝트 참가신청 버튼
+        project_detail_project_register_button.setOnClickListener {
+            participant(checkAlreadyParticipantRequest)
+        }
+
+        //신청자 보기 버튼
+        project_detail_watch_applicant_button.setOnClickListener {
+            val intent = Intent(baseContext, ProjectRequestActivity::class.java).putExtra("id", projectID.toLong())
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+        }
     }
 
     //내 프로젝트일 경우 메뉴바 생성
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if(!checkMyProject) {return false}
         val inflater = menuInflater
         inflater.inflate(R.menu.project_menu, menu)
         mMenu = menu
@@ -131,7 +162,6 @@ class ProjectViewDetail : AppCompatActivity() {
 
     // 메뉴바 선택시
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(!checkMyProject) {return false}
         when(item.itemId) {
             R.id.project_detail_menu -> {
                 //누를 때 프로젝트가 어떤 상태인지에 따라 나오는 버튼이 달라짐
@@ -188,6 +218,7 @@ class ProjectViewDetail : AppCompatActivity() {
                 Log.e("tag ", "onFailure" + t.localizedMessage)
             }
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(
                 call: Call<CheckProject>,
                 response: Response<CheckProject>
@@ -234,6 +265,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         layoutParams.setMargins(0, 0, 20, 0)
                         val textView = TextView(baseContext)
                         textView.text = i
+                        textView.typeface = resources.getFont(R.font.roboto_font)
                         textView.setPadding(40, 10, 40, 10)
                         textView.layoutParams = layoutParams
 
@@ -255,6 +287,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         layoutParams.setMargins(0, 0, 20, 0)
                         val textView = TextView(baseContext)
                         textView.text = i
+                        textView.typeface = resources.getFont(R.font.roboto_font)
                         textView.setPadding(40, 10, 40, 10)
                         textView.layoutParams = layoutParams
 
@@ -269,15 +302,16 @@ class ProjectViewDetail : AppCompatActivity() {
 
                     //유저 동적 추가 직군에 따라 들어가는 그림 다르게하기 추후에 배경 크기 수정
                     for(i in response.body()?.result!!.participants) {
-                        var layoutParams = LinearLayout.LayoutParams(135, 135)
+                        var layoutParams = LinearLayout.LayoutParams(180, 180)
                         layoutParams.setMargins(0, 0, 20, 0)
                         val textView = TextView(baseContext)
                         textView.text = i.emoticon
                         textView.gravity = Gravity.CENTER
+                        textView.typeface = resources.getFont(R.font.roboto_font)
                         //textView.setPadding(20, 20, 20, 20)
                         textView.layoutParams = layoutParams
 
-                        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 21F)
+                        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 23F)
                         textView.setTextColor(ContextCompat.getColor(baseContext, R.color.colorBlack))
 
                         when (i.position) {
@@ -338,15 +372,18 @@ class ProjectViewDetail : AppCompatActivity() {
                     Toast.makeText(baseContext, "게시물이 삭제되었습니다.", Toast.LENGTH_SHORT)
                         .show()
                     finish()
+                    val intent = Intent(baseContext, MainActivity::class.java)
+                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 } else {
-                    Toast.makeText(baseContext, "게시물 삭제에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(baseContext, "게시물 삭제에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()?.message, Toast.LENGTH_SHORT)
                     .show()
                 }
             }
         })
     }
 
-    //내 프로젝트 인지 확인.
+    //내 프로젝트 인지 확인. 그리고 유저의 이름을 받아서 전역변수에 넣어둔다. 
+    // 그리고 이미 스크랩된 프로젝트인지, 참여신청했는지도 확인.
     private fun isMyProject() {
         userApi?.getProfile()?.enqueue(
             object : Callback<CheckMyProfile> {
@@ -368,9 +405,32 @@ class ProjectViewDetail : AppCompatActivity() {
                                     break
                                 }
                             }
+
+                            for(i in response.body()?.result!!.scrapProjects) {
+                                if(i.id == projectID.toLong()) {
+                                    checkAlreadyScrap = true
+                                    break
+                                }
+                            }
+
+                            for(i in response.body()?.result!!.participantRequest) {
+                                if(i.id == projectID.toLong()) {
+                                    checkAlreadyParticipantRequest = true
+                                    break
+                                }
+                            }
+
+                            for(i in response.body()?.result!!.participantProject) {
+                                if(i.id == projectID.toLong()) {
+                                    checkAlreadyParticipant = true
+                                    break
+                                }
+                            }
+                            getProject(projectID)
                     }
-                        response.code().toString() == "401" -> {
+                        else -> {
                             GlobalApplication.prefs.setString("token", "NO_TOKEN")
+                            getProject(projectID)
                         }
                     }
                 }
@@ -423,10 +483,172 @@ class ProjectViewDetail : AppCompatActivity() {
                     val intent = Intent(baseContext, ProjectViewDetail::class.java).putExtra("id", projectID.toLong())
                     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 } else {
-                    Toast.makeText(baseContext, "프로젝트 상태 변경에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body().toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(baseContext, "프로젝트 상태 변경에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()?.message, Toast.LENGTH_SHORT)
                         .show()
                 }
             }
         })
+    }
+
+    private fun participant(alreadyParticipant : Boolean) {
+
+        // 이미 참가신청 했다면 취소한다.
+        if(alreadyParticipant) {
+            projectApi?.deleteProjectParticipant(projectID.toLong())
+                ?.enqueue(object : Callback<CheckResponse> {
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure" + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        if (response.code().toString() == "200") {
+                            Toast.makeText(
+                                baseContext,
+                                "프로젝트 참가신청이 취소됐습니다.",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            finish()
+                            val intent =
+                                Intent(baseContext, ProjectViewDetail::class.java).putExtra(
+                                    "id",
+                                    projectID.toLong()
+                                )
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        } else {
+                            Toast.makeText(
+                                baseContext,
+                                "프로젝트 참가신청 취소에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()?.message,
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    }
+                })
+            //신청한적 없다면 참가신청한다.
+        }else {
+            projectApi?.getProjectParticipant(projectID.toLong())
+                ?.enqueue(object : Callback<CheckResponse> {
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure" + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        if (response.code().toString() == "200") {
+                            Toast.makeText(
+                                baseContext,
+                                "프로젝트 참가신청이 완료됐습니다.\n마이 페이지에서 확인하실 수 있습니다.",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            finish()
+                            val intent =
+                                Intent(baseContext, ProjectViewDetail::class.java).putExtra(
+                                    "id",
+                                    projectID.toLong()
+                                )
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        } else {
+                            Toast.makeText(
+                                baseContext,
+                                "프로젝트 참가신청에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
+                                    ?.message,
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    }
+                })
+        }
+    }
+
+    private fun scrap(alreadyScrap : Boolean){
+
+        //스크랩 했다면 스크랩 취소한다.
+        if(alreadyScrap) {
+            projectApi?.deleteProjectScrap(projectID.toLong())
+            ?.enqueue(object : Callback<CheckResponse> {
+                override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure" + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckResponse>,
+                    response: Response<CheckResponse>
+                ) {
+                    if (response.code().toString() == "200") {
+                        Toast.makeText(
+                            baseContext,
+                            "프로젝트 스크랩이 취소됐습니다.",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                        finish()
+                        val intent =
+                            Intent(baseContext, ProjectViewDetail::class.java).putExtra(
+                                "id",
+                                projectID.toLong()
+                            )
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    } else {
+                        Toast.makeText(
+                            baseContext,
+                            "스크랩 취소에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
+                                ?.message,
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                }
+            })
+
+            //스크랩 한적 없다면 스크랩한다.
+        }else {
+            projectApi?.getProjectScrap(projectID.toLong())
+                ?.enqueue(object : Callback<CheckResponse> {
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure" + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        if (response.code().toString() == "200") {
+                            Toast.makeText(
+                                baseContext,
+                                "프로젝트 스크랩이 완료됐습니다.\n마이 페이지에서 확인하실 수 있습니다.",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                            finish()
+                            val intent =
+                                Intent(baseContext, ProjectViewDetail::class.java).putExtra(
+                                    "id",
+                                    projectID.toLong()
+                                )
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        } else {
+                            Toast.makeText(
+                                baseContext,
+                                "스크랩에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
+                                    ?.message,
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    }
+                })
+        }
     }
 }

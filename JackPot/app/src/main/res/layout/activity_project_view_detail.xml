@@ -152,24 +152,21 @@
                     android:layout_height="33dp"
                     android:layout_marginRight="10dp"
                     android:textSize="11dp"
-                    android:textColor="@color/colorBlack"
                     android:background="@drawable/button_register_project"/>
 
                 <Button
                     android:id="@+id/project_detail_project_scrap_button"
-                    android:layout_width="140dp"
+                    android:layout_width="126dp"
                     android:layout_height="33dp"
                     android:textSize="11dp"
-                    android:textColor="@color/colorBlack"
                     android:background="@drawable/button_scrap_project"/>
 
                 <Button
                     android:id="@+id/project_detail_watch_applicant_button"
-                    android:layout_width="140dp"
+                    android:layout_width="139dp"
                     android:layout_height="33dp"
                     android:textSize="11dp"
                     android:visibility="gone"
-                    android:textColor="@color/colorBlack"
                     android:background="@drawable/button_watch_applicant_project"/>
 
             </LinearLayout>
@@ -338,7 +335,6 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/radius_background_transparent"
                 android:padding="10dp"
                 android:text="프로젝트 소개"
                 android:textColor="@color/colorBlack"
@@ -382,7 +378,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center_horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -396,6 +392,7 @@
                     android:layout_weight="3"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/square_background_transparent"
                     android:hint="궁금한 점이 있으면 물어보세요"
                     android:padding="10dp"

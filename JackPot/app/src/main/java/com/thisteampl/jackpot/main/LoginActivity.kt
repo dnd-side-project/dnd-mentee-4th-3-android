@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -122,7 +123,9 @@ class LoginActivity : AppCompatActivity() {
     // 화면이 구성되고 View를 만들어 준다.
     private fun setupView(){
         var page = 0 // 이메일 관련 페이지, 0은 이메일 로그인 1은 비밀번호 찾기(이메일 인증), 2는 비밀번호 변경
-        
+
+        login_password_text.typeface = ResourcesCompat.getFont(this, R.font.roboto_regular)
+
         //뷰들에 애니메이션을 적용해준다
         for (i in 0 until login_total_layout.childCount) {
             val child: View = login_total_layout.getChildAt(i)

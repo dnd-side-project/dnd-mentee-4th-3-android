@@ -41,13 +41,25 @@ interface projectAPI {
     @DELETE("/comment/delete/{id}")
     fun deleteComment(@Path("id") id: Long) : Call<CheckResponse>
 
+
     @PUT("/api/projects/modify/{id}")
     fun getProjectModify(@Path("id") id: Long, @Body modifyDto:ProjectCreationElement):Call<CheckResponse>
 
+
     @POST("/scrap/{projectindex}")
-    fun getProjectScrap(@Query("id") id: Long): Call<CheckResponse>
+    fun getProjectScrap(@Path("projectindex") id: Long) : Call<CheckResponse>
 
     @DELETE("/scrap/{projectindex}")
-    fun deleteProjectScrap(@Query("id")id:Long):Call<CheckResponse>
+    fun deleteProjectScrap(@Path("projectindex") id: Long) : Call<CheckResponse>
+
+    @POST("/participant/{projectid}")
+    fun getProjectParticipant(@Path("projectid") id: Long) : Call<CheckResponse>
+
+    @DELETE("/participant/{projectid}")
+    fun deleteProjectParticipant(@Path("projectid") id: Long) : Call<CheckResponse>
+
+    @POST("/participant/accept")
+    fun getProjectAccept(@Body accept : ParticipantAccept) : Call<CheckResponse>
+
 
 }

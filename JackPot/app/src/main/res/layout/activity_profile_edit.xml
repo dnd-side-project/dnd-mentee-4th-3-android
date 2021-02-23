@@ -160,6 +160,7 @@
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:text="중복확인"
+                android:textSize="10dp"
                 android:textColor="@color/colorWhite"
                 android:background="@drawable/radius_background_purple" />
 

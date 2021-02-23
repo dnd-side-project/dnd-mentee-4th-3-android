@@ -344,23 +344,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mypage_myscrapcomment_recyclerview"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="55dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mypage_myscrapcomment_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mypage_myscrapmember_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        </LinearLayout>
         <TextView
             android:id="@+id/mypage_no_scrapcomment_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:layout_marginBottom="40dp"
-            android:text="아직 스크랩한 프로젝트가 없어요.\n관심있는 프로젝트를 스크랩 해보세요!"
+            android:text="아직 스크랩한 멤버나 프로젝트가 없어요.\n관심있는 멤버나 프로젝트를 스크랩 해보세요!"
             android:textColor="@color/colorLightGray"
             android:textSize="16dp"
             android:textStyle="bold"

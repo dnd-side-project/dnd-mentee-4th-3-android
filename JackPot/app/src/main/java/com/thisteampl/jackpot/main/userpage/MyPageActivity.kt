@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.LoginActivity
-import com.thisteampl.jackpot.main.userController.CheckMyProfile
-import com.thisteampl.jackpot.main.userController.CheckProfile
-import com.thisteampl.jackpot.main.userController.CheckResponse
-import com.thisteampl.jackpot.main.userController.userAPI
+import com.thisteampl.jackpot.main.userController.*
 import kotlinx.android.synthetic.main.activity_my_page.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +24,7 @@ class MyPageActivity : AppCompatActivity() {
     lateinit var myRegisterProjectAdapter: AnotherProjectAdapter
     lateinit var myScrapProjectAdapter: AnotherProjectAdapter
     lateinit var myCommentProjectAdapter: AnotherProjectAdapter
+    lateinit var myScrapMemberAdapter: ScrapMemberAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +58,7 @@ class MyPageActivity : AppCompatActivity() {
                 mypage_no_registerproject_text.visibility = View.VISIBLE
             } else { mypage_no_registerproject_text.visibility = View.GONE }
 
-            if(myScrapProjectAdapter.items.size == 0) {
+            if(myScrapProjectAdapter.items.size == 0 && myScrapMemberAdapter.items.size == 0) {
                 mypage_no_scrapcomment_text.visibility = View.VISIBLE
             } else { mypage_no_scrapcomment_text.visibility = View.GONE }
 
@@ -69,6 +67,7 @@ class MyPageActivity : AppCompatActivity() {
 
             mypage_mycomment_button.setOnClickListener {
                 mypage_myscrapcomment_recyclerview.adapter = myCommentProjectAdapter
+                mypage_myscrapmember_recyclerview.visibility = View.GONE
 
                 if(myCommentProjectAdapter.items.size == 0) {
                     mypage_no_scrapcomment_text.visibility = View.VISIBLE
@@ -84,12 +83,13 @@ class MyPageActivity : AppCompatActivity() {
 
             mypage_myscrap_button.setOnClickListener {
                 mypage_myscrapcomment_recyclerview.adapter = myScrapProjectAdapter
+                mypage_myscrapmember_recyclerview.visibility = View.VISIBLE
 
-                if(myScrapProjectAdapter.items.size == 0) {
+                if(myScrapProjectAdapter.items.size == 0 && myScrapMemberAdapter.items.size == 0) {
                     mypage_no_scrapcomment_text.visibility = View.VISIBLE
                 } else { mypage_no_scrapcomment_text.visibility = View.GONE }
 
-                mypage_no_scrapcomment_text.text = "아직 스크랩한 프로젝트가 없어요.\n관심있는 프로젝트를 스크랩 해보세요!"
+                mypage_no_scrapcomment_text.text = "아직 스크랩한 멤버나 프로젝트가 없어요.\n관심있는 멤버나 프로젝트를 스크랩 해보세요!"
                 mypage_select_myscrap_bottombar.visibility = View.VISIBLE
                 mypage_myscrap_button.setTextColor(ContextCompat.getColor(this, R.color.colorBlack))
 
@@ -164,8 +164,7 @@ class MyPageActivity : AppCompatActivity() {
                                     mypage_job_background_image.setImageResource(R.drawable.background_director)
                                 }
                             }
-
-                            setupView() // 정보 불러오고 난 후 뷰 셋업
+                            getMyScrapMember() // 스크랩 멤버도 가져오기
                         }
                         response.code().toString() == "401" -> {
                             Toast.makeText(
@@ -189,28 +188,58 @@ class MyPageActivity : AppCompatActivity() {
             })
     }
 
+    private fun getMyScrapMember() {
+        userApi?.getMyScrapUsers()?.enqueue(
+            object : Callback<CheckMyScrapUser> {
+                override fun onFailure(call: Call<CheckMyScrapUser>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckMyScrapUser>,
+                    response: Response<CheckMyScrapUser>
+                ) {
+                    when {
+                        response.code().toString() == "200" -> {
+                            for(i in response.body()!!.result) {
+                                myScrapMemberAdapter.items.add(
+                                    ScrapMember(i.userIndex, i.position,
+                                    i.name, i.emoticon)
+                                )
+                            }
+                            myScrapMemberAdapter.notifyDataSetChanged()
+                            setupView() // 정보 불러오고 난 후 뷰 셋업
+
+                        }
+                        else -> {
+                            Toast.makeText(
+                                baseContext, "에러가 발생했습니다. 에러코드 : " + response.code()
+                                , Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            })
+    }
+
     private fun setUpRecyclerView(){
         myProjectAdapter = MyProjectAdapter()
         mypage_myproject_recyclerview.adapter = myProjectAdapter
         mypage_myproject_recyclerview.layoutManager = LinearLayoutManager(this)
-/*        var mp1 = MyProject("마스크 구매정보 APP 같이 만들어요", listOf("1", "2", "3", "4", "5"))
-        var mp2 = MyProject("옷장 정보 APP 만들기", listOf("1", "2", "3"))
-        myProjectAdapter.items.add(mp1)
-        myProjectAdapter.items.add(mp2)*/
 
         myRegisterProjectAdapter = AnotherProjectAdapter()
         mypage_myregisterproject_recyclerview.adapter = myRegisterProjectAdapter
         mypage_myregisterproject_recyclerview.layoutManager = LinearLayoutManager(this)
-/*        var mr1 = AnotherProject("가계부 어플 같이 만들어요! :D", "개발자", listOf("JAVA", "Django", "Figma"))
-        var mr2 = AnotherProject("간단한 축구 관련 앱 만들기!", "개발자", listOf("JAVA", "Kotlin", "Figma", "Adobe PhotoShop"))
-        myRegisterProjectAdapter.items.add(mr1)
-        myRegisterProjectAdapter.items.add(mr2)*/
 
         myScrapProjectAdapter = AnotherProjectAdapter()
         mypage_myscrapcomment_recyclerview.adapter = myScrapProjectAdapter
         mypage_myscrapcomment_recyclerview.layoutManager = LinearLayoutManager(this)
 
         myCommentProjectAdapter = AnotherProjectAdapter()
-        //myCommentProjectAdapter.items.add(mr1)
+
+        myScrapMemberAdapter = ScrapMemberAdapter()
+        mypage_myscrapmember_recyclerview.adapter = myScrapMemberAdapter
+        mypage_myscrapmember_recyclerview.layoutManager = LinearLayoutManager(this)
     }
 }

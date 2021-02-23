@@ -12,6 +12,7 @@ import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.MainActivity
 import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.projectAPI
+import com.thisteampl.jackpot.main.userpage.ProfileActivity
 import kotlinx.android.synthetic.main.activity_project_creation.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -790,10 +791,14 @@ class ProjectCreation : AppCompatActivity() {
 
                         // 데이터 전달하지 못했다면
                         if(response.isSuccessful){
+
                             ToastmakeTextPrint("프로젝트 모집글 작성 완료 되었습니다.")
                             Log.d("tag","결과 : ${response.code().toString()}")
+
+                            ToastmakeTextPrint("프로젝트 모집글 작성이 완료 되었습니다.")
+
                         }else{
-                            ToastmakeTextPrint("프로젝트 모집글 작성 완료되지 않았습니다.")
+                            ToastmakeTextPrint("프로젝트 모집글 작성이 완료되지 않았습니다.")
                             Log.d("tag","${response.code().toString()}")
                             Log.e("tag","onFailure" + response.message())
                         }
@@ -803,6 +808,8 @@ class ProjectCreation : AppCompatActivity() {
             val intent = Intent(baseContext, MainActivity::class.java)
             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             finish()
+
+
         }
     }
 

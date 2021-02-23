@@ -2,12 +2,14 @@ package com.thisteampl.jackpot.main.userpage
 
 import android.content.Intent
 import android.graphics.Typeface
+import android.os.Build
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
@@ -34,6 +36,7 @@ class AnotherProjectAdapter(var items: MutableList<AnotherProject> = mutableList
         return items.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: AnotherProjectRecyclerViewHolder, position: Int) {
         val item = items[position]
 
@@ -63,10 +66,11 @@ class AnotherProjectAdapter(var items: MutableList<AnotherProject> = mutableList
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
-                layoutParams.setMargins(0, 0, 20, 0)
+                layoutParams.setMargins(0, 0, 5, 0)
                 val textView = TextView(context)
                 textView.text = i
-                textView.setPadding(30, 5, 30, 5)
+                textView.typeface = resources.getFont(R.font.roboto_font)
+                textView.setPadding(5, 5, 5, 5)
                 textView.layoutParams = layoutParams
 
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12F)
@@ -85,6 +89,7 @@ class AnotherProjectAdapter(var items: MutableList<AnotherProject> = mutableList
                 layoutParams.setMargins(0, 0, 20, 0)
                 val textView = TextView(context)
                 textView.text = i
+                textView.typeface = resources.getFont(R.font.roboto_font)
                 textView.setPadding(30, 5, 30, 5)
                 textView.layoutParams = layoutParams
 
