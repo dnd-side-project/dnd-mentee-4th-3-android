@@ -1,6 +1,6 @@
 package com.thisteampl.jackpot.main.projectController
 
-data class GetParticipants (
+data class GetProjectUser (
     val userIndex : Long,
     val name : String,
     val region : String,

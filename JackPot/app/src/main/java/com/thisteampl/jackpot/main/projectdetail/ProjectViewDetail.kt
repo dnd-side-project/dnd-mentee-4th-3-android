@@ -130,6 +130,12 @@ class ProjectViewDetail : AppCompatActivity() {
         project_detail_project_register_button.setOnClickListener {
             participant(checkAlreadyParticipantRequest)
         }
+
+        //신청자 보기 버튼
+        project_detail_watch_applicant_button.setOnClickListener {
+            val intent = Intent(baseContext, ProjectRequestActivity::class.java).putExtra("id", projectID.toLong())
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+        }
     }
 
     //내 프로젝트일 경우 메뉴바 생성

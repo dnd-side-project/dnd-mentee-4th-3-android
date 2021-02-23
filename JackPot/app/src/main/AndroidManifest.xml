@@ -42,6 +42,9 @@
             android:name=".main.floating.ProjectCreation"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".main.projectdetail.ProjectRequestActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".main.userpage.MyPageActivity"
             android:screenOrientation="portrait" />
         <activity

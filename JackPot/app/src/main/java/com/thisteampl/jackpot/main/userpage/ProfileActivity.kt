@@ -583,4 +583,5 @@ class ProfileActivity: AppCompatActivity() {
             userprofile.name, userprofile.portfolioLink1, userprofile.portfolioLink2, userprofile.position,
             userprofile.privacy, userprofile.region, userprofile.stacks)
     }
+
 }
