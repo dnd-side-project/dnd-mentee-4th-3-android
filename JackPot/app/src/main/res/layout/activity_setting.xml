@@ -26,6 +26,7 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/setting_back_button"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="@drawable/android_back" />

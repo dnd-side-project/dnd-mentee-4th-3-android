@@ -127,9 +127,6 @@ class ProfileActivity: AppCompatActivity() {
                     mMenu?.findItem(R.id.profile_privacy_open_menu)?.isVisible = false
                     mMenu?.findItem(R.id.profile_privacy_close_menu)?.isVisible = true
                 }
-                if(userprofile.loginType != "normal") {
-                    mMenu?.findItem(R.id.profile_edit_password_menu)?.isVisible = false
-                }
             }
             R.id.profile_edit_menu -> {
                 val intent = Intent(baseContext, ProfileEditActivity::class.java)
@@ -140,65 +137,6 @@ class ProfileActivity: AppCompatActivity() {
             }
             R.id.profile_privacy_close_menu -> {
                 setProfile(false)
-            }
-            R.id.profile_edit_password_menu -> {
-                val intent = Intent(baseContext, ProfileChangePasswordActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-            }
-            R.id.profile_edit_logout_menu -> {
-                GlobalApplication.prefs.setString("token", "NO_TOKEN")
-                Toast.makeText(baseContext, "정상적으로 로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
-                finish()
-            }
-            R.id.profile_edit_withdraw_menu -> {
-                val dialog = AlertDialog.Builder(this)
-                dialog.setTitle("회원 탈퇴")
-                dialog.setMessage("정말 회원탈퇴 하시겠습니까?\n회원님의 정보는 복구가 불가능합니다.")
-
-                var dialog_listener =
-                    DialogInterface.OnClickListener { _, which ->
-                        when (which) {
-                            DialogInterface.BUTTON_POSITIVE -> {
-                                userApi?.getWithDraw()?.enqueue(
-                                    object : Callback<CheckResponse> {
-                                        override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
-                                            // userAPI에서 타입이나 이름 안맞췄을때
-                                            Log.e("tag ", "onFailure" + t.localizedMessage)
-                                        }
-
-                                        override fun onResponse(
-                                            call: Call<CheckResponse>,
-                                            response: Response<CheckResponse>
-                                        ) {
-                                            if (response.code().toString() == "200") {
-                                                Toast.makeText(
-                                                    baseContext,
-                                                    "회원탈퇴가 완료되었습니다.",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                                GlobalApplication.prefs.setString("token", "NO_TOKEN")
-                                                finish()
-                                            } else {
-                                                Toast.makeText(
-                                                    baseContext,
-                                                    "회원탈퇴에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
-                                                        .toString(),
-                                                    Toast.LENGTH_SHORT
-                                                )
-                                                    .show()
-                                            }
-                                        }
-                                    })
-                            }
-                            DialogInterface.BUTTON_NEGATIVE -> {
-
-                            }
-                        }
-                    }
-                dialog.setPositiveButton("확인", dialog_listener)
-                dialog.setNegativeButton("취소", dialog_listener)
-                dialog.show()
-
             }
         }
         return super.onOptionsItemSelected(item)
