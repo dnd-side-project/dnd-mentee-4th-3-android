@@ -287,7 +287,7 @@ class ProjectViewDetail : AppCompatActivity() {
 
                     //유저 동적 추가 직군에 따라 들어가는 그림 다르게하기 추후에 배경 크기 수정
                     for(i in response.body()?.result!!.participants) {
-                        var layoutParams = LinearLayout.LayoutParams(135, 135)
+                        var layoutParams = LinearLayout.LayoutParams(180, 180)
                         layoutParams.setMargins(0, 0, 20, 0)
                         val textView = TextView(baseContext)
                         textView.text = i.emoticon
@@ -296,7 +296,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         //textView.setPadding(20, 20, 20, 20)
                         textView.layoutParams = layoutParams
 
-                        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 21F)
+                        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 23F)
                         textView.setTextColor(ContextCompat.getColor(baseContext, R.color.colorBlack))
 
                         when (i.position) {
