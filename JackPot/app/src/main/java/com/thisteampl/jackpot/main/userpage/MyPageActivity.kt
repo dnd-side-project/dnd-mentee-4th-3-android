@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.LoginActivity
+import com.thisteampl.jackpot.main.setting.SettingActivity
 import com.thisteampl.jackpot.main.userController.*
 import kotlinx.android.synthetic.main.activity_my_page.*
 import retrofit2.Call
@@ -64,7 +65,7 @@ class MyPageActivity : AppCompatActivity() {
 
             mypage_back_button.setOnClickListener { super.onBackPressed() }
 
-
+            //댓글 단 프로젝트 버튼
             mypage_mycomment_button.setOnClickListener {
                 mypage_myscrapcomment_recyclerview.adapter = myCommentProjectAdapter
                 mypage_myscrapmember_recyclerview.visibility = View.GONE
@@ -81,6 +82,7 @@ class MyPageActivity : AppCompatActivity() {
                 mypage_myscrap_button.setTextColor(ContextCompat.getColor(this, R.color.colorLightGray))
             }
 
+            //나의 스크랩 버튼
             mypage_myscrap_button.setOnClickListener {
                 mypage_myscrapcomment_recyclerview.adapter = myScrapProjectAdapter
                 mypage_myscrapmember_recyclerview.visibility = View.VISIBLE
@@ -97,8 +99,15 @@ class MyPageActivity : AppCompatActivity() {
                 mypage_select_mycomment_bottombar.visibility = View.GONE
             }
 
+            //프로필 보기 버튼
             mypage_watchprofile_button.setOnClickListener {
                 val intent = Intent(baseContext, ProfileActivity::class.java).putExtra("title", "내 프로필")
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
+            
+            //설정 버튼
+            detail_add_content_button.setOnClickListener {
+                val intent = Intent(baseContext, SettingActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
         }

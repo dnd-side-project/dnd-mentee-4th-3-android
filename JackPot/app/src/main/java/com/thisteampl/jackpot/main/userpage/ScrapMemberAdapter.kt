@@ -13,7 +13,6 @@ class ScrapMemberAdapter(var items: MutableList<ScrapMember> = mutableListOf()
 ) : RecyclerView.Adapter<ScrapMemberAdapter.ProjectRequestRecyclerViewHolder>() {
 
     class ProjectRequestRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view)
-    private val projectApi = projectAPI.create()
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

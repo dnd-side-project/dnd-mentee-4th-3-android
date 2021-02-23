@@ -24,6 +24,12 @@ class MyProfile (
     var privacy : Boolean,
     @SerializedName("region")
     var region : String,
+    @SerializedName("commentPush")
+    var commentPush : Boolean,
+    @SerializedName("requestAcceptPush")
+    var requestAcceptPush : Boolean,
+    @SerializedName("requestPush")
+    var requestPush : Boolean,
     @SerializedName("stacks")
     var stacks : List<String>,
     @SerializedName("myprojects")
