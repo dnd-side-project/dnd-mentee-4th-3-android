@@ -41,6 +41,7 @@ class ProjectViewDetail : AppCompatActivity() {
     private var watcherName = "NO_NAME_NEED_INITIALIZE"
     lateinit var mPrjCommentAdapter: ProjectCommentAdapter
     private var mMenu: Menu? = null
+    private var checkAlreadyScrap = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMyProject() // 내 프로젝트인지 확인
@@ -389,7 +390,7 @@ class ProjectViewDetail : AppCompatActivity() {
         })
     }
 
-    //내 프로젝트 인지 확인.
+    //내 프로젝트 인지 확인. 그리고 유저의 이름을 받아서 전역변수에 넣어둔다. 그리고 이미 스크랩된 프로젝트인지도 확인.
     private fun isMyProject() {
         userApi?.getProfile()?.enqueue(
             object : Callback<CheckMyProfile> {
@@ -411,6 +412,14 @@ class ProjectViewDetail : AppCompatActivity() {
                                     break
                                 }
                             }
+
+                            for(i in response.body()?.result!!.scrapProjects) {
+                                if(i.id == projectID.toLong()) {
+                                    checkAlreadyScrap = true
+                                    break
+                                }
+                            }
+
                             getProject(projectID)
                     }
                         else -> {

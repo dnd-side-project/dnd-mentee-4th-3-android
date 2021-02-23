@@ -338,7 +338,6 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/radius_background_transparent"
                 android:padding="10dp"
                 android:text="프로젝트 소개"
                 android:textColor="@color/colorBlack"

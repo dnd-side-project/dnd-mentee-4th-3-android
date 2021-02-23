@@ -1211,8 +1211,8 @@
             android:layout_width="320dp"
             android:layout_height="40dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/radius_background"
-            android:alpha="0.5"
+            android:textColor="@color/colorButtonSelect"
+            android:background="@drawable/square_background_transparent_select"
             android:text="다음에 작성할래요"
             android:visibility="gone"/>
 

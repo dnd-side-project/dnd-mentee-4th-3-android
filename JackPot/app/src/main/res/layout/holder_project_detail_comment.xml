@@ -62,19 +62,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/holder_project_detail_comment_hide_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🔒비공개 댓글입니다"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/holder_project_detail_comment_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

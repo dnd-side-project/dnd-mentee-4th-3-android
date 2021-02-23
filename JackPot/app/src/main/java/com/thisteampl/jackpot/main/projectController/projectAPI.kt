@@ -45,6 +45,9 @@ interface projectAPI {
     @POST("/scrap/{projectindex}")
     fun getProjectScrap(@Path("projectindex") id: Long) : Call<CheckResponse>
 
+    @DELETE("/scrap/{projectindex}")
+    fun deleteProjectScrap(@Path("projectindex") id: Long) : Call<CheckResponse>
+
     @POST("/participant/{projectid}")
     fun getProjectParticipant(@Path("projectid") id: Long) : Call<CheckResponse>
 
