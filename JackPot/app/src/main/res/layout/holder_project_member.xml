@@ -74,6 +74,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <View
+        android:id="@+id/holder_project_horizontal_bar"
         android:layout_width="360dp"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
