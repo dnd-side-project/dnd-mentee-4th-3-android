@@ -83,8 +83,8 @@
 
     <Button
         android:id="@+id/holder_starview_button"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/select_star"

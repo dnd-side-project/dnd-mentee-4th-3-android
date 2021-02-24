@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".main.filtering.FilteringSearchResults">
 
 
@@ -84,6 +85,7 @@
                 android:layout_marginRight="25dp"
                 android:text="최신 순"
                 android:gravity="center"
+                android:background="@color/colorWhite"
                 app:spinner_arrow_show="true"
                 app:spinner_arrow_tint="#979797"
                 app:spinner_divider_color="@color/colorWhite"
@@ -100,27 +102,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="26dp"
                 android:layout_marginBottom="7dp"
-                android:text="개의 프로젝트"
+                android:text="00개의 프로젝트"
                 android:textColor="#000000"
-                android:visibility="gone"
                 android:textSize="16dp"
+                android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterresult_longline_imageview" />
 
             <TextView
                 android:id="@+id/filtersearch_projectcount2_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="26dp"
                 android:layout_marginBottom="7dp"
-                android:text="명의 멤버"
+                android:text="00명의 멤버"
                 android:textColor="#000000"
-                android:visibility="gone"
                 android:textSize="16dp"
+                android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterresult_longline_imageview" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -84,7 +84,26 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        //
+        // 분야 선택
+        fieldSelect()
+
+
+
+        // 알림
+        main_bell_imageview.setOnClickListener {
+            if (prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+                Toast.makeText(
+                    this, "로그인 정보가 없습니다." +
+                            "\n로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT
+                ).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            } else {
+                startActivity(mypageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }
+
+        }
+
 
         // 나의 페이지
         main_mypage_imageview.setOnClickListener {
@@ -128,6 +147,9 @@ class MainActivity : AppCompatActivity() {
             setFrag(attentionlocation)
         }
 
+
+        
+        
          //주목받는 멤버, 액티비티 프래그먼트 연결
          //attentionlocation => 더보기 버튼 옵션 넣기 위해 사용
         main_memberattention_button.setOnClickListener {
@@ -179,6 +201,37 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // 분야 선택
+    private fun fieldSelect() {
+        // ConstraintLayout을 전체적임에 반복문 x, 8개 버튼 각각 구현
+        main_selftdevelopment_imgbtn.setOnClickListener {
+            
+
+        }
+        main_hobby_imgbtn.setOnClickListener {
+
+        }
+        main_economy_imgbtn.setOnClickListener {
+
+        }
+        main_cook_imgbtn.setOnClickListener {
+
+        }
+        main_it_imgbtn.setOnClickListener {
+
+        }
+        main_art_imgbtn.setOnClickListener {
+
+        }
+        main_health_imgbtn.setOnClickListener {
+
+        }
+        main_repose_imgbtn.setOnClickListener {
+
+        }
+
+
+    }
 
 
     // 주목 받는 프로젝트, 주목 받는 멤버 5개, 최근 등록된 파일에서는 10개 아래로

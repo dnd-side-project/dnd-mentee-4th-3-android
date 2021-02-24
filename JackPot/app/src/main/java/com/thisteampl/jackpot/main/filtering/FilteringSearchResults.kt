@@ -104,7 +104,7 @@ class FilteringSearchResults : AppCompatActivity() {
     private fun setuserListView() {
 
         var filteringuser = UserRelatedFilteringPost(
-            0, 100, position, region, "", stackTool
+            0, 30, position, region, "", stackTool
         )
 
         if (selection_result.equals("최신순")) {
@@ -112,14 +112,14 @@ class FilteringSearchResults : AppCompatActivity() {
         } else if (selection_result.equals("인기순")) {
             filteringuser.sortType = "인기순"
         }
-        Log.d("tag", "최신순, 인기순 : ${filteringuser.sortType}")
-
-        Log.d("tag", "pageNumber : ${filteringuser.pageNumber}")
-        Log.d("tag", "pageSize: ${filteringuser.pageSize}")
-        Log.d("tag", "포지션 : ${filteringuser.position}")
-        Log.d("tag", "지역 : ${filteringuser.regionFilter}")
-        Log.d("tag", "정렬 : ${filteringuser.sortType}")
-        Log.d("tag", "스택 : ${filteringuser.stackFilter}")
+//        Log.d("tag", "최신순, 인기순 : ${filteringuser.sortType}")
+//
+//        Log.d("tag", "pageNumber : ${filteringuser.pageNumber}")
+//        Log.d("tag", "pageSize: ${filteringuser.pageSize}")
+//        Log.d("tag", "포지션 : ${filteringuser.position}")
+//        Log.d("tag", "지역 : ${filteringuser.regionFilter}")
+//        Log.d("tag", "정렬 : ${filteringuser.sortType}")
+//        Log.d("tag", "스택 : ${filteringuser.stackFilter}")
 
 
         userapi?.getUserPosition(filteringuser)
@@ -136,17 +136,24 @@ class FilteringSearchResults : AppCompatActivity() {
 
                     // 데이터 전달하지 못했다면
                     if (response.isSuccessful) {
-                        ToastmakeTextPrint("유저 모집글 작성 완료 되었습니다.")
-                        Log.d("tag", "검색페이지 완료")
-                        Log.d("tag", "결과 : ${response.code().toString()}")
-                        ToastmakeTextPrint("검색페이지 완료")
-                        val adapter = Filteringuseradapter(
+                        ToastmakeTextPrint("멤버 찾기 검색 되었습니다.")
+                        filtersearch_projectcount_textview.visibility = View.GONE
+                        filtersearch_projectcount2_textview.visibility = View.VISIBLE
+
+                        if(response.body()!!.contents.isNotEmpty()){
+                            filtersearch_projectcount2_textview.text = "${response.body()!!.contents.size}명의 멤버"
+                        }else{
+                            filtersearch_projectcount2_textview.visibility = View.GONE
+                        }
+                        
+
+                    val adapter = Filteringuseradapter(
                             getApplicationContext(), response.body()!!.contents
                         )
                         filterresult_listview.adapter = adapter
 
                     } else {
-                        ToastmakeTextPrint("유저 모집글 작성 완료 되지 않았습니다.")
+                        ToastmakeTextPrint("멤버 찾기 검색 되지 않았습니다.")
                         Log.d("tag", "${response.code().toString()}")
                     }
                 }
@@ -159,7 +166,7 @@ class FilteringSearchResults : AppCompatActivity() {
 
 
         var filteringproject = ProjectPostLatest(
-            duration, interestfilter, 0, 10, region, "", stackTool
+            duration, interestfilter, 0, 30, region, "", stackTool
         )
 
 
@@ -169,19 +176,6 @@ class FilteringSearchResults : AppCompatActivity() {
             filteringproject.sortType = "인기순"
         }
 
-        Log.d("tag", "최신순, 인기순 : ${filteringproject.sortType}")
-
-        Log.d("tag", "pageNumber : ${filteringproject.pageNumber}")
-        Log.d("tag", "pageSize: ${filteringproject.pageSize}")
-        Log.d("tag", "포지션 : ${filteringproject.duration}")
-        Log.d("tag", "지역 : ${filteringproject.regionFilter}")
-        Log.d("tag", "정렬 : ${filteringproject.sortType}")
-        Log.d("tag", "스택 : ${filteringproject.stackFilter}")
-
-
-
-
-        Log.d("tag", "최신순, 인기순 : ${filteringproject.sortType}")
 
         projectapi?.getProjectContents(filteringproject)
             ?.enqueue(object : Callback<ProjectGetElement> {
@@ -197,8 +191,15 @@ class FilteringSearchResults : AppCompatActivity() {
                     // 데이터 전달하지 못했다면
                     if (response.isSuccessful) {
                         ToastmakeTextPrint("프로젝트 검색 완료 되었습니다.")
-                        Log.d("tag", "검색페이지 완료")
-                        filtersearch_projectcount_textview.text = "${response.body()!!.contents.size}개의 프로젝트"
+                        filtersearch_projectcount_textview.visibility = View.VISIBLE
+                        filtersearch_projectcount2_textview.visibility = View.GONE
+
+
+                        if(response.body()!!.contents.isNotEmpty()){
+                            filtersearch_projectcount_textview.text = "${response.body()!!.contents.size}개의 프로젝트"
+                        }else{
+                            filtersearch_projectcount_textview.visibility = View.GONE
+                        }
 
 
 

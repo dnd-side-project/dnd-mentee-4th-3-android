@@ -101,11 +101,8 @@ class FilteringSearch : AppCompatActivity() {
             finish()
         }
 
-
         // user가 개발자일 때, 디자이너일 때 (추 후 코드 변경되었으면)
         user = intent.getStringExtra("position")!!
-        
-        Log.d("tag","포지션 : ${user}")
 
         // 개발자일 때 개발자 툴만, 디자이너 일 때 디자이너 툴만
         if(user == "개발자" || user == "기획자"){
@@ -174,50 +171,6 @@ class FilteringSearch : AppCompatActivity() {
         filtersearch_applyfilter_button.setOnClickListener {
             if (checkPageButton()) {
                 val memberfind_stackToolTechnologyStack = ArrayList<String>() // 개발자, 디자이너 스택 통합
-                // page 1
-//                if (page == 1) {
-//                    Log.d("tag", "1 페이지")
-//
-//                    for (num in 0..projectfind_stackToolTechnologyStack.size - 1) {
-//                        Log.d("=> ", "${projectfind_stackToolTechnologyStack[num]}")
-//                    }
-//
-//                    Log.d("tag", "프로젝트방식 : ${projectfind_onofftext}")
-//                    Log.d("tag", "지역 : ${projectfind_regiontext}")
-//                    Log.d("tag", "기간: ")
-//                    for (num in 0..projectfind_durationbtn.size - 1) {
-//                        Log.d("=> ", "${projectfind_durationbtn[num]}")
-//                    }
-//
-//                    Log.d("tag", "관심분야 : ")
-//                    for (num in 0..projectfind_projectfieldbtn.size - 1) {
-//                        Log.d("=> ", "${projectfind_projectfieldbtn[num]}")
-//                    }
-//
-//                } else if (page == 2) {
-//
-//                    Log.d("tag", "2 페이지")
-//                    // page 2 : 멤버찾기, 포지션 및 개발 툴, 디자인 툴
-//
-//                    Log.d("tag", "선택된 : 포지션")
-//                    for (num in 0..memberfind_selectpositionItems.size - 1) {
-//                        Log.d("tag : ", "${memberfind_selectpositionItems[num]}")
-//                    }
-//
-//
-//                    Log.d("tag", "기술 툴 : ")
-//                    Log.d("tag", "사이즈 : ${memberfind_stackToolTechnologyStack.size}")
-//                    for (num in 0..memberfind_stackToolTechnologyStack.size - 1) {
-//                        Log.d("", "결과 : ${memberfind_stackToolTechnologyStack[num]}")
-//                    }
-//
-//                    Log.d("tag", "프로젝트 방식${memberfind_onofftext}")
-//
-//                    Log.d("tag", "지역 : ${memberfind_regiontext}")
-//
-//
-//                }
-
 
                 val intent = Intent(this, FilteringSearchResults::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -300,12 +253,6 @@ class FilteringSearch : AppCompatActivity() {
 
                 intent.putExtra("page",page.toString())
                 startActivity(intent)
-
-                Log.d("tag","기술 툴 : ")
-                Log.d("tag","사이즈 : ${memberfind_stackToolTechnologyStack.size}")
-                for(num in 0..memberfind_stackToolTechnologyStack.size-1){
-                    Log.d("", "결과 : ${memberfind_stackToolTechnologyStack[num]}")
-                }
 
             }
 
@@ -447,12 +394,10 @@ class FilteringSearch : AppCompatActivity() {
     private fun findproject() {
 
         if (user.equals("개발자")) {
-            Log.d("tag","개발자 클릭")
             for (i in 0 until filtersearch_projectstackbutton_constraintLayout.childCount) {
                 val child: View = filtersearch_projectstackbutton_constraintLayout.getChildAt(i)
                 // 해당 버튼에 효과 주기
                 if (child is Button) {
-                    Log.d("버튼",": ${child}")
                     child.background = ContextCompat.getDrawable(
                         this@FilteringSearch,
                         R.drawable.radius_button_effect
@@ -460,7 +405,6 @@ class FilteringSearch : AppCompatActivity() {
 
                     child.setOnClickListener {
                         if (!projectfind_stackToolTechnologyStack.contains(child.text.toString())) {
-                            Log.d("선택버튼",": ${child.text.toString()}")
                             child.background = ContextCompat.getDrawable(
                                 this@FilteringSearch,
                                 R.drawable.radius_background_transparent_select
@@ -473,7 +417,6 @@ class FilteringSearch : AppCompatActivity() {
                             )
                             projectfind_stackToolTechnologyStack.add(child.text.toString())
                         } else {
-                            Log.d("취소버튼",": ${child.text.toString()}")
                             child.background = ContextCompat.getDrawable(
                                 this@FilteringSearch,
                                 R.drawable.radius_button_effect
@@ -541,9 +484,6 @@ class FilteringSearch : AppCompatActivity() {
             }
         }
 
-
-
-        stackLanguage(user, 1)
         contentofproject()
 
     }
@@ -786,14 +726,12 @@ class FilteringSearch : AppCompatActivity() {
                             memberdevelpoer[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonSelect))
                             developerbool[i] = true
                             developercheck_index++
-                            Log.d("tag","확인 버튼 클릭")
                             stackTooldeveloper.add(memberdevelpoer[i]?.text.toString())
                         }else{
                             filtersearch_page2_projectstackbutton_constraintLayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent)
                             memberdevelpoer[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
                             developerbool[i] = false
                             developercheck_index--
-                            Log.d("tag","취소 버튼 클릭")
                             stackTooldeveloper.remove(memberdevelpoer[i]?.text.toString())
                         }
                     }
@@ -807,7 +745,6 @@ class FilteringSearch : AppCompatActivity() {
                     this@FilteringSearch,
                     R.drawable.radius_background_transparent
                 )
-                Log.d("tag","개발자 버튼 빼기")
                 filtersearch_page2_developer_Button.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
 
                 memberfind_selectpositionItems.remove(filtersearch_page2_developer_Button.text.toString())
@@ -823,7 +760,6 @@ class FilteringSearch : AppCompatActivity() {
         filtersearch_page2_designer_Button.setOnClickListener {
             filtersearch_page2_projectstack_constraintLayout.visibility = View.GONE
             filtersearch_page2_projectstackdesigner_constraintLayout.visibility = View.VISIBLE
-            Log.d("tag","디자이너 버튼 클릭")
             if (developercheck_index == 0) {
                 filtersearch_page2_developer_Button.background = ContextCompat.getDrawable(
                     this@FilteringSearch,
@@ -856,14 +792,12 @@ class FilteringSearch : AppCompatActivity() {
                             memberdesigner[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonSelect))
                             designerbool[i] = true
                             designercheck_index++
-                            Log.d("tag","확인 버튼 클릭")
                             stackTooldesigner.add(memberdesigner[i]?.text.toString())
                         }else{
                             filtersearch_page2_projectstackdesignerbutton_constraintLayout[i].background = ContextCompat.getDrawable(this@FilteringSearch, R.drawable.radius_background_transparent)
                             memberdesigner[i]?.setTextColor(ContextCompat.getColor(this@FilteringSearch,R.color.colorButtonNoSelect))
                             designerbool[i] = false
                             designercheck_index--
-                            Log.d("tag","취소 버튼 클릭")
                             stackTooldesigner.remove(memberdesigner[i]?.text.toString())
                         }
                     }
@@ -989,19 +923,9 @@ class FilteringSearch : AppCompatActivity() {
         Toast.makeText(this, word, Toast.LENGTH_SHORT).show()
     }
 
-    private fun stackLanguage(location: String, page_position: Int) {
-//        Log.d("tag","user 포지션 : ${location}")
-//        if (page_position == 1) {
-//            else if (location.equals("디자이너")) {
-//
-//            }
-//        }
-    }
 
     // FilteringSearch에서 사용된 코드 이용
     var projectcheckoffout: Int = -1
-    var projectcheckexpectedduration: Int = -1
-    var projectcheckexpectedfield: Int = -1
     var projectcheckoff:Int = -1
 
     private fun onClickProjectBtn(v: View, index: Int, btnsize: Int) {

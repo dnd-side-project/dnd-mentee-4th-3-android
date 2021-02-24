@@ -11,13 +11,14 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.userController.UserRelatedFilteringcontents
+import java.util.*
 
 class Filteringuseradapter(val context: Context, val UserList: List<UserRelatedFilteringcontents>?= null): BaseAdapter() {
-    var check = booleanArrayOf()
+
+    var check2 = BooleanArray(30)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view : View = LayoutInflater.from(context).inflate(R.layout.holder_filtered_search_memberrelated_list,null)
-
 
         // 수정
         val user_name = view.findViewById<TextView>(R.id.holder_memberrelated_username_textview)
@@ -26,23 +27,47 @@ class Filteringuseradapter(val context: Context, val UserList: List<UserRelatedF
         val user_startext = view.findViewById<TextView>(R.id.holder_filter_checkstar_text)
         val user_textview = view.findViewById<TextView>(R.id.holderfiltered_textview)
 
+        val user_backview = view.findViewById<ImageView>(R.id.holder_memberrelated_image)
 
 
-//        if(check[position] == false){
-//            user_star.background =ContextCompat.getDrawable(
-//                context,
-//                R.drawable.star_select
-//            )
-//            Log.d("tag","check ${position}번째 선택")
-//            check[position] = false
-//        }else{
-//            user_star.background =ContextCompat.getDrawable(
-//                context,
-//                R.drawable.star
-//            )
-//            Log.d("tag","check ${position}번째 선택")
-//            check[position] = true
-//        }
+        val randomindex = Random().nextInt(3)
+
+        // 배경색 변경
+        if(randomindex==0){
+            user_backview.background = ContextCompat.getDrawable(context, R.drawable.attentionimagebluenview)
+        }else if(randomindex ==1){
+            user_backview.background = ContextCompat.getDrawable(context, R.drawable.attentionimagegreenview)
+        }else{
+            user_backview.background = ContextCompat.getDrawable(context, R.drawable.attentionimagepinkview)
+        }
+
+
+
+
+
+        // 별표 표시 부분 (별표 id 선택)
+        user_star.setOnClickListener {
+
+            // 체크 되었을 때 background
+            user_star.background =ContextCompat.getDrawable(
+                context,
+                R.drawable.star_select
+            )
+
+            // 체크 되지 않았을 때 background
+            user_star.background =ContextCompat.getDrawable(
+                context,
+                R.drawable.star
+            )
+        }
+
+
+
+
+
+
+
+
 
 
         var list = UserList!![position]

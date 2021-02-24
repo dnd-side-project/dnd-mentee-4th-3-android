@@ -563,9 +563,6 @@ class ProjectModification : AppCompatActivity() {
             selectpositionItems.addAll(stackToolposition)
 
 
-
-
-
             var recruitmentproject = ProjectCreationElement(
                 durationtext,
                 projectfieldtext,
@@ -582,7 +579,7 @@ class ProjectModification : AppCompatActivity() {
             projectapi?.getProjectModify(id,recruitmentproject)
                 ?.enqueue(object : Callback<CheckResponse> {
                     override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
-                        Log.d("tag : ", "error")
+                        Log.d("tag : ", "error : "+t.localizedMessage)
 
                     }
 

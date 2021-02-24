@@ -1,6 +1,7 @@
 package com.thisteampl.jackpot.main.filtering
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -9,22 +10,32 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.main.projectController.ProjectComponent
+import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectController.projectAPI
+import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
+import com.thisteampl.jackpot.main.userController.CheckMyProfile
 import com.thisteampl.jackpot.main.userController.CheckResponse
-import kotlinx.android.synthetic.main.main_recentlyregisterproject_list.view.*
-import okhttp3.Callback
+import com.thisteampl.jackpot.main.userController.userAPI
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 
 class FilteringProjectAdapter(val context: Context, val ProjectList: List<ProjectElementMaterial>): BaseAdapter() {
 
-    val projectapi = projectAPI.projectRetrofitService()
-    var check = booleanArrayOf()
+    private val projectapi = projectAPI.projectRetrofitService()
+    private val userApi = userAPI.create()
+    private var check = BooleanArray(30)
+    private var checkscrapstar = false
+    private var projectID = 0L // 프로젝트 게시물의 id
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view : View = LayoutInflater.from(context).inflate(R.layout.holder_filtered_project_list,null)
+
+        projectID = ProjectList!![position].id
+
+
 
         val item = ProjectList!![position]
 
@@ -33,61 +44,50 @@ class FilteringProjectAdapter(val context: Context, val ProjectList: List<Projec
         val project_position = view.findViewById<TextView>(R.id.holder_filter_inputposition_textview)
         val stacks = view.findViewById<LinearLayout>(R.id.holder_filtering_project_linearlayout)
         val starcheck = view.findViewById<Button>(R.id.holder_starview_button)
-        var backcolor = view.findViewById<ImageView>(R.id.holder_filter_project_image)
+        var backview = view.findViewById<ImageView>(R.id.holder_filter_project_image)
+
 
         val randomindex = Random().nextInt(3)
 
         // 배경색 변경
         if(randomindex==0){
-            backcolor.background = ContextCompat.getDrawable(context, R.drawable.attentionimagebluenview)
+            backview.background = ContextCompat.getDrawable(context, R.drawable.attentionimagebluenview)
         }else if(randomindex ==1){
-            backcolor.background = ContextCompat.getDrawable(context, R.drawable.attentionimagegreenview)
+            backview.background = ContextCompat.getDrawable(context, R.drawable.attentionimagegreenview)
         }else{
-            backcolor.background = ContextCompat.getDrawable(context, R.drawable.attentionimagepinkview)
+            backview.background = ContextCompat.getDrawable(context, R.drawable.attentionimagepinkview)
         }
 
 
-        //select_star
-//        starcheck.setOnClickListener {
-//            if (check[position] ==false){
-//                starcheck.background =ContextCompat.getDrawable(
-//                    context,
-//                    R.drawable.star_select
-//                )
-//                Log.d("tag","check ${position}번째 선택")
-//                check[position] = true
 
 
-//                projectapi?.getProjectScrap(ProjectList!![position].id)?.enqueue(
-//                    object : Callback<CheckResponse> {
-//                        override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
-//                            // userAPI에서 타입이나 이름 안맞췄을때
-//                            Log.e("tag ", "onFailure, " + t.localizedMessage)
-//                        }
-//
-//                        override fun onResponse(
-//                            call: Call<CheckResponse>,
-//                            response: Response<CheckResponse>
-//                        ) {
-//                        }
-//                    })
+        // 별표 표시 부분 (별표 id 선택)
+        starcheck.setOnClickListener {
 
-                // 별표 체크 문의 드리기
 
-//
-//            }else{
-//                starcheck.background =ContextCompat.getDrawable(
-//                    context,
-//                    R.drawable.star
-//                )
-//                Log.d("tag","check ${position}번째 취소")
-//
-//                check[position] = false
-//            }
+            // 체크 되었을 때 background
+            starcheck.background =ContextCompat.getDrawable(
+                context,
+                R.drawable.star_select
+            )
 
-            Log.d("tag","버튼 추가하였습니다.22")
 
-//        }
+
+            // 체크 되지 않았을 때 background
+            starcheck.background =ContextCompat.getDrawable(
+                context,
+                R.drawable.star
+            )
+
+
+
+        }
+
+
+
+
+
+
 
         var list = ProjectList!![position]
 
@@ -143,6 +143,8 @@ class FilteringProjectAdapter(val context: Context, val ProjectList: List<Projec
 
         return view
     }
+
+
 
     override fun getItem(position: Int): Any {
         return ProjectList!![position]

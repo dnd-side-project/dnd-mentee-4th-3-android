@@ -14,11 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".main.projectController.ProjectModification"></activity>
-        <activity android:name=".main.filtering.FilteringSearchResults" />
-        <activity
-            android:name=".main.viewmore.RecentlyProjectViewMore"
-            android:screenOrientation="portrait" />
+        <activity android:name=".main.notice.FieldMore"></activity>
+        <activity android:name=".main.notice.Exampleacitivti" />
 
         <service
             android:name=".main.fcm.MyJobService"
@@ -38,6 +35,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".main.projectController.ProjectModification"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.filtering.FilteringSearchResults"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.viewmore.RecentlyProjectViewMore"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.floating.ProjectCreation"
             android:screenOrientation="portrait" />
