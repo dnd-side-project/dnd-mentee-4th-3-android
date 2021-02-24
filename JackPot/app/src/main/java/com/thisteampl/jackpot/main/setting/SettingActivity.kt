@@ -12,18 +12,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
-import com.thisteampl.jackpot.main.userController.CheckMyProfile
-import com.thisteampl.jackpot.main.userController.CheckResponse
-import com.thisteampl.jackpot.main.userController.MyProfile
-import com.thisteampl.jackpot.main.userController.userAPI
+import com.thisteampl.jackpot.main.userController.*
 import com.thisteampl.jackpot.main.userpage.ProfileChangePasswordActivity
 import kotlinx.android.synthetic.main.activity_setting.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
+//액티비티 하나와 프래그먼트로 구성된 설정화면.
 
 class SettingActivity : AppCompatActivity() {
 
@@ -36,7 +36,7 @@ class SettingActivity : AppCompatActivity() {
 
         setting_back_button.setOnClickListener { onBackPressed() }
 
-        getMyProfile()
+        getMyProfile(true)
     }
 
     override fun onBackPressed() {
@@ -51,7 +51,9 @@ class SettingActivity : AppCompatActivity() {
         }
     }
 
-    private fun getMyProfile() {
+    //내 프로필을 가져온다. 매개변수 first로 처음 불러올 땐
+    //메인 프래그먼트를 가져오고 아니라면 프래그먼트를 가져오지 않는다.
+    private fun getMyProfile(first: Boolean) {
         userApi?.getProfile()?.enqueue(
             object : Callback<CheckMyProfile> {
                 override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
@@ -67,10 +69,12 @@ class SettingActivity : AppCompatActivity() {
                     when {
                         response.code().toString() == "200" -> {
                             userprofile = response.body()?.result!!
-                            supportFragmentManager
-                                .beginTransaction()
-                                .replace(R.id.setting_container, MainSettingFragment())
-                                .commit()
+                            if(first) {
+                                supportFragmentManager
+                                    .beginTransaction()
+                                    .replace(R.id.setting_container, MainSettingFragment())
+                                    .commit()
+                            }
                         }
                         else -> {
                             Toast.makeText(
@@ -181,8 +185,63 @@ class SettingActivity : AppCompatActivity() {
             savedInstanceState: Bundle?
         ): View? {
             var root = inflater.inflate(R.layout.fragment_setting_notify, container, false)
-            
+
+            //유저 프로필을 서버에서 받아서 댓글, 프로젝트 참여, 참여 신청 알림이 켜져있다면 스위치를 체크해둠.
+            if((activity as SettingActivity).userprofile.commentPush) {
+                (root.findViewById<View>(R.id.setting_notification_comment_switch) as SwitchCompat).isChecked = true
+            }
+            if((activity as SettingActivity).userprofile.requestAcceptPush) {
+                (root.findViewById<View>(R.id.setting_notification_request_accept_switch) as SwitchCompat).isChecked = true
+            }
+            if((activity as SettingActivity).userprofile.requestPush) {
+                (root.findViewById<View>(R.id.setting_notification_participant_request_switch) as SwitchCompat).isChecked = true
+            }
+
+            // 각 버튼을 누를 때 서버에 정보를 보낸다.
+            (root.findViewById<View>(R.id.setting_notification_comment_switch) as SwitchCompat).setOnClickListener {
+                changeNotify((root.findViewById<View>(R.id.setting_notification_comment_switch) as SwitchCompat).isChecked,
+                    (root.findViewById<View>(R.id.setting_notification_request_accept_switch) as SwitchCompat).isChecked,
+                    (root.findViewById<View>(R.id.setting_notification_participant_request_switch) as SwitchCompat).isChecked)
+            }
+            (root.findViewById<View>(R.id.setting_notification_request_accept_switch) as SwitchCompat).setOnClickListener {
+                changeNotify((root.findViewById<View>(R.id.setting_notification_comment_switch) as SwitchCompat).isChecked,
+                    (root.findViewById<View>(R.id.setting_notification_request_accept_switch) as SwitchCompat).isChecked,
+                    (root.findViewById<View>(R.id.setting_notification_participant_request_switch) as SwitchCompat).isChecked)
+            }
+            (root.findViewById<View>(R.id.setting_notification_participant_request_switch) as SwitchCompat).setOnClickListener {
+                changeNotify((root.findViewById<View>(R.id.setting_notification_comment_switch) as SwitchCompat).isChecked,
+                    (root.findViewById<View>(R.id.setting_notification_request_accept_switch) as SwitchCompat).isChecked,
+                    (root.findViewById<View>(R.id.setting_notification_participant_request_switch) as SwitchCompat).isChecked)
+            }
             return root
+        }
+
+        private fun changeNotify(comment : Boolean, accept : Boolean, request : Boolean) {
+            (activity as SettingActivity).userApi?.getUpdatePush(Push(comment, accept, request))?.enqueue(
+                object : Callback<CheckResponse> {
+                    override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                        // userAPI에서 타입이나 이름 안맞췄을때
+                        Log.e("tag ", "onFailure" + t.localizedMessage)
+                    }
+
+                    override fun onResponse(
+                        call: Call<CheckResponse>,
+                        response: Response<CheckResponse>
+                    ) {
+                        if (response.code().toString() != "200") {
+                            Toast.makeText(
+                                context,
+                                "알림 수정에 실패했습니다.\n에러 코드 : " + response.code() + "\n" + response.body()
+                                    .toString(),
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+
+                        } else { // 200번이라면 수정 성공.
+                            (activity as SettingActivity).getMyProfile(false) // 매개변수 false 프로필만 다시 불러온다.
+                        }
+                    }
+                })
         }
     }
 }

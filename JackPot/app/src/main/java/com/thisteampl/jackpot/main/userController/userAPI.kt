@@ -43,7 +43,7 @@ interface userAPI {
     fun getWithDraw() : Call<CheckResponse>
 
     @PUT("/update-push")
-    fun getUpdatePush(@Body pushSet : PushEdit) : Call<CheckResponse>
+    fun getUpdatePush(@Body pushSet : Push) : Call<CheckResponse>
 
     @GET("/myuserscrap")
     fun getMyScrapUsers() : Call<CheckMyScrapUser>

@@ -1,5 +1,5 @@
 package com.thisteampl.jackpot.main.userController
 
-class PushEdit (
+class Push (
     var commentPush: Boolean, val requestAcceptPush: Boolean, val requestPush: Boolean
 )
