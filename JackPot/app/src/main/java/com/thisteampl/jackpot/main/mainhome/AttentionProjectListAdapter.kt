@@ -77,7 +77,7 @@ class AttentionProjectListAdapter(val attentionlist: List<ProjectElementMaterial
                 main_attentionitem_image.setImageResource(R.drawable.field_cook)
             }else if(item.interest.equals("IT")){
                 main_attentionitem_image.setImageResource(R.drawable.field_it)
-            }else if(item.interest.equals("예술/장착")){
+            }else if(item.interest.equals("예술_창작")){
                 main_attentionitem_image.setImageResource(R.drawable.field_art)
             }else if(item.interest.equals("건강")){
                 main_attentionitem_image.setImageResource(R.drawable.field_health)
@@ -109,6 +109,18 @@ class AttentionProjectListAdapter(val attentionlist: List<ProjectElementMaterial
 
                 val stacktext = TextView(context)
                 stacktext.text = stackcontent
+
+
+
+                if(stacktext.text.equals("Html_CSS"))stacktext.text = "Html/CSS"
+                if(stacktext.text.equals("React_js"))stacktext.text = "React.JS"
+                if(stacktext.text.equals("After_Effects"))stacktext.text = "After Effects"
+                if(stacktext.text.equals("Cplus"))stacktext.text = "C++"
+                if(stacktext.text.equals("Flask"))stacktext.text = "FLASK"
+                if(stacktext.text.equals("Photoshop")) stacktext.text  = "PhotoShop"
+
+
+
                 stacktext.setPadding(30,5,30,5)
                 stacktext.layoutParams = layoutParams
 

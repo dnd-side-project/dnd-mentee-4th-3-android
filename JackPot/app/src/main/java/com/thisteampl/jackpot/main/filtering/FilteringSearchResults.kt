@@ -191,7 +191,7 @@ class FilteringSearchResults : AppCompatActivity() {
                 ) {
                     // 데이터 전달하지 못했다면
                     if (response.isSuccessful) {
-                        ToastmakeTextPrint("프로젝트 검색 완료 되었습니다.")
+//                        ToastmakeTextPrint("프로젝트 검색 완료")
                         filtersearch_projectcount_textview.visibility = View.VISIBLE
                         filtersearch_projectcount2_textview.visibility = View.GONE
 
@@ -201,7 +201,6 @@ class FilteringSearchResults : AppCompatActivity() {
                         }else{
                             filtersearch_projectcount_textview.visibility = View.GONE
                         }
-
 
 
                         val adapter = FilteringProjectAdapter(
@@ -217,7 +216,9 @@ class FilteringSearchResults : AppCompatActivity() {
                 }
             })
     }
+    private fun funexam(){
 
+    }
 
     private fun ToastmakeTextPrint(word: String) {
         Toast.makeText(this, word, Toast.LENGTH_SHORT).show()

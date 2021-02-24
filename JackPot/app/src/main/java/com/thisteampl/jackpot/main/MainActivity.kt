@@ -16,6 +16,7 @@ import com.thisteampl.jackpot.main.floating.ProjectCreation
 import com.thisteampl.jackpot.main.mainhome.AttentionMember
 import com.thisteampl.jackpot.main.mainhome.AttentionProject
 import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
+import com.thisteampl.jackpot.main.notice.FieldMore
 import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
 import com.thisteampl.jackpot.main.projectController.projectAPI
@@ -34,7 +35,6 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
 
-    
     private lateinit var attentionproject_backend: AttentionProject
     private lateinit var recentlyregister: RecentlyRegisterProject
     private val userApi = userAPI.create()
@@ -52,46 +52,52 @@ class MainActivity : AppCompatActivity() {
         // 주목받는 프로젝트, 주목받는 멤버, 최근 등록된 프로젝트 관련 메소드
         adapters_fragments_in_main()
 
-        val keyHash = Utility.getKeyHash(this)
-        Log.d("Hash", keyHash)
 
 
         val mypageIntent = Intent(this, MyPageActivity::class.java)
-
         getProfile()
+
+
+
+
+
         // 검색
         main_search_imageview.setOnClickListener {
 
-            val searchintentpage = Intent(this, FilteringSearch::class.java)
-            userApi?.getProfile()?.enqueue(
-                object : Callback<CheckMyProfile> {
-                    override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
-                        // userAPI에서 타입이나 이름 안맞췄을때
-                        Log.e("tag ", "onFailure, " + t.localizedMessage)
-                    }
+            if (prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+                Toast.makeText(
+                    this, "로그인 정보가 없습니다." +
+                            "\n로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT
+                ).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }else{
+                val searchintentpage = Intent(this, FilteringSearch::class.java)
+                userApi?.getProfile()?.enqueue(
+                    object : Callback<CheckMyProfile> {
+                        override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
+                            // userAPI에서 타입이나 이름 안맞췄을때
+                            Log.e("tag ", "onFailure, " + t.localizedMessage)
+                        }
 
-                    override fun onResponse(
-                        call: Call<CheckMyProfile>,
-                        response: Response<CheckMyProfile>
-                    ) {
-                        if(response.isSuccessful){
-
-                            // 포지션을 호출하기 위해 사용(전역변수 처리 적용이 안되는 것 같음)
-                            searchintentpage.putExtra("position",response.body()!!.result.position)
-                            searchintentpage.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            startActivity(searchintentpage)
+                        override fun onResponse(
+                            call: Call<CheckMyProfile>,
+                            response: Response<CheckMyProfile>
+                        ) {
+                            if(response.isSuccessful){
+                                searchintentpage.putExtra("position",response.body()!!.result.position)
+                                searchintentpage.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                startActivity(searchintentpage)
+                            }
                         }
                     }
-                }
-
-            )
-
+                )
+            }
 
         }
 
-//        // 분야 선택
-//        fieldSelect()
-
+        // 분야 선택
+        fieldSelect()
 
 
         // 알림
@@ -104,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             } else {
-                startActivity(mypageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+//                startActivity(mypageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
             }
 
         }
@@ -135,8 +141,6 @@ class MainActivity : AppCompatActivity() {
         var attentionlocation : Int = 0
         setFrag(attentionlocation)
         // 주목받는 프로젝트, 액티비티 프래그먼트 연결
-        // attentionlocation => 더보기 버튼 옵션 넣기 위해 사용
-
         main_projectattention_button.setOnClickListener {
             attentionlocation = 0
             main_projectattention_button.setTextColor(ContextCompat.getColor(this@MainActivity,R.color.colorbrightly))
@@ -207,50 +211,50 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 분야 선택
-//    private fun fieldSelect() {
-//        // ConstraintLayout을 전체적임에 반복문 x, 8개 버튼 각각 구현
-//        main_selftdevelopment_imgbtn.setOnClickListener {
-//            field_selection("selfdevelopment")
-//        }
-//        main_hobby_imgbtn.setOnClickListener {
-//            field_selection("hobby")
-//        }
-//        main_economy_imgbtn.setOnClickListener {
-//            field_selection("eocomy")
-//        }
-//        main_cook_imgbtn.setOnClickListener {
-//            field_selection("cook")
-//        }
-//        main_it_imgbtn.setOnClickListener {
-//            field_selection("it")
-//        }
-//        main_art_imgbtn.setOnClickListener {
-//            field_selection("art")
-//        }
-//        main_health_imgbtn.setOnClickListener {
-//            field_selection("health")
-//        }
-//        main_repose_imgbtn.setOnClickListener {
-//            field_selection("repose")
-//        }
-//
-//    }
+    private fun fieldSelect() {
+        // ConstraintLayout을 전체적임에 반복문 x, 8개 버튼 각각 구현
+        main_selftdevelopment_imgbtn.setOnClickListener {
+            field_selection("자기계발")
+        }
+        main_hobby_imgbtn.setOnClickListener {
+            field_selection("취미")
+        }
+        main_economy_imgbtn.setOnClickListener {
+            field_selection("경제")
+        }
+        main_cook_imgbtn.setOnClickListener {
+            field_selection("요리")
+        }
+        main_it_imgbtn.setOnClickListener {
+            field_selection("IT")
+        }
+        main_art_imgbtn.setOnClickListener {
+            field_selection("예술_창작")
+        }
+        main_health_imgbtn.setOnClickListener {
+            field_selection("건강")
+        }
+        main_repose_imgbtn.setOnClickListener {
+            field_selection("휴식")
+        }
 
-//    private fun field_selection(field : String) {
-//        if (prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
-//            Toast.makeText(
-//                this, "로그인 정보가 없습니다." +
-//                        "\n로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT
-//            ).show()
-//            val intent = Intent(this, LoginActivity::class.java)
-//            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-//        } else {
-//            var drawproject: Intent = Intent(this, FieldMore::class.java)
-//            drawproject.putExtra("field",field)
-//            drawproject.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//            startActivity(drawproject)
-//        }
-//    }
+    }
+
+    private fun field_selection(field : String) {
+        if (prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+            Toast.makeText(
+                this, "로그인 정보가 없습니다." +
+                        "\n로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT
+            ).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+        } else {
+            var drawproject: Intent = Intent(this, FieldMore::class.java)
+            drawproject.putExtra("field",field)
+            drawproject.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(drawproject)
+        }
+    }
 
 
     // 주목 받는 프로젝트, 주목 받는 멤버 5개, 최근 등록된 파일에서는 10개 아래로
@@ -268,7 +272,7 @@ class MainActivity : AppCompatActivity() {
 
         // 3. 최근에 등록된 프로젝트
         var recruitmentproject = ProjectPostLatest(
-            file_empty2,file_empty2,0,10,file_empty,"최신순",file_empty2
+            file_empty2,file_empty2,0,5,file_empty,"최신순",file_empty2
         )
 
         projectapi?.getProjectContents(recruitmentproject)
@@ -292,6 +296,7 @@ class MainActivity : AppCompatActivity() {
                         Log.d("tag","Main에서 recentlyregister 호출")
                         supportFragmentManager.beginTransaction().add(R.id.main_recentlyregisterproject_framelayout,recentlyregister)
                             .commitAllowingStateLoss()
+
 
                     }else{
                         Log.e("tag","Main에서 ${response.message()}")

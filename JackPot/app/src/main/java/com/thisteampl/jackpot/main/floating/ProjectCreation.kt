@@ -795,8 +795,6 @@ class ProjectCreation : AppCompatActivity() {
                             ToastmakeTextPrint("프로젝트 모집글 작성 완료 되었습니다.")
                             Log.d("tag","결과 : ${response.code().toString()}")
 
-                            ToastmakeTextPrint("프로젝트 모집글 작성이 완료 되었습니다.")
-
                         }else{
                             ToastmakeTextPrint("프로젝트 모집글 작성이 완료되지 않았습니다.")
                             Log.d("tag","${response.code().toString()}")

@@ -22,13 +22,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="20dp"
                 android:text="프로젝트 찾기"
                 android:textColor="#000000"
                 android:textSize="16dp"
-                android:visibility="visible"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/filterresult_longline_imageview"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -50,16 +48,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-
             <Button
                 android:id="@+id/filterresult_backbutton_button"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="20dp"
                 android:background="@drawable/android_back"
-                app:layout_constraintBottom_toBottomOf="@+id/filterresult_longline_imageview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,18 +63,18 @@
                 android:id="@+id/filterresult_longline_imageview"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/edit_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filterresult_backbutton_button" />
+                app:layout_constraintTop_toBottomOf="@+id/filterresult_filteringsearch_textview" />
 
 
             <com.skydoves.powerspinner.PowerSpinnerView
                 android:id="@+id/filterresult_powerspinner"
                 android:layout_width="80dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 app:spinner_arrow_gravity="end"
                 app:spinner_arrow_padding="8dp"
                 android:layout_marginRight="25dp"

@@ -76,10 +76,6 @@ class FilteringProjectAdapter(val context: Context, val ProjectList: List<Projec
 
 
 
-
-
-
-
         var list = ProjectList!![position]
 
         if(list.interest.equals("자기계발")){
@@ -112,6 +108,8 @@ class FilteringProjectAdapter(val context: Context, val ProjectList: List<Projec
 
 
 
+
+
         for(stackcontent in item.stacks) {
 
             var layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT ,LinearLayout.LayoutParams.MATCH_PARENT )
@@ -119,6 +117,15 @@ class FilteringProjectAdapter(val context: Context, val ProjectList: List<Projec
 
             val stacktext = TextView(context)
             stacktext.text = stackcontent
+
+            if(stacktext.text.equals("Html_CSS"))stacktext.text = "Html/CSS"
+            if(stacktext.text.equals("React_js"))stacktext.text = "React.JS"
+            if(stacktext.text.equals("After_Effects"))stacktext.text = "After Effects"
+            if(stacktext.text.equals("Cplus"))stacktext.text = "C++"
+            if(stacktext.text.equals("Flask"))stacktext.text = "FLASK"
+            if(stacktext.text.equals("Photoshop")) stacktext.text  = "PhotoShop"
+
+
             stacktext.setPadding(30,5,30,5)
             stacktext.layoutParams = layoutParams
 

@@ -67,9 +67,6 @@ class Filteringuseradapter(val context: Context, val UserList: List<UserRelatedF
 
 
 
-
-
-
         var list = UserList!![position]
         user_textview.text = list.emoticon
         user_name.text = list.name
