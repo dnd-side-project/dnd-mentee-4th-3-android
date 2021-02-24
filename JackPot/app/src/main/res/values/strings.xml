@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">잭팟</string>
-    <string name="kakao_app_key">ad84bb483482dd2c398ebc6794b65db9</string>
-    <string name="naver_client_id">RQcA9ncoO8aUd2YwNz1o</string>
-    <string name="naver_client_secret">v0NYcGwVmY</string>
-    <string name="google_client_id">569361822110-n6crcos080uhuhnbielhgrdjmu3turon.apps.googleusercontent.com</string>
+    <string name="kakao_app_key">fb028e269059790cee85ad244491c37b</string>
+    <string name="naver_client_id">MLqWMibI7foOqMh82H33</string>
+    <string name="naver_client_secret">7NsTvLsyp8</string>
+    <string name="google_client_id">762563927692-uaj89oo4f3v9pkt9sc8ap5ggeim3tiad.apps.googleusercontent.com</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

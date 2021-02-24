@@ -107,6 +107,7 @@ class FilteringSearchResults : AppCompatActivity() {
             0, 30, position, region, "", stackTool
         )
 
+        Log.d("tag","스택 : ${stackTool}")
         if (selection_result.equals("최신순")) {
             filteringuser.sortType = "최신순"
         } else if (selection_result.equals("인기순")) {

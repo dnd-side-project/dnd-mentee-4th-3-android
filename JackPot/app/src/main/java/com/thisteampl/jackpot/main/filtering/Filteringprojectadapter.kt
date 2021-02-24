@@ -1,8 +1,6 @@
 package com.thisteampl.jackpot.main.filtering
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +8,9 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectController.projectAPI
-import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
-import com.thisteampl.jackpot.main.userController.CheckMyProfile
-import com.thisteampl.jackpot.main.userController.CheckResponse
 import com.thisteampl.jackpot.main.userController.userAPI
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 
 class FilteringProjectAdapter(val context: Context, val ProjectList: List<ProjectElementMaterial>): BaseAdapter() {
@@ -157,8 +148,4 @@ class FilteringProjectAdapter(val context: Context, val ProjectList: List<Projec
     override fun getCount(): Int {
         return ProjectList!!.size
     }
-}
-
-private fun <T> Call<T>?.enqueue(any: Any) {
-
 }

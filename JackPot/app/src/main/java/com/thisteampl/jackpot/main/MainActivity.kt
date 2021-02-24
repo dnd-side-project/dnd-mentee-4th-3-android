@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.kakao.sdk.common.util.Utility
+import com.kakao.sdk.common.util.Utility.getKeyHash
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.filtering.FilteringSearch
@@ -50,10 +52,13 @@ class MainActivity : AppCompatActivity() {
         // 주목받는 프로젝트, 주목받는 멤버, 최근 등록된 프로젝트 관련 메소드
         adapters_fragments_in_main()
 
+        val keyHash = Utility.getKeyHash(this)
+        Log.d("Hash", keyHash)
+
+
         val mypageIntent = Intent(this, MyPageActivity::class.java)
 
         getProfile()
-
         // 검색
         main_search_imageview.setOnClickListener {
 
@@ -84,8 +89,8 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        // 분야 선택
-        fieldSelect()
+//        // 분야 선택
+//        fieldSelect()
 
 
 
@@ -202,36 +207,50 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 분야 선택
-    private fun fieldSelect() {
-        // ConstraintLayout을 전체적임에 반복문 x, 8개 버튼 각각 구현
-        main_selftdevelopment_imgbtn.setOnClickListener {
-            
+//    private fun fieldSelect() {
+//        // ConstraintLayout을 전체적임에 반복문 x, 8개 버튼 각각 구현
+//        main_selftdevelopment_imgbtn.setOnClickListener {
+//            field_selection("selfdevelopment")
+//        }
+//        main_hobby_imgbtn.setOnClickListener {
+//            field_selection("hobby")
+//        }
+//        main_economy_imgbtn.setOnClickListener {
+//            field_selection("eocomy")
+//        }
+//        main_cook_imgbtn.setOnClickListener {
+//            field_selection("cook")
+//        }
+//        main_it_imgbtn.setOnClickListener {
+//            field_selection("it")
+//        }
+//        main_art_imgbtn.setOnClickListener {
+//            field_selection("art")
+//        }
+//        main_health_imgbtn.setOnClickListener {
+//            field_selection("health")
+//        }
+//        main_repose_imgbtn.setOnClickListener {
+//            field_selection("repose")
+//        }
+//
+//    }
 
-        }
-        main_hobby_imgbtn.setOnClickListener {
-
-        }
-        main_economy_imgbtn.setOnClickListener {
-
-        }
-        main_cook_imgbtn.setOnClickListener {
-
-        }
-        main_it_imgbtn.setOnClickListener {
-
-        }
-        main_art_imgbtn.setOnClickListener {
-
-        }
-        main_health_imgbtn.setOnClickListener {
-
-        }
-        main_repose_imgbtn.setOnClickListener {
-
-        }
-
-
-    }
+//    private fun field_selection(field : String) {
+//        if (prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+//            Toast.makeText(
+//                this, "로그인 정보가 없습니다." +
+//                        "\n로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT
+//            ).show()
+//            val intent = Intent(this, LoginActivity::class.java)
+//            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+//        } else {
+//            var drawproject: Intent = Intent(this, FieldMore::class.java)
+//            drawproject.putExtra("field",field)
+//            drawproject.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            startActivity(drawproject)
+//        }
+//    }
 
 
     // 주목 받는 프로젝트, 주목 받는 멤버 5개, 최근 등록된 파일에서는 10개 아래로

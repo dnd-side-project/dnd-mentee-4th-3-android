@@ -195,6 +195,11 @@ class FilteringSearch : AppCompatActivity() {
 
                     }
 
+                    for(i in 0..projectfind_projectfieldbtn.size-1){
+                        if(projectfind_projectfieldbtn[i]=="예술/창작")
+                            projectfind_projectfieldbtn[i] = "예술_창작"
+                    }
+
                     // 2page를 위한 포지션
                     intent.putExtra("position",ArrayList<String>())
 
@@ -231,6 +236,7 @@ class FilteringSearch : AppCompatActivity() {
                             memberfind_stackToolTechnologyStack[i] = "Cplus"
                         }
                         if(memberfind_stackToolTechnologyStack[i] == "FLASK") memberfind_stackToolTechnologyStack[i] = "Flask"
+                        if(memberfind_stackToolTechnologyStack[i] == "PhotoShop") memberfind_stackToolTechnologyStack[i] = "Photoshop"
 
 
                     }

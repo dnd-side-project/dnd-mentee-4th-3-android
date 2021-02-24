@@ -92,7 +92,7 @@
                 app:spinner_divider_show="true"
                 app:spinner_divider_size="0.5dp"
                 app:spinner_popup_animation="normal"
-                app:spinner_popup_background="#FFFFFF"
+                app:spinner_popup_background="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filterresult_longline_imageview" />
