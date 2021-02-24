@@ -30,12 +30,7 @@ class MyPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page)
-        if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
-            finish()
-        }
 
-        setUpRecyclerView()
-        getProfile()
     }
 
     override fun onResume() {
@@ -43,6 +38,8 @@ class MyPageActivity : AppCompatActivity() {
         if(prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
             finish()
         }
+        setUpRecyclerView()
+        getProfile()
     }
 
 
@@ -134,6 +131,11 @@ class MyPageActivity : AppCompatActivity() {
                             if(response.body()!!.result.privacy) {
                                 mypage_profile_close_image.visibility = View.GONE
                             }
+
+                            myProjectAdapter.items.clear()
+                            myRegisterProjectAdapter.items.clear()
+                            myScrapProjectAdapter.items.clear()
+                            myCommentProjectAdapter.items.clear()
 
                             for(myprj in response.body()!!.result.participantProject) {
                                 var list = mutableListOf<String>()

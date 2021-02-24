@@ -50,6 +50,10 @@ class ProfileActivity: AppCompatActivity() {
         invalidateOptionsMenu()
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun setupView(){
         profile_title_text.text = intent.getStringExtra("title").toString()
         //프로필 텍스트를 Extra로 받음
