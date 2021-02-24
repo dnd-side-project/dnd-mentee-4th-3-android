@@ -32,6 +32,9 @@ class ProfileActivity: AppCompatActivity() {
 
     private val userApi = userAPI.create()
     lateinit var userprofile : MyProfile
+    private var portlink1 = "NO_LINK"
+    private var portlink2 = "NO_LINK"
+    private var position = "포지션"
     lateinit var updateprofile : MyProfileEdit
     private var alreadyScrap = false
     private var userId = 0
@@ -63,38 +66,38 @@ class ProfileActivity: AppCompatActivity() {
         profile_back_button.setOnClickListener { super.onBackPressed() }
 
         profile_portfolio_github_button.setOnClickListener {
-            if(URLUtil.isValidUrl(userprofile.portfolioLink1)) {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(userprofile.portfolioLink1))
+            if(URLUtil.isValidUrl(portlink1)) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(portlink1))
                 startActivity(intent)
             } else {
-                Toast.makeText(baseContext, userprofile.portfolioLink1 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "$portlink1\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
             }
         }
 
         profile_portfolio_behance_button.setOnClickListener {
-            if(URLUtil.isValidUrl(userprofile.portfolioLink1)) {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(userprofile.portfolioLink1))
+            if(URLUtil.isValidUrl(portlink1)) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(portlink1))
                 startActivity(intent)
             } else {
-                Toast.makeText(baseContext, userprofile.portfolioLink1 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "$portlink1\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
             }
         }
 
         profile_portfolio_global_button.setOnClickListener {
             val intent: Intent
-            if(userprofile.position == "기획자") {
-                if(URLUtil.isValidUrl(userprofile.portfolioLink1)) {
-                    intent = Intent(Intent.ACTION_VIEW, Uri.parse(userprofile.portfolioLink1))
+            if(position == "기획자") {
+                if(URLUtil.isValidUrl(portlink1)) {
+                    intent = Intent(Intent.ACTION_VIEW, Uri.parse(portlink1))
                     startActivity(intent)
                 } else {
-                    Toast.makeText(baseContext, userprofile.portfolioLink1 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "$portlink1\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                if(URLUtil.isValidUrl(userprofile.portfolioLink2)) {
-                    intent = Intent(Intent.ACTION_VIEW, Uri.parse(userprofile.portfolioLink2))
+                if(URLUtil.isValidUrl(portlink2)) {
+                    intent = Intent(Intent.ACTION_VIEW, Uri.parse(portlink2))
                     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 } else {
-                    Toast.makeText(baseContext, userprofile.portfolioLink2 + "\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(baseContext, "$portlink2\n해당 링크는 올바르지 않습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -175,6 +178,10 @@ class ProfileActivity: AppCompatActivity() {
                             if(response.body()!!.result.privacy) {
                                 profile_profile_close_image.visibility = View.GONE
                             }
+
+                            portlink1 = userprofile.portfolioLink1
+                            portlink2 = userprofile.portfolioLink2
+                            position = userprofile.position
 
                             when (response.body()!!.result.position) {
                                 "개발자" -> {
@@ -298,6 +305,11 @@ class ProfileActivity: AppCompatActivity() {
                             profile_name_text.text = response.body()!!.result.name
                             profile_job_icon_text.text = response.body()!!.result.emoticon
                             profile_introduce_text.text = response.body()!!.result.introduction
+
+                            position = response.body()!!.result.position
+
+                            portlink1 = response.body()!!.result.portfolioLink1
+                            portlink2 = response.body()!!.result.portfolioLink2
 
                             when (response.body()!!.result.position) {
                                 "개발자" -> {
