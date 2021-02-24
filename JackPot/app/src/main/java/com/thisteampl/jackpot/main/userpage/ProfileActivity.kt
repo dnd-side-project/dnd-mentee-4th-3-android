@@ -103,6 +103,12 @@ class ProfileActivity: AppCompatActivity() {
         profile_memberscrap_button.setOnClickListener {
             scrap(alreadyScrap)
         }
+
+        //비로그인 유저일 경우 멤버스크랩 방지
+        if (GlobalApplication.prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+            profile_memberscrap_button.alpha = 0.5f
+            profile_memberscrap_button.isEnabled = false
+        }
     }
 
     //내 프로필일 경우 메뉴바 생성
