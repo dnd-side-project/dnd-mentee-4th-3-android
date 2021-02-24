@@ -1,6 +1,8 @@
 package com.thisteampl.jackpot.main.filtering
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +12,11 @@ import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectController.projectAPI
+import com.thisteampl.jackpot.main.userController.CheckMyProfile
 import com.thisteampl.jackpot.main.userController.userAPI
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 class FilteringProjectAdapter(val context: Context, val ProjectList: List<ProjectElementMaterial>): BaseAdapter() {
@@ -18,7 +24,7 @@ class FilteringProjectAdapter(val context: Context, val ProjectList: List<Projec
     private val projectapi = projectAPI.projectRetrofitService()
     private val userApi = userAPI.create()
     private var check = BooleanArray(30)
-    private var checkscrapstar = false
+    private var CheckScrapStar = false
     private var projectID = 0L // 프로젝트 게시물의 id
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -52,6 +58,61 @@ class FilteringProjectAdapter(val context: Context, val ProjectList: List<Projec
 
 
 
+        // 여기 처리
+        userApi?.getProfile()?.enqueue(
+            object : Callback<CheckMyProfile> {
+                override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckMyProfile>,
+                    response: Response<CheckMyProfile>
+                ) {
+                    var check = false
+
+                    if(response.code().toString() == "200") {
+                        for (i in response.body()?.result!!.scrapProjects) {
+                            if (i.id == projectID.toLong()) {
+                                Log.d(TAG,"if문 RestAPI 에러 ${response.code().toString()}")
+                                Log.d(TAG,"if문 RestAPI 에러 ${response.code().toString()}")
+                                CheckScrapStar = true
+                                check = true
+                                Log.d(TAG,"RestAPI 스크랩 현재 결과 ${CheckScrapStar}")
+                                Log.d(TAG,"결과결과 나와라아롸아라라")
+                                break
+                            }
+                        }
+
+                        if(CheckScrapStar == true){
+                            Log.d(TAG,"2if문 RestAPI 에러 ${response.code().toString()}")
+                            Log.d(TAG,"2if문 RestAPI 에러 ${response.code().toString()}")
+                            Log.d(TAG,"CheckScrapStar RestAPI 에러 ${response.code().toString()}")
+                        }
+
+                        if(check == true){
+                            Log.d(TAG,"if문 트루 에러 ${response.code().toString()}")
+                            Log.d(TAG,"if문 트루 에러 ${response.code().toString()}")
+                            Log.d(TAG,"체크 ${check} 트루가 나왔다.")
+                        }
+
+
+                    } else{
+
+                        Log.d(TAG,"체크 함수 안에서 RestAPI 에러 ${response.code().toString()}")
+                        Log.e("tag","입니다 결과 요 ! 현재 결과 ${CheckScrapStar}")
+                        Log.d("tag","RestAPI 스크랩 현재 결과 ${CheckScrapStar}")
+
+
+                        Log.d("tag","RestAPI 현재 결과 ${CheckScrapStar}")
+                    }
+                }
+            })
+
+
+
+        ScrapCheckSpace()
         // 별표 표시 부분 (별표 id 선택)
         starcheck.setOnClickListener {
 
@@ -142,6 +203,9 @@ class FilteringProjectAdapter(val context: Context, val ProjectList: List<Projec
         return view
     }
 
+    private fun ScrapCheckSpace() {
+
+    }
 
 
     override fun getItem(position: Int): Any {

@@ -71,7 +71,7 @@ class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: List
 
         project_name.text = itemlist.title
         project_position.text = combinestr
-
+        project_update.text = itemlist.duration
 
 
         for(stackcontent in itemlist.stacks) {

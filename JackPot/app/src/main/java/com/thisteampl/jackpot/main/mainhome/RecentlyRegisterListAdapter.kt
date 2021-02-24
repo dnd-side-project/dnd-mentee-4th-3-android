@@ -19,6 +19,7 @@ import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_recentlyregisterproject_list.view.*
+import okio.utf8Size
 import java.util.*
 
 
@@ -93,7 +94,11 @@ class RecentlyRegisterListAdapter(
             main_recentlytitle_textview.text = item.title
             main_inputrecentlyproject_position_textview.text = combinestr
 
-            main_recentlytime_textview.text = "30분"
+
+            // 분 처리
+            if(item.duration.equals(item.duration.utf8Size()))
+
+            main_recentlytime_textview.text = item.duration
 
 
             for(stackcontent in item.stacks) {

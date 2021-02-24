@@ -35,6 +35,7 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
 
+    private var len  = 0
     private lateinit var attentionproject_backend: AttentionProject
     private lateinit var recentlyregister: RecentlyRegisterProject
     private val userApi = userAPI.create()
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         // 어댑터에 api작성시 : Fragment, 어댑터 실행 후 api 소스 실행 됨
         // 그럼에 main에서 RESETAPI 소스 호출하여 실행한 후, onResponse 안에서 Fragment, 어댑터 호출
