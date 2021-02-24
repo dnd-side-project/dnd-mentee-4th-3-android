@@ -50,10 +50,6 @@ class ProfileActivity: AppCompatActivity() {
         invalidateOptionsMenu()
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun setupView(){
         profile_title_text.text = intent.getStringExtra("title").toString()
         //프로필 텍스트를 Extra로 받음
@@ -413,10 +409,8 @@ class ProfileActivity: AppCompatActivity() {
                     when {
                         response.code().toString() == "200" -> {
                             finish()
-                            val intent1 = Intent(baseContext, MyPageActivity::class.java)
-                            startActivity(intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-                            val intent2 = Intent(baseContext, ProfileActivity::class.java).putExtra("title", "내 프로필")
-                            startActivity(intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                            val intent = Intent(baseContext, ProfileActivity::class.java).putExtra("title", "내 프로필")
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                             Toast.makeText(
                                 baseContext, "회원님의 정보가 수정되었습니다."
                                 , Toast.LENGTH_SHORT

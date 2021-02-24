@@ -60,9 +60,6 @@ class ProjectViewDetail : AppCompatActivity() {
             finish()
         }
 
-
-
-
         //댓글 리사이클러뷰 어댑터 설정
         mPrjCommentAdapter = ProjectCommentAdapter()
         project_detail_comment_recyclerview.adapter = mPrjCommentAdapter
