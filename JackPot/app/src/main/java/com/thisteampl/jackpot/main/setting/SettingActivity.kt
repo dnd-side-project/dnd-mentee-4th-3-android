@@ -13,12 +13,11 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication
 import com.thisteampl.jackpot.main.userController.CheckMyProfile
 import com.thisteampl.jackpot.main.userController.CheckResponse
+import com.thisteampl.jackpot.main.userController.MyProfile
 import com.thisteampl.jackpot.main.userController.userAPI
 import com.thisteampl.jackpot.main.userpage.ProfileChangePasswordActivity
 import kotlinx.android.synthetic.main.activity_setting.*
@@ -26,47 +25,66 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SettingActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+class SettingActivity : AppCompatActivity() {
 
+    private var userApi = userAPI.create()
+    lateinit var userprofile : MyProfile
 
-    class MainSettingFragment : Fragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_setting)
 
-        private var userApi = userAPI.create()
+        setting_back_button.setOnClickListener { onBackPressed() }
 
-        private var loginType : String? = "NO_TYPE_NEED_INITIALIZE"
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
+        getMyProfile()
+    }
 
-            //프로필을 가져와서 로그인 타입을 가져온다.
-            //SNS 회원 비밀번호 변경을 막기 위함.
-            userApi?.getProfile()?.enqueue(
-                object : Callback<CheckMyProfile> {
-                    override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
-                        // userAPI에서 타입이나 이름 안맞췄을때
-                        Log.e("tag ", "onFailure, " + t.localizedMessage)
-                    }
+    override fun onBackPressed() {
+        if(setting_toolbar_title.text == "설정") {
+            finish()
+        } else {
+            setting_toolbar_title.text = "설정"
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.setting_container, MainSettingFragment())
+                .commit()
+        }
+    }
 
-                    @RequiresApi(Build.VERSION_CODES.O)
-                    override fun onResponse(
-                        call: Call<CheckMyProfile>,
-                        response: Response<CheckMyProfile>
-                    ) {
-                        when {
-                            response.code().toString() == "200" -> {
-                                loginType = response.body()?.result?.loginType
-                            }
-                            else -> {
-                                Toast.makeText(
-                                    context, "에러가 발생했습니다. 에러코드 : " + response.code()
-                                    , Toast.LENGTH_SHORT
-                                ).show()
-                            }
+    private fun getMyProfile() {
+        userApi?.getProfile()?.enqueue(
+            object : Callback<CheckMyProfile> {
+                override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                @RequiresApi(Build.VERSION_CODES.O)
+                override fun onResponse(
+                    call: Call<CheckMyProfile>,
+                    response: Response<CheckMyProfile>
+                ) {
+                    when {
+                        response.code().toString() == "200" -> {
+                            userprofile = response.body()?.result!!
+                            supportFragmentManager
+                                .beginTransaction()
+                                .replace(R.id.setting_container, MainSettingFragment())
+                                .commit()
+                        }
+                        else -> {
+                            Toast.makeText(
+                                baseContext, "에러가 발생했습니다. 에러코드 : " + response.code()
+                                , Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
-                })
+                }
+            })
+    }
 
-        }
-
+    //설정의 메인 프래그먼트
+    class MainSettingFragment : Fragment() {
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -76,7 +94,7 @@ class SettingActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
 
             //비밀번호 변경 버튼, 로그인타입 값을 받아온다.
             root.findViewById<View>(R.id.setting_changePW).setOnClickListener {
-                if(loginType == "normal") {
+                if((activity as SettingActivity).userprofile.loginType == "normal") {
                     val intent = Intent(context, ProfileChangePasswordActivity::class.java)
                     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 } else {
@@ -103,7 +121,7 @@ class SettingActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
                     DialogInterface.OnClickListener { _, which ->
                         when (which) {
                             DialogInterface.BUTTON_POSITIVE -> {
-                                userApi?.getWithDraw()?.enqueue(
+                                (activity as SettingActivity).userApi?.getWithDraw()?.enqueue(
                                     object : Callback<CheckResponse> {
                                         override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
                                             // userAPI에서 타입이나 이름 안맞췄을때
@@ -144,29 +162,27 @@ class SettingActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferen
                 dialog.show()
             }
 
+            //알람설정 버튼
+            root.findViewById<View>(R.id.setting_notification).setOnClickListener {
+                (activity as SettingActivity).setting_toolbar_title.text = "알림"
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.setting_container, NotifyFragment())?.commit()
+            }
             return root
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.P)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setting)
+    //알림 설정 프래그먼트
+    class NotifyFragment : Fragment() {
 
-        setting_back_button.setOnClickListener { super.onBackPressed() }
-
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.setting_container, MainSettingFragment())
-            .commit()
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            var root = inflater.inflate(R.layout.fragment_setting_notify, container, false)
+            
+            return root
+        }
     }
-
-    override fun onPreferenceStartFragment(
-        caller: PreferenceFragmentCompat?,
-        pref: Preference?
-    ): Boolean {
-        TODO("Not yet implemented")
-    }
-
-
 }
