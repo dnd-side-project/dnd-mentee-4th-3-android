@@ -7,8 +7,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.kakao.sdk.common.util.Utility
-import com.kakao.sdk.common.util.Utility.getKeyHash
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.common.GlobalApplication.Companion.prefs
 import com.thisteampl.jackpot.main.filtering.FilteringSearch
@@ -16,7 +14,7 @@ import com.thisteampl.jackpot.main.floating.ProjectCreation
 import com.thisteampl.jackpot.main.mainhome.AttentionMember
 import com.thisteampl.jackpot.main.mainhome.AttentionProject
 import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
-import com.thisteampl.jackpot.main.notice.FieldMore
+import com.thisteampl.jackpot.main.mainhome.FieldMore
 import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
 import com.thisteampl.jackpot.main.projectController.projectAPI

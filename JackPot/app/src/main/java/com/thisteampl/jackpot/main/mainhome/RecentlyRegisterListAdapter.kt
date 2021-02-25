@@ -94,12 +94,23 @@ class RecentlyRegisterListAdapter(
             main_recentlytitle_textview.text = item.title
             main_inputrecentlyproject_position_textview.text = combinestr
 
-
+            var resulttime = ""
             // 분 처리
-            if(item.duration.equals(item.duration.utf8Size()))
+            if(item.duration.isNotEmpty()){
+                var time = item.duration.substring(item.duration.length-1,item.duration.length)
+                if(time.equals("H")){
+                    var hour = item.duration.substring(0,item.duration.length-1)
+                    resulttime = hour +"시간전"
+                }else if(time.equals("n")){
+                    resulttime = (item.duration.substring(0,item.duration.length-3)) + "분전"
+                }else{
+                    resulttime = (item.duration.substring(0,item.duration.length-1)) + "초전"
+                }
+            }
 
-            main_recentlytime_textview.text = item.duration
 
+
+            main_recentlytime_textview.text = resulttime
 
             for(stackcontent in item.stacks) {
 

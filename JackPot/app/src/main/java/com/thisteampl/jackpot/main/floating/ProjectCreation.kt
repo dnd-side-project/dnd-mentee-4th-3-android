@@ -743,7 +743,7 @@ class ProjectCreation : AppCompatActivity() {
                     stackToolAll[i] = "Cplus"
                 }
                 if(stackToolAll[i] == "FLASK") stackToolAll[i] = "Flask"
-
+                if(stackToolAll[i] == "PhotoShop")stackToolAll[i] = "PhotoShop"
 
             }
             selectpositionItems.addAll(stackToolposition)

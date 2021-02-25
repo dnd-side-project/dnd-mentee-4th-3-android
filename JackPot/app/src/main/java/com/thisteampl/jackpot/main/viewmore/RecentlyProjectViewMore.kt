@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.main.notice.FieldMoreAdapter
 import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
 import com.thisteampl.jackpot.main.projectController.projectAPI
-import com.thisteampl.jackpot.main.userController.userAPI
-import kotlinx.android.synthetic.main.activity_field_more.*
 
-import kotlinx.android.synthetic.main.activity_project_view_more.*
 import kotlinx.android.synthetic.main.activity_recently_project_view_more.*
 
 class RecentlyProjectViewMore : AppCompatActivity() {

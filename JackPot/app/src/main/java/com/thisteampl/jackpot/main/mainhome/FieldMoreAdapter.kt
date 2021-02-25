@@ -1,4 +1,4 @@
-package com.thisteampl.jackpot.main.notice
+package com.thisteampl.jackpot.main.mainhome
 
 
 import android.content.Context

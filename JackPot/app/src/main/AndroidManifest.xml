@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".main.notice.FieldMore"></activity>
+        <activity android:name=".main.notice.MainNotice"></activity>
+        <activity android:name=".main.mainhome.FieldMore" />
         <activity android:name=".main.notice.Exampleacitivti" />
 
         <service

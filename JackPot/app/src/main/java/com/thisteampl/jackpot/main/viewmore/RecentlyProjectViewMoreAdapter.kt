@@ -71,7 +71,20 @@ class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: List
 
         project_name.text = itemlist.title
         project_position.text = combinestr
-        project_update.text = itemlist.duration
+
+
+        var time = itemlist.duration.substring(itemlist.duration.length-1,itemlist.duration.length)
+        var resulttime = ""
+        if(time.equals("H")){
+            var hour = itemlist.duration.substring(0,itemlist.duration.length-1)
+            resulttime = hour +"시간전"
+        }else if(time.equals("n")){
+            resulttime = (itemlist.duration.substring(0,itemlist.duration.length-3)) + "분전"
+        }else{
+            resulttime = (itemlist.duration.substring(0,itemlist.duration.length-1)) + "초전"
+        }
+
+        project_update.text = resulttime
 
 
         for(stackcontent in itemlist.stacks) {

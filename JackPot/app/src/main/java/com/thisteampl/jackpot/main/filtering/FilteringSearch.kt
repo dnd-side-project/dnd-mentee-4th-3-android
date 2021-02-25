@@ -191,7 +191,7 @@ class FilteringSearch : AppCompatActivity() {
                             projectfind_stackToolTechnologyStack[i] = "Cplus"
                         }
                         if(projectfind_stackToolTechnologyStack[i] == "FLASK") projectfind_stackToolTechnologyStack[i] = "Flask"
-                        if(projectfind_stackToolTechnologyStack[i] == "PhotoShop") projectfind_stackToolTechnologyStack[i] = "Photoshop"
+                        if(projectfind_stackToolTechnologyStack[i] == "PhotoShop") projectfind_stackToolTechnologyStack[i] = "PhotoShop"
 
                     }
 
@@ -236,7 +236,7 @@ class FilteringSearch : AppCompatActivity() {
                             memberfind_stackToolTechnologyStack[i] = "Cplus"
                         }
                         if(memberfind_stackToolTechnologyStack[i] == "FLASK") memberfind_stackToolTechnologyStack[i] = "Flask"
-                        if(memberfind_stackToolTechnologyStack[i] == "PhotoShop") memberfind_stackToolTechnologyStack[i] = "Photoshop"
+                        if(memberfind_stackToolTechnologyStack[i] == "PhotoShop") memberfind_stackToolTechnologyStack[i] = "PhotoShop"
 
 
                     }

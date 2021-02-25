@@ -451,7 +451,7 @@
                             android:layout_height="35dp"
                             android:layout_marginLeft="30dp"
                             android:background="@drawable/radius_button_effect"
-                            android:text="Photoshop"
+                            android:text="PhotoShop"
                             android:textAllCaps="false"
                             android:textColor="#000000"
                             android:textSize="14dp"

@@ -1,4 +1,4 @@
-package com.thisteampl.jackpot.main.notice
+package com.thisteampl.jackpot.main.mainhome
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -78,14 +78,15 @@ class FieldMore : AppCompatActivity() {
 //                        ToastmakeTextPrint("분야 검색 완료")
 
 
-                        val adapter = FieldMoreAdapter(
-                            getApplicationContext(), response.body()!!.contents
-                        )
+                        val adapter =
+                            FieldMoreAdapter(
+                                getApplicationContext(), response.body()!!.contents
+                            )
                         fieldmore_listview.adapter = adapter
 
                         Log.d("tag", "크기 : ${adapter.getCount()}")
                     } else {
-//                        ToastmakeTextPrint("분야 검색 완료되지 않았습니다.")
+                        ToastmakeTextPrint("분야 검색 완료되지 않았습니다.")
                         Log.d("tag", "${response.code().toString()}")
                         Log.d("tag","분야 : ${field}")
                         Log.d("tag","분야 : ")

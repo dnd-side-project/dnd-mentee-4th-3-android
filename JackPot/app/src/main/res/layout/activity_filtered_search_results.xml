@@ -11,11 +11,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/filterresult_title_constraintlayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
 
             <TextView
                 android:id="@+id/filterresult_filteringsearch_textview"
@@ -30,23 +29,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/filterresult_filteringsearch2_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="20dp"
-                android:text="멤버 찾기"
-                android:textColor="#000000"
-                android:textSize="16dp"
-                android:visibility="gone"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/filterresult_longline_imageview"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
 
             <Button
                 android:id="@+id/filterresult_backbutton_button"
@@ -74,37 +56,36 @@
                 android:id="@+id/filterresult_powerspinner"
                 android:layout_width="80dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="25dp"
+                android:background="@color/colorWhite"
+                android:gravity="center"
+                android:text="최신 순"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterresult_longline_imageview"
                 app:spinner_arrow_gravity="end"
                 app:spinner_arrow_padding="8dp"
-                android:layout_marginRight="25dp"
-                android:text="최신 순"
-                android:gravity="center"
-                android:background="@color/colorWhite"
                 app:spinner_arrow_show="true"
                 app:spinner_arrow_tint="#979797"
                 app:spinner_divider_color="@color/colorWhite"
                 app:spinner_divider_show="true"
                 app:spinner_divider_size="0.5dp"
                 app:spinner_popup_animation="normal"
-                app:spinner_popup_background="@color/colorWhite"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/filterresult_longline_imageview" />
+                app:spinner_popup_background="@color/colorWhite" />
 
             <TextView
                 android:id="@+id/filtersearch_projectcount_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="26dp"
-                android:layout_marginBottom="7dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
                 android:text="00개의 프로젝트"
                 android:textColor="#000000"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/filterresult_listview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filterresult_longline_imageview" />
 
@@ -120,22 +101,24 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/filterresult_listview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filterresult_longline_imageview" />
 
+
+            <ListView
+                android:id="@+id/filterresult_listview"
+                android:layout_width="match_parent"
+                android:layout_height="580dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/filterresult_powerspinner" />
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <ListView
-        android:id="@+id/filterresult_listview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filterresult_title_constraintlayout" />
-
-    
 
 
 

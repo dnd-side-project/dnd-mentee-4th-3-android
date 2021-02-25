@@ -15,7 +15,7 @@ import java.util.*
 
 class Filteringuseradapter(val context: Context, val UserList: List<UserRelatedFilteringcontents>?= null): BaseAdapter() {
 
-    var check2 = BooleanArray(30)
+    var check2 = BooleanArray(1000)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view : View = LayoutInflater.from(context).inflate(R.layout.holder_filtered_search_memberrelated_list,null)
@@ -48,17 +48,24 @@ class Filteringuseradapter(val context: Context, val UserList: List<UserRelatedF
         // 별표 표시 부분 (별표 id 선택)
         user_star.setOnClickListener {
 
-            // 체크 되었을 때 background
-            user_star.background =ContextCompat.getDrawable(
-                context,
-                R.drawable.star_select
-            )
+            if(!check2[position]){
+                // 체크 되었을 때 background
+                user_star.background =ContextCompat.getDrawable(
+                    context,
+                    R.drawable.star_select
+                )
+                check2[position] = true
+            }else{
+                user_star.background =ContextCompat.getDrawable(
+                    context,
+                    R.drawable.star
+                )
+                check2[position] = false
+            }
+
 
             // 체크 되지 않았을 때 background
-            user_star.background =ContextCompat.getDrawable(
-                context,
-                R.drawable.star
-            )
+
         }
 
 
