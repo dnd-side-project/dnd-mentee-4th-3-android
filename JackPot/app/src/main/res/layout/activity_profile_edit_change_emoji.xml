@@ -10,7 +10,6 @@
     android:id="@+id/profile_edit_change_emoji_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fontFamily="@font/notocoloremoji"
     android:background="@color/colorWhite">
 
     <androidx.appcompat.widget.Toolbar
@@ -48,6 +47,7 @@
         android:background="@color/transparent"
         android:text="😁"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,6 +60,7 @@
         android:background="@color/transparent"
         android:text="😉"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,6 +73,7 @@
         android:background="@color/transparent"
         android:text="😆"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,6 +85,7 @@
         android:background="@color/transparent"
         android:text="🙃"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -95,6 +98,7 @@
         android:background="@color/transparent"
         android:text="🤯"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,6 +110,7 @@
         android:background="@color/transparent"
         android:text="😤"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -117,6 +122,7 @@
         android:background="@color/transparent"
         android:text="😎"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -128,6 +134,7 @@
         android:background="@color/transparent"
         android:text="🤔"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,6 +146,7 @@
         android:background="@color/transparent"
         android:text="🤓"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -150,6 +158,7 @@
         android:background="@color/transparent"
         android:text="🤠"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -161,6 +170,7 @@
         android:background="@color/transparent"
         android:text="🙄"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -172,6 +182,7 @@
         android:background="@color/transparent"
         android:text="😴"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -183,6 +194,7 @@
         android:background="@color/transparent"
         android:text="😬"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -194,6 +206,7 @@
         android:background="@color/transparent"
         android:text="😇"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -205,6 +218,7 @@
         android:background="@color/transparent"
         android:text="🤩"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -216,6 +230,7 @@
         android:background="@color/transparent"
         android:text="😏"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -227,6 +242,7 @@
         android:background="@color/transparent"
         android:text="🐵"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -238,6 +254,7 @@
         android:background="@color/transparent"
         android:text="🦍"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -249,6 +266,7 @@
         android:background="@color/transparent"
         android:text="🐶"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -260,6 +278,7 @@
         android:background="@color/transparent"
         android:text="🐺"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -271,6 +290,7 @@
         android:background="@color/transparent"
         android:text="🦊"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -282,6 +302,7 @@
         android:background="@color/transparent"
         android:text="🐱"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -293,6 +314,7 @@
         android:background="@color/transparent"
         android:text="🐯"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -304,6 +326,7 @@
         android:background="@color/transparent"
         android:text="🐷"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
     <Button
@@ -314,6 +337,7 @@
         android:background="@color/transparent"
         android:text="🐮"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -325,6 +349,7 @@
         android:background="@color/transparent"
         android:text="🐰"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -336,6 +361,7 @@
         android:background="@color/transparent"
         android:text="🐼"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -347,6 +373,7 @@
         android:background="@color/transparent"
         android:text="🐭"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -358,6 +385,7 @@
         android:background="@color/transparent"
         android:text="🐹"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -369,6 +397,7 @@
         android:background="@color/transparent"
         android:text="🦔"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -380,6 +409,7 @@
         android:background="@color/transparent"
         android:text="🐻"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -391,6 +421,7 @@
         android:background="@color/transparent"
         android:text="🐨"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -402,6 +433,7 @@
         android:background="@color/transparent"
         android:text="🦉"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -413,6 +445,7 @@
         android:background="@color/transparent"
         android:text="🐸"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -424,6 +457,7 @@
         android:background="@color/transparent"
         android:text="🐠"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -435,6 +469,7 @@
         android:background="@color/transparent"
         android:text="🐙"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -446,6 +481,7 @@
         android:background="@color/transparent"
         android:text="👽"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -457,6 +493,7 @@
         android:background="@color/transparent"
         android:text="💩"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -468,6 +505,7 @@
         android:background="@color/transparent"
         android:text="👾"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -479,6 +517,7 @@
         android:background="@color/transparent"
         android:text="👻"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -490,6 +529,7 @@
         android:background="@color/transparent"
         android:text="🍎"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -501,6 +541,7 @@
         android:background="@color/transparent"
         android:text="🍇"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -512,6 +553,7 @@
         android:background="@color/transparent"
         android:text="🍓"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -523,6 +565,7 @@
         android:background="@color/transparent"
         android:text="🍄"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -534,6 +577,7 @@
         android:background="@color/transparent"
         android:text="🍔"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -545,6 +589,7 @@
         android:background="@color/transparent"
         android:text="🍕"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -556,6 +601,7 @@
         android:background="@color/transparent"
         android:text="🍙"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -567,6 +613,7 @@
         android:background="@color/transparent"
         android:text="🍤"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -578,6 +625,7 @@
         android:background="@color/transparent"
         android:text="🍩"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -589,6 +637,7 @@
         android:background="@color/transparent"
         android:text="🌝"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -600,6 +649,7 @@
         android:background="@color/transparent"
         android:text="🌞"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -611,6 +661,7 @@
         android:background="@color/transparent"
         android:text="🗿"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -622,6 +673,7 @@
         android:background="@color/transparent"
         android:text="🖤"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -633,6 +685,7 @@
         android:background="@color/transparent"
         android:text="❤"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -644,6 +697,7 @@
         android:background="@color/transparent"
         android:text="💙"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -655,6 +709,7 @@
         android:background="@color/transparent"
         android:text="💚"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -666,6 +721,7 @@
         android:background="@color/transparent"
         android:text="🤖"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -677,6 +733,7 @@
         android:background="@color/transparent"
         android:text="🧐"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -688,6 +745,7 @@
         android:background="@color/transparent"
         android:text="🧙"
         android:textSize="32dp"
+        android:fontFamily="@font/notocoloremoji"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
 
