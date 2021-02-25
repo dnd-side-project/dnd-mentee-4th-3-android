@@ -4,18 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.thisteampl.jackpot.R
-import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
 import com.thisteampl.jackpot.main.projectController.projectAPI
 import com.thisteampl.jackpot.main.userController.*
+import com.thisteampl.jackpot.main.viewmore.FilteringFragment
 import kotlinx.android.synthetic.main.activity_filtered_search_results.*
-import kotlinx.android.synthetic.main.activity_filtering_search.*
-import kotlinx.android.synthetic.main.activity_project_view_more.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,6 +35,10 @@ class FilteringSearchResults : AppCompatActivity() {
     // page
     var page = ""
     var selection_result = "최신순"
+
+    private lateinit var filtering: FilteringFragment
+    private lateinit var filteringID: FilteringUserFragment
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -148,12 +148,16 @@ class FilteringSearchResults : AppCompatActivity() {
                         }else{
                             filtersearch_projectcount2_textview.visibility = View.GONE
                         }
-                        
 
-                    val adapter = Filteringuseradapter(
-                            getApplicationContext(), response.body()!!.contents
-                        )
-                        filterresult_listview.adapter = adapter
+
+                        var usersearch = response.body()?.contents
+                        // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
+                        filteringID = FilteringUserFragment.newInstance()
+                        if (usersearch != null) {
+                            filteringID.connectprojectbackend(usersearch)
+                        }
+                        supportFragmentManager.beginTransaction().add(R.id.filterresult_fragment,filteringID)
+                            .commitAllowingStateLoss()
 
                     } else {
                         ToastmakeTextPrint("멤버 찾기 검색 되지 않았습니다.")
@@ -166,8 +170,8 @@ class FilteringSearchResults : AppCompatActivity() {
     }
 
 
-//    val arrid = arrayListOf<Long>(100)
-//    var idx = 0
+    val arrid = arrayListOf<Long>(100)
+    var idx = 0
 
     private fun setprojectListView() {
 
@@ -200,8 +204,6 @@ class FilteringSearchResults : AppCompatActivity() {
 
                         response.body()
 
-
-
 //                        ToastmakeTextPrint("프로젝트 검색 완료")
                         filtersearch_projectcount_textview.visibility = View.VISIBLE
                         filtersearch_projectcount2_textview.visibility = View.GONE
@@ -213,22 +215,24 @@ class FilteringSearchResults : AppCompatActivity() {
                             filtersearch_projectcount_textview.visibility = View.GONE
                         }
 
-                        val len = response.body()!!.contents.size
-
-
+//                        val len = response.body()!!.contents.size
+//
+//                        Log.d("tag","결과 : ${len}")
+//
 //                        for(n in 0 until len){
 //                            getuserid(response.body()!!.contents[n].id)
 //                        }
 
 
-//                        Log.d("tag","id 입니다:${arrid}")
+                        var filteringsearch = response.body()?.contents
+                        // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
+                        filtering = FilteringFragment.newInstance()
+                        if (filteringsearch != null) {
+                            filtering.connectprojectbackend(filteringsearch)
+                        }
+                        supportFragmentManager.beginTransaction().add(R.id.filterresult_fragment,filtering)
+                            .commitAllowingStateLoss()
 
-                        val adapter = FilteringProjectAdapter(
-                            getApplicationContext(), response.body()!!.contents
-                        )
-                        filterresult_listview.adapter = adapter
-
-                        Log.d("tag","크기 : ${adapter.getCount()}")
                     } else {
                         ToastmakeTextPrint("프로젝트 검색 완료되지 않았습니다.")
                         Log.d("tag", "${response.code().toString()}")
@@ -236,36 +240,36 @@ class FilteringSearchResults : AppCompatActivity() {
                 }
             })
     }
-//
-//    private fun getuserid(projectid : Long){
-//        userapi?.getProfile()?.enqueue(
-//            object : Callback<CheckMyProfile> {
-//                override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
-//                    // userAPI에서 타입이나 이름 안맞췄을때
-//                    Log.e("tag ", "onFailure, " + t.localizedMessage)
-//                }
-//
-//                override fun onResponse(
-//                    call: Call<CheckMyProfile>,
-//                    response: Response<CheckMyProfile>
-//                ) {
-//                   if(response.isSuccessful) {
-//                        for (i in response.body()?.result!!.scrapProjects) {
-//                            if (i.id == projectid) {
-//                                // 체크되게
-//                                Log.d("tag","해당 id, ${projectid}")
-//                                arrid[idx++] = projectid
-//                            }
-//                        }
-//
-//                    } else{
-//                        ToastmakeTextPrint("스크랩이 적용되지 않았습니다.")
-//                        Log.d("tag", "${response.code().toString()}")
-//                    }
-//                }
-//            })
-//
-//    }
+
+    private fun getuserid(projectid : Long){
+        userapi?.getProfile()?.enqueue(
+            object : Callback<CheckMyProfile> {
+                override fun onFailure(call: Call<CheckMyProfile>, t: Throwable) {
+                    // userAPI에서 타입이나 이름 안맞췄을때
+                    Log.e("tag ", "onFailure, " + t.localizedMessage)
+                }
+
+                override fun onResponse(
+                    call: Call<CheckMyProfile>,
+                    response: Response<CheckMyProfile>
+                ) {
+                   if(response.isSuccessful) {
+                        for (i in response.body()?.result!!.scrapProjects) {
+                            if (i.id == projectid) {
+                                // 체크되게
+                                Log.d("tag","해당 id, ${projectid}")
+                                arrid[idx++] = projectid
+                            }
+                        }
+
+                    } else{
+                        ToastmakeTextPrint("스크랩이 적용되지 않았습니다.")
+                        Log.d("tag", "${response.code().toString()}")
+                    }
+                }
+            })
+
+    }
 
     private fun ToastmakeTextPrint(word: String) {
         Toast.makeText(this, word, Toast.LENGTH_SHORT).show()

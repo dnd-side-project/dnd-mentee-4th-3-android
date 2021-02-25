@@ -9,6 +9,8 @@ import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
 import com.thisteampl.jackpot.main.projectController.projectAPI
 import com.thisteampl.jackpot.main.userController.userAPI
+import com.thisteampl.jackpot.main.viewmore.FieldMoreFragment
+import com.thisteampl.jackpot.main.viewmore.RecentlyProjectViewFragment
 import kotlinx.android.synthetic.main.activity_field_more.*
 
 
@@ -18,6 +20,7 @@ class FieldMore : AppCompatActivity() {
     var userapi = userAPI.create()
     var field = ""
     var selection_result = ""
+    private lateinit var fieldmore: FieldMoreFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,14 +80,16 @@ class FieldMore : AppCompatActivity() {
                     if (response.isSuccessful) {
 //                        ToastmakeTextPrint("분야 검색 완료")
 
+                        var field = response.body()?.contents
+                        // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
+                        fieldmore = FieldMoreFragment.newInstance()
+                        if (field != null) {
+                            fieldmore.connectprojectbackend(field)
+                        }
+                        supportFragmentManager.beginTransaction().add(R.id.fieldmore_listview,fieldmore)
+                            .commitAllowingStateLoss()
 
-                        val adapter =
-                            FieldMoreAdapter(
-                                getApplicationContext(), response.body()!!.contents
-                            )
-                        fieldmore_listview.adapter = adapter
 
-                        Log.d("tag", "크기 : ${adapter.getCount()}")
                     } else {
                         ToastmakeTextPrint("분야 검색 완료되지 않았습니다.")
                         Log.d("tag", "${response.code().toString()}")

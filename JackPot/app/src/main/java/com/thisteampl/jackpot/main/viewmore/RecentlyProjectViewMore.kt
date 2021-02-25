@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
 import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
 import com.thisteampl.jackpot.main.projectController.projectAPI
@@ -15,6 +16,7 @@ class RecentlyProjectViewMore : AppCompatActivity() {
 
     var projectapi = projectAPI.projectRetrofitService()
     var selection_result = ""
+    private lateinit var recentlyregister: RecentlyProjectViewFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,12 +71,15 @@ class RecentlyProjectViewMore : AppCompatActivity() {
                     if (response.isSuccessful) {
 //                        ToastmakeTextPrint("최근 등록된 프로젝트 검색 완료")
 
-                        val adapter = RecentlyProjectViewMoreAdapter(
-                            getApplicationContext(), response.body()!!.contents
-                        )
-                        recentlyregitstered_listview.adapter = adapter
-
-                        Log.d("tag", "크기 : ${adapter.getCount()}")
+                        val recentlylist = response.body()?.contents
+                        // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
+                        recentlyregister = RecentlyProjectViewFragment.newInstance()
+                        if (recentlylist != null) {
+                            recentlyregister.connectprojectbackend(recentlylist)
+                        }
+                        Log.d("tag","Main에서 recentlyregister 호출")
+                        supportFragmentManager.beginTransaction().add(R.id.recentlyregitstered_listview,recentlyregister)
+                            .commitAllowingStateLoss()
                     } else {
                         ToastmakeTextPrint("최근 등록된 프로젝트 검색되지 않았습니다.")
                         Log.d("tag", "${response.code().toString()}")

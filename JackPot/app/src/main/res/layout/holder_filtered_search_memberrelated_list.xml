@@ -33,15 +33,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+
     <Button
-        android:id="@+id/holder_staruserview_button"
+        android:id="@+id/holder_starviewuser_button"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/select_star"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -59,11 +62,13 @@
         android:id="@+id/holder_filter_checkstar_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="320dp"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="10dp"
         android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/holder_staruserview_button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/holder_starviewuser_button" />
 
     <TextView
         android:id="@+id/holderfiltered_textview"

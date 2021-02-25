@@ -1,140 +1,156 @@
 package com.thisteampl.jackpot.main.viewmore
 
-import android.content.Context
-import android.media.Image
+import android.content.Intent
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterListAdapter
 import com.thisteampl.jackpot.main.projectController.ProjectComponent
 import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
+import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_recentlyregisterproject_list.view.*
+import okio.utf8Size
 import java.util.*
 
 
-class RecentlyProjectViewMoreAdapter(val context: Context, val ProjectList: List<ProjectElementMaterial>?= null): BaseAdapter(){
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view : View = LayoutInflater.from(context).inflate(R.layout.main_recentlyregisterproject_list,null)
+// 최근 등록된 프로젝트 어댑터(연결 구간)
+class RecentlyProjectViewMoreAdapter(
+    val recentlyregisterviewmorelist: List<ProjectElementMaterial> = mutableListOf()): RecyclerView.Adapter<RecentlyProjectViewMoreAdapter.RecentlyRegisterListRecyclerViewHolder>() {
 
-        val profile = view.findViewById<ImageView>(R.id.main_recentlyregister_field_image)
-        val project_name = view.findViewById<TextView>(R.id.main_recentlytitle_textview)
-        val project_position = view.findViewById<TextView>(R.id.main_inputrecentlyproject_position_textview)
-        val project_update = view.findViewById<TextView>(R.id.main_recentlytime_textview)
-        val project_stacks = view.findViewById<LinearLayout>(R.id.main_recentlyregister_scrollview_textview)
-        val projectbackimage = view.findViewById<ImageView>(R.id.main_recentlyproject_image)
-
-
-        var itemlist = ProjectList!![position]
-
-
-        val randomindex = Random().nextInt(3)
-
-        // 배경색 itemlist변경
-        if(randomindex==0){
-            projectbackimage.background = ContextCompat.getDrawable(context, R.drawable.attentionimagebluenview)
-        }else if(randomindex ==1){
-            projectbackimage.background = ContextCompat.getDrawable(context, R.drawable.attentionimagegreenview)
-        }else{
-            projectbackimage.background = ContextCompat.getDrawable(context, R.drawable.attentionimagepinkview)
-        }
-
-
-        if(itemlist.interest.equals("자기계발")){
-            profile.setImageResource(R.drawable.field_selfdeveloper)
-        }else if(itemlist.interest.equals("취미")){
-            profile.setImageResource(R.drawable.field_hobby)
-        }else if(itemlist.interest.equals("경제")){
-            profile.setImageResource(R.drawable.field_economy)
-        }else if(itemlist.interest.equals("요리")){
-            profile.setImageResource(R.drawable.field_cook)
-        }else if(itemlist.interest.equals("IT")){
-            profile.setImageResource(R.drawable.field_it)
-        }else if(itemlist.interest.equals("예술_창작")){
-            profile.setImageResource(R.drawable.field_art)
-        }else if(itemlist.interest.equals("건강")){
-            profile.setImageResource(R.drawable.field_health)
-        }else if(itemlist.interest.equals("휴식")){
-            profile.setImageResource(R.drawable.field_repose)
-        }
-
-
-        var combinestr :String = ""
-        for(num in 0..itemlist.position.size-1){
-            combinestr += itemlist!!.position[num]
-            combinestr += " "
-        }
-
-        project_name.text = itemlist.title
-        project_position.text = combinestr
-
-
-        var time = itemlist.duration.substring(itemlist.duration.length-1,itemlist.duration.length)
-        var resulttime = ""
-        if(time.equals("H")){
-            var hour = itemlist.duration.substring(0,itemlist.duration.length-1)
-            resulttime = hour +"시간전"
-        }else if(time.equals("n")){
-            resulttime = (itemlist.duration.substring(0,itemlist.duration.length-3)) + "분전"
-        }else{
-            resulttime = (itemlist.duration.substring(0,itemlist.duration.length-1)) + "초전"
-        }
-
-        project_update.text = resulttime
-
-
-        for(stackcontent in itemlist.stacks) {
-
-            var layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT ,
-                LinearLayout.LayoutParams.MATCH_PARENT )
-            layoutParams.setMargins(0, 0, 10, 0) // 오른쪽 자리
-
-            val stacktext = TextView(context)
-            stacktext.text = stackcontent
-
-
-            if(stacktext.text.equals("Html_CSS"))stacktext.text = "Html/CSS"
-            if(stacktext.text.equals("React_js"))stacktext.text = "React.JS"
-            if(stacktext.text.equals("After_Effects"))stacktext.text = "After Effects"
-            if(stacktext.text.equals("Cplus"))stacktext.text = "C++"
-            if(stacktext.text.equals("Flask"))stacktext.text = "FLASK"
-            if(stacktext.text.equals("Photoshop")) stacktext.text  = "PhotoShop"
+    class RecentlyRegisterListRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
 
 
-            stacktext.setPadding(30,5,30,5)
-            stacktext.layoutParams = layoutParams
+    // onCreateViewHolder : ViewHolder와 Layout 파일을 연결해주는 역할
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentlyRegisterListRecyclerViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.main_recentlyregisterproject_list, parent, false)
 
-            stacktext.setTextSize(TypedValue.COMPLEX_UNIT_DIP,10F)
-            stacktext.setTextColor(ContextCompat.getColor(context,R.color.visibletext))
-            stacktext.background= ContextCompat.getDrawable(context, R.drawable.radius_background_transparent)
-
-            stacktext.isSingleLine = true
-
-            // 기술스택에 넣기
-            project_stacks.addView(stacktext)
-        }
-
-
-
-
-        return view
+        return RecentlyRegisterListRecyclerViewHolder(view)
     }
 
-    override fun getItem(position: Int): Any {
-        return ProjectList!![position]
+    override fun getItemCount(): Int {
+        if (recentlyregisterviewmorelist != null) {
+            return recentlyregisterviewmorelist.size
+        } else {
+            return 0
+        }
     }
 
-    override fun getItemId(position: Int): Long {
-        return 0
+
+    // onBindViewHolder : 생성된 ViewHolder에 바인딩 해주는 함수
+    override fun onBindViewHolder(holder: RecentlyRegisterListRecyclerViewHolder, position: Int) {
+
+        val item = recentlyregisterviewmorelist[position]
+
+        with(holder.itemView) {
+
+            val randomindex = Random().nextInt(3)
+
+            // 배경색 변경
+            if(randomindex==0){
+
+                main_recentlyproject_image.background = ContextCompat.getDrawable(context, R.drawable.attentionimagebluenview)
+            }else if(randomindex ==1){
+                main_recentlyproject_image.background = ContextCompat.getDrawable(context, R.drawable.attentionimagegreenview)
+            }else{
+                main_recentlyproject_image.background = ContextCompat.getDrawable(context, R.drawable.attentionimagepinkview)
+            }
+
+
+            if(item.interest.equals("자기계발")) {
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_selfdeveloper)
+            }else if(item.interest.equals("취미")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_hobby)
+            }else if(item.interest.equals("경제")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_economy)
+            }else if(item.interest.equals("요리")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_cook)
+            }else if(item.interest.equals("IT")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_it)
+            }else if(item.interest.equals("예술_창작")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_art)
+            }else if(item.interest.equals("건강")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_health)
+            }else if(item.interest.equals("휴식")){
+                main_recentlyregister_field_image.setImageResource(R.drawable.field_repose)
+            }
+
+            var combinestr :String = ""
+            for(num in 0..item.position.size-1){
+                combinestr += item.position[num]
+                combinestr += " "
+            }
+
+            main_recentlytitle_textview.text = item.title
+            main_inputrecentlyproject_position_textview.text = combinestr
+
+            var resulttime = ""
+            // 분 처리
+            if(item.duration.isNotEmpty()){
+                var time = item.duration.substring(item.duration.length-1,item.duration.length)
+                if(time.equals("H")){
+                    var hour = item.duration.substring(0,item.duration.length-1)
+                    resulttime = hour +"시간전"
+                }else if(time.equals("n")){
+                    resulttime = (item.duration.substring(0,item.duration.length-3)) + "분전"
+                }else{
+                    resulttime = (item.duration.substring(0,item.duration.length-1)) + "초전"
+                }
+            }
+
+
+
+            main_recentlytime_textview.text = resulttime
+
+            for(stackcontent in item.stacks) {
+
+                var layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT ,LinearLayout.LayoutParams.MATCH_PARENT )
+                layoutParams.setMargins(0, 0, 10, 0) // 오른쪽 자리
+
+                val stacktext = TextView(context)
+                stacktext.text = stackcontent
+
+
+                if(stacktext.text.equals("Html_CSS"))stacktext.text = "Html/CSS"
+                if(stacktext.text.equals("React_js"))stacktext.text = "React.JS"
+                if(stacktext.text.equals("After_Effects"))stacktext.text = "After Effects"
+                if(stacktext.text.equals("Cplus"))stacktext.text = "C++"
+                if(stacktext.text.equals("Flask"))stacktext.text = "FLASK"
+                if(stacktext.text.equals("Photoshop")) stacktext.text  = "PhotoShop"
+
+
+
+                stacktext.setPadding(30,5,30,5)
+                stacktext.layoutParams = layoutParams
+
+                stacktext.setTextSize(TypedValue.COMPLEX_UNIT_DIP,10F)
+                stacktext.setTextColor(ContextCompat.getColor(context,R.color.visibletext))
+                stacktext.background=ContextCompat.getDrawable(context, R.drawable.radius_background_transparent)
+
+                stacktext.isSingleLine = true
+
+                main_recentlyregister_scrollview_textview.addView(stacktext)
+            }
+
+        }
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
+            intent.putExtra("id",item.id)
+            holder.itemView.context.startActivity(intent)
+
+        }
     }
 
-    override fun getCount(): Int {
-        return ProjectList!!.size
-    }
+
 }

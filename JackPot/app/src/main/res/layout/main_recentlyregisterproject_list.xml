@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="wrap_content"
+    android:id="@+id/recently_register_constraintlayout"
+    >
 
     <ImageView
         android:id="@+id/main_recentlyproject_image"
@@ -101,15 +103,15 @@
         app:layout_constraintTop_toTopOf="@+id/main_recentlyproject_image"
         app:srcCompat="@drawable/field_health" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView5"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="18dp"-->
-<!--        android:background="@drawable/edit_line"-->
-<!--        android:gravity="bottom"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/main_recentlytime_textview" />-->
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/edit_line"
+        android:gravity="bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_recentlytime_textview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

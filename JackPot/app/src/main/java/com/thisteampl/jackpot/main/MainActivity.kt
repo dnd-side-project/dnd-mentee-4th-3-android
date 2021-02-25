@@ -160,7 +160,6 @@ class MainActivity : AppCompatActivity() {
         
         
          //주목받는 멤버, 액티비티 프래그먼트 연결
-         //attentionlocation => 더보기 버튼 옵션 넣기 위해 사용
         main_memberattention_button.setOnClickListener {
             attentionlocation += 1
             main_memberattention_button.setTextColor(ContextCompat.getColor(this@MainActivity,R.color.colorbrightly))
@@ -184,9 +183,18 @@ class MainActivity : AppCompatActivity() {
         // addFlags() : 새로운 flag를 기존 flag에 붙임
         // 최근에 등록된 프로젝트 더보기 버튼 (더보기 page에서 백엔드 연결할 예정)
         main_recentlyviewmore_textview.setOnClickListener {
-            val intentrecentlyviewmore = Intent(this, RecentlyProjectViewMore::class.java)
-            intentrecentlyviewmore.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intentrecentlyviewmore)
+            if (prefs.getString("token", "NO_TOKEN") == "NO_TOKEN") {
+                Toast.makeText(
+                    this, "로그인 정보가 없습니다." +
+                            "\n로그인 화면으로 이동합니다.", Toast.LENGTH_SHORT
+                ).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+            }else{
+                val intentrecentlyviewmore = Intent(this, RecentlyProjectViewMore::class.java)
+                intentrecentlyviewmore.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intentrecentlyviewmore)
+            }
         }
 
 
