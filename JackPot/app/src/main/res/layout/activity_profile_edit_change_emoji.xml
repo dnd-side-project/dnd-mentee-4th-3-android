@@ -10,6 +10,7 @@
     android:id="@+id/profile_edit_change_emoji_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fontFamily="@font/notocoloremoji"
     android:background="@color/colorWhite">
 
     <androidx.appcompat.widget.Toolbar
