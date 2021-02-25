@@ -260,7 +260,8 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="80dp"
                 android:background="@drawable/radius_button_effect"
-                android:text="Photoshop"
+                android:text="PhotoShop"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -273,6 +274,7 @@
                 android:layout_marginTop="80dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Illustrator"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_photoshop"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -284,6 +286,7 @@
                 android:layout_marginTop="140dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="XD"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -296,6 +299,7 @@
                 android:layout_marginTop="140dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Figma"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_xd"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -308,6 +312,7 @@
                 android:layout_marginTop="140dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Sketch"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_figma"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -319,6 +324,7 @@
                 android:layout_marginTop="200dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Principle"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -331,6 +337,7 @@
                 android:layout_marginTop="200dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Indesign"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_principle"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -342,6 +349,7 @@
                 android:layout_marginTop="260dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="After_Effects"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -354,6 +362,7 @@
                 android:layout_marginTop="260dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Premiere"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_aftereffects"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -365,6 +374,7 @@
                 android:layout_marginTop="320dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="C4D"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -377,6 +387,7 @@
                 android:layout_marginTop="320dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Protopie"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_c4d"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -389,6 +400,7 @@
                 android:layout_marginTop="320dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Zeplin"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_tool_designer_protopie"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -422,6 +434,7 @@
                 android:layout_marginTop="80dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Cplus"
+                android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -433,6 +446,7 @@
                 android:layout_marginTop="80dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="JAVA"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_cpp"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -445,6 +459,7 @@
                 android:layout_marginTop="80dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Python"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_java"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -456,6 +471,7 @@
                 android:layout_marginTop="140dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Javascript"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -468,6 +484,7 @@
                 android:layout_marginTop="140dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Html_CSS"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_jsc"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -480,6 +497,7 @@
                 android:layout_marginTop="140dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Swift"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_htmlcss"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -491,6 +509,7 @@
                 android:layout_marginTop="200dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Spring"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -503,6 +522,7 @@
                 android:layout_marginTop="200dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Kotlin"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_spring"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -515,6 +535,7 @@
                 android:layout_marginTop="200dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Django"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_kotlin"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -526,6 +547,7 @@
                 android:layout_marginTop="260dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="React_js"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -538,6 +560,7 @@
                 android:layout_marginTop="260dp"
                 android:background="@drawable/radius_button_effect"
                 android:text="Flask"
+                android:textSize="12dp"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toEndOf="@+id/profile_edit_stack_developer_reactjs"
                 app:layout_constraintTop_toTopOf="parent" />

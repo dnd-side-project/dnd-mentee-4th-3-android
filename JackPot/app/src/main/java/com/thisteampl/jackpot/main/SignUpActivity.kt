@@ -336,6 +336,8 @@ class SignUpActivity : AppCompatActivity() {
                                 sendEmail(signup_id_text.text.toString(), authCode)
                                 Toast.makeText(baseContext, "입력하신 이메일로 인증을 보냈습니다.\n인증코드를 입력해 주세요.", Toast.LENGTH_SHORT)
                                     .show()
+                                signup_id_text.isEnabled = false
+                                signup_id_check_button.isEnabled = false
                                 signup_auth_layout.visibility = View.VISIBLE
                             } else {
                                 Toast.makeText(
@@ -355,9 +357,7 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(baseContext, "인증되었습니다.", Toast.LENGTH_SHORT)
                     .show()
                 signup_auth_text.isEnabled = false
-                signup_id_text.isEnabled = false
                 signup_auth_check_button.isEnabled = false
-                signup_id_check_button.isEnabled = false
                 emailCheck = true
             } else {
                 Toast.makeText(baseContext, "인증코드를 확인해 주세요.", Toast.LENGTH_SHORT)
