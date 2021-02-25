@@ -172,6 +172,14 @@ class SettingActivity : AppCompatActivity() {
                 activity?.supportFragmentManager?.beginTransaction()
                     ?.replace(R.id.setting_container, NotifyFragment())?.commit()
             }
+
+            //문의하기 버튼
+            root.findViewById<View>(R.id.setting_email).setOnClickListener {
+                val intent = Intent(Intent.ACTION_SEND)
+                    .putExtra(Intent.EXTRA_EMAIL, "dndjackpot3@gmail.com")
+                    .putExtra(Intent.EXTRA_TEXT, "문의하실 내용을 적어주세요.\n")
+                startActivity(intent)
+            }
             return root
         }
     }
