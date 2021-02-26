@@ -1,6 +1,7 @@
 package com.thisteampl.jackpot.main.mainhome
 
 import android.content.Intent
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
