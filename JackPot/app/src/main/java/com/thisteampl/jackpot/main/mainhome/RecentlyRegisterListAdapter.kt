@@ -104,7 +104,7 @@ class RecentlyRegisterListAdapter(
                 }else if(time.equals("n")){
                     resulttime = (item.duration.substring(0,item.duration.length-3)) + "분전"
                 }else{
-                    resulttime = (item.duration.substring(0,item.duration.length-1)) + "초전"
+                    resulttime = "1분전"
                 }
             }
 

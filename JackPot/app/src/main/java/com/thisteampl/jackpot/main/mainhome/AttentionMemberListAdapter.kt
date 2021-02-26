@@ -12,7 +12,9 @@ import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import com.thisteampl.jackpot.main.userController.UserRelatedFilteringcontents
+import com.thisteampl.jackpot.main.userpage.ProfileActivity
 import kotlinx.android.synthetic.main.main_attentionmember_list.view.*
+import kotlinx.android.synthetic.main.main_recentlyregisterproject_list.view.*
 import java.util.*
 
 
@@ -46,20 +48,30 @@ class AttentionMemberListAdapter(val attentionmemberlist: List<UserRelatedFilter
 //            main_attentionmemberitem_image.setImageResource(item.emoticon)
             main_attentionmember_title_textview.text = item.name
 
+            val randomindex = Random().nextInt(3)
+            // 배경색 변경
+            if(randomindex==0){
+                main_user_constraintLayout.background = ContextCompat.getDrawable(context, R.drawable.attentionimagebluenview)
+            }else if(randomindex ==1){
+                main_user_constraintLayout.background = ContextCompat.getDrawable(context, R.drawable.attentionimagegreenview)
+            }else{
+                main_user_constraintLayout.background = ContextCompat.getDrawable(context, R.drawable.attentionimagepinkview)
+            }
 
+            main_attentionmemberitem_textview.text = item.emoticon
             main_attentionproject_content_textview.text = "${item.position} ・${item.career}"
 
 
         }
 
 
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
-            // 유저쪽 멤버라 id 없음
-            intent.putExtra("id",item.name)
-            holder.itemView.context.startActivity(intent)
-
-        }
+//        holder.itemView.setOnClickListener {
+//            val intent = Intent(holder.itemView.context, ProfileActivity::class.java)
+//            // 유저쪽 멤버라 id 없음
+//            intent.putExtra("id",item.name)
+//            holder.itemView.context.startActivity(intent)
+//
+//        }
 
     }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.thisteampl.jackpot.R
+import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import com.thisteampl.jackpot.main.userController.UserRelatedFilteringcontents
 import kotlinx.android.synthetic.main.holder_filtered_search_memberrelated_list.view.*
@@ -16,6 +17,7 @@ import java.util.*
 // 최근 등록된 프로젝트 어댑터(연결 구간)
 class FilteringUserAdapter(
     val filteringuseradapter: List<UserRelatedFilteringcontents> = mutableListOf()): RecyclerView.Adapter<FilteringUserAdapter.filteringUserViewHolder>() {
+
 
     class filteringUserViewHolder(view: View) : RecyclerView.ViewHolder(view)
 

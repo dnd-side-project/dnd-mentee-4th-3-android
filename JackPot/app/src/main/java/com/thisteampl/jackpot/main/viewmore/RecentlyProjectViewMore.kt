@@ -3,6 +3,7 @@ package com.thisteampl.jackpot.main.viewmore
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.mainhome.RecentlyRegisterProject
@@ -47,9 +48,9 @@ class RecentlyProjectViewMore : AppCompatActivity() {
         )
 
 
-        if (selection_result.equals("최신순")) {
+        if (selection_result == "최신순") {
             filteringproject.sortType = "최신순"
-        } else if (selection_result.equals("인기순")) {
+        } else if (selection_result == "인기순") {
             filteringproject.sortType = "인기순"
         }
 
@@ -78,8 +79,19 @@ class RecentlyProjectViewMore : AppCompatActivity() {
                             recentlyregister.connectprojectbackend(recentlylist)
                         }
                         Log.d("tag","Main에서 recentlyregister 호출")
-                        supportFragmentManager.beginTransaction().add(R.id.recentlyregitstered_listview,recentlyregister)
-                            .commitAllowingStateLoss()
+
+
+                        if(filteringproject.sortType == "최신순"){
+                            recentlyregitstered_popularityframelayout.visibility = View.GONE
+                            recentlyregitstered_recentlyframelayout.visibility = View.VISIBLE
+                            supportFragmentManager.beginTransaction().add(R.id.recentlyregitstered_recentlyframelayout,recentlyregister)
+                                .commitAllowingStateLoss()
+                        }else if (filteringproject.sortType == "인기순"){
+                            recentlyregitstered_recentlyframelayout.visibility = View.GONE
+                            recentlyregitstered_popularityframelayout.visibility = View.VISIBLE
+                            supportFragmentManager.beginTransaction().add(R.id.recentlyregitstered_popularityframelayout,recentlyregister)
+                                .commitAllowingStateLoss()
+                        }
                     } else {
                         ToastmakeTextPrint("최근 등록된 프로젝트 검색되지 않았습니다.")
                         Log.d("tag", "${response.code().toString()}")

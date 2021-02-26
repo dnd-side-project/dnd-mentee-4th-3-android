@@ -36,6 +36,7 @@ class RecentlyRegisterProject : Fragment() {
         for(num in 0..recentlylist.size-1){
             Log.d("tag","recentlylist size : ${recentlylist.get(num).title}")
         }
+
     }
 
 
@@ -48,6 +49,7 @@ class RecentlyRegisterProject : Fragment() {
             LinearLayoutManager.VERTICAL,false)
         main_attentionprojectlist_recyclerview.setHasFixedSize(true)
         main_attentionprojectlist_recyclerview.adapter = RecentlyRegisterListAdapter(recentlylist)
+
     }
 
 

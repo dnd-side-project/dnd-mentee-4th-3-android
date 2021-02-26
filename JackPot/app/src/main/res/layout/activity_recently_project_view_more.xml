@@ -78,13 +78,26 @@
 
 
         <FrameLayout
-            android:id="@+id/recentlyregitstered_listview"
+            android:id="@+id/recentlyregitstered_recentlyframelayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recentlyregitstered_powerspinner" />
+
+        <FrameLayout
+            android:id="@+id/recentlyregitstered_popularityframelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recentlyregitstered_powerspinner" />
+
+
 
 
 

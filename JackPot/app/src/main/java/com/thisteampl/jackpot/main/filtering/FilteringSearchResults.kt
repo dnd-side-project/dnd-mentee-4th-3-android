@@ -12,6 +12,7 @@ import com.thisteampl.jackpot.main.projectController.projectAPI
 import com.thisteampl.jackpot.main.userController.*
 import com.thisteampl.jackpot.main.viewmore.FilteringFragment
 import kotlinx.android.synthetic.main.activity_filtered_search_results.*
+import kotlinx.android.synthetic.main.activity_recently_project_view_more.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -151,13 +152,26 @@ class FilteringSearchResults : AppCompatActivity() {
 
 
                         var usersearch = response.body()?.contents
+
                         // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
                         filteringID = FilteringUserFragment.newInstance()
                         if (usersearch != null) {
                             filteringID.connectprojectbackend(usersearch)
                         }
-                        supportFragmentManager.beginTransaction().add(R.id.filterresult_fragment,filteringID)
-                            .commitAllowingStateLoss()
+
+
+
+                        if(filteringuser.sortType == "최신순"){
+                            filterresult_popularityframelayout.visibility = View.GONE
+                            filterresult_recentlyframelayout.visibility = View.VISIBLE
+                            supportFragmentManager.beginTransaction().add(R.id.filterresult_recentlyframelayout,filteringID)
+                                .commitAllowingStateLoss()
+                        }else if (filteringuser.sortType == "인기순"){
+                            filterresult_recentlyframelayout.visibility = View.GONE
+                            filterresult_popularityframelayout.visibility = View.VISIBLE
+                            supportFragmentManager.beginTransaction().add(R.id.filterresult_popularityframelayout,filteringID)
+                                .commitAllowingStateLoss()
+                        }
 
                     } else {
                         ToastmakeTextPrint("멤버 찾기 검색 되지 않았습니다.")
@@ -230,8 +244,20 @@ class FilteringSearchResults : AppCompatActivity() {
                         if (filteringsearch != null) {
                             filtering.connectprojectbackend(filteringsearch)
                         }
-                        supportFragmentManager.beginTransaction().add(R.id.filterresult_fragment,filtering)
-                            .commitAllowingStateLoss()
+
+                        if(filteringproject.sortType == "최신순"){
+                            filterresult_popularityframelayout.visibility = View.GONE
+                            filterresult_recentlyframelayout.visibility = View.VISIBLE
+                            supportFragmentManager.beginTransaction().add(R.id.filterresult_recentlyframelayout,filtering)
+                                .commitAllowingStateLoss()
+                        }else if (filteringproject.sortType == "인기순"){
+                            filterresult_recentlyframelayout.visibility = View.GONE
+                            filterresult_popularityframelayout.visibility = View.VISIBLE
+                            supportFragmentManager.beginTransaction().add(R.id.filterresult_popularityframelayout,filtering)
+                                .commitAllowingStateLoss()
+                        }
+
+
 
                     } else {
                         ToastmakeTextPrint("프로젝트 검색 완료되지 않았습니다.")

@@ -19,6 +19,8 @@ import com.thisteampl.jackpot.main.projectController.ProjectGetElement
 import com.thisteampl.jackpot.main.projectController.ProjectPostLatest
 import com.thisteampl.jackpot.main.projectController.projectAPI
 import com.thisteampl.jackpot.main.userController.CheckMyProfile
+import com.thisteampl.jackpot.main.userController.UserRelatedFilteringGet
+import com.thisteampl.jackpot.main.userController.UserRelatedFilteringPost
 import com.thisteampl.jackpot.main.userController.userAPI
 
 import com.thisteampl.jackpot.main.userpage.MyPageActivity
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     private var len  = 0
     private lateinit var attentionproject_backend: AttentionProject
+    private lateinit var attentionmember_backend: AttentionMember
     private lateinit var recentlyregister: RecentlyRegisterProject
     private val userApi = userAPI.create()
 
@@ -365,37 +368,38 @@ class MainActivity : AppCompatActivity() {
 
             1-> {
 
+                var list_frag = mutableListOf<String>()
+                list_frag.add("")
                 // 아직안됨
-                var attentionproject = ProjectPostLatest(
-                    file_empty2,file_empty2,0,5,file_empty,"멤버순",file_empty2
+                var attentionmember = UserRelatedFilteringPost(
+                    0,5,list_frag,"","인기순",list_frag
                 )
-                projectapi?.getProjectContents(attentionproject)
-                    ?.enqueue(object : Callback<ProjectGetElement> {
-                        override fun onFailure(call: Call<ProjectGetElement>, t: Throwable) {
+                userApi?.getUserPosition(attentionmember)
+                    ?.enqueue(object : Callback<UserRelatedFilteringGet> {
+                        override fun onFailure(call: Call<UserRelatedFilteringGet>, t: Throwable) {
                             Log.e("tag ", "onFailure, " + t.localizedMessage)
                         }
 
                         override fun onResponse(
-                            call: Call<ProjectGetElement>,
-                            response: Response<ProjectGetElement>
+                            call: Call<UserRelatedFilteringGet>,
+                            response: Response<UserRelatedFilteringGet>
                         ) {
 
                             if (response.isSuccessful) {
                                 val attentionlist = response.body()?.contents
                                 // 최근에 등록된 프로젝트, 액티비티 프래그먼트 연결
-                                attentionproject_backend = AttentionProject.newInstance()
+                                attentionmember_backend = AttentionMember.newInstance()
                                 if (attentionlist != null) {
-                                    attentionproject_backend.connectprojectbackend(attentionlist)
+                                    attentionmember_backend.connectprojectbackend(attentionlist)
                                 }
                                 Log.d("tag","Main에서 attentionproject 호출")
-                                ft.replace(R.id.main_projectview_framelayout, attentionproject_backend).commit()
+                                ft.replace(R.id.main_projectview_framelayout, attentionmember_backend).commit()
                             }else{
                                 Log.e("tag","Main에서 attentionproject 결과 : ${response.code().toString()}")
                             }
                         }
                     })
 
-                ft.replace(R.id.main_projectview_framelayout, AttentionMember()).commit()
             }
         }
 

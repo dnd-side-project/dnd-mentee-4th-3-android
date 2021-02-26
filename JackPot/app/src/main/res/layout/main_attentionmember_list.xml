@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout6"
+    android:id="@+id/main_user_constraintLayout"
     android:layout_width="122dp"
     android:layout_height="120dp"
     android:layout_marginEnd="10dp"
@@ -19,8 +19,8 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/circle_imageview"
 
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout6" />
+        app:layout_constraintStart_toStartOf="@+id/main_user_constraintLayout"
+        app:layout_constraintTop_toTopOf="@+id/main_user_constraintLayout" />
 
 
     <TextView
@@ -32,8 +32,8 @@
         android:textColor="#000000"
         android:textSize="12dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout6"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
+        app:layout_constraintEnd_toEndOf="@+id/main_user_constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/main_user_constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/main_attention_imageview" />
 
     <TextView
@@ -46,14 +46,16 @@
         android:textColor="#000000"
         android:textSize="10dp"
 
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout6"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout6"
+        app:layout_constraintEnd_toEndOf="@+id/main_user_constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/main_user_constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/main_attentionmember_title_textview" />
 
-    <ImageView
-        android:id="@+id/main_attentionmemberitem_image"
-        android:layout_width="24dp"
-        android:layout_height="23dp"
+    <TextView
+        android:id="@+id/main_attentionmemberitem_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🤖"
+        android:textSize="28dp"
         app:layout_constraintBottom_toBottomOf="@+id/main_attention_imageview"
         app:layout_constraintEnd_toEndOf="@+id/main_attention_imageview"
         app:layout_constraintStart_toStartOf="@+id/main_attention_imageview"

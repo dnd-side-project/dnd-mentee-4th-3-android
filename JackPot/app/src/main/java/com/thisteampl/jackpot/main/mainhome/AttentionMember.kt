@@ -32,6 +32,13 @@ class AttentionMember : Fragment() {
     }
 
 
+    companion object {
+        fun newInstance(): AttentionMember{
+            return AttentionMember()
+        }
+    }
+
+
     // View가 만들어진 후, onViewCreated() 콜백된다.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
