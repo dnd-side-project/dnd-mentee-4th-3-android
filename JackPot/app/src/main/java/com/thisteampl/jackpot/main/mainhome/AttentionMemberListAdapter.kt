@@ -69,7 +69,7 @@ class AttentionMemberListAdapter(val attentionmemberlist: List<UserRelatedFilter
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, ProfileActivity::class.java)
             Log.d("tag","user에서 id : ${item.userIndex}")
-            intent.putExtra("title",item.name)
+            intent.putExtra("title","멤버 프로필")
             intent.putExtra("id",item.userIndex)
             holder.itemView.context.startActivity(intent)
         }
