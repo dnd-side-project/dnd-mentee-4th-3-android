@@ -283,7 +283,7 @@ class MainActivity : AppCompatActivity() {
 
         // 3. 최근에 등록된 프로젝트
         var recruitmentproject = ProjectPostLatest(
-            file_empty2,file_empty2,0,5,file_empty,"최신순",file_empty2
+            file_empty2,file_empty2,0,10,file_empty,"최신순",file_empty2
         )
 
         projectapi?.getProjectContents(recruitmentproject)

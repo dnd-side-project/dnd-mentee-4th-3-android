@@ -1,6 +1,7 @@
 package com.thisteampl.jackpot.main.filtering
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.thisteampl.jackpot.R
 import com.thisteampl.jackpot.main.projectController.ProjectElementMaterial
 import com.thisteampl.jackpot.main.projectdetail.ProjectViewDetail
 import com.thisteampl.jackpot.main.userController.UserRelatedFilteringcontents
+import com.thisteampl.jackpot.main.userpage.ProfileActivity
 import kotlinx.android.synthetic.main.holder_filtered_search_memberrelated_list.view.*
 import java.util.*
 
@@ -92,10 +94,11 @@ class FilteringUserAdapter(
         }
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, ProjectViewDetail::class.java)
-            intent.putExtra("id",item.name)
+            val intent = Intent(holder.itemView.context, ProfileActivity::class.java)
+            Log.d("tag","user에서 id : ${item.userIndex}")
+            intent.putExtra("title","멤버 프로필")
+            intent.putExtra("id",item.userIndex)
             holder.itemView.context.startActivity(intent)
-
         }
     }
 
