@@ -304,7 +304,7 @@ class ProjectViewDetail : AppCompatActivity() {
                         val textView = TextView(baseContext)
                         textView.text = i.emoticon
                         textView.gravity = Gravity.CENTER
-                        textView.typeface = resources.getFont(R.font.roboto_font)
+                        textView.typeface = resources.getFont(R.font.notocoloremoji)
                         //textView.setPadding(20, 20, 20, 20)
                         textView.layoutParams = layoutParams
 
