@@ -175,11 +175,15 @@ class SettingActivity : AppCompatActivity() {
 
             //문의하기 버튼
             root.findViewById<View>(R.id.setting_email).setOnClickListener {
+                val jackPotMail = arrayOf("dndjackpot3@gmail.com")
                 val intent = Intent(Intent.ACTION_SEND)
-                    .putExtra(Intent.EXTRA_EMAIL, "dndjackpot3@gmail.com")
+                    .putExtra(Intent.EXTRA_EMAIL, jackPotMail)
+                    .putExtra(Intent.EXTRA_SUBJECT, "잭팟 문의 메일")
                     .putExtra(Intent.EXTRA_TEXT, "문의하실 내용을 적어주세요.\n")
+                intent.type = "text/plain"
                 startActivity(intent)
             }
+
             return root
         }
     }
