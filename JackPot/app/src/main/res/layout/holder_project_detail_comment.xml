@@ -32,6 +32,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center"
             android:text="🤖"
+            android:fontFamily="@font/notocoloremoji"
             android:textSize="12dp"/>
 
     </FrameLayout>

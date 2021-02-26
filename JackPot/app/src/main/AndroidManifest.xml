@@ -8,15 +8,15 @@
     <application
         android:name=".common.GlobalApplication"
         android:allowBackup="true"
-        android:icon="@drawable/app_icon"
+        android:icon="@drawable/jackpot_app_icon_new"
         android:label="Jackpot"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".main.notice.MainNotice"></activity>
+        <!-- <activity android:name=".main.notice.MainNotice"></activity> -->
         <activity android:name=".main.mainhome.FieldMore" />
-        <activity android:name=".main.notice.Exampleacitivti" />
+        <!-- <activity android:name=".main.notice.Exampleacitivti" /> -->
 
         <service
             android:name=".main.fcm.MyJobService"

@@ -80,7 +80,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService(){
                 Notification.Builder(this, CHANNEL_DEFAULT_IMPORTANCE)
                     .setContentTitle(title)
                     .setContentText(content)
-                    .setSmallIcon(R.drawable.common_full_open_on_phone)
+                    .setSmallIcon(R.drawable.app_icon)
                     .setContentIntent(pendingIntent)
                     .build()
             } else {

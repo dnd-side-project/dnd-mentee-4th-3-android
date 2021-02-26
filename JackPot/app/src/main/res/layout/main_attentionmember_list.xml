@@ -55,6 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="🤖"
+        android:fontFamily="@font/notocoloremoji"
         android:textSize="28dp"
         app:layout_constraintBottom_toBottomOf="@+id/main_attention_imageview"
         app:layout_constraintEnd_toEndOf="@+id/main_attention_imageview"

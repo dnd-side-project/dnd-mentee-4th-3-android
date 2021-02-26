@@ -335,11 +335,7 @@ class ProjectViewDetail : AppCompatActivity() {
 
                         textView.setOnClickListener {
                             val intent = Intent(baseContext, ProfileActivity::class.java)
-                            if(i.name == watcherName) {
-                                intent.putExtra("title", "내 프로필")
-                            }else {
-                                intent.putExtra("title", "멤버 프로필").putExtra("id", i.userIndex)
-                            }
+                                .putExtra("title", "멤버 프로필").putExtra("id", i.userIndex)
                             startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                         }
 
