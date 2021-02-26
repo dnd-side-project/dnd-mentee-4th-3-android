@@ -61,7 +61,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="🤖"
                     android:fontFamily="@font/notocoloremoji"
                     android:textSize="48dp"/>
 
@@ -74,7 +73,6 @@
                     android:id="@+id/profile_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="닉네임"
                     android:textColor="@color/colorWhite"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -92,7 +90,6 @@
                 android:id="@+id/profile_job_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="직업"
                 android:textColor="@color/colorWhite"
                 android:textSize="16dp" />
 
@@ -224,7 +221,6 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/radius_background_transparent"
         android:padding="10dp"
-        android:text="자기소개가 없습니다."
         android:textColor="@color/colorBlack"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
