@@ -1,6 +1,7 @@
 package com.thisteampl.jackpot.main.mainhome
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,13 +66,13 @@ class AttentionMemberListAdapter(val attentionmemberlist: List<UserRelatedFilter
         }
 
 
-//        holder.itemView.setOnClickListener {
-//            val intent = Intent(holder.itemView.context, ProfileActivity::class.java)
-//            // 유저쪽 멤버라 id 없음
-//            intent.putExtra("id",item.name)
-//            holder.itemView.context.startActivity(intent)
-//
-//        }
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ProfileActivity::class.java)
+            Log.d("tag","user에서 id : ${item.userIndex}")
+            intent.putExtra("title",item.name)
+            intent.putExtra("id",item.userIndex)
+            holder.itemView.context.startActivity(intent)
+        }
 
     }
 }
