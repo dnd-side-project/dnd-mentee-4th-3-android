@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="🤖"
+            android:fontFamily="@font/notocoloremoji"
             android:textAlignment="center"
             android:textSize="36dp"/>
 
