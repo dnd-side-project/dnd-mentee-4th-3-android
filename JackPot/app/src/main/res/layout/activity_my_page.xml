@@ -69,7 +69,6 @@
                 android:id="@+id/mypage_job_icon_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🤖"
                 android:textSize="36dp"
                 android:fontFamily="@font/notocoloremoji"
                 android:layout_gravity="center"/>
@@ -94,7 +93,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:text="닉네임"
                     android:textColor="@color/colorWhite"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -112,7 +110,6 @@
                 android:id="@+id/mypage_job_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="직업"
                 android:textColor="@color/colorWhite"
                 android:textSize="16dp" />
 
